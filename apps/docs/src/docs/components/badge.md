@@ -1,68 +1,64 @@
-# Badge
+# Бейдж
 
 <PageHeader>
 
-Documentation and examples for badges, our small count and labeling component.
+Документация и примеры для бейджей — наших небольших компонентов для счёта и меток.
 
 </PageHeader>
 
-## Examples
+## Примеры
 
-Badges scale to match the size of the immediate parent element by using relative font sizing and em units. As of v5, badges no longer have focus or hover styles for links.
+Бейджи масштабируются относительно размера родительского элемента с помощью относительных единиц шрифта и em. Начиная с v5, бейджи больше не имеют стилей фокуса или наведения для ссылок.
 
-### Headings
+### Заголовки
 
 <<< DEMO ./demo/BadgeHeadings.vue#template{vue-html}
 
-### Buttons
+### Кнопки
 
-Badges can be used as part of links or buttons to provide a counter.
+Бейджи можно использовать как часть ссылок или кнопок для отображения счётчика.
 
 <<< DEMO ./demo/BadgeButtons.vue#template{vue-html}
-Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
 
-Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional
-text.
+Обратите внимание, что в зависимости от способа использования бейджи могут быть неочевидны для пользователей экранных читалок и других вспомогательных технологий. Хотя оформление бейджа даёт визуальную подсказку о его назначении, такие пользователи увидят только содержимое бейджа. В некоторых случаях такие бейджи могут показаться случайными словами или числами в конце предложения, ссылки или кнопки.
 
-### Positioned
+Если контекст неочевиден (например, как в примере с "Уведомлениями", где понятно, что "4" — это количество уведомлений), добавьте дополнительный контекст с помощью скрытого текста (`.visually-hidden`).
 
-Use the `placement` property to position it relative to a parent [link](/docs/components/link) or [button](/docs/components/button).
-Note that for links of buttons, you haveto manually apply the `postition-relative` class to the badge's parent,
-unlike with [`Avatars`](/docs/components/avatar) where that is hanlded automatically.
+### Позиционирование
+
+Используйте свойство `placement`, чтобы позиционировать бейдж относительно родительской [ссылки](/docs/components/link) или [кнопки](/docs/components/button).
+Обратите внимание, что для ссылок или кнопок вам нужно вручную добавить класс `position-relative` родителю бейджа, в отличие от [`Аватаров`](/docs/components/avatar), где это делается автоматически.
 
 <<< DEMO ./demo/BadgePositioned.vue#template{vue-html}
 
-### Dot Indicator
+### Индикатор-точка
 
-The `Badge` component also implements a `dot-indicator` property to transform the badge into
-a more generic indicator. Please note that you have to manually apply the `position-relative`
-class to the parent button.
+Компонент `Badge` также реализует свойство `dot-indicator`, чтобы превратить бейдж в более универсальный индикатор. Обратите внимание, что вам нужно вручную добавить класс `position-relative` родительской кнопке.
 
 <<< DEMO ./demo/BadgeDotIndicator.vue#template{vue-html}
 
-## Background colors
+## Цвета фона
 
 <<< DEMO ./demo/BadgeBackgroundColors.vue#template{vue-html}
-::: tip Conveying meaning to assistive technologies
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+::: tip Передача смысла вспомогательным технологиям
+Использование цвета для передачи смысла — только визуальный индикатор, который не будет доступен пользователям вспомогательных технологий, например, экранных читалок. Убедитесь, что информация, обозначенная цветом, очевидна из самого содержимого (например, видимый текст), либо добавьте её с помощью других средств, например, скрытого текста с классом `.visually-hidden`.
 :::
 
 <div class="mt-2"></div>
 
-::: warning Interactions between Variant props
-`BBadge` implements `bg-variant` and `text-variant` to provide finer control of colors, they take
-precedence over the `variant` prop. See the
-[Color Variant Reference](/docs/reference/color-variants#variant-interactions) for details.
+::: warning Взаимодействие пропсов Variant
+`BBadge` реализует пропсы `bg-variant` и `text-variant` для более тонкой настройки цветов, они имеют приоритет над пропсом `variant`. Подробнее см. в [справочнике по цветовым вариантам](/docs/reference/color-variants#variant-interactions).
 :::
 
-## Pill badges
+## Pill-бейджи
 
-Use the `pill` prop to make badges more rounded with a larger border-radius.
+Используйте пропс `pill`, чтобы сделать бейджи более округлыми с большим радиусом скругления.
+
 <<< DEMO ./demo/BadgePill.vue#template{vue-html}
 
-## Actionable badges
+## Кликабельные бейджи
 
-Quickly provide actionable badges by specifying either the `href` prop (links) or `to` prop (router-links):
+Быстро создавайте кликабельные бейджи, указав пропс `href` (для ссылок) или `to` (для router-link):
 
 <<< DEMO ./demo/BadgeActionable.vue#template{vue-html}
 

@@ -7,7 +7,7 @@ import {type BreadcrumbItem} from 'bootstrap-vue-next'
 import {ref} from 'vue'
 
 const breadcrumbItems = ref<BreadcrumbItem[]>([
-  {text: 'Admin', href: 'https://getbootstrap.com/'},
+  {text: 'Admin', href: 'https://getbootstrap.su/'},
   {text: 'Manage', href: '#'},
   {text: 'Library'},
 ])

@@ -1,1021 +1,774 @@
-# Tables
+# Таблицы
 
 <PageHeader>
 
-For displaying tabular data, `BTable` supports pagination, filtering, sorting, custom rendering, various style options, events, and asynchronous data. For simple display of tabular data without all the fancy features, BootstrapVueNext provides two lightweight alternative components [`BTableLite`](#light-weight-tables) and [`BTableSimple`](#simple-tables).
+Для отображения табличных данных, `BTable` поддерживает пагинацию, фильтрацию, сортировку, пользовательское форматирование, различные стилевые опции, события и асинхронные данные. Для простого отображения табличных данных без всех этих функций, BootstrapVueNext предоставляет два легковесных альтернативных компонента [`BTableLite`](#light-weight-tables) и [`BTableSimple`](#simple-tables).
 
 </PageHeader>
 
-## Basic Usage
+## Основное использование
 
 <<< DEMO ./demo/TableOverview.vue
 
-## Items (record data)
+## Элементы (данные записи)
 
-`items` is the table data in array format, where each record (row) data are keyed objects. Example
-format:
+`items` — это данные таблицы в формате массива, где каждая запись (строка) представляет собой объект с ключами. Пример формата:
 
 <<< FRAGMENT ./demo/TableItems.ts#snippet{ts}
 
-`<BTable>` automatically samples the first row to extract field names (the keys in the record
-data). Field names are automatically "humanized" by converting `kebab-case`, `snake_case`, and
-`camelCase` to individual words and capitalizes each word. Example conversions:
+`<BTable>` автоматически выбирает первую строку для извлечения имен полей (ключи в данных записи). Имена полей автоматически "человекообразуются" путем преобразования `kebab-case`, `snake_case`, и `camelCase` в отдельные слова и каждое слово заглавляется. Примеры преобразований:
 
-- `first_name` becomes `First Name`
-- `last-name` becomes `Last Name`
-- `age` becomes `Age`
-- `YEAR` remains `YEAR`
-- `isActive` becomes `Is Active`
+- `first_name` становится `First Name`
+- `last-name` становится `Last Name`
+- `age` становится `Age`
+- `YEAR` остается `YEAR`
+- `isActive` становится `Is Active`
 
-These titles will be displayed in the table header, in the order they appear in the **first** record
-of data. See the [Fields](#fields-column-definitions) section below for customizing how field
-headings appear.
+Эти заголовки будут отображаться в заголовке таблицы, в том порядке, в котором они появляются в **первой** записи данных. См. раздел [Поля (определения столбцов)](#fields-column-definitions) ниже для настройки того, как заголовки полей отображаются.
 
-::: info NOTE
-Field order is not guaranteed. Fields will typically appear in the order they were defined
-in the first row, but this may not always be the case depending on the version of browser in use.
-See section [Fields (column definitions)](#fields-column-definitions) below to see how to guarantee
-the order of fields, and to override the headings generated.
+::: info ПРИМЕЧАНИЕ
+Порядок полей не гарантируется. Поля обычно появляются в том порядке, в котором они были определены в первой строке, но это может не всегда быть так, в зависимости от версии браузера в использовании. См. раздел [Поля (определения столбцов)](#fields-column-definitions) ниже, чтобы увидеть, как обеспечить порядок полей, и переопределить сгенерированные заголовки.
 :::
 
-Record data may also have additional special reserved name keys for colorizing rows and individual
-cells (variants), and for triggering additional row detail. The type [TableItem](/docs/types#tableitem)
-defines the supported optional item record modifier properties
-(make sure your field keys do not conflict with these names):
+Данные записи могут также иметь дополнительные специальные зарезервированные имена ключей для окрашивания строк и отдельных ячеек (варианты), а также для активации дополнительной информации о строке. Тип [TableItem](/docs/types#tableitem) определяет поддерживаемые опциональные свойства модификатора записи записи (убедитесь, что ваши ключи полей не конфликтуют с этими именами):
 
-| Property        | Type                                   | Description                                                                                                                                                                                                                                                |
-| --------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `_cellVariants` | Partial<Record<keyof T, ColorVariant>> | Bootstrap contextual state applied to individual cells. Keyed by field (See the [Color Variants](/docs/reference/color-variants) for supported values). These variants map to classes `table-${variant}` or `bg-${variant}` (when the `dark` prop is set). |
-| `_rowVariant`   | ColorVariant                           | Bootstrap contextual state applied to the entire row (See the [Color Variants](/docs/reference/color-variants) for supported values). These variants map to classes `table-${variant}` or `bg-${variant}` (when the `dark` prop is set)                    |
-| `_showDetails`  | boolean                                | Used to trigger the display of the `row-details` scoped slot. See section [Row details support](#row-details-support) below for additional information                                                                                                     |
+| Свойство        | Тип                                    | Описание                                                                                                                                                                                                                                                                                    |
+| --------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `_cellVariants` | Partial<Record<keyof T, ColorVariant>> | Контекстные состояния Bootstrap, применяемые к отдельным ячейкам. Ключами являются поля (см. [Варианты цветов](/docs/reference/color-variants) для поддерживаемых значений). Эти варианты сопоставляются с классами `table-${variant}` или `bg-${variant}` (когда установлен пропс `dark`). |
+| `_rowVariant`   | ColorVariant                           | Контекстные состояния Bootstrap, применяемые к целой строке (см. [Варианты цветов](/docs/reference/color-variants) для поддерживаемых значений). Эти варианты сопоставляются с классами `table-${variant}` или `bg-${variant}` (когда установлен пропс `dark`).                             |
+| `_showDetails`  | boolean                                | Используется для активации отображения слота `row-details` scoped. См. раздел [Поддержка деталей строк](#row-details-support) ниже для дополнительной информации                                                                                                                            |
 
-### Example: Using variants for table cells
+### Пример: использование вариантов для табличных ячеек
 
 <<< DEMO ./demo/TableCellVariants.vue
 
-A provider function can be provided instead of setting `items` to return items syncronously or asyncronously.
-See the ["Using Items Provider functions"](#using-items-provider-functions) section below for more details.
+Вместо установки `items` можно предоставить функцию поставщика, которая возвращает элементы синхронно или асинхронно. См. раздел ["Использование функций поставщика элементов"](#using-items-provider-functions) ниже для получения дополнительной информации.
 
-### Table item notes and warnings
+### Заметки и предупреждения по элементам таблицы
 
-- Avoid manipulating record data in place, as changes to the underlying items data will cause either
-  the row or entire table to be re-rendered. See [Primary Key](#primary-key), below, for ways to
-  minimize Vue's re-rendering of rows.
-- `items` array records should be a simple object and **must** avoid placing data that may have
-  circular references in the values within a row. `<BTable>` serializes the row data into strings
-  for sorting and filtering, and circular references will cause stack overflows to occur and your
-  app to crash!
+- Избегайте изменения данных записи на месте, так как изменения подлежащих данных `items` приведут к перерендерингу как строки, так и всей таблицы. См. раздел [Основной ключ](#primary-key), ниже, для способов минимизации перерендеринга строк Vue.
+- Записи массива `items` должны быть простыми объектами и **должны** избегать размещения данных, которые могут иметь циклические ссылки в значениях внутри строки. `<BTable>` сериализует данные строки в строки для сортировки и фильтрации, и циклические ссылки приведут к переполнению стека и крэш вашего приложения!
 
-## Fields (column definitions)
+## Поля (определения столбцов)
 
-The `fields` prop is used to customize the table columns headings, and in which order the columns of
-data are displayed. The field object keys (i.e. `age` or `first_name` as shown below) are used to
-extract the value from each item (record) row, and to provide additional features such as enabling
-[sorting](#sorting) on the column, etc.
+Пропс `fields` используется для настройки заголовков столбцов таблицы и порядка отображения столбцов данных. Ключи объекта полей (например, `age` или `first_name`, как показано ниже) используются для извлечения значения из каждой записи (строки) элемента, а также для предоставления дополнительных функций, таких как включение [сортировки](#sorting) на столбец и т.д.
 
-Fields can be provided as a _simple array_ or an _array of objects_. **Internally the fields data
-will be normalized into the _array of objects_ format**. Events or slots that include the column
-`field` data will be in the normalized field object format (array of objects for `fields`, or an
-object for an individual `field`).
+Поля могут быть предоставлены как _простой массив_ или _массив объектов_. **Внутренние данные полей будут нормализованы в формат _массива объектов_**. События или слоты, включающие данные столбца `field`, будут находиться в нормализованном формате объекта поля (массив объектов для `fields`, или объект для отдельного `field`).
 
-### Fields as a simple array
+### Поля как простой массив
 
-Fields can be a simple array, for defining the order of the columns, and which columns to display:
+Поля могут быть простым массивом, для определения порядка столбцов и отображения столбцов:
 
 <<< DEMO ./demo/TableFieldArray.vue
 
-### Fields as an array of objects
+### Поля как массив объектов
 
-Fields can be a an array of objects, providing additional control over the fields (such as sorting,
-formatting, etc.). Only columns (keys) that appear in the fields array will be shown:
+Поля могут быть массивом объектов, предоставляющим дополнительный контроль над полями (например, сортировку, форматирование и т.д.). Показываются только столбцы (ключи), которые появляются в массиве полей:
 
 <<< DEMO ./demo/TableFieldObjects.vue
 
-### Field Definition Reference
+### Справочник по определению поля
 
-The following field properties (defined as [TableField](/docs/types#tableitem)) are recognized:
+Следующие свойства поля (определенные как [TableField](/docs/types#tableitem)) распознаются:
 
-| Property            | Type                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `key`               | `LiteralUnion<keyof T>`                                                                            | The key for selecting data from the record in the items array. Required when setting the `fields` via an array of objects. The `key` is also used for generating the [custom data rendering](#custom-data-rendering) and [custom header and footer](#header-and-footer-custom-rendering-via-scoped-slots) slot names.                                                                          |
-| `label`             | `string`                                                                                           | Appears in the columns table header (and footer if `foot-clone` is set). Defaults to the field's key (in humanized format) if not provided. It's possible to use empty labels by assigning an empty string `""` but be sure you also set `headerTitle` to provide non-sighted users a hint about the column contents.                                                                          |
-| `headerTitle`       | `string`                                                                                           | Text to place on the fields header `<th>` attribute `title`. Defaults to no `title` attribute.                                                                                                                                                                                                                                                                                                 |
-| `headerAbbr`        | `string`                                                                                           | Text to place on the fields header `<th>` attribute `abbr`. Set this to the unabbreviated version of the label (or title) if label (or title) is an abbreviation. Defaults to no `abbr` attribute.                                                                                                                                                                                             |
-| `class`             | `ClassValue`                                                                                       | Class name (or array of class names) to add to `<th>` **and** `<td>` in the column.                                                                                                                                                                                                                                                                                                            |
-| `formatter`         | `TableFieldFormatter<T>`                                                                           | A formatter callback function can be used instead of (or in conjunction with) scoped field slots. The formatter will be called with the syntax `formatter<T>(value: unknown, key: string, item: T)`. Refer to [Custom Data Rendering](#custom-data-rendering) for more details.                                                                                                                |
-| `sortable`          | `boolean`                                                                                          | Enable sorting on this column. Refer to the [Sorting](#sorting) Section for more details.                                                                                                                                                                                                                                                                                                      |
-| `sortDirection`     | `string`                                                                                           | Set the initial sort direction on this column when it becomes sorted. Refer to the [Change initial sort direction](#change-initial-sort-direction) Section for more details.<NotYetImplemented/>                                                                                                                                                                                               |
-| `sortByFormatted`   | `boolean \| TableFieldFormatter<T>`                                                                | Sort the column by the result of the field's `formatter` callback function when set to `true`. Default is `false`. Boolean has no effect if the field does not have a `formatter`. Optionally accepts a formatter function _reference_ to format the value for sorting purposes only. Refer to the [Sorting](#sorting) Section for more details.                                               |
-| `filterByFormatted` | `boolean \| TableFieldFormatter<T>`                                                                | Filter the column by the result of the field's `formatter` callback function when set to `true`. Default is `false`. Boolean has no effect if the field does not have a `formatter`. Optionally accepts a formatter function _reference_ to format the value for filtering purposes only. Refer to the [Filtering](#filtering) section for more details.                                       |
-| `tdClass`           | `TableStrictClassValue \| ((value: unknown, key: string, item: T) => TableStrictClassValue)`       | Class name (or array of class names) to add to `<tbody>` data `<td>` cells in the column. If custom classes per cell are required, a callback function can be specified instead. See the typescript definition for accepted parameters and return types.                                                                                                                                       |
-| `thClass`           | `ClassValue`                                                                                       | Class name (or array of class names) to add to this field's `<thead>`/`<tfoot>` heading `<th>` cell.                                                                                                                                                                                                                                                                                           |
-| `thStyle`           | `StyleValue`                                                                                       | CSS styles you would like to apply to the table `<thead>`/`<tfoot>` field `<th>` cell.                                                                                                                                                                                                                                                                                                         |
-| `variant`           | `ColorVariant \| null`                                                                             | Apply contextual class to all the `<th>` **and** `<td>` in the column.                                                                                                                                                                                                                                                                                                                         |
-| `tdAttr`            | `AttrsValue \| ((value: unknown, key: string, item: T) => AttrsValue)`                             | Object representing additional attributes to apply to the `<tbody>` field `<td>` cell. If custom attributes per cell are required, a callback function can be specified instead. See the typescript definition for accepted parameters and return types.                                                                                                                                       |
-| `thAttr`            | `AttrsValue \| ((value: unknown, key: string, item: T \| null, type: TableRowThead) => AttrsValue` | Object representing additional attributes to apply to the field's `<thead>`/`<tfoot>` heading `<th>` cell. If the field's `isRowHeader` is set to `true`, the attributes will also apply to the `<tbody>` field `<th>` cell. If custom attributes per cell are required, a callback function can be specified instead. See the typescript definition for accepted parameters and return types. |
-| `isRowHeader`       | `boolean`                                                                                          | When set to `true`, the field's item data cell will be rendered with `<th>` rather than the default of `<td>`.                                                                                                                                                                                                                                                                                 |
-| `stickyColumn`      | `boolean`                                                                                          | When set to `true`, and the table in [responsive](#responsive-tables) mode or has [sticky headers](#sticky-headers), will cause the column to become fixed to the left when the table's horizontal scrollbar is scrolled. See [Sticky columns](#sticky-columns) for more details                                                                                                               |
-| `scope`             | `TableThScope`                                                                                     | The scope attribute for the field's `<th>` element. This is used to specify the relationship of the header cell to the data cells. Valid values are `row`, `col`, `rowgroup`, and `colgroup`. Defaults to `colgroup` if `colspan` specified, `rowgroup` if `rowspan` specified, otherwise `col`.                                                                                               |
+| Свойство            | Тип                                                                                                | Описание                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`               | `LiteralUnion<keyof T>`                                                                            | Ключ для выбора данных из массива `items`. Требуется, когда `fields` устанавливается через массив объектов. Ключ также используется для генерации [пользовательского форматирования данных](#custom-data-rendering) и имен слотов для [пользовательского рендеринга заголовка и футера](#header-and-footer-custom-rendering-via-scoped-slots)                                                                              |
+| `label`             | `string`                                                                                           | Отображается в заголовке таблицы (и футере, если установлен `foot-clone`). По умолчанию — ключ поля (в человекообразуемом формате) если не указан. Возможно использование пустых меток, назначив пустую строку `""`, но убедитесь, что также установлен `headerTitle` для предоставления подсказки для пользователей с ограниченными возможностями о содержании столбца.                                                   |
+| `headerTitle`       | `string`                                                                                           | Текст для размещения в заголовке полей `<th>` атрибут `title`. По умолчанию — отсутствует атрибут `title`.                                                                                                                                                                                                                                                                                                                 |
+| `headerAbbr`        | `string`                                                                                           | Текст для размещения в заголовке полей `<th>` атрибут `abbr`. Установите этот атрибут на несокращенную версию метки (или заголовка) если метка (или заголовок) является аббревиатурой. По умолчанию — отсутствует атрибут `abbr`.                                                                                                                                                                                          |
+| `class`             | `ClassValue`                                                                                       | Имя класса (или массив имен классов) для добавления в `<th>` **и** `<td>` в столбце.                                                                                                                                                                                                                                                                                                                                       |
+| `formatter`         | `TableFieldFormatter<T>`                                                                           | Вместо (или в сочетании с) скрытых слотов поля можно использовать функцию форматирования. Функция форматирования будет вызываться с синтаксисом `formatter<T>(value: unknown, key: string, item: T)`. См. раздел [Пользовательское форматирование данных](#custom-data-rendering) для получения дополнительной информации.                                                                                                 |
+| `sortable`          | `boolean`                                                                                          | Включите сортировку для этого столбца. См. раздел [Сортировка](#sorting) для получения дополнительной информации.                                                                                                                                                                                                                                                                                                          |
+| `sortDirection`     | `string`                                                                                           | Установите начальное направление сортировки для этого столбца, когда оно становится отсортированным. См. раздел [Изменение начального направления сортировки](#change-initial-sort-direction) для получения дополнительной информации.<NotYetImplemented/>                                                                                                                                                                 |
+| `sortByFormatted`   | `boolean \| TableFieldFormatter<T>`                                                                | Сортируйте столбец по результату функции форматирования поля, когда установлено значение `true`. По умолчанию — `false`. Булево значение не имеет значения, если поле не имеет функции форматирования. Опционально принимает функцию форматирования _ссылку_ для форматирования значения только для сортировки. См. раздел [Сортировка](#sorting) для получения дополнительной информации.                                 |
+| `filterByFormatted` | `boolean \| TableFieldFormatter<T>`                                                                | Фильтруйте столбец по результату функции форматирования поля, когда установлено значение `true`. По умолчанию — `false`. Булево значение не имеет значения, если поле не имеет функции форматирования. Опционально принимает функцию форматирования _ссылку_, которая будет использоваться для форматирования значения только для фильтрации. См. раздел [Фильтрация](#filtering) для получения дополнительной информации. |
+| `tdClass`           | `TableStrictClassValue \| ((value: unknown, key: string, item: T) => TableStrictClassValue)`       | Имя класса (или массив имен классов) для добавления в `<tbody>` данные `<td>` ячейки в столбце. Если требуются пользовательские классы для каждой ячейки, можно указать функцию обратного вызова вместо. См. определение TypeScript для принятых параметров и возвращаемых типов.                                                                                                                                          |
+| `thClass`           | `ClassValue`                                                                                       | Имя класса (или массив имен классов) для добавления в `<thead>`/`<tfoot>` заголовок `<th>` ячейку.                                                                                                                                                                                                                                                                                                                         |
+| `thStyle`           | `StyleValue`                                                                                       | CSS стили, которые вы хотите применить к `<thead>`/`<tfoot>` ячейке `<th>` поля.                                                                                                                                                                                                                                                                                                                                           |
+| `variant`           | `ColorVariant \| null`                                                                             | Примените контекстный класс ко всем `<th>` **и** `<td>` в столбце.                                                                                                                                                                                                                                                                                                                                                         |
+| `tdAttr`            | `AttrsValue \| ((value: unknown, key: string, item: T) => AttrsValue)`                             | Объект, представляющий дополнительные атрибуты для применения к `<tbody>` ячейке `<td>` поля. Если требуются пользовательские атрибуты для каждой ячейки, можно указать функцию обратного вызова вместо. См. определение TypeScript для принятых параметров и возвращаемых типов.                                                                                                                                          |
+| `thAttr`            | `AttrsValue \| ((value: unknown, key: string, item: T \| null, type: TableRowThead) => AttrsValue` | Объект, представляющий дополнительные атрибуты для применения к `<thead>`/`<tfoot>` заголовку `<th>` ячейке. Если `isRowHeader` поля установлен в `true`, атрибуты также будут применяться к `<tbody>` ячейке `<th>`. Если требуются пользовательские атрибуты для каждой ячейки, можно указать функцию обратного вызова вместо. См. определение TypeScript для принятых параметров и возвращаемых типов.                  |
+| `isRowHeader`       | `boolean`                                                                                          | Когда установлено в `true`, ячейка данных элемента будет отрендерена с `<th>` вместо значения по умолчанию `<td>`.                                                                                                                                                                                                                                                                                                         |
+| `stickyColumn`      | `boolean`                                                                                          | Когда установлено в `true`, и таблица в режиме [отзывчивости](#responsive-tables) или имеет [фиксированные заголовки](#sticky-headers), столбец станет фиксированным слева при прокрутке горизонтальной полосы прокрутки таблицы. См. раздел [Фиксированные столбцы](#sticky-columns) для получения дополнительной информации                                                                                              |
+| `scope`             | `TableThScope`                                                                                     | Атрибут `scope` для элемента `<th>` в таблице. Это используется для указания отношения ячейки заголовка к ячейкам данных. Допустимые значения: `row`, `col`, `rowgroup`, и `colgroup`. По умолчанию — `colgroup`, если указан `colspan`, `rowgroup`, если указан `rowspan`, иначе — `col`.                                                                                                                                 |
 
-**Notes:**
+**Примечания:**
 
-- Field properties, if not present, default to `null` (falsey) unless otherwise stated above.
-- `class`, `thClass`, `tdClass` etc. will not work with classes that are defined in scoped CSS,
-  unless you are using Vue's
-  [Deep selector](https://vuejs.org/api/sfc-css-features.html#deep-selectors).
-- For information on the syntax supported by `thStyle`, see
-  [Class and Style Bindings](https://vuejs.org/guide/essentials/class-and-style.html#Binding-Inline-Styles)
-  in the Vue.js guide.
-- Any additional properties added to the field definition objects will be left intact - so you can
-  access them via the named scoped slots for custom data, header, and footer rendering.
+- Свойства поля, если не указаны, по умолчанию равны `null` (ложные), если не указано иначе.
+- `class`, `thClass`, `tdClass` и т.д. не будут работать с классами, определенными в скрытых CSS,
+  если вы используете
+  [Глубокий селектор](https://vuejs.org/api/sfc-css-features.html#deep-selectors) Vue.
+- Для информации о поддерживаемом синтаксисе `thStyle`, см.
+  [Классы и стили привязки](https://vuejs.org/guide/essentials/class-and-style.html#Binding-Inline-Styles)
+  в руководстве Vue.js.
+- Любые дополнительные свойства, добавленные к объектам определений полей, останутся неизменными — поэтому вы можете получить доступ к ним через именованные скрытые слоты для пользовательского рендеринга данных, заголовка и футера.
 
-For information and usage about scoped slots and formatters, refer to the
-[Custom Data Rendering](#custom-data-rendering) section below.
+Для информации и использования о скрытых слотах и функциях форматирования см. раздел
+[Пользовательское форматирование данных](#custom-data-rendering) ниже.
 
-Feel free to mix and match simple array and object array together:
+Свободно смешивайте простой массив и массив объектов:
 
 <<< FRAGMENT ./demo/TableFields.ts#snippet{ts}
 
-## Primary Key
+## Основной ключ
 
-`<BTable>` provides an additional prop `primary-key`, which you can use to identify the _name_ of
-the field key that _uniquely_ identifies the row.
+`<BTable>` предоставляет дополнительный пропс `primary-key`, который вы можете использовать для идентификации _имени_ ключа поля, которое _уникально_ идентифицирует строку.
 
-The value specified by the primary column key **must be** either a `string` or `number`, and **must
-be unique** across all rows in the table.
+Значение, указанное ключом столбца основного ключа **должно быть** либо `string`, либо `number`, и **должно быть уникальным** во всех строках таблицы.
 
-The primary key column does not need to appear in the displayed fields.
+Столбец основного ключа не должен появляться в отображаемых полях.
 
-### Table row ID generation
+### Генерация ID строки таблицы
 
-When provided, the `primary-key` will generate a unique ID for each item row `<tr>` element. The ID
-will be in the format of `{table-id}__row_{primary-key-value}`, where `{table-id}` is the unique ID
-of the `<BTable>` and `{primary-key-value}` is the value of the item's field value for the field
-specified by `primary-key`.
+Когда предоставлено, `primary-key` сгенерирует уникальный ID для каждой строки элемента `<tr>`. ID будет в формате `{table-id}__row_{primary-key-value}`, где `{table-id}` — это уникальный ID `<BTable>`, а `{primary-key-value}` — это значение поля записи для поля, указанного `primary-key`.
 
-### Table render and transition optimization
+### Оптимизация рендеринга и переход таблицы
 
-The `primary-key` is also used by `<BTable>` to help Vue optimize the rendering of table rows.
-Internally, the value of the field key specified by the `primary-key` prop is used as the Vue `:key`
-value for each rendered item row `<tr>` element.
+`primary-key` также используется `<BTable>` для помощи Vue в оптимизации рендеринга строк таблицы. Внутренне, значение ключа поля, указанного пропсом `primary-key`, используется в качестве значения `:key` для каждой отрендеренной строки элемента `<tr>`.
 
-If you are seeing rendering issue (i.e. tooltips hiding or unexpected subcomponent re-usage when
-item data changes or data is sorted/filtered/edited) or table row transitions are not working,
-setting the `primary-key` prop (if you have a unique identifier per row) can alleviate these issues.
+Если вы видите проблему с рендерингом (например, подсказки скрываются или неожиданное повторное использование подкомпонентов при изменении данных или данных сортируются/фильтруются/редактируются) или переходы строк таблицы не работают, установка пропса `primary-key` (если у вас есть уникальный идентификатор для каждой строки) может уменьшить эти проблемы.
 
-Specifying the `primary-key` column is handy if you are using 3rd party table transitions or drag
-and drop plugins, as they rely on having a consistent and unique per row `:key` value.
+Указание столбца основного ключа удобно, если вы используете 3-й сторонние переходы таблиц или плагины перетаскивания, так как они зависят от наличия постоянного и уникального значения `:key` для каждой строки.
 
-If `primary-key` is not provided, `<BTable>` will auto-generate keys based on the displayed row's
-index number (i.e. position in the _displayed_ table rows). This may cause GUI issues such as sub
-components/elements that are rendering with previous results (i.e. being re-used by Vue's render
-patch optimization routines). Specifying a `primary-key` column can alleviate this issue (or you can
-place a unique `:key` on your element/components in your custom formatted field slots).
+Если `primary-key` не предоставлен, `<BTable>` автоматически генерирует ключи на основе индекса отображаемой строки (т.е. номер в _отображаемых_ строках таблицы). Это может вызвать GUI-проблемы, такие как подкомпоненты/элементы, которые рендерятся с предыдущими результатами (т.е. переиспользуются оптимизацией рендеринга Vue). Указание столбца основного ключа может уменьшить эту проблему (или вы можете разместить уникальный `:key` на ваших элементах/компонентах в ваших скрытых слотах форматирования поля).
 
-Refer to the [Table body transition support](#table-body-transition-support) section for additional
-details.
+См. раздел [Поддержка перехода тела таблицы](#table-body-transition-support) для дополнительной информации.
 
-## Table Style Options
+## Стиль таблицы
 
-### Table styling
+### Стилизация таблицы
 
-`<BTable>` provides several props to alter the style of the table:
+`<BTable>` предоставляет несколько пропсов для изменения стиля таблицы:
 
-| prop                 | Type                  | Description                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `striped`            | boolean               | Add zebra-striping to the table rows within the `<tbody>`                                                                                                                                                                                                                                                                                                                        |
-| `striped-columns`    | boolean               | Add zebra-striping to the table colums within the `<tbody>`                                                                                                                                                                                                                                                                                                                      |
-| `bordered`           | boolean               | For borders on all sides of the table and cells.                                                                                                                                                                                                                                                                                                                                 |
-| `borderless`         | boolean               | removes inner borders from table.                                                                                                                                                                                                                                                                                                                                                |
-| `outlined`           | boolean               | For a thin border on all sides of the table. Has no effect if `bordered` is set.                                                                                                                                                                                                                                                                                                 |
-| `small`              | boolean               | To make tables more compact by cutting cell padding in half.                                                                                                                                                                                                                                                                                                                     |
-| `hover`              | boolean               | To enable a hover highlighting state on table rows within a `<tbody>`                                                                                                                                                                                                                                                                                                            |
-| `dark`               | boolean               | Invert the colors — with light text on dark backgrounds (equivalent to Bootstrap v5 class `.table-dark`)                                                                                                                                                                                                                                                                         |
-| `fixed`              | boolean               | Generate a table with equal fixed-width columns (`table-layout: fixed;`) <NotYetImplemented/>                                                                                                                                                                                                                                                                                    |
-| `responsive`         | boolean \| Breakpoint | Generate a responsive table to make it scroll horizontally. Set to `true` for an always responsive table, or set it to one of the [breakpoints](/docs/types#breakpoint) `'sm'`, `'md'`, `'lg'`, `'xl'` or `'xxl'` to make the table responsive (horizontally scroll) only on screens smaller than the breakpoint. See [Responsive tables](#responsive-tables) below for details. |
-| `sticky-header`      | boolean \| Numberish  | Generates a vertically scrollable table with sticky headers. Set to `true` to enable sticky headers (default table max-height of `300px`), or set it to a string containing a height (with CSS units) to specify a maximum height other than `300px`. See the [Sticky header](#sticky-headers) section below for details.                                                        |
-| `stacked`            | boolean \| Breakpoint | Generate a responsive stacked table. Set to `true` for an always stacked table, or set it to one of the [breakpoints](/docs/types#breakpoint) `'sm'`, `'md'`, `'lg'`, `'xl'` or `'xxl'` to make the table visually stacked only on screens smaller than the breakpoint. See [Stacked tables](#stacked-tables) below for details.                                                 |
-| `caption-top`        | boolean \| Numberish  | If the table has a caption, and this prop is set to `true`, the caption will be visually placed above the table. If `false` (the default), the caption will be visually placed below the table.                                                                                                                                                                                  |
-| `variant`            | ColorVariant \| null  | Give the table an overall theme color variant.                                                                                                                                                                                                                                                                                                                                   |
-| `head-variant`       | ColorVariant \| null  | Make the table head a theme color different from the table                                                                                                                                                                                                                                                                                                                       |
-| `foot-row-variant`   | ColorVariant \| null  | Make the table foot a theme color different from the table. If not set, `head-variant` will be used. Has no effect if `foot-clone` is not set                                                                                                                                                                                                                                    |
-| `head-row-variant`   | ColorVariant \| null  | Make the only the `<tr>` part of the `<head>` a specific theme color                                                                                                                                                                                                                                                                                                             |
-| `foot-variant`       | ColorVariant \| null  | Make the only the `<tr>` part of the `<foot>` a specific theme color. If not set, `head-row-variant` will be used. Has no effect if `foot-clone` is not set                                                                                                                                                                                                                      |
-| `foot-clone`         | boolean               | Turns on the table footer, and defaults with the same contents a the table header                                                                                                                                                                                                                                                                                                |
-| `no-footer-sorting`  | boolean               | When `foot-clone` is true and the table is sortable, disables the sorting icons and click behaviour on the footer heading cells. Refer to the [Sorting](#sorting) section below for more details. <NotYetImplemented/>                                                                                                                                                           |
-| `no-border-collapse` | Boolean               | Disables the default of collapsing of the table borders. Mainly for use with [sticky headers](#sticky-headers) and/or [sticky columns](#sticky-columns). Will cause the appearance of double borders in some situations. <NotYetImplemented/>                                                                                                                                    |
+| пропс                | Тип                   | Описание                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `striped`            | boolean               | Добавьте полоски в строки таблицы в `<tbody>`                                                                                                                                                                                                                                                                                                                                                                          |
+| `striped-columns`    | boolean               | Добавьте полоски в столбцы таблицы в `<tbody>`                                                                                                                                                                                                                                                                                                                                                                         |
+| `bordered`           | boolean               | Для границ со всех сторон таблицы и ячеек.                                                                                                                                                                                                                                                                                                                                                                             |
+| `borderless`         | boolean               | Удаляет внутренние границы из таблицы.                                                                                                                                                                                                                                                                                                                                                                                 |
+| `outlined`           | boolean               | Для тонкой границы со всех сторон таблицы. Не имеет эффекта, если установлен `bordered`.                                                                                                                                                                                                                                                                                                                               |
+| `small`              | boolean               | Чтобы сделать таблицы более компактными, уменьшив поля ячеек вдвое.                                                                                                                                                                                                                                                                                                                                                    |
+| `hover`              | boolean               | Чтобы включить состояние подсветки при наведении на строки таблицы в `<tbody>`                                                                                                                                                                                                                                                                                                                                         |
+| `dark`               | boolean               | Инвертируйте цвета — с светлым текстом на темных фоновых цветах (эквивалент Bootstrap v5 классу `.table-dark`)                                                                                                                                                                                                                                                                                                         |
+| `fixed`              | boolean               | Создайте таблицу с равными фиксированными столбцами ширины (`table-layout: fixed;`) <NotYetImplemented/>                                                                                                                                                                                                                                                                                                               |
+| `responsive`         | boolean \| Breakpoint | Создайте отзывчивую таблицу для горизонтальной прокрутки. Установите `true` для всегда отзывчивой таблицы, или установите его в одно из значений [точек останова](/docs/types#breakpoint) `'sm'`, `'md'`, `'lg'`, `'xl'` или `'xxl'`, чтобы сделать таблицу отзывчивой (горизонтально прокручивающейся) только на экранах меньше точки останова. См. раздел [Отзывчивые таблицы](#responsive-tables) ниже для деталей. |
+| `sticky-header`      | boolean \| Numberish  | Создает вертикально прокручиваемую таблицу с фиксированными заголовками. Установите `true`, чтобы включить фиксированные заголовки (максимальная высота таблицы по умолчанию `300px`), или установите его в строку, содержащую высоту (с единицами CSS), чтобы указать другую максимальную высоту, отличную от `300px`. См. раздел [Фиксированные заголовки](#sticky-headers) ниже для деталей.                        |
+| `stacked`            | boolean \| Breakpoint | Создайте отзывчивую визуально наложенную таблицу. Установите `true` для всегда наложенной таблицы, или установите его в одно из значений [точек останова](/docs/types#breakpoint) `'sm'`, `'md'`, `'lg'`, `'xl'` или `'xxl'`, чтобы сделать таблицу визуально наложенной только на экранах меньше точки останова. См. раздел [Наложенные таблицы](#stacked-tables) ниже для деталей.                                   |
+| `caption-top`        | boolean \| Numberish  | Если таблица имеет подпись, и этот пропс установлен в `true`, подпись будет визуально размещена над таблицей. Если `false` (по умолчанию), подпись будет визуально размещена под таблицей.                                                                                                                                                                                                                             |
+| `variant`            | ColorVariant \| null  | Укажите цветовой вариант для всей таблицы.                                                                                                                                                                                                                                                                                                                                                                             |
+| `head-variant`       | ColorVariant \| null  | Сделайте заголовок таблицы цветом темы, отличным от таблицы.                                                                                                                                                                                                                                                                                                                                                           |
+| `foot-row-variant`   | ColorVariant \| null  | Сделайте футер таблицы цветом темы, отличным от таблицы. Если не установлено, `head-variant` будет использоваться. Не имеет эффекта, если `foot-clone` не установлен                                                                                                                                                                                                                                                   |
+| `head-row-variant`   | ColorVariant \| null  | Сделайте только `<tr>` часть `<head>` цветом определенной темы.                                                                                                                                                                                                                                                                                                                                                        |
+| `foot-variant`       | ColorVariant \| null  | Сделайте только `<tr>` часть `<foot>` цветом определенной темы. Если не установлено, `head-row-variant` будет использоваться. Не имеет эффекта, если `foot-clone` не установлен                                                                                                                                                                                                                                        |
+| `foot-clone`         | boolean               | Включает футер таблицы, и по умолчанию содержит то же содержимое, что и заголовок таблицы.                                                                                                                                                                                                                                                                                                                             |
+| `no-footer-sorting`  | boolean               | Когда `foot-clone` установлен в `true` и таблица сортируема, отключает значки сортировки и поведение при нажатии на ячейки заголовка футера. См. раздел [Сортировка](#sorting) ниже для получения дополнительной информации. <NotYetImplemented/>                                                                                                                                                                      |
+| `no-border-collapse` | Boolean               | Отключает дефолтную схлопывающуюся границу таблицы. В основном для использования с [фиксированными заголовками](#sticky-headers) и/или [фиксированными столбцами](#sticky-columns). Это может вызвать появление двойных границ в некоторых ситуациях. <NotYetImplemented/>                                                                                                                                             |
 
-::: info NOTE
-The table style options `fixed`, `stacked`, `no-border-collapse`, sticky
-headers, sticky columns and the table sorting feature, all require BootstrapVueNext's custom CSS.
+::: info ПРИМЕЧАНИЕ
+Опции стиля таблицы `fixed`, `stacked`, `no-border-collapse`, фиксированные заголовки, фиксированные столбцы и функция сортировки таблицы требуют пользовательского CSS BootstrapVueNext.
 :::
 
 <<< DEMO ./demo/TableBasicStyles.vue
 
-### Row styling and attributes
+### Стилизация строк и атрибуты
 
-You can also style every row using the `tbody-tr-class` prop, and optionally supply additional attributes via the `tbody-tr-attr` prop:
+Вы также можете стилизовать каждую строку, используя пропс `tbody-tr-class`, и опционально предоставьте дополнительные атрибуты через пропс `tbody-tr-attr`:
 
-| Property         | Type                                                                                            | Description                                         |
+| Свойство         | Тип                                                                                             | Описание                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| `tbody-tr-class` | `((item: Items \| null, type: TableRowType) => TableStrictClassValue) \| TableStrictClassValue` | Classes to be applied to every row on the table.    |
-| `tbody-tr-attr`  | `((item: Items \| null, type: TableRowType) => AttrsValue) \| AttrsValue`                       | Attributes to be applied to every row on the table. |
+| `tbody-tr-class` | `((item: Items \| null, type: TableRowType) => TableStrictClassValue) \| TableStrictClassValue` | Классы для применения ко всем строкам на таблице.   |
+| `tbody-tr-attr`  | `((item: Items \| null, type: TableRowType) => AttrsValue) \| AttrsValue`                       | Атрибуты для применения ко всем строкам на таблице. |
 
-When passing a function reference to `tbody-tr-class` or `tbody-tr-attr`, the function's arguments
-will be as follows:
+При передаче ссылки на функцию `tbody-tr-class` или `tbody-tr-attr` аргументы функции будут следующими:
 
-- `item` - The item record data associated with the row. For rows that are not associated with an
-  item record, this value will be `null` or `undefined`
-- `type` - The type of row being rendered ([TableRowType](/docs/types#tablefield)). `'row'` for an item row, `'row-details'` for an item
-  details row, `'row-top'` for the fixed row top slot, `'row-bottom'` for the fixed row bottom slot,
-  or `'table-busy'` for the table busy slot.
+- `item` — Запись данных элемента, связанная с строкой. Для строк, не связанных с записью данных элемента, это значение будет `null` или `undefined`
+- `type` — Тип отрендеренной строки ([TableRowType](/docs/types#tablefield)). `'row'` для строки элемента, `'row-details'` для строки деталей элемента, `'row-top'` для фиксированной верхней строки слота, `'row-bottom'` для фиксированной нижней строки слота, или `'table-busy'` для слота занятой таблицы.
 
 <<< DEMO ./demo/TableRowStyles.vue
 
-### Responsive tables
+### Отзывчивые таблицы
 
-Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive
-across all viewports by setting the prop `responsive` to `true`. Or, pick a maximum breakpoint with
-which to have a responsive table up to by setting the prop `responsive` to one of the breakpoint
-values: `sm`, `md`, `lg`, or `xl`.
+Отзывчивые таблицы позволяют легко горизонтально прокручивать таблицы. Сделайте любую таблицу отзывчивой по всем видам экранов, установив пропс `responsive` в `true`. Или, выберите максимальную точку останова, до которой таблица будет отзывчивой, установив пропс `responsive` в одно из значений точек останова: `sm`, `md`, `lg`, или `xl`.
 
 <<< DEMO ./demo/TableResponsive.vue
 
-**Responsive table notes:**
+**Примечания по отзывчивым таблицам:**
 
-- _Possible vertical clipping/truncation_. Responsive tables make use of `overflow-y: hidden`, which
-  clips off any content that goes beyond the bottom or top edges of the table. In particular, this
-  may clip off dropdown menus and other third-party widgets.
-- Using props `responsive` and `fixed` together will **not** work as expected. Fixed table layout
-  uses the first row (table header in this case) to compute the width required by each column (and
-  the overall table width) to fit within the width of the parent container &mdash; without taking
-  cells in the `<tbody>` into consideration &mdash; resulting in table that may not be responsive.
-  To get around this limitation, you would need to specify widths for the columns (or certain
-  columns) via one of the following methods:
-  - Use `<col>` elements within the [`table-colgroup` slot](#table-colgroup) that have widths set
-    (e.g. `<col style="width: 20rem">`), or
-  - Wrap header cells in `<div>` elements, via the use of
-    [custom header rendering](#header-and-footer-custom-rendering-via-scoped-slots), which have a
-    minimum width set on them, or
-  - Use the `thStyle` property of the [field definition object](#field-definition-reference) to set
-    a width for the column(s), or
-  - Use custom CSS to define classes to apply to the columns to set widths, via the `thClass` or
-    `class` properties of the [field definition object](#field-definition-reference).
+- _Возможное вертикальное обрезание/усечение_. Отзывчивые таблицы используют `overflow-y: hidden`, который обрезает любое содержимое, выходящее за нижние или верхние края таблицы. В частности, это может обрезать выпадающие меню и другие виджеты третьих сторон.
+- Использование пропсов `responsive` и `fixed` вместе не будет работать так, как ожидается. Фиксированный макет таблицы использует первую строку (заголовок таблицы в этом случае) для вычисления необходимой ширины каждого столбца (и общей ширины таблицы) для подгонки к ширине родительского контейнера &mdash; без учета ячеек в `<tbody>` &mdash; что приводит к таблице, которая может не быть отзывчивой. Чтобы обойти это ограничение, вам нужно указать ширины для столбцов (или определенных столбцов) одним из следующих методов:
+  - Используйте элементы `<col>` в скрытом слоте [`table-colgroup`](#table-colgroup), которые имеют установленные ширины (например, `<col style="width: 20rem">`), или
+  - Оберните ячейки заголовка в элементы `<div>`, через использование
+    [пользовательского рендеринга заголовка](#header-and-footer-custom-rendering-via-scoped-slots), которые имеют установленную минимальную ширину, или
+  - Используйте свойство `thStyle` объекта [определения поля](#field-definition-reference), чтобы установить ширину для столбца(ов), или
+  - Используйте пользовательский CSS для определения классов, которые будут применяться к столбцам для установки ширин, через свойства `thClass` или `class` объекта [определения поля](#field-definition-reference).
 
-### Stacked tables
+### Наложенные таблицы
 
-An alternative to responsive tables, BootstrapVue includes the stacked table option (using custom
-SCSS/CSS), which allow tables to be rendered in a visually stacked format. Make any table stacked
-across _all viewports_ by setting the prop `stacked` to `true`. Or, alternatively, set a breakpoint
-at which the table will return to normal table format by setting the prop `stacked` to one of the
-breakpoint values `'sm'`, `'md'`, `'lg'`, or `'xl'`.
+Альтернатива отзывчивым таблицам, BootstrapVue включает опцию наложенной таблицы (с использованием пользовательского SCSS/CSS), которая позволяет отрендерить таблицу в визуально наложенном формате. Сделайте любую таблицу наложенной по всем видам экранов, установив пропс `stacked` в `true`. Или, альтернативно, установите точку останова, при которой таблица вернется к обычному формату таблицы, установив пропс `stacked` в одно из значений точек останова `'sm'`, `'md'`, `'lg'`, или `'xl'`.
 
-Column header labels will be rendered to the left of each field value using a CSS `::before` pseudo
-element, with a width of 40%.
+Метки заголовков столбцов будут отрендерены слева от каждого значения поля с помощью псевдоэлемента CSS `::before`, с шириной 40%.
 
-The `stacked` prop takes precedence over the [`sticky-header`](#sticky-headers) prop and the
-[`stickyColumn`](#sticky-columns) field definition property.
+Пропс `stacked` имеет приоритет над пропсом [`sticky-header`](#sticky-headers) и свойством `stickyColumn` определения поля.
 
 <<< DEMO ./demo/TableStacked.vue
 
-**Note: When the table is visually stacked:**
+**Примечание: Когда таблица визуально наложена:**
 
-- The table header (and table footer) will be hidden.
-- Custom rendered header slots will not be shown, rather, the fields' `label` will be used.
-- The table **cannot** be sorted by clicking the rendered field labels. You will need to provide an
-  external control to select the field to sort by and the sort direction. See the
-  [Sorting](#sorting) section below for sorting control information, as well as the
-  [complete example](#complete-example) at the bottom of this page for an example of controlling
-  sorting via the use of form controls.
-- The slots `top-row` and `bottom-row` will be hidden when visually stacked.
-- The table caption, if provided, will always appear at the top of the table when visually stacked.
-- In an always stacked table, the table header and footer, and the fixed top and bottom row slots
-  will not be rendered.
+- Заголовок таблицы (и футер таблицы) будет скрыт.
+- Скрытые слоты пользовательского рендеринга заголовка не будут показаны, вместо этого будут использоваться метки полей.
+- Таблица **не может** быть отсортирована по щелчку отрендеренных меток полей. Вам потребуется предоставить внешний контроль для выбора поля для сортировки и направления сортировки. См. раздел [Сортировка](#sorting) ниже для информации о контроле сортировки, а также пример полного примера внизу этой страницы для примера управления сортировкой с использованием форм-контролов.
+- Слоты `top-row` и `bottom-row` будут скрыты при визуально наложенном режиме.
+- Подпись таблицы, если она предоставлена, всегда будет отображаться вверху таблицы при визуально наложенном режиме.
+- В всегда наложенной таблице заголовок и футер, а также фиксированные верхнюю и нижнюю строки слоты не будут отрендерены.
 
-BootstrapVueNext's custom CSS is required in order to support stacked tables.
+BootstrapVueNext требует пользовательского CSS для поддержки наложенных таблиц.
 
-### Table caption
+### Подпись таблицы
 
-Add an optional caption to your table via the prop `caption` or the named slot `table-caption` (the
-slot takes precedence over the prop). The default Bootstrap v4 styling places the caption at the
-bottom of the table:
+Добавьте необязательную подпись к своей таблице через пропс `caption` или именованный слот `table-caption` (слот имеет приоритет над пропсом). По умолчанию стилизация Bootstrap v4 размещает подпись внизу таблицы:
 
 <<< DEMO ./demo/TableCaption.vue
 
-You can have the caption placed at the top of the table by setting the `caption-top` prop to `true`:
+Вы можете разместить подпись вверху таблицы, установив пропс `caption-top` в `true`:
 
 <<< DEMO ./demo/TableCaptionTop.vue
 
-You can also use [custom CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) to
-control the caption positioning.
+Вы также можете использовать [пользовательский CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) для контроля размещения подписи.
 
-### Table colgroup
+### Столбцы таблицы
 
-The `table-colgroup` slot allows you to include a `<colgroup>` element in your table. You can use
-this slot to specify widths for columns using the `<col>` element.
+Слот `table-colgroup` позволяет включить элемент `<colgroup>` в вашу таблицу. Вы можете использовать этот слот для указания ширин для столбцов с помощью элемента `<col>`.
 
 <<< DEMO ./demo/TableColgroup.vue
 
-### Table busy state
+### Состояние занятости таблицы
 
-`<BTable>` provides a `busy` model that will flag the table as busy, which you can set to `true`
-just before you update your items, and then set it to `false` once you have your items. When in the
-busy state, the table will have the attribute `aria-busy="true"`.
+`<BTable>` предоставляет модель `busy`, которая пометит таблицу как занятая, которую вы можете установить в `true` прямо перед обновлением элементов, а затем установить в `false`, когда у вас будут элементы. Когда в состоянии занятости, таблица будет иметь атрибут `aria-busy="true"`.
 
-During the busy state, the table will be rendered in a "muted" look (`opacity: 0.55`), using the
-following custom CSS:
+В состоянии занятости таблица будет отрендерена в "заглушенном" виде (`opacity: 0.55`), используя следующий пользовательский CSS:
 
 <<< FRAGMENT ./demo/TableBusy.css#snippet{css}
 
-#### table-busy slot
+#### Слот table-busy
 
 <<< DEMO ./demo/TableBusy.vue
 
-Also see the [Using Items Provider Functions](#using-items-provider-functions) below for additional
-information on the `busy` state.
+Также см. раздел [Использование функций поставщика элементов](#using-items-provider-functions) ниже для дополнительной информации о состоянии `busy`.
 
-**Notes:**
+**Примечания:**
 
-- All click related and hover events, and sort-changed events will **not** be emitted when the table
-  is in the `busy` state.
-- Busy styling and slot are not available in the `<BTableLite>` component.
+- Все события, связанные с щелчком, и события изменения сортировки не будут вызываться, когда таблица находится в состоянии `busy`.
+- Стилизация и слот занятости недоступны в компоненте `<BTableLite>`.
 
-## Custom data rendering
+## Пользовательское форматирование данных
 
-Custom rendering for each data field in a row is possible using either
-[scoped slots](https://vuejs.org/guide/components/slots.html#scoped-slots) or a formatter callback
-function, or a combination of both.
+Для каждого поля данных в строке возможно пользовательское форматирование с использованием либо
+[скрытых слотов](https://vuejs.org/guide/components/slots.html#scoped-slots), либо функции обратного вызова форматирования, либо их комбинации.
 
-### Scoped field slots
+### Скрытые слоты поля
 
-Scoped field slots give you greater control over how the record data appears. You can use scoped
-slots to provided custom rendering for a particular field. If you want to add an extra field which
-does not exist in the records, just add it to the [`fields`](#fields-column-definitions) array, and
-then reference the field(s) in the scoped slot(s). Scoped field slots use the following naming
-syntax: `` `'cell(${field_key})'` ``.
+Скрытые слоты поля дают вам больший контроль над тем, как выглядят записи данных. Вы можете использовать скрытые слоты для предоставления пользовательского рендеринга для определенного поля. Если вы хотите добавить дополнительное поле, которого нет в записях, просто добавьте его в массив [`fields`](#fields-column-definitions), а затем ссылайтесь на поле(а) в скрытых слотах. Скрытые слоты поля используют следующий синтаксис именования: `` `'cell(${field_key})'` ``.
 
-You can use the default _fall-back_ scoped slot `'cell()'` to format any cells that do not have an
-explicit scoped slot provided.
+Вы можете использовать _fallback_ скрытый слот по умолчанию `'cell()'` для форматирования любых ячеек, которые не имеют явного скрытого слота.
 
 <<< DEMO ./demo/TableCustomData.vue
 
-The slot's scope variable (`data` in the above sample) will have the following properties:
+Свойства области действия слота (`data` в примере выше) будут иметь следующие свойства:
 
-| Property         | Type                               | Description                                                                                                                                                               |
-| ---------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index`          | number                             | The row number (indexed from zero) relative to the _displayed_ rows                                                                                                       |
-| `item`           | Items                              | The entire raw record data (i.e. `items[index]`) for this row (before any formatter is applied)                                                                           |
-| `value`          | unknown                            | The value for this key in the record (`null` or `undefined` if a virtual column), or the output of the field's [`formatter` function](#formatter-callback)                |
-| `unformatted`    | unknown                            | The raw value for this key in the item record (`null` or `undefined` if a virtual column), before being passed to the field's [`formatter` function](#formatter-callback) |
-| `field`          | `(typeof computedFields.value)[0]` | The field's normalized field definition object                                                                                                                            |
-| `detailsShowing` | boolean                            | Will be `true` if the row's `row-details` scoped slot is visible. See section [Row details support](#row-details-support) below for additional information                |
-| `toggleDetails`  | `() => void`                       | Can be called to toggle the visibility of the rows `row-details` scoped slot. See section [Row details support](#row-details-support) below for additional information    |
-| `rowSelected`    | boolean                            | Will be `true` if the row has been selected. See section [Row select support](#row-select-support) for additional information                                             |
-| `selectRow`      | `(index?: number) => void`         | When called, selects the current row. See section [Row select support](#row-select-support) for additional information                                                    |
-| `unselectRow`    | `(index?: number) => void`         | When called, unselects the current row. See section [Row select support](#row-select-support) for additional information                                                  |
+| Свойство         | Тип                                | Описание                                                                                                                                                                         |
+| ---------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index`          | number                             | Номер строки (отсчитываемый от нуля) относительно _отображаемых_ строк                                                                                                           |
+| `item`           | Items                              | Полные необработанные данные записи (т.е. `items[index]`) для этой строки (перед применением функции форматирования)                                                             |
+| `value`          | unknown                            | Значение для этого ключа в записи (`null` или `undefined`, если виртуальный столбец), или результат функции форматирования поля (`formatter`)                                    |
+| `unformatted`    | unknown                            | Необработанное значение для этого ключа в записи данных элемента (`null` или `undefined`, если виртуальный столбец), перед передачей в функцию форматирования поля (`formatter`) |
+| `field`          | `(typeof computedFields.value)[0]` | Нормализованный объект определения поля поля                                                                                                                                     |
+| `detailsShowing` | boolean                            | Будет `true`, если видимый скрытый слот `row-details` видим. См. раздел [Поддержка деталей строк](#row-details-support) ниже для дополнительной информации                       |
+| `toggleDetails`  | `() => void`                       | Можно вызвать для переключения видимости скрытого слота `row-details`. См. раздел [Поддержка деталей строк](#row-details-support) ниже для дополнительной информации             |
+| `rowSelected`    | boolean                            | Будет `true`, если строка выбрана. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации                                                        |
+| `selectRow`      | `(index?: number) => void`         | Когда вызывается, выбирает текущую строку. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации                                                |
+| `unselectRow`    | `(index?: number) => void`         | Когда вызывается, отменяет выбор текущей строки. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации                                          |
 
-**Notes:**
+**Примечания:**
 
-- `index` will not always be the actual row's index number, as it is computed after filtering,
-  sorting and pagination have been applied to the original table data. The `index` value will refer
-  to the **displayed row number**.
-- When using the `v-slot` syntax, note that slot names **cannot** contain spaces, and
-  when using in-browser DOM templates the slot names will _always_ be lower cased. To get around
-  this, you can pass the slot name using Vue's
-  [dynamic slot names](https://vuejs.org/guide/components/slots.html#dynamic-slot-names)
+- `index` не всегда будет фактическим номером строки, так как он вычисляется после фильтрации, сортировки и пагинации по исходным данным таблицы. Значение `index` будет относиться к **номеру отображаемой строки**.
+- При использовании синтаксиса `v-slot`, обратите внимание, что имена слотов **не могут** содержать пробелы, и когда используются в браузерных шаблонах DOM, имена слотов будут _всегда_ в нижнем регистре. Чтобы обойти это, вы можете передать имя слота, используя динамические имена слотов Vue
 
-#### Displaying raw HTML
+#### Отображение сырых HTML
 
-By default `BTable` escapes HTML tags in items data and results of formatter functions, if you need
-to display raw HTML code in `BTable`, you should use `v-html` directive on an element in a in
-scoped field slot.
+По умолчанию `BTable` экранирует HTML-теги в данных элементов и результатах функций форматирования, если вам нужно отобразить сырый HTML-код в `BTable`, вы должны использовать директиву `v-html` на элементе в скрытом слоте поля.
 
 <<< DEMO ./demo/TableRawHtml.vue
 
-::: danger WARNING
-Be cautious of using the <code>v-html</code> method to display user
-supplied content, as it may make your application vulnerable to
+::: danger ВНИМАНИЕ
+Будьте осторожны при использовании метода <code>v-html</code> для отображения пользовательских
+контентов, так как он может сделать ваше приложение уязвимым для
 <a class="alert-link" href="https://en.wikipedia.org/wiki/Cross-site_scripting">
-<abbr title="Cross Site Scripting Attacks">XSS attacks</abbr></a>, if you do not first
-<a class="alert-link" href="https://en.wikipedia.org/wiki/HTML_sanitization">sanitize</a> the
-user supplied string.
+<abbr title="Атаки межсайтового скриптинга">XSS-атак</abbr></a>, если вы не сначала
+<a class="alert-link" href="https://en.wikipedia.org/wiki/HTML_sanitization">очистите</a>
+пользовательскую строку.
 :::
 
-### Formatter callback
+### Функция обратного вызова форматирования
 
-Optionally, you can customize field output by using a formatter callback function. To enable this,
-the field's `formatter` property is used. The value of this property may be String or function
-reference. In case of a String value, the function must be defined at the parent component's
-methods. When providing `formatter` as a `Function`, it must be declared at global scope (window or
-as global mixin at Vue, or as an anonymous function), unless it has been bound to a `this` context.
+Необязательно, вы можете настроить вывод поля, используя функцию обратного вызова форматирования. Для этого используется свойство `formatter` поля. Значение этого свойства может быть строкой или ссылкой на функцию. В случае строкового значения функция должна быть определена в методах родительского компонента. При предоставлении `formatter` как `Function`, она должна быть объявлена в глобальной области видимости (окно или как глобальная миксин в Vue, или как анонимная функция), если она не была привязана к контексту `this`.
 
-The callback function accepts three arguments - `value`, `key`, and `item`, and should return the
-formatted value as a string (HTML strings are not supported)
+Функция обратного вызова принимает три аргумента - `value`, `key`, и `item`, и должна возвращать отформатированное значение в виде строки (HTML-строки не поддерживаются)
 
 <<< DEMO ./demo/TableFormatter.vue
 
-## Header and Footer custom rendering via scoped slots
+## Пользовательское рендеринг заголовка и футера через скрытые слоты
 
-It is also possible to provide custom rendering for the table's `thead` and `tfoot` elements. Note by
-default the table footer is not rendered unless `foot-clone` is set to `true`.
+Также возможно предоставить пользовательское рендеринг для элементов `thead` и `tfoot` таблицы. По умолчанию футер таблицы не отрендерен, если `foot-clone` установлен в `true`.
 
-Scoped slots for the header and footer cells uses a special naming convention of
-`'head(<fieldkey>)'` and `'foot(<fieldkey>)'` respectively.
+Скрытые слоты для ячеек заголовка и футера используют специальный синтаксис именования `'head(<fieldkey>)'` и `'foot(<fieldkey>)'` соответственно.
 
-You can use a default _fall-back_ scoped slot `'head()'` or `'foot()'` to format any header or
-footer cells that do not have an explicit scoped slot provided.
+Вы можете использовать _fallback_ скрытый слот по умолчанию `'head()'` или `'foot()'` для форматирования любых ячеек заголовка или футера, которые не имеют явного скрытого слота.
 
-In `BTableLight`, `'foot(<fieldkey>)'` will _fall-back_ first to `'foot()'` if it is provided, then to
-`'head(<fieldkey>)'`, and finally to `'head()'`. For `BTable`, there is a default for `'head(<fieldkey>)'`,
-so the fallback chain will stop with the default `'head(<fieldkey>)'` rather than falling back to `'head()'`.
+В `BTableLight`, `'foot(<fieldkey>)'` сначала упадет на `'foot()'`, если он предоставлен, затем на `'head(<fieldkey>)'`, и, наконец, на `'head()'`. Для `BTable` есть дефолт для `'head(<fieldkey>)'`, поэтому цепочка fallback остановится на дефолтном `'head(<fieldkey>)'` вместо того, чтобы упасть на `'head()'`.
 
 <<< DEMO ./demo/TableHeadSlot.vue
 
-The slots can be optionally scoped (`data` in the above example), and will have the following
-properties:
+Слоты могут быть опционально скопированы (`data` в примере выше), и будут иметь следующие свойства:
 
-| Property        | Type                        | Description                                                                               |
-| --------------- | --------------------------- | ----------------------------------------------------------------------------------------- |
-| `column`        | `LiteralUnion<keyof Items>` | The fields's `key` value                                                                  |
-| `field`         | `TableField<Items>`         | the field's object (from the `fields` prop)                                               |
-| `label`         | `string \| undefined`       | The fields label value (also available as `data.field.label`)                             |
-| `isFoot`        | `boolean`                   | Currently rending the foot if `true`                                                      |
-| `selectAllRows` | `() => void`                | Select all rows (applicable if the table is in [`selectable`](#row-select-support) mode   |
-| `clearSelected` | `() => void`                | Unselect all rows (applicable if the table is in [`selectable`](#row-select-support) mode |
+| Свойство        | Тип                         | Описание                                                                                        |
+| --------------- | --------------------------- | ----------------------------------------------------------------------------------------------- |
+| `column`        | `LiteralUnion<keyof Items>` | Ключевое значение поля                                                                          |
+| `field`         | `TableField<Items>`         | объект (из пропса `fields`)                                                                     |
+| `label`         | `string \| undefined`       | Значение метки поля (также доступно как `data.field.label`)                                     |
+| `isFoot`        | `boolean`                   | Текущий рендеринг футера, если `true`                                                           |
+| `selectAllRows` | `() => void`                | Выберите все строки (применимо, если таблица в режиме [`selectable`](#row-select-support)       |
+| `clearSelected` | `() => void`                | Отмените выбор всех строк (применимо, если таблица в режиме [`selectable`](#row-select-support) |
 
-When placing inputs, buttons, selects or links within a `head(...)` or `foot(...)` slot, note that
-`head-clicked` event will not be emitted when the input, select, textarea is clicked (unless they
-are disabled). `head-clicked` will never be emitted when clicking on links or buttons inside the
-scoped slots (even when disabled)
+При размещении элементов ввода, кнопок, выборов или ссылок в скрытом слоте `head(...)` или `foot(...)`, обратите внимание, что событие `head-clicked` не будет вызываться, когда на элементы ввода, выбора, текстового поля или кнопки в скрытых слотах (даже когда они отключены). Событие `head-clicked` никогда не будет вызываться при щелчке по ссылкам или кнопкам внутри скрытых слотов (даже когда они отключены)
 
-**Notes:**
+**Примечания:**
 
-- Slot names **cannot** contain spaces, and when using in-browser DOM templates the slot names will _always_
-- be lower cased. To get around this, you can pass the slot name using Vue's
-  [dynamic slot names](https://vuejs.org/guide/components/slots.html#dynamic-slot-names)
+- Имена слотов **не могут** содержать пробелы, и когда используются в браузерных шаблонах DOM, имена слотов будут _всегда_ в нижнем регистре. Чтобы обойти это, вы можете передать имя слота, используя динамические имена слотов Vue
 
-### Adding additional rows to the header
+### Добавление дополнительных строк в заголовок
 
-If you wish to add additional rows to the header you may do so via the `thead-top` slot. This slot
-is inserted before the header cells row, and is not automatically encapsulated by `<tr>..</tr>`
-tags. It is recommended to use the BootstrapVue [table helper components](#table-helper-components),
-rather than native browser table child elements.
+Если вы хотите добавить дополнительные строки в заголовок, вы можете сделать это через слот `thead-top`. Этот слот вставляется перед строкой ячеек заголовка, и не заключен в теги `<tr>..</tr>`. Рекомендуется использовать компоненты вспомогательной таблицы BootstrapVue, а не встроенные элементы таблицы браузера.
 
 <<< DEMO ./demo/TableHeaderRows.vue
 
-Slot `thead-top` can be optionally scoped, receiving an object with the following properties:
+Слот `thead-top` может быть опционально скопирован, получая объект со следующими свойствами:
 
-| Property        | Type                  | Description                                                                               |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------------- |
-| `columns`       | `number`              | The number of columns in the rendered table                                               |
-| `fields`        | `TableField<Items>[]` | Array of field definition objects (normalized to the array of objects format)             |
-| `selectAllRows` | `() => void`          | Select all rows (applicable if the table is in [`selectable`](#row-select-support) mode   |
-| `clearSelected` | `() => void`          | Unselect all rows (applicable if the table is in [`selectable`](#row-select-support) mode |
+| Свойство        | Тип                   | Описание                                                                                        |
+| --------------- | --------------------- | ----------------------------------------------------------------------------------------------- |
+| `columns`       | `number`              | Количество столбцов, отрендеренных в таблице                                                    |
+| `fields`        | `TableField<Items>[]` | Массив объектов определения поля (нормализованный в формат массива объектов)                    |
+| `selectAllRows` | `() => void`          | Выберите все строки (применимо, если таблица в режиме [`selectable`](#row-select-support)       |
+| `clearSelected` | `() => void`          | Отмените выбор всех строк (применимо, если таблица в режиме [`selectable`](#row-select-support) |
 
-### Creating a custom footer
+### Создание пользовательского футера
 
-If you need greater layout control of the content of the `<tfoot>`, you can use the optionally
-scoped slot `custom-foot` to provide your own rows and cells. Use BootstrapVue's
-[table helper sub-components](#table-helper-components) `<BTr>`, `<BTh>`, and `<BTd>` to generate
-your custom footer layout.
+Если вам нужен больший контроль над содержимым `<tfoot>`, вы можете использовать опционально скопированный слот `custom-foot` для предоставления своих строк и ячеек. Используйте компоненты вспомогательной подкомпоненты BootstrapVue `<BTr>`, `<BTh>`, и `<BTd>` для генерации вашего пользовательского макета футера.
 
-Slot `custom-foot` can be optionally scoped, receiving an object with the following properties:
+Слот `custom-foot` может быть опционально скопирован, получая объект со следующими свойствами:
 
-| Property  | Type                  | Description                                                                                |
+| Свойство  | Тип                   | Описание                                                                                   |
 | --------- | --------------------- | ------------------------------------------------------------------------------------------ |
-| `columns` | `number`              | The number of columns in the rendered table                                                |
-| `fields`  | `TableField<Items>[]` | Array of field definition objects (normalized to the array of objects format)              |
-| `items`   | `readonly Items[]`    | Array of the currently _displayed_ items records - after filtering, sorting and pagination |
+| `columns` | `number`              | Количество столбцов, отрендеренных в таблице                                               |
+| `fields`  | `TableField<Items>[]` | Массив объектов определения поля (нормализованный в формат массива объектов)               |
+| `items`   | `readonly Items[]`    | Массив текущих _отображаемых_ записей элементов - после фильтрации, сортировки и пагинации |
 
-**Notes:**
+**Примечания:**
 
-- The `custom-foot` slot will **not** be rendered if the `foot-clone` prop has been set.
-- `head-clicked` events are not be emitted when clicking on `custom-foot` cells.
-- Sorting and sorting icons are not available for cells in the `custom-foot` slot.
-- The custom footer will not be shown when the table is in visually stacked mode.
+- Слот `custom-foot` не будет отрендерен, если пропс `foot-clone` установлен.
+- События `head-clicked` не будут вызываться при щелчке по ячейкам `custom-foot`.
+- Сортировка и значки сортировки недоступны для ячеек в слоте `custom-foot`.
+- Пользовательский футер не будет показан, когда таблица находится в визуально наложенном режиме.
 
-## Custom empty and empty-filtered rendering
+## Пользовательское отображение пустых и пустых после фильтрации
 
-The content to show when the table is empty can be specified by setting the `show-empty` prop and then specifying:
-- Either the `empty-text` prop or the `empty` named slot, for the case where unfiltered items are an empty or falsy array
-- Either the `empty-filtered-text` prop or the `empty-filtered` named slot, for the case where filtered items are an empty or falsy array
+Содержимое, которое будет отображаться, когда таблица пуста, можно указать, установив пропс `show-empty` и затем указав:
 
-In order for these props or slots to be shown, the `show-empty` attribute must be set and `items` must be
-either falsy or an array of length 0.
+- Либо пропс `empty-text`, либо именованный слот `empty`, для случая, когда необработанные элементы пусты или ложны
+- Либо пропс `empty-filtered-text`, либо именованный слот `empty-filtered`, для случая, когда отфильтрованные элементы пусты или ложны
+
+Для того чтобы эти пропсы или слоты отображались, атрибут `show-empty` должен быть установлен, и `items` должен быть
+либо ложным, либо массивом длиной 0.
 
 <<< FRAGMENT ./demo/TableEmpty.vue#template{vue-html}
 
-The slot can optionally be scoped. The slot's scope (`scope` in the above example) will have the
-following properties:
+Слот может быть опционально скопирован. Свойства области действия слота (`scope` в примере выше) будут иметь следующие свойства:
 
-| Property            | Type                  | Description                                        |
-| ------------------- | --------------------- | -------------------------------------------------- |
-| `emptyFilteredHtml` | `string`              | The `empty-filtered-html` prop                     |
-| `emptyFilteredText` | `string`              | The `empty-filtered-text` prop                     |
-| `fields`            | `TableField<Items>[]` | The `fields` prop                                  |
-| `items`             | `Items[]`             | The `items` prop. Exposed here to check null vs [] |
+| Свойство            | Тип                   | Описание                                                   |
+| ------------------- | --------------------- | ---------------------------------------------------------- |
+| `emptyFilteredHtml` | `string`              | Пропс `empty-filtered-html`                                |
+| `emptyFilteredText` | `string`              | Пропс `empty-filtered-text`                                |
+| `fields`            | `TableField<Items>[]` | Пропс `fields`                                             |
+| `items`             | `Items[]`             | Пропс `items`. Экспонируется здесь для проверки null vs [] |
 
-::: info NOTE
-If you previously used the `emptyHtml` or `emtpyFilteredHtml` scoped slots or the `empty-html` or
-`empty-filtered-html` props, please convert to using the `empty-text` or `empty-filtered-text` slots
-instead. See our [migration guide](/docs/migration-guide#v-html) for details.
+::: info ПРИМЕЧАНИЕ
+Если вы ранее использовали скрытые слоты `emptyHtml` или `emtpyFilteredHtml` или пропсы `empty-html` или
+`empty-filtered-html`, пожалуйста, конвертируйте на использование слотов `empty-text` или `empty-filtered-text` вместо. См. наш [руководство по миграции](/docs/migration-guide#v-html) для деталей.
 :::
 
-## Advanced Features
+## Расширенные функции
 
-### Sticky headers
+### Фиксированные заголовки
 
-Use the `sticky-header` prop to enable a vertically scrolling table with headers that remain fixed
-(sticky) as the table body scrolls. Setting the prop to `true` (or no explicit value) will generate
-a table that has a maximum height of `300px`. To specify a maximum height other than `300px`, set
-the `sticky-header` prop to a valid CSS height (including units), i.e. `sticky-header="200px"`.
-Tables with `sticky-header` enabled will also automatically become always responsive horizontally,
-regardless of the [`responsive`](#responsive-tables) prop setting, if the table is wider than the
-available horizontal space.
+Используйте пропс `sticky-header`, чтобы включить вертикально прокручиваемую таблицу с фиксированными заголовками, которые остаются фиксированными при прокрутке тела таблицы. Установите пропс в `true` (или без явного значения), чтобы сгенерировать таблицу, которая имеет максимальную высоту `300px`. Чтобы указать другую максимальную высоту, установите пропс `sticky-header` в допустимую высоту CSS (включая единицы), например `sticky-header="200px"`. Таблицы с включенным `sticky-header` автоматически станут всегда отзывчивыми по горизонтали, независимо от настройки пропса `responsive`, если таблица шире, чем доступное горизонтальное пространство.
 
 <<< DEMO ./demo/TableStickyHeaders.vue
 
-**Sticky header notes:**
+**Примечания по фиксированным заголовкам:**
 
-- The `sticky-header` prop has no effect if the table has the [`stacked`](#stacked-tables) prop set.
-- Sticky header tables are wrapped inside a vertically scrollable `<div>` with a maximum height set.
-- BootstrapVue's custom CSS is required in order to support `sticky-header`.
-- Bootstrap v5 uses the CSS style `border-collapse: collapsed` on table elements. This prevents the
-  borders on the sticky header from "sticking" to the header, and hence the borders will scroll when
-  the body scrolls. To get around this issue, set the prop `no-border-collapse` on the table (note
-  that this may cause double width borders when using features such as `bordered`, etc.).
+- Пропс `sticky-header` не имеет эффекта, если таблица имеет пропс `stacked` установлен.
+- Таблицы с фиксированными заголовками обернуты внутрь вертикально прокручиваемого `<div>` с установленной максимальной высотой.
+- BootstrapVue требует пользовательского CSS для поддержки фиксированных заголовков.
+- Bootstrap v5 использует стиль CSS `border-collapse: collapsed` на элементах таблицы. Это предотвращает границы на фиксированных заголовках от "прилипания" к заголовку, и поэтому границы будут прокручиваться, когда тело прокручивается. Чтобы обойти эту проблему, установите пропс `no-border-collapse` на таблицу (обратите внимание, что это может вызвать двойные ширины границ при использовании функций, таких как `bordered`, и т.д.).
 
-### Sticky columns
+### Фиксированные столбцы
 
-Columns can be made sticky, where they stick to the left of the table when the table has a
-horizontal scrollbar. To make a column a sticky column, set the `stickyColumn` prop in the
-[field's header definition](#field-definition-reference). Sticky columns will only work when the
-table has either the `sticky-header` prop set and/or the [`responsive`](#responsive-tables) prop is
-set.
+Столбцы можно сделать фиксированными, где они прилипают к левому краю таблицы при горизонтальной прокрутке. Чтобы сделать столбец фиксированным, установите свойство `stickyColumn` в определении заголовка [поля](#field-definition-reference). Фиксированные столбцы будут работать только тогда, когда таблица имеет установленный пропс `sticky-header` и/или пропс `responsive` установлен в `true`.
 
 <<< DEMO ./demo/TableStickyColumns.vue
 
-**Sticky column notes:**
+**Примечания по фиксированным столбцам:**
 
-- Sticky columns has no effect if the table has the [`stacked`](#stacked-tables) prop set.
-- Sticky columns tables require either the `sticky-header` and/or `responsive` modes, and are
-  wrapped inside a horizontally scrollable `<div>`.
-- When you have multiple columns that are set as `stickyColumn`, the columns will stack over each
-  other visually, and the left-most sticky columns may "peek" out from under the next sticky column.
-  To get around this behaviour, make sure your latter sticky columns are the same width or wider
-  than previous sticky columns.
-- Bootstrap v5 uses the CSS style `border-collapse: collapsed` on table elements. This prevents any
-  borders on the sticky columns from "sticking" to the column, and hence those borders will scroll
-  when the body scrolls. To get around this issue, set the prop `no-border-collapse` on the table
-  (note that this may cause double width borders when using features such as `bordered`, etc.).
-- BootstrapVue's custom CSS is required in order to support sticky columns.
-- The sticky column feature uses CSS style `position: sticky` to position the column cells. Internet
-  Explorer does not support `position: sticky`, hence for IE 11 the sticky column will scroll with
-  the table body.
+- Фиксированные столбцы не имеют эффекта, если таблица имеет пропс `stacked` установлен.
+- Таблицы с фиксированными столбцами требуют либо режима `sticky-header`, либо `responsive`, и обернуты внутрь горизонтально прокручиваемого `<div>`.
+- Когда у вас есть несколько столбцов, установленных как `stickyColumn`, столбцы будут накладываться друг на друга визуально, и левые фиксированные столбцы могут "выглядывать" под следующим фиксированным столбцом. Чтобы обойти это поведение, убедитесь, что ваши последующие фиксированные столбцы имеют ту же ширину или ширину, большую, чем предыдущие фиксированные столбцы.
+- Bootstrap v5 использует стиль CSS `border-collapse: collapsed` на элементах таблицы. Это предотвращает любые границы на фиксированных столбцах от "прилипания" к столбцу, и поэтому эти границы будут прокручиваться, когда тело прокручивается. Чтобы обойти эту проблему, установите пропс `no-border-collapse` на таблицу (обратите внимание, что это может вызвать двойные ширины границ при использовании функций, таких как `bordered`, и т.д.).
+- BootstrapVue требует пользовательского CSS для поддержки фиксированных столбцов.
+- Функция фиксированного столбца использует стиль CSS `position: sticky` для позиционирования ячеек столбца. Internet Explorer не поддерживает `position: sticky`, поэтому для IE 11 фиксированный столбец будет прокручиваться вместе с телом таблицы.
 
-### Row details support
+### Поддержка деталей строк
 
-If you would optionally like to display additional record information (such as columns not specified
-in the fields definition array), you can use the scoped slot `row-details`, in combination with the
-special item record `boolean` property `_showDetails`.
+Если вы хотите опционально отображать дополнительную информацию о записи (например, столбцы, не указанные в массиве определений полей), вы можете использовать скрытый слот `row-details`, в сочетании со специальным свойством `boolean` записи `_showDetails`.
 
-If the record has its `_showDetails` property set to `true`, **and** a `row-details` scoped slot
-exists, a new row will be shown just below the item, with the rendered contents of the `row-details`
-scoped slot.
+Если запись имеет свойство `_showDetails` установленным в `true`, **и** существует скрытый слот `row-details`, будет показана новая строка, которая будет ниже элемента, с содержимым скрытого слота `row-details`.
 
-In the scoped field slot, you can toggle the visibility of the row's `row-details` scoped slot by
-calling the `toggleDetails` function passed to the field's scoped slot variable. You can use the
-scoped fields slot variable `detailsShowing` to determine the visibility of the `row-details` slot.
+В скрытом слоте поля вы можете переключить видимость скрытого слота `row-details` строки, вызывая функцию `toggleDetails`, переданную в скрытый слот переменной поля. Вы можете использовать скрытый слот переменной поля `detailsShowing`, чтобы определить видимость скрытого слота `row-details`.
 
-::: info NOTE
-If manipulating the `_showDetails` property directly on the item data (i.e. not via the
-`toggleDetails` function reference), the `_showDetails` property **must** exist in the items data
-for proper reactive detection of changes to its value. Read more about
-[how reactivity works in Vue](https://vuejs.org/guide/extras/reactivity-in-depth.html#Change-Detection-Caveats).
+::: info ПРИМЕЧАНИЕ
+Если изменять свойство `_showDetails` напрямую в данных элемента (т.е. не через функцию обратного вызова `toggleDetails`), свойство `_showDetails` **должно** существовать в данных элемента для корректного обнаружения изменений его значения. См. больше о
+[как работает реактивность в Vue](https://vuejs.org/guide/extras/reactivity-in-depth.html#Change-Detection-Caveats).
 :::
 
-**Available `row-details` scoped variable properties:**
+**Доступные свойства области действия `row-details`:**
 
-| Property        | Type                       | Description                                                                                                                   |
-| --------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `item`          | `Items`                    | The entire row record data object                                                                                             |
-| `index`         | `number`                   | The current visible row number                                                                                                |
-| `fields`        | `TableField<Items>[]`      | The normalized fields definition array (in the _array of objects_ format)                                                     |
-| `toggleDetails` | `() => void`               | Function to toggle visibility of the row's details slot                                                                       |
-| `rowSelected`   | `boolean`                  | Will be `true` if the row has been selected. See section [Row select support](#row-select-support) for additional information |
-| `selectRow`     | `(index?: number) => void` | When called, selects the current row. See section [Row select support](#row-select-support) for additional information        |
-| `unselectRow`   | `(index?: number) => void` | When called, unselects the current row. See section [Row select support](#row-select-support) for additional information      |
+| Свойство        | Тип                        | Описание                                                                                                                                |
+| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `item`          | `Items`                    | Полный объект записи строки                                                                                                             |
+| `index`         | `number`                   | Текущий видимый номер строки                                                                                                            |
+| `fields`        | `TableField<Items>[]`      | Нормализованный массив определений полей (в формате _массива объектов_)                                                                 |
+| `toggleDetails` | `() => void`               | Функция для переключения видимости слота деталей строки                                                                                 |
+| `rowSelected`   | `boolean`                  | Будет `true`, если строка выбрана. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации               |
+| `selectRow`     | `(index?: number) => void` | Когда вызывается, выбирает текущую строку. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации       |
+| `unselectRow`   | `(index?: number) => void` | Когда вызывается, отменяет выбор текущей строки. См. раздел [Поддержка выбора строк](#row-select-support) для дополнительной информации |
 
-::: info NOTE
-the row select related scope properties are only available in `<BTable>`.
+::: info ПРИМЕЧАНИЕ
+свойства области действия, связанные с выбором строк, доступны только в `<BTable>`.
 :::
 
-In the following example, we show two methods of toggling the visibility of the details: one via a
-button, and one via a checkbox. We also show the third row details defaulting to have details
-initially showing.
+В следующем примере мы показываем два способа переключения видимости деталей: один через кнопку, другой через чекбокс. Мы также показываем, что третья строка деталей по умолчанию имеет видимые детали.
 
 <<< DEMO ./demo/TableRowDetails.vue
 
-### Row select support
+### Поддержка выбора строк
 
-You can make rows selectable, by using the `<BTable>` prop `selectable`.
+Вы можете сделать строки выбираемыми, используя пропс `<BTable>` `selectable`.
 
-Users can easily change the selecting mode by setting the `select-mode` prop.
+Пользователи могут легко изменять режим выбора, устанавливая пропс `select-mode`.
 
-- `'multi'`: Each click will select/deselect the row (default mode)
-- `'single'`: Only a single row can be selected at one time
-- `'range'`: Any row clicked is selected, any other deselected. <kbd>Shift</kbd> + click selects a
-  range of rows, and <kbd>Ctrl</kbd> (or <kbd>Cmd</kbd>) + click will toggle the selected row.
+- `'multi'`: Каждый щелчок выбирает/отменяет выбор строки (режим по умолчанию)
+- `'single'`: Можно выбрать только одну строку одновременно
+- `'range'`: Любой щелчок выбирает строку, любой другой отменяет выбор. <kbd>Shift</kbd> + щелчок выбирает диапазон строк, и <kbd>Ctrl</kbd> (или <kbd>Cmd</kbd>) + щелчок переключает выбранную строку.
 
-When a table is `selectable` and the user clicks on a row, `<BTable>` will emit the `update:selected-items`
-event, passing a single argument which is the complete list of selected items. **This argument
-is read-only.** In addition, `row-selected` or `row-unselected` events are emitted for each row.
+Когда таблица `selectable` и пользователь щелкает по строке, `<BTable>` вызывает событие `update:selected-items`, передавая один аргумент, который является полным списком выбранных элементов. **Этот аргумент является доступным только для чтения.** Кроме того, вызываются события `row-selected` или `row-unselected` для каждой строки.
 
-Rows can also be programmatically selected and unselected via the following exposed methods on the
-`<BTable>` instance:
+Строки также можно выбирать и отменять выбор программно через следующие экспонированные методы на экземпляре `<BTable>`:
 
-| Method                         | Description                                                                                          |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `selectRow(index: number)`     | Selects a row with the given `index` number.                                                         |
-| `unselectRow(index: number)`   | Unselects a row with the given `index` number.                                                       |
-| `selectAllRows()`              | Selects all rows in the table, except in `single` mode in which case only the first row is selected. |
-| `clearSelected()`              | Unselects all rows.                                                                                  |
-| `isRowSelected(index: number)` | Returns `true` if the row with the given `index` is selected, otherwise it returns `false`.          |
+| Метод                          | Описание                                                                                                    |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `selectRow(index: number)`     | Выбирает строку с заданным номером `index`.                                                                 |
+| `unselectRow(index: number)`   | Отменяет выбор строки с заданным номером `index`.                                                           |
+| `selectAllRows()`              | Выбирает все строки в таблице, за исключением случая, когда в режиме `single` выбрана только первая строка. |
+| `clearSelected()`              | Отменяет выбор всех строк.                                                                                  |
+| `isRowSelected(index: number)` | Возвращает `true`, если строка с заданным номером `index` выбрана, в противном случае — `false`.            |
 
-**Programmatic row selection notes:**
+**Примечания к программному выбору строк:**
 
-- `index` is the zero-based index of the table's **visible rows**, after filtering, sorting, and
-  pagination have been applied.
-- In `single` mode, `selectRow(index)` will unselect any previous selected row.
-- Attempting to `selectRow(index)` or `unselectRow(index)` on a non-existent row will be ignored.
-- The table must be `selectable` for any of these methods to have effect.
-- You can disable selection of rows via click events by setting the `no-select-on-click` prop. Rows
-  will then only be selectable programmatically.
+- `index` — это нулевой индекс видимых строк таблицы, после применения фильтрации, сортировки и пагинации.
+- В режиме `single` вызов `selectRow(index)` отменит выбор любой предыдущей выбранной строки.
+- Попытка вызова `selectRow(index)` или `unselectRow(index)` для несуществующей строки будет проигнорирована.
+- Таблица должна быть `selectable` для того, чтобы эти методы имели эффект.
+- Вы можете отключить выбор строк по щелчкам событий, установив пропс `no-select-on-click` в `true`. Строки будут тогда выбираемыми только программно.
 
-**Row select notes:**
+**Примечания по выбору строк:**
 
-- [Sorting](#sorting), [filtering](#filtering), or [paginating](#pagination) the table will **clear
-  the active selection**. The `update:selected-items` event will be emitted with an empty array (`[]`) if
-  needed.
-- When the table is in `selectable` mode, all data item `<tr>` elements will be in the document tab
-  sequence (`tabindex="0"`) for [accessibility](#accessibility) reasons, and will have the attribute
-  `aria-selected` set to either `'true'` or `'false'` depending on the selected state of the row.
-- <NotYetImplemented/>When a table is `selectable`, the table will have the attribute `aria-multiselect` set to either
-  `'false'` for `single` mode, and `'true'` for either `multi` or `range` modes.
+- [Сортировка](#sorting), [фильтрация](#filtering), или [пагинация](#pagination) таблицы **очищают активный выбор**. Событие `update:selected-items` будет вызываться с пустым массивом (`[]`) при необходимости.
+- Когда таблица находится в режиме `selectable`, все элементы `<tr>` данных таблицы будут находиться в последовательности документа вкладок (`tabindex="0"`) для причин доступности (#accessibility), и будут иметь атрибут `aria-selected` установленным в `'true'` или `'false'` в зависимости от состояния выбранной строки.
+- <NotYetImplemented/>Когда таблица находится в режиме `selectable`, таблица будет иметь атрибут `aria-multiselect` установленным в `'false'` для режима `single`, и `'true'` для режимов `multi` или `range`.
 
 <NotYetImplemented/>
 
-Use the prop `selected-variant` to apply a Bootstrap theme color to the selected row(s). Note, due
-to the order that the table variants are defined in Bootstrap's CSS, any row-variant _might_ take
-precedence over the `selected-variant`. You can set `selected-variant` to an empty string if you
-will be using other means to convey that a row is selected (such as a scoped field slot in the below
-example).
+Используйте пропс `selected-variant`, чтобы применить цветовой вариант Bootstrap к выбранной строке(ам). Обратите внимание, из-за порядка, в котором определяются варианты таблицы в CSS Bootstrap, любая строковая вариация _может_ иметь приоритет над `selected-variant`. Вы можете установить `selected-variant` в пустую строку, если вы будете использовать другие средства для передачи того, что строка выбрана (например, скрытый слот поля в примере ниже).
 
-The `selected-variant` can be any of the
-[standard (or custom) Bootstrap base color variants](/docs/reference/color-variants), or the special
-[table `active` variant](/docs/reference/color-variants#table-variants) (the default) which takes
-precedence over any specific row or cell variants.
+`selected-variant` может быть любой из
+[стандартных (или пользовательских) базовых цветовых вариантов Bootstrap](/docs/reference/color-variants), или специальный
+[вариант таблицы `active` (по умолчанию)](/docs/reference/color-variants#table-variants), который имеет приоритет над любым конкретным рядом или ячейкой вариантов.
 
-For accessibility reasons (specifically for color blind users, or users with color contrast issues),
-it is highly recommended to always provide some other visual means of conveying that a row is
-selected, such as a virtual column as shown in the example below.
+Для доступности (особенно для пользователей с цветовой слепотой или с проблемами контраста) рекомендуется всегда предоставлять какое-либо другое визуальное средство для передачи того, что строка выбрана, как показано в примере ниже.
 
 <<< DEMO ./demo/TableRowSelect.vue
 
-### Table body transition support
+### Поддержка перехода тела таблицы
 
 <NotYetImplemented />
 
-### Exposed functions
+### Экспонированные функции
 
-See [Row select support](#row-select-support) for selection related exposed functions
+См. раздел [Поддержка выбора строк](#row-select-support) для экспонированных функций, связанных с выбором.
 
-| Method                                           | Description                                                                                                                                |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `items(): Items[]`                               | Returns the complete set of items used to build the table.                                                                                 |
-| `displayItems(): Items[]`                        | Returns the set of items currently displayed in the tabe. See [Complete Example](#complete-example) for usage                              |
-| `getStringValue(ob: Items, key: string): string` | Returns the formatted string value of the field `key` of the object `ob`. See [Custom Sort Comparer(s)](#custom-sort-comparer-s) for usage |
-| `refresh()`                                      | Calls the async provider to refresh the table items                                                                                        |
+| Метод                                            | Описание                                                                                                                                                          |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `items(): Items[]`                               | Возвращает полный набор элементов, использованных для построения таблицы.                                                                                         |
+| `displayItems(): Items[]`                        | Возвращает набор элементов, отображаемых в таблице. См. пример [Полный пример](#complete-example) для использования                                               |
+| `getStringValue(ob: Items, key: string): string` | Возвращает отформатированное строковое значение поля `key` объекта `ob`. См. использование [Сравниватели пользовательской сортировки(s)](#custom-sort-comparer-s) |
+| `refresh()`                                      | Вызывает асинхронного поставщика для обновления элементов таблицы                                                                                                 |
 
-## Sorting
+## Сортировка
 
-As mentioned in the [Fields](#fields-column-definitions) section above, you can make columns
-sortable in `<BTable>`. Clicking on a sortable column header will sort the column in ascending
-direction (smallest first), while clicking on it again will switch the direction of sorting to
-descending (largest first). Clicking on it a third time will stop sorting on the column. For
-single column sorting (e.g. `multisort===false`) clicking on a differnt sortable column header will
-sort that column in ascending order and clear the sort order for the previously sorted column.
+Как упоминалось в разделе [Поля](#fields-column-definitions) выше, вы можете сделать столбцы сортируемыми в `<BTable>`. Щелчок по заголовку сортируемого столбца приведет к сортировке столбца в направлении восходящего порядка (наименьшее первое), в то время как повторный щелчок приведет к переключению направления сортировки в нисходящем порядке (наибольшее первое). Третий щелчок остановит сортировку на столбце. Для односторонней сортировки (например, `multisort===false`) щелчок по заголовку другого сортируемого столбца сортирует этот столбец в восходящем порядке, а сортировка предыдущего отсортированного столбца очищается.
 
-You can control which column is pre-sorted and the order of sorting (ascending or descending). To
-pre-specify the column to be sorted use the `sortBy` model. For single column sorting (e.g. `multisort===false`)
-`sortBy` should be an array containing a single `BTableSortBy` object with a defined `order` field.
+Вы можете контролировать, какой столбец предварительно отсортирован и порядок сортировки (восходящий или нисходящий). Чтобы предварительно указать столбец для сортировки, используйте модель `sortBy`. Для односторонней сортировки (например, `multisort===false`) `sortBy` должен быть массивом, содержащим один объект `BTableSortBy` с определенным полем `order`.
 
 <<< FRAGMENT ./demo/TableSortBy.ts#snippet{ts}
 
-- **Ascending**: Items are sorted lowest to highest (i.e. `A` to `Z`) and will be displayed with the
-  lowest value in the first row with progressively higher values in the following rows.
-- **Descending**: Items are sorted highest to lowest (i.e. `Z` to `A`) and will be displayed with
-  the highest value in the first row with progressively lower values in the following rows.
+- **Восходящий**: Элементы сортируются с наименьшего к наибольшему (например, `A` к `Z`), и будут отображаться с наименьшим значением в первой строке с прогрессивно возрастающими значениями в последующих строках.
+- **Нисходящий**: Элементы сортируются с наибольшего к наименьшему (например, `Z` к `A`), и будут отображаться с наибольшим значением в первой строке с прогрессивно убывающими значениями в последующих строках.
 
-By default the comparer function does a `numeric localeCompare`. If one wishes to change this, use a custom comparer function with that `BTableSortBy` element.
+По умолчанию функция сравнения выполняет `numeric localeCompare`. Если вы хотите изменить это, используйте пользовательскую функцию сравнения с этим элементом `BTableSortBy`.
 
-To prevent the table from wiping out the comparer function, internally it will set the `order` key to `undefined`, instead of just removing the element from the `sortBy` array. i.e. `:sort-by="[]"` & `:sort-by="[key: 'someKey', order: undefined]"` behave identically. Naturally if this value is given to a server, orders of undefined should be handled. See the computed `singleSortBy` function below as a simple means of retrieving the single sortded column reference from a table
-that is in single sort mode.
+Чтобы предотвратить таблицу отстирания функции сравнения, внутренне она установит ключ `order` в `undefined`, а не просто удалит элемент из массива `sortBy`. Т.е. `:sort-by="[]"` & `:sort-by="[key: 'someKey', order: undefined]"` ведут себя одинаково. Естественно, если это значение передается на сервер, порядки `undefined` должны быть обработаны. См. вычисленную функцию `singleSortBy` ниже как простое средство получения ссылки на отсортированный столбец из таблицы, которая находится в одностороннем режиме сортировки.
 
 <<< DEMO ./demo/TableSort.vue
 
-`sorbBy` is a [named model](https://vuejs.org/guide/components/v-model.html#multiple-v-model-bindings)
-so it can be bound to an object that will be updated with the current sort state when the user changes
-sorting by clicking the headers.
+`sorbBy` — это [именованная модель](https://vuejs.org/guide/components/v-model.html#multiple-v-model-bindings), поэтому она может быть связана с объектом, который будет обновляться с текущим состоянием сортировки при изменении сортировки щелчком по заголовкам.
 
 <<< DEMO ./demo/TableSortBy.vue
 
-Tables can be sorted by multiple columns. Programmaticly, this can be done by adding more entries
-to the `sortBy` array. From the user inteface, multi-sort works as follows:
+Таблицы можно сортировать по нескольким столбцам программно, добавив больше записей в массив `sortBy`. От пользовательского интерфейса, многосортировка работает следующим образом:
 
-- Clicking on a sortable header that isn't currently sorted adds it as `ascending` to the end of the sortBy list
-- Clicking on a sortable header that is currently sorted as ascending makes it **descending**, but leaves it in the same order in the `sortBy` list
-- Clicking on a sortable header that is currently sorted as descending will set the order to undefined. If `must-sort` is `true` OR if `mustSort` is an array that contains that columns `key`, it will skip to be `ascending`
+- Щелчок по сортируемому заголовку, который не отсортирован, добавляет его как `ascending` в конец списка `sortBy`
+- Щелчок по сортируемому заголовку, который уже отсортирован по восходящему, делает его **нисходящим**, но оставляет его в том же порядке в списке `sortBy`
+- Щелчок по сортируемому заголовку, который уже отсортирован по нисходящему, устанавливает порядок на `undefined`. Если `must-sort` установлен в `true` ИЛИ если `mustSort` является массивом, который содержит ключ столбца, он пропустит и установит порядок на `ascending`
 
 <<< DEMO ./demo/TableSortByMulti.vue
 
-### Custom Sort Comparer(s)
+### Сравниватели пользовательской сортировки(s)
 
-Each item in the `BSortBy` model may include a `comparer` field of the type `BTableSortByComparerFunction<T = any> = (a: T, b: T, key: string) => number`. This function takes the items to be compared and the key to compare on. Since the key is passed in, you may use the same function for multiple fields or you can craft a different comparer function for each fied. Leaving the `comparer` field undefined (or not defining a field in the `sortBy` array at all) will fall back to using the default comparer, which looks like this:
+Каждый элемент в модели `BSortBy` может включать поле `comparer` типа `BTableSortByComparerFunction<T = any> = (a: T, b: T, key: string) => number`. Эта функция принимает элементы для сравнения и ключ для сравнения. Поскольку ключ передается, вы можете использовать одну и ту же функцию для нескольких полей или вы можете создать разные функции сравнения для каждого поля. Если поле `comparer` не определено (или не определено поле в массиве `sortBy` вообще), оно упадет на использование дефолтного сравнения, которое выглядит так:
 
 <<< FRAGMENT ./demo/TableSortCompareDefault.ts#snippet{ts}
 
-where `getStringValue` retrieves the field value as a string.
+где `getStringValue` извлекает значение поля как строку.
 
-If you have a particular field that you want to sort by, you can set up a record of the `sortBy` model
-with a custom comparer:
+Если у вас есть определенное поле, которое вы хотите отсортировать, вы можете установить запись модели `sortBy` с пользовательским сравнением:
 
 <<< FRAGMENT ./demo/TableSortCompareCustom.ts#snippet{ts}
 
-The default sorting algorithm parses object syntax by using an internal function `getStringValue`. It's main purpose is to fetch the correct value from various types (object, string, etc), for example `{foo: {bar: '1'}}`, one can use `'foo.bar'` as an input to the function to get the value in the object -- `1`. It also returns the result after formatting. This function is exposed to allow for customization.
-with different options.
+Алгоритм сортировки по умолчанию анализирует синтаксис объекта, используя внутреннюю функцию `getStringValue`. Его основное назначение — извлекать правильное значение из различных типов (объект, строка и т.д.), например `{foo: {bar: '1'}}`, можно использовать `'foo.bar'` в качестве входных данных для функции, чтобы получить значение в объекте -- `1`. Он также возвращает результат после форматирования. Эта функция доступна для настройки.
+с разными опциями.
 
-In the example below, we enable sorting including casing, but one could as easily set the locale or modify
-any of the other options of [`localeCompare`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
+В примере ниже мы включаем сортировку, включая регистр, но можно было бы так же установить локализацию или модифицировать
+любую из других опций [`localeCompare`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
 
 <<< DEMO ./demo/TableSortByCustom.vue
 
-## Filtering
+## Фильтрация
 
-Filtering, when used, is applied by default to the **original items** array data. `Btable` provides
-several options for how data is filtered.
+Когда используется, фильтрация применяется по умолчанию к **исходным данным** массива элементов. `Btable` предоставляет несколько опций для того, как данные фильтруются.
 
-It is currently not possible to filter based on result of formatting via
-[scoped field slots](#scoped-field-slots).
+В настоящее время невозможно фильтровать на основе результата форматирования через
+[скрытые слоты поля](#scoped-field-slots).
 
-### Built in filtering
+### Встроенная фильтрация
 
-The item's row data values are stringified (see the sorting section above for how stringification is
-done) and the filter searches that stringified data (excluding any of the special properties that
-begin with an underscore `'_'`). The stringification also, by default, includes any data not shown
-in the presented columns.
+Значения строк данных записи строковые (см. раздел сортировки выше, как выполняется строковый формат) и фильтр ищет эти строковые данные (исключая любые специальные свойства, начинающиеся с подчеркивания `'_'`). Строковый форматирование также, по умолчанию, включает любые данные, которые не отображаются в представленных столбцах.
 
-With the default built-in filter function, the `filter` prop value can either be a string or a
-`RegExp` object (regular expressions should _not_ have the `/g` global flag set). <NotYetImplemented/> Currently the `filter` prop only supports a string, not a `RegExp`.
+С функцией встроенного фильтра по умолчанию пропс `filter` может быть либо строкой, либо объектом `RegExp` (регулярные выражения не должны иметь флаг `/g` глобального поиска). <NotYetImplemented/> В настоящее время пропс `filter` поддерживает только строку, а не `RegExp`.
 
-If the stringified row contains the provided string value or matches the RegExp expression then it
-is included in the displayed results.
+Если строковая строка записи содержит предоставленное строковое значение или соответствует выражению `RegExp`, то она включается в отображаемые результаты.
 
-Set the `filter` prop to `null` or an empty string to clear the current filter.
+Установите пропс `filter` в `null` или пустую строку, чтобы очистить текущий фильтр.
 
-### Built in filtering options
+### Встроенные опции фильтрации
 
-There are several options for controlling what data the filter is applied against.
+Существует несколько опций для контроля того, на какие данные применяется фильтр.
 
-- <NotYetImplemented/>The `filter-ignored-fields` prop accepts an array of _top-level_ (immediate properties of the row
-  data) field keys that should be ignored when filtering.
-- <NotYetImplemented/>The `filter-included-fields` prop accepts an array of _top-level_ (immediate properties of the row
-  data) field keys that should used when filtering. All other field keys not included in this array
-  will be ignored. This feature can be handy when you want to filter on specific columns. If the
-  specified array is empty, then _all_ fields are included, except those specified via the prop
-  `filter-ignored-fields`. If a field key is specified in both `filter-ignored-fields` and
-  `filter-included-fields`, then `filter-included-fields` takes precedence.
-- Normally, `<BTable>` filters based on the stringified record data. If the field has a `formatter`
-  function specified, you can optionally filter based on the result of the formatter by setting the
-  [field definition property](#field-definition-reference) `filterByFormatted` to `true`. If the
-  field does not have a formatter function, this option is ignored. <NotYetImplemented/>You can optionally pass a
-  formatter function _reference_, to be used for filtering only, to the field definition property
-  `filterByFormatted`.
+- <NotYetImplemented/>Пропс `filter-ignored-fields` принимает массив ключей _верхнего уровня_ (непосредственных свойств данных строки) полей, которые следует игнорировать при фильтрации.
+- <NotYetImplemented/>Пропс `filter-included-fields` принимает массив ключей _верхнего уровня_ (непосредственных свойств данных строки) полей, которые следует использовать при фильтрации. Все другие ключи полей, не включенные в этот массив, будут игнорироваться. Эта функция может быть полезна, когда вы хотите фильтровать по определенным столбцам. Если указанный массив пуст, то _все_ поля включаются, за исключением тех, которые указаны через пропс `filter-ignored-fields`. Если ключ поля указан в обоих `filter-ignored-fields` и `filter-included-fields`, то `filter-included-fields` имеет приоритет.
+- Обычно, `<BTable>` фильтрует на основе строковых данных записи. Если поле имеет указанную функцию форматирования, вы можете опционально фильтровать на основе результата форматирования, установив свойство [определения поля](#field-definition-reference) `filterByFormatted` в `true`. Если поле не имеет функции форматирования, эта опция игнорируется. <NotYetImplemented/>Вы можете опционально передать функцию форматирования _ссылку_, которая будет использоваться для фильтрации только, в свойство `filterByFormatted`.
 
-The props `filter-ignored-fields` and `filter-included-fields`, and the field definition property
-`filterByFormatted` have no effect when using a [custom filter function](#custom-filter-function),
-or [items provider](#using-items-provider-functions) based filtering.
+Пропсы `filter-ignored-fields` и `filter-included-fields`, а также свойство `filterByFormatted` определения поля не имеют эффекта при использовании [пользовательской функции фильтрации](#custom-filter-function) или фильтрации на основе [функций поставщика элементов](#using-items-provider-functions).
 
-### Custom filter function
+### Пользовательская функция фильтрации
 
-You can also use a custom filter function, by setting the prop `filter-function` to a reference of
-custom filter test function. The filter function signature is `(item: Readonly<Items>, filter: string | undefined) => boolean`
+Вы также можете использовать пользовательскую функцию фильтрации, установив пропс `filter-function` в ссылку на пользовательскую функцию теста фильтра. Сигнатура функции фильтрации: `(item: Readonly<Items>, filter: string | undefined) => boolean`
 
-- `item` is the original item row record data object.
-- `filter` value of the `filter` prop
+- `item` — это исходный объект записи строки.
+- `filter` — значение пропса `filter`
 
-The function should return `true` if the record matches your criteria or `false` if the record is to
-be filtered out.
+Функция должна возвращать `true`, если запись соответствует вашим критериям, или `false`, если запись должна быть отфильтрована.
 
-For proper reactive updates to the displayed data, when not filtering you should set the `filter`
-prop to `null` or an empty string (and not an empty object or array). The filter function will not
-be called when the `filter` prop is a falsey value.
+Для корректного обновления отображаемых данных, когда фильтрация не применяется, вы должны установить пропс `filter` в `null` или пустую строку (и не в пустой объект или массив). Функция фильтрации не будет вызываться, когда пропс `filter` является ложным значением.
 
-The display of the `empty-filter-text` relies on the truthiness of the `filter` prop.
+Отображение `empty-filter-text` зависит от истинности пропса `filter`.
 
-### Filter events
+### События фильтрации
 
-When local filtering is applied, and the resultant number of items change, `<BTable>` will emit the
-`filtered` event with a single argument of type `Items[]`: which is the complete list of
-items passing the filter routine. **Treat this argument as read-only.**
+Когда локальная фильтрация применяется, и количество отображаемых элементов изменяется, `<BTable>` вызывает событие `filtered` с одним аргументом типа `Items[]`: который является полным списком элементов, прошедших процедуру фильтрации. **Рассматривайте этот аргумент как доступный только для чтения.**
 
-Setting the prop `filter` to null or an empty string will clear local items filtering.
+Установка пропса `filter` в `null` или пустую строку очищает локальную фильтрацию элементов.
 
-## Pagination
+## Пагинация
 
-`<BTable>` supports built in pagination of item data. You can control how many rows are displayed
-at a time by setting the `per-page` prop to the maximum number of rows you would like displayed, and
-use the `current-page` prop to specify which page to display (starting from page `1`). If you set
-`current-page` to a value larger than the computed number of pages, then no rows will be shown.
+`<BTable>` поддерживает встроенную пагинацию данных элементов. Вы можете контролировать, сколько строк отображается за раз, установив пропс `per-page` в максимальное количество строк, которое вы хотели бы отображать, и
+используя пропс `current-page` для указания, какую страницу отображать (начиная с страницы `1`). Если вы установите `current-page` в значение, превышающее вычисленное количество страниц, то строки не будут отображаться.
 
-You can use the [`<BPagination>`](/docs/components/pagination) component in conjunction with
-`<BTable>` for providing control over pagination.
+Вы можете использовать компонент [`<BPagination>`](/docs/components/pagination) в сочетании с `<BTable>`, чтобы предоставить контроль над пагинацией.
 
-## Using items provider functions
+## Использование функций поставщика элементов
 
-As mentioned under the [Items](#items-record-data) prop section, it is possible to use a function to
-provide the row data (items) by specifying a function reference via the `provider` prop and leaving
-the `items` prop undefined.
+Как упоминалось в разделе [Элементы](#items-record-data) пропса, возможно использование функции для
+предоставления данных строк (элементов) путем указания ссылки на функцию через пропс `provider` и оставляя пропс `items` неопределенным.
 
-::: info NOTE
-If both the `provider` and `items` props are set, the `provider` will be used and `items` will be ignored.
+::: info ПРИМЕЧАНИЕ
+Если одновременно установлены пропсы `provider` и `items`, пропс `provider` будет использоваться, и `items` будет проигнорирован.
 :::
 
-The provider function is called with the following signature:
+Функция поставщика вызывается с следующей сигнатурой:
 
 <<< FRAGMENT ./demo/TableProvider.ts#snippet{ts}
 
-The `ctx` is the context object associated with the table state, and contains the following
-properties:
+`ctx` — это объект контекста, связанный с состоянием таблицы, который содержит следующие свойства:
 
-| Property      | Type                             | Description                                                                       |
-| ------------- | -------------------------------- | --------------------------------------------------------------------------------- |
-| `currentPage` | `number`                         | The current page number (starting from 1, the value of the `current-page` prop)   |
-| `perPage`     | `number`                         | The maximum number of rows per page to display (the value of the `per-page` prop) |
-| `filter`      | `string \| undefined`            | The value of the `filter` prop                                                    |
-| `sortBy`      | `BTableSortBy<T>[] \| undefined` | The current column key being sorted, or an empty string if not sorting            |
+| Свойство      | Тип                              | Описание                                                                                         |
+| ------------- | -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `currentPage` | `number`                         | Номер текущей страницы (начиная с 1, значение пропса `current-page`)                             |
+| `perPage`     | `number`                         | Максимальное количество строк для отображения на страницу (значение пропса `per-page`)           |
+| `filter`      | `string \| undefined`            | Значение пропса `filter`                                                                         |
+| `sortBy`      | `BTableSortBy<T>[] \| undefined` | Текущий ключ столбца, по которому сортируется, или пустая строка, если сортировка не выполняется |
 
-Below are trimmed down versions of the [complete example](#complete-example) as a starting place for using provider functions. They use local provider functions that implement sorting and filtering. Note that sorting is done in cooperation with `<BTable>` by having the
-provider function react to the `context.sortBy` array that it is passed, while filtering is done
-entirely by the provider, which manually forces a refresh of the table when the filter is changed.
+Ниже приведены урезанные версии [полного примера](#complete-example) как отправная точка для использования функций поставщика. Они используют локальные функции поставщика, которые реализуют сортировку и фильтрацию. Обратите внимание, что сортировка выполняется в сотрудничестве с `<BTable>`, когда функция поставщика реагирует на массив `context.sortBy`, который ей передается, в то время как фильтрация выполняется полностью поставщиком, который вручную заставляет таблицу обновиться при изменении фильтра.
 
-Example using a syncronous provider function:
+Пример использования синхронной функции поставщика:
 
 <<< DEMO ./demo/TableProvider.vue
 
-Example using an asyncronous provider function that simulates latency by sleeping for a second:
+Пример использования асинхронной функции поставщика, которая имитирует задержку, засыпая на секунду:
 
 <<< DEMO ./demo/TableProviderAsync.vue
 
-## Light-weight tables
+## Легковесные таблицы
 
-`<BTableLite>` provides a great alternative to `<BTable>` if you just need simple display of
-tabular data. The `<BTableLite>` component provides all of the styling and formatting features of
-`<BTable>` (including row details and stacked support), while **excluding** the following features:
+`<BTableLite>` предоставляет отличную альтернативу `<BTable>`, если вам нужно простое отображение
+табличных данных. Компонент `<BTableLite>` предоставляет все функции стилизации и форматирования `<BTable>` (включая детали строк и поддержку наложения), в то время как **исключая** следующие функции:
 
-- Filtering
-- Sorting
-- Pagination
-- Items provider support
-- Selectable rows
-- Busy table state and styling
-- Fixed top and bottom rows
-- Empty row support
+- Фильтрация
+- Сортировка
+- Пагинация
+- Поддержка поставщика элементов
+- Выбираемые строки
+- Состояние занятости таблицы и стилизация
+- Фиксированные верхнюю и нижнюю строки
+- Поддержка пустой строки
 
-## Simple tables
+## Простые таблицы
 
-The `BTableSimple` component gives the user complete control over the rendering of the table content, while providing basic Bootstrap v5 table styling. `BTableSimple` is a wrapper component around the `<table>` element. Inside the component, via the default slot, you can use any or all of the BootstrapVueNext table helper components: `BThead`, `BTfoot`, `BTbody`, `BTr`, `BTh`, `BTd`, and the HTML5 elements `<caption>`, `<colgroup>` and `<col>`. Contrary to the component's name, one can create simple or complex table layouts with `BTableSimple`.
+Компонент `BTableSimple` дает полный контроль над рендерингом содержимого таблицы, в то время как предоставляя базовую стилизацию таблицы Bootstrap v5. `BTableSimple` — это обертка компонента `<table>`, внутри которого вы можете использовать любой или все компоненты вспомогательной таблицы BootstrapVueNext: `BThead`, `BTfoot`, `BTbody`, `BTr`, `BTh`, `BTd`, и HTML5 элементы `<caption>`, `<colgroup>` и `<col>`. В отличие от названия компонента, можно создавать простые или сложные макеты таблиц с `BTableSimple`.
 
-`BTableSimple` provides basic styling options via props: striped, bordered, borderless, outlined, small, hover, dark, fixed, responsive and sticky-header. Note that stacked mode is available but requires some additional markup to generate the cell headings, as described in the Simple tables and stacked mode section below. Sticky columns are also supported, but also require a bit of additional markup to specify which columns are to be sticky. See below for more information on using sticky columns.
+`BTableSimple` предоставляет базовые стилевые опции через пропсы: striped, bordered, borderless, outlined, small, hover, dark, fixed, responsive и sticky-header. Обратите внимание, что режим наложения доступен, но требует небольшой дополнительный код для генерации заголовков ячеек, как описано в разделах "Простые таблицы" и "Режим наложения" ниже. Фиксированные столбцы также поддерживаются, но также требуют немного дополнительного кода для указания, какие столбцы должны быть фиксированными. См. ниже для получения дополнительной информации о поддержке фиксированных столбцов.
 
-Since `BTableSimple` is just a wrapper component, of which you will need to render content inside, it does not provide any of the advanced features of `BTable` (i.e. row events, head events, sorting, pagination, filtering, foot-clone, items, fields, etc.).
+Поскольку `BTableSimple` — это просто обертка компонента, внутри которого вам нужно рендерить содержимое, он не предоставляет никаких расширенных функций `BTable` (например, события строк, события заголовка, сортировка, пагинация, фильтрация, foot-clone, items, fields и т.д.).
 
 <<< DEMO ./demo/TableSimpleOverview.vue#template{vue-html}
 
-When in responsive or sticky-header mode, the `<table>` element is wrapped inside a `<div>` element. If you need to apply additional classes or attributes to the `<table>` element, use the table-classes and table-attrs, respectively.
+Когда в режиме отзывчивости или sticky-header, элемент `<table>` обернут внутрь элемента `<div>`. Если вам нужно применить дополнительные классы или атрибуты к элементу `<table>`, используйте пропсы `table-classes` и `table-attrs`, соответственно.
 
-### Simple tables and stacked mode
+### Простые таблицы и режим наложения
 
-A bit of additional markup is required on your `BTableSimple` body cells when the table is in stacked mode. Specifically, BootstrapVueNext uses a special data attribute to create the cell's heading, of which you can supply to `BTd` or `BTh` via the stacked-heading prop. Only plain strings are supported (not HTML markup), as we use the pseudo element ::before and css content property.
+Небольшой дополнительный код требуется в ячейках тела таблицы вашего `BTableSimple`, когда таблица находится в режиме наложения. В частности, BootstrapVueNext использует специальный атрибут данных для создания заголовка ячейки, который вы можете предоставить `BTd` или `BTh` через пропс `stacked-heading`. Поддерживаются только простые строки (не HTML-разметка), так как мы используем псевдоэлемент `::before` и свойство `content` CSS.
 
-Here is the same table as above, set to be always stacked, which has the extra markup to handle stacked mode (specifically for generating the cell headings):
+Вот та же таблица, установленная на всегда наложенный режим, который имеет дополнительный код для обработки режима наложения (конкретно для генерации заголовков ячеек):
 
 <<< DEMO ./demo/TableSimpleStacked.vue#template{vue-html}
 
-Like `BTable` and `BTableLite`, table headers (`<thead>`) and footers (`<tfoot>`) are visually hidden when the table is visually stacked. If you need a header or footer, you can do so by creating an extra `BTr` inside of the `BTbody` component (or in a second `BTbody` component), and set a role of columnheader on the child `BTh` cells, and use Bootstrap v5 responsive display utility classes to hide the extra row (or `BTbody`) above a certain breakpoint when the table is no longer visually stacked (the breakpoint should match the stacked table breakpoint you have set), i.e. `<BTr class="d-md-none">` would hide the row on medium and wider screens, while `<BTbody class="d-md-none">` would hide the row group on medium and wider screens.
+Как `BTable` и `BTableLite`, заголовки таблицы (`<thead>`) и футеры (`<tfoot>`) визуально скрываются, когда таблица визуально наложена. Если вам нужен заголовок или футер, вы можете сделать это, создав дополнительный `BTr` внутри компонента `BTbody` (или во втором компоненте `BTbody`), и установив роль `columnheader` на дочерние ячейки `BTh`, и использовать утилиты отображения отзывчивости Bootstrap v5 для скрытия дополнительной строки (или `BTbody`) выше определенной точки останова, когда таблица больше не визуально наложена (точка останова должна соответствовать точке останова наложенной таблицы, которую вы установили), т.е. `<BTr class="d-md-none">` скроет строку на экранах среднего и более широкого размера, а `<BTbody class="d-md-none">` скроет группу строк на экранах среднего и более широкого размера.
 
-::: info NOTE
-Note: stacked mode with `BTableSimple` requires that you use the BootstrapVueNext [table helper components](#table-helper-components).
-Use of the regular `<tbody>`, `<tr>`, `<td>` and `<th>` element tags will not work as expected, nor will they automatically apply any of the required accessibility attributes.
+::: info ПРИМЕЧАНИЕ
+Обратите внимание: режим наложения с `BTableSimple` требует использования компонентов вспомогательной таблицы BootstrapVueNext.
+Использование обычных элементов таблицы браузера (например, `<tbody>`, `<tr>`, `<td>`, и т.д.) внутри `<BTableSimple>`, а также именованных слотов `top-row`, `bottom-row`, и `thead-top` не будет работать так, как ожидается, ни они не будут автоматически применять какие-либо атрибуты доступности.
 :::
 
-### Simple tables and sticky columns
+### Простые таблицы и фиксированные столбцы
 
-Sticky columns are supported with `BTableSimple`, but you will need to set the sticky-column prop on each table cell (in the thead, tbody, and tfoot row groups) in the column that is to be sticky. For example:
+Фиксированные столбцы поддерживаются с `BTableSimple`, но вам нужно будет установить пропс `sticky-column` на каждую ячейку таблицы (в `thead`, `tbody`, и `tfoot` группах строк) в столбце, который должен быть фиксированным. Например:
 
 <<< FRAGMENT ./demo/TableSimpleSticky.vue#template{vue-html}
 
-As with `BTable` and `BTableLite`, sticky columns are not supported when the stacked prop is set on `BTableSimple`.
+Как и `BTable` и `BTableLite`, фиксированные столбцы не поддерживаются, когда пропс `stacked` установлен на `BTableSimple`.
 
-## Table Helper Components
+## Компоненты вспомогательной таблицы
 
-BootstrapVueNext provides additional helper child components when using `<BTableSimple>`, or the named
-slots `top-row`, `bottom-row`, `thead-top`, and `custom-foot` (all of which accept table child
-elements). The helper components are as follows:
+BootstrapVueNext предоставляет дополнительные вспомогательные дочерние компоненты при использовании `<BTableSimple>`, или именованных слотов `top-row`, `bottom-row`, `thead-top`, и `custom-foot` (все из которых принимают элементы таблицы в качестве дочерних). Вспомогательные компоненты следующие:
 
-- `BTbody` (`<BTableSimple>` only)
-- `BThead` (`<BTableSimple>` only)
-- `BTfoot` (`<BTableSimple>` only)
+- `BTbody` (`<BTableSimple>` только)
+- `BThead` (`<BTableSimple>` только)
+- `BTfoot` (`<BTableSimple>` только)
 - `BTr`
 - `BTd`
 - `BTh`
 
-These components are optimized to handle converting variants to the appropriate classes (such as
-handling table `dark` mode), and automatically applying certain accessibility attributes (i.e.
-`role`s and `scope`s). They also can generate the stacked table, and sticky header and column,
-markup. Components `<BTable>` and `<BTableLite>` use these helper components internally.
+Эти компоненты оптимизированы для преобразования вариантов в соответствующие классы (например, обработка режима `dark` таблицы, поддержка цветовой темы), и автоматического применения определенных атрибутов доступности (например, `role`s и `scope`s). Они также могут генерировать наложенную таблицу, фиксированные заголовки и столбцы, разметку. Компоненты `<BTable>` и `<BTableLite>` используют эти вспомогательные компоненты внутренне.
 
-In the [Simple tables](#simple-tables) example, we are using the helper components `<BThead>`,
-`<BTbody>`, `<BTr>`, `<BTh>`, `<BTd>` and `<BTfoot>`. While you can use regular table child
-elements (i.e. `<tbody>`, `<tr>`, `<td>`, etc.) within `<BTableSimple>`, and the named slots
-`top-row`, `bottom-row`, and `thead-top`, it is recommended to use these BootstrapVue table `<BT*>`
-helper components. Note that there are no helper components for `<caption>`, `<colgroup>` or
-`<col>`, so you may use these three HTML5 elements directly in `<BTableSimple>`.
+В примере [Простые таблицы](#simple-tables) мы используем вспомогательные компоненты `<BThead>`,
+`<BTbody>`, `<BTr>`, `<BTh>`, `<BTd>` и `<BTfoot>`. Хотя вы можете использовать обычные элементы таблицы браузера (например, `<tbody>`, `<tr>`, `<td>`, и т.д.) внутри `<BTableSimple>`, а также именованные слоты `top-row`, `bottom-row`, и `thead-top`, рекомендуется использовать эти компоненты BootstrapVue `<BT*>` вспомогательные компоненты. Обратите внимание, что нет вспомогательных компонентов для `<caption>`, `<colgroup>` или `<col>`, поэтому вы можете использовать эти три HTML5 элемента непосредственно в `<BTableSimple>`.
 
-- Table helper components `<BThead>`, `<BTfoot>`, `<BTr>`, `<BTd>` and `<BTh>` all accept a `variant`
-  prop, which will apply one of the Bootstrap theme colors (custom theme colors are supported via
-  [theming](/docs/reference/theming).) and will automatically adjust to use the correct variant
-  class based on the table's `dark` mode.
-- <NotYetImplemented/> Accessibility attributes `role` and `scope` are automatically set on `<BTh>` and `<BTd>`
-  components based on their location (thead, tbody, or tfoot) and their `rowspan` or `colspan`
-  props. You can override the automatic `scope` and `role` values by setting the appropriate
-  attribute on the helper component.
-- <NotYetImplemented/> For `<BTbody>`, `<BThead>`, and `<BTfoot>` helper components, the appropriate default `role` of
-  `'rowgroup'` will be applied, unless you override the role by supplying a `role` attribute.
-- <NotYetImplemented/> For the `<BTr>` helper component, the appropriate default `role` of `'row'` will be applied,
-  unless you override the role by supplying a `role` attribute. `<BTr>` does not add a `scope`.
-- <NotYetImplemented/>The `<BTbody>` element supports rendering a Vue `<transition-group>` when either, or both, of the
-  `tbody-transition-props` and `tbody-transition-handlers` props are used. See the
-  [Table body transition support](#table-body-transition-support) section for more details.
+- Вспомогательные компоненты `<BThead>`, `<BTfoot>`, `<BTr>`, `<BTd>` и `<BTh>` все принимают пропс `variant`, который применяет один из цветов Bootstrap (поддерживаются пользовательские цвета темы через [темизацию](/docs/reference/theming).) и автоматически корректируется для использования правильного класса варианта на основе режима `dark` таблицы.
+- <NotYetImplemented/> Атрибуты доступности `role` и `scope` автоматически устанавливаются на компоненты `<BTh>` и `<BTd>`, основанные на их расположении (thead, tbody, или tfoot) и их пропсах `rowspan` или `colspan`. Вы можете переопределить автоматические значения `scope` и `role` с помощью атрибута на компоненте вспомогательного компонента.
+- <NotYetImplemented/> Для компонентов вспомогательных компонентов `<BTbody>`, `<BThead>` и `<BTfoot>`, соответствующий дефолтный `role` `'rowgroup'` будет применен, если вы не переопределите роль с помощью атрибута `role`.
+- <NotYetImplemented/> Для компонента `<BTr>`, соответствующий дефолтный `role` `'row'` будет применен, если вы не переопределите роль с помощью атрибута `role`. `<BTr>` не добавляет `scope`.
+- <NotYetImplemented/> Элемент `<BTbody>` поддерживает рендеринг Vue `<transition-group>`, когда либо, либо оба, пропсы `tbody-transition-props` и `tbody-transition-handlers` используются. См. раздел [Поддержка перехода тела таблицы](#table-body-transition-support) для получения дополнительной информации.
 
-## Accessibility
+## Доступность
 
 <NotYetImplemented/>
 
-The `<BTable>` and `<BTableLite>` components, when using specific features, will attempt to
-provide the best accessibility markup possible.
+Компоненты `<BTable>` и `<BTableLite>`, когда используются определенные функции, пытаются предоставить наилучшую разметку доступности.
 
-When using `<BTableSimple>` with the helper table components, elements will have the appropriate
-roles applied by default, of which you can optionally override. When using click handlers on the
-`<BTableSimple>` helper components, you will need to apply appropriate `aria-*` attributes, and
-set `tabindex="0"` to make the click actions accessible to screen reader and keyboard-only users.
-You should also listen for `@keydown.enter.prevent` to handle users pressing <kbd>Enter</kbd> to
-trigger your click on cells or rows (required for accessibility for keyboard-only users).
+Когда используется `<BTableSimple>` с вспомогательными компонентами таблицы, элементы будут иметь соответствующие роли, которые по умолчанию можно опционально переопределить. Когда вы используете обработчики щелчков на компонентах `<BTableSimple>` вспомогательных компонентов, вам нужно будет применять соответствующие атрибуты `aria-*`, и установить `tabindex="0"` для доступности щелчков на ячейках или строках (требуется для доступности для пользователей клавиатуры). Вы также должны слушать `@keydown.enter.prevent`, чтобы обрабатывать нажатие <kbd>Enter</kbd> пользователями для активации щелчков на ячейках или строках (требуется для доступности для пользователей клавиатуры).
 
-### Heading accessibility
+### Доступность заголовка
 
 <NotYetImplemented/>
 
-When a column (field) is sortable (`<BTable>` only) or there is a `head-clicked` listener
-registered (`<BTable>` and `<BTableLite>`), the header (and footer) `<th>` cells will be placed
-into the document tab sequence (via `tabindex="0"`) for accessibility by keyboard-only and screen
-reader users, so that the user may trigger a click (by pressing <kbd>Enter</kbd> on the header
-cells.
+Когда столбец (поле) сортируемый (`<BTable>` только) или зарегистрирован обработчик события `head-clicked` (`<BTable>` и `<BTableLite>`), ячейки заголовка (`<th>`) будут помещены в последовательность документа вкладок (через `tabindex="0"`) для доступности для пользователей клавиатуры и экранов.
 
-### Data row accessibility
+### Ряд доступности данных
 
 <NotYetImplemented/>
 
-When the table is in `selectable` mode (`<BTable>` only, and prop `no-select-on-click` is not set),
-or if there is a `row-clicked` event listener registered (`<BTable>` and `<BTableLite>`), all
-data item rows (`<tr>` elements) will be placed into the document tab sequence (via `tabindex="0"`)
-to allow keyboard-only and screen reader users the ability to click the rows by pressing
-<kbd>Enter</kbd> or <kbd>Space</kbd>.
+Когда таблица находится в режиме `selectable` (`<BTable>` только, и пропс `no-select-on-click` не установлен), или если зарегистрирован обработчик события `row-clicked` (`<BTable>` и `<BTableLite>`), все элементы строк данных (`<tr>` элементы) будут помещены в последовательность документа вкладок (через `tabindex="0"`) для доступности для пользователей клавиатуры и экранов.
 
-When the table items rows are placed in the document tab sequence (`<BTable>` and
-`<BTableLite>`), they will also support basic keyboard navigation when focused:
+Когда элементы строк таблицы (`<BTable>` и
+`<BTableLite>`) помещены в последовательность документа вкладок, они также поддерживают базовую навигацию клавиатуры при фокусе:
 
-- <kbd>Down</kbd> will move to the next row
-- <kbd>Up</kbd> will move to the previous row
-- <kbd>End</kbd> or <kbd>Down</kbd>+<kbd>Shift</kbd> will move to the last row
-- <kbd>Home</kbd> or <kbd>Up</kbd>+<kbd>Shift</kbd> will move to the first row
-- <kbd>Enter</kbd> or <kbd>Space</kbd> to click the row.
+- <kbd>Down</kbd> переместится на следующую строку
+- <kbd>Up</kbd> переместится на предыдущую строку
+- <kbd>End</kbd> или <kbd>Down</kbd>+<kbd>Shift</kbd> переместится на последнюю строку
+- <kbd>Home</kbd> или <kbd>Up</kbd>+<kbd>Shift</kbd> переместится на первую строку
+- <kbd>Enter</kbd> или <kbd>Space</kbd> для щелчка по строке.
 
-### Row event accessibility
+### События строки доступности
 
-Note the following row based events/actions (available with `<BTable>` and `<BTableLite>`) are
-not considered accessible, and should only be used if the functionality is non critical or can be
-provided via other means:
+Обратите внимание на следующие события/действия на основе строк (доступны с `<BTable>` и `<BTableLite>`) не считаются доступными и должны использоваться только в том случае, если функциональность критична или может быть предоставлена другими средствами:
 
 - `row-dblclicked`
 - `row-contextmenu`
@@ -1023,22 +776,13 @@ provided via other means:
 - `row-unhovered`
 - `row-middle-clicked`
 
-Note that the `row-middle-clicked` event is not supported in all browsers (i.e. IE, Safari and most
-mobile browsers). When listening for `row-middle-clicked` events originating on elements that do not
-support input or navigation, you will often want to explicitly prevent other default actions mapped
-to the down action of the middle mouse button. On Windows this is usually autoscroll, and on macOS
-and Linux this is usually clipboard paste. This can be done by preventing the default behaviour of
-the `mousedown` or `pointerdown` event.
+Обратите внимание, что событие `row-middle-clicked` не поддерживается во всех браузерах (например, IE, Safari и большинство мобильных браузеров). Когда вы слушаете события `row-middle-clicked`, возникающие на элементах, которые не поддерживают ввод или навигацию, вы часто захотите явно предотвратить другие действия по умолчанию, назначенные на действие вниз средней кнопки мыши. На Windows это обычно автоскролл, а на macOS и Linux — обычно вставка из буфера обмена. Это можно сделать, предотвратив поведение по умолчанию события `mousedown` или `pointerdown`.
 
-Additionally, you may need to avoid opening a default system or browser context menu after a right
-click. Due to timing differences between operating systems, this too is not a preventable default
-behaviour of `row-middle-clicked`. Instead, this can be done by preventing the default behaviour of
-the `row-contextmenu` event.
+Кроме того, вы можете избежать открытия системного или браузерного контекстного меню после правого щелчка. Из-за разницы во времени между операционными системами это также не является предотвращаемым поведением по умолчанию `row-middle-clicked`. Вместо этого это можно сделать, предотвратив поведение по умолчанию события `row-contextmenu`.
 
-It is recommended you test your app in as many browser and device variants as possible to ensure
-your app handles the various inconsistencies with events.
+Рекомендуется протестировать ваше приложение в качестве возможных вариантов браузера и устройств, чтобы убедиться, что ваше приложение обрабатывает различные несоответствия с событиями.
 
-## Complete Example
+## Полный пример
 
 <<< DEMO ./demo/TableComplete.vue
 

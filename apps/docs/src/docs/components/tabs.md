@@ -2,266 +2,228 @@
 
 <PageHeader>
 
-Create a widget of tabbable panes of _local content_. The tabs component is built upon navs and
-cards internally, and provides full keyboard navigation control of the tabs.
+Создайте виджет вкладок с локальным содержимым. Компонент вкладок построен на навигационных элементах и
+карточках, предоставляя полное управление навигацией клавиатурой.
 
 </PageHeader>
 
-For navigation based tabs (i.e. tabs that would change the URL), use the
-[`<BNav>`](/docs/components/nav) component instead.
+Для навигационных вкладок (т.е. вкладок, которые изменяют URL), используйте
+[`<BNav>`](/docs/components/nav) компонент вместо этого.
 
-## Basic usage
+## Основное использование
 
 <<< DEMO ./demo/TabsOverview.vue#template{vue-html}
 
 ::: info
-You should supply each child `<BTab>` component a unique `key` value if dynamically adding
-or removing `<BTab>` components (i.e. `v-if` or for loops). The `key` attribute is a special Vue
-attribute, see the [Vue doce](https://vuejs.org/api/built-in-special-attributes.html#key) for details.
+Вы должны предоставить каждому дочернему компоненту `<BTab>` уникальное значение `key`, если динамически добавлять
+или удалять компоненты `<BTab>` (например, `v-if` или для циклов). Атрибут `key` является специальным атрибутом Vue,
+см. [документацию Vue](https://vuejs.org/api/built-in-special-attributes.html#key) для деталей.
 :::
 
-## Cards integration
+## Интеграция с карточками
 
-Tabs support integrating with Bootstrap cards. Just add the `card` property to `<BTabs>` and place
-it inside a `<BCard>` component. Note that you should add the`no-body` prop on the `<BCard>`
-component in order to properly decorate the card header and remove the extra padding introduced by
+Вкладки поддерживают интеграцию с компонентами Bootstrap карточек. Просто добавьте свойство `card` к `<BTabs>` и поместите
+его внутрь компонента `<BCard>`. Обратите внимание, что вы должны добавить `no-body` пропс на `<BCard>`
+компонент, чтобы правильно оформить заголовок карточки и удалить дополнительный отступ, введенный
 `card-body`.
 
 <<< DEMO ./demo/TabsCards.vue#template{vue-html}
 
-When `<BTabs>` is in `card` mode, each `<BTab>` sub-component will automatically have the
-`card-body` class applied (this class provides the padding around the tab content). To disable the
-`card-body` class, set the `no-body` prop on the `<BTab>` sub component.
+Когда `<BTabs>` находится в режиме `card`, каждый подкомпонент `<BTab>` автоматически будет иметь примененный класс `card-body` (этот класс обеспечивает отступ вокруг содержимого вкладки). Чтобы отключить класс `card-body`, установите пропс `no-body` на подкомпонент `<BTab>`.
 
 <<< DEMO ./demo/TabsPictures.vue#template{vue-html}
 
 ::: tip
-Setting the `no-body` prop on `<BTab>` will have no affect when `<BTabs>` is not in
-`card` mode (as the `card-body` class is only set when in `card` mode).
+Установка пропса `no-body` на `<BTab>` не окажет никакого влияния, когда `<BTabs>` не находится
+в режиме `card` (так как класс `card-body` устанавливается только в режиме `card`).
 :::
 
-Refer to the [Cards documentation](/docs/components/card) for more details on card components.
+См. [документацию по карточкам](/docs/components/card) для получения дополнительной информации о компонентах карточек.
 
-## Pills variant
+## Вариант с табами
 
-Tabs use the `tabs` styling by default. Just add `pills` property to `<BTabs>` for the pill style
-variant.
+Вкладки используют стилирование `tabs` по умолчанию. Просто добавьте свойство `pills` к `<BTabs>` для варианта с табами.
 
 <<< DEMO ./demo/TabsPills.vue#template{vue-html}
 
-## Fill and justify
+## Заполнение и выравнивание
 
-Force your `<BTabs>` controls to extend the full available width.
+Принудительно расширьте элементы управления `<BTabs>` для заполнения всего доступного ширины.
 
-### Fill
+### Заполнение
 
-To proportionately fill all available space with your tab controls, set the `fill` prop. Notice that
-all horizontal space is occupied, but not every control has the same width.
+Чтобы пропорционально заполнить все доступное пространство элементами управления вкладками, установите пропс `fill`. Обратите внимание, что
+все горизонтальное пространство занято, но не каждый элемент управления имеет одинаковую ширину.
 
 <<< DEMO ./demo/TabsFill.vue#template{vue-html}
 
-### Justified
+### Выравнивание
 
-For equal-width controls, use the `justified` prop instead. All horizontal space will be occupied by
-the controls, but unlike using `fill` above, every control will be the same width.
+Для одинаковых по ширине элементов управления используйте пропс `justified`. Все горизонтальное пространство будет занято элементами управления, но в отличие от использования `fill` выше, каждый элемент управления будет одинаковой ширины.
 
 <<< DEMO ./demo/TabsJustified.vue#template{vue-html}
 
-## Alignment
+## Выравнивание
 
-To align your tab controls, use the `align` prop. Available values are `start`, `center`, `end`, `between`, `around`, and `evenly`.
+Чтобы выровнять элементы управления вкладками, используйте пропс `align`. Доступные значения: `start`, `center`, `end`, `between`, `around`, и `evenly`.
 
 <<< DEMO ./demo/TabsAlignment.vue#template{vue-html}
 
-## Bottom placement of tab controls
+## Размещение вкладок внизу
 
-Visually move the tab controls to the bottom by setting the prop `end`.
+Визуально переместите элементы управления вкладками вниз, установив пропс `end`.
 
 <<< DEMO ./demo/TabsBottom.vue#template{vue-html}
 
 ::: warning
 
-- Bottom placement visually works best with the `pills` variant. When using the default `tabs`
-  variant, you may want to provide your own custom styling classes, as Bootstrap CSS assumes the
-  tabs will always be placed on the top of the tabs content.
-- To provide a better user experience with bottom placed controls, ensure that the content of each
-  tab pane is the same height and fits completely within the visible viewport, otherwise the user
-  will need to scroll up to read the start of the tabbed content.
+- Размещение внизу работает лучше с вариантом `pills`. Когда используется вариант по умолчанию `tabs`, вы можете захотеть предоставить собственные пользовательские стили классов, так как Bootstrap CSS предполагает, что вкладки всегда будут расположены в верхней части содержимого вкладок.
+- Чтобы обеспечить лучший пользовательский опыт с размещенными внизу элементами управления, убедитесь, что содержимое каждого панели вкладки имеет одинаковую высоту и полностью вписывается в видимый экран, иначе пользователю потребуется прокрутить вверх, чтобы прочитать начало вкладываемого содержимого.
 
 :::
 
-## Vertical tabs
+## Вертикальные вкладки
 
-Have the tab controls placed on the lefthand side by setting the `vertical` prop to `true`. Vertical
-tabs work with or without `card` mode enabled.
+Разместите элементы управления вкладками по левой стороне, установив пропс `vertical` в `true`. Вертикальные
+вкладки работают как с включенным, так и с выключенным режимом `card`.
 
 <<< DEMO ./demo/TabsVertical.vue#template{vue-html}
 
-Visually move the tab controls to the right hand side by setting the `end` prop:
+Визуально переместите элементы управления вкладками по правой стороне, установив пропс `end`:
 
 <<< DEMO ./demo/TabsVerticalEnd.vue#template{vue-html}
 
-The width of the vertical tab controls will expand to fit the width of the tab title. To control the
-width, set a [width utility class](/docs/reference/size-props-and-classes) via the prop
-`nav-wrapper-class`. You can use values such as `w-25` (25% width), `w-50` (50% width), etc., or
-column classes such as `col-2`, `col-3`, etc.
+Ширина вертикальных элементов управления вкладок будет расширяться, чтобы соответствовать ширине заголовка вкладки. Чтобы контролировать ширину, установите [класс утилиты ширины](/docs/reference/size-props-and-classes) через пропс `nav-wrapper-class`. Вы можете использовать значения, такие как `w-25` (25% ширины), `w-50` (50% ширины) и т.д., или классы столбцов, такие как `col-2`, `col-3` и т.д.
 
 <<< DEMO ./demo/TabsVerticalWidth.vue#template{vue-html}
 
-Vertical placement visually works best with the `pills` variant. When using the default `tabs`
-variant, you may want to provided your own custom styling classes, as Bootstrap v4 CSS assumes the
-tab controls will always be placed on the top of the tabs content.
+Вертикальное размещение работает лучше с вариантом `pills`. Когда используется вариант по умолчанию `tabs`, вы можете захотеть предоставить собственные пользовательские стили классов, так как Bootstrap v4 CSS предполагает, что элементы управления вкладок всегда будут расположены в верхней части содержимого вкладок.
 
 ::: info
-Overflowing text may occur if your width is narrower than the tab title. You may need
-additional custom styling.
+Текст вкладки может выходить за пределы, если ширина вкладки меньше ширины заголовка. В этом случае может потребоваться дополнительное кастомное оформление.
 :::
 
-## Active classes
+## Классы для активных вкладок
 
-To apply classes to the currently active control or tab use the `active-nav-item-class` and
-`active-tab-class` props.
+Чтобы применить классы к текущей активной вкладке или элементу управления, используйте пропсы `active-nav-item-class` и `active-tab-class`.
 
 <<< DEMO ./demo/TabsActive.vue#template{vue-html}
 
-## Fade animation
+## Анимация затухания
 
-Fade is enabled by default when changing tabs. It can disabled with `no-fade` property.
+Анимация затухания (fade) включена по умолчанию при переключении вкладок. Её можно отключить с помощью свойства `no-fade`.
 
-## Add tabs without content
+## Добавление вкладок без содержимого
 
-If you want to add extra tabs that do not have any content, you can put them in `tabs-start` or
-`tabs-end` slot(s):
+Если вы хотите добавить дополнительные вкладки без содержимого, поместите их в слоты `tabs-start` или `tabs-end`:
 
 <<< DEMO ./demo/TabsEmpty.vue#template{vue-html}
 
-Use the `tabs-start` slot to place extra tab buttons before the content tab buttons, and use the
-`tabs-end` slot to place extra tab buttons after the content tab buttons.
+Используйте слот `tabs-start`, чтобы разместить дополнительные кнопки вкладок перед основными, и слот `tabs-end`, чтобы разместить их после основных кнопок вкладок.
 
 ::: info
-Extra (contentless) tab buttons should be a `<BNavItem>` or have a root element of
-`<li>` and class `nav-item` for proper rendering and semantic markup.
+Дополнительные (без содержимого) кнопки вкладок должны быть `<BNavItem>` или иметь корневой элемент `<li>` с классом `nav-item` для корректного отображения и семантической разметки.
 :::
 
-## Add custom content to tab title
+## Добавление пользовательского содержимого в заголовок вкладки
 
-If you want to add custom content to tab title, like HTML code, icons, or another non-interactive
-Vue component, this possible by using `title` slot of `<BTab>`.
+Если вы хотите добавить пользовательское содержимое в заголовок вкладки, например HTML-код, иконки или другой неинтерактивный компонент Vue, это можно сделать с помощью слота `title` в `<BTab>`.
 
 <<< DEMO ./demo/TabsCustom.vue#template{vue-html}
 
 ::: warning
-**Do not** place interactive elements/components inside the title slot. The tab button is a link
-which does not support child interactive elements per the HTML5 spec.
+**Не размещайте** интерактивные элементы или компоненты внутри слота заголовка. Кнопка вкладки реализована как ссылка, которая по спецификации HTML5 не поддерживает вложенные интерактивные элементы.
 :::
 
-## Apply custom classes to the generated nav-tabs or pills
+## Применение пользовательских классов к сгенерированным nav-tabs или pills
 
-The tab selectors are based on Bootstrap v5's `nav` markup ( i.e.
-`ul.nav > li.nav-item > a.nav-link`). In some situations, you may want to add classes to the `<li>`
-(nav-item) and/or the `<a>` (nav-link) on a per tab basis. To do so, simply supply the classname to
-the `title-item-class` prop (for the `<li>` element) or `title-link-class` prop (for the `<a>`
-element). Value's can be passed as a string or array of strings.
+Селекторы вкладок основаны на разметке `nav` из Bootstrap v5 (то есть
+`ul.nav > li.nav-item > a.nav-link`). В некоторых случаях вы можете захотеть добавить классы к элементу `<li>`
+(nav-item) и/или к `<a>` (nav-link) для каждой вкладки отдельно. Для этого просто укажите имя класса в пропсе
+`title-item-class` (для элемента `<li>`) или `title-link-class` (для элемента `<a>`). Значения можно передавать как строку или массив строк.
 
 ::: info
-The `active` class is automatically applied to the active tabs `<a>` element. You may
-need to accommodate your custom classes for this.
+Класс `active` автоматически применяется к активной вкладке (`<a>`). Возможно, вам потребуется учесть это при добавлении своих пользовательских классов.
 :::
 
 <<< DEMO ./demo/TabsCustomLinks.vue#template{vue-html}
 
-## Lazy loading tab content
+## Ленивое (отложенное) загрузка содержимого вкладок
 
-Sometimes it's preferred to load components & data only when activating a tab, instead of loading
-all tabs (and associated data) when rendering the `<BTabs>` set.
+Иногда предпочтительнее загружать компоненты и данные только при активации вкладки, вместо того чтобы загружать все вкладки (и связанные с ними данные) при рендеринге набора `<BTabs>`.
 
-Individual `<BTab>` components can be lazy loaded via the `lazy` prop, which when set doesn't mount
-the content of the `<BTab>` until it is activated (shown):
+Отдельные компоненты `<BTab>` можно загружать лениво с помощью пропса `lazy`. Если он установлен, содержимое `<BTab>` не будет монтироваться до тех пор, пока вкладка не станет активной (не будет показана):
 
 <<< DEMO ./demo/TabsLazy.vue#template{vue-html}
 
-By default, once the tab is activated, the content will remain mounted. To un-mounted the content
-when the tab is deactivated (hidden) use the `unmount-lazy` prop.
+По умолчанию, после активации вкладки её содержимое останется смонтированным. Чтобы размонтировать содержимое при деактивации (скрытии) вкладки, используйте пропс `unmount-lazy`.
 
 <<< DEMO ./demo/TabsUnmountLazy.vue#template{vue-html}
 
-One can also make all tab's lazy by setting the `lazy` prop on the parent `<BTabs>` component:
+Также можно сделать все вкладки ленивыми, установив пропс `lazy` на родительском компоненте `<BTabs>`:
 
 <<< DEMO ./demo/TabsLazyAll.vue#template{vue-html}
 
-## Keyboard navigation
+## Навигация с клавиатуры
 
-Keyboard navigation is enabled by default for ARIA compliance with tablists when a tab button has
-focus.
+Навигация с клавиатуры включена по умолчанию для соответствия ARIA-стандартам при работе с tablist, когда кнопка вкладки находится в фокусе.
 
-| Keypress                                                              | Action                                         |
-| --------------------------------------------------------------------- | ---------------------------------------------- |
-| <kbd>Left</kbd> or <kbd>Up</kbd>                                      | Activate the previous non-disabled tab         |
-| <kbd>Right</kbd> or <kbd>Down</kbd>                                   | Activate the next non-disabled tab             |
-| <kbd>Shift</kbd>+<kbd>Left</kbd> or <kbd>Shift</kbd>+<kbd>Up</kbd>    | Activate the first non-disabled tab            |
-| <kbd>Home</kbd>                                                       | Activate the first non-disabled tab            |
-| <kbd>Shift</kbd>+<kbd>Right</kbd> or <kbd>Shift</kbd>+<kbd>Down</kbd> | Activate the last non-disabled tab             |
-| <kbd>End</kbd>                                                        | Activate the last non-disabled tab             |
-| <kbd>Tab</kbd>                                                        | Move focus to the active tab content           |
-| <kbd>Shift</kbd>+<kbd>Tab</kbd>                                       | Move focus to the previous control on the page |
+| Клавиша                                                                | Действие                                                     |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------ |
+| <kbd>Left</kbd> или <kbd>Up</kbd>                                      | Активировать предыдущую неотключённую вкладку                |
+| <kbd>Right</kbd> или <kbd>Down</kbd>                                   | Активировать следующую неотключённую вкладку                 |
+| <kbd>Shift</kbd>+<kbd>Left</kbd> или <kbd>Shift</kbd>+<kbd>Up</kbd>    | Активировать первую неотключённую вкладку                    |
+| <kbd>Home</kbd>                                                        | Активировать первую неотключённую вкладку                    |
+| <kbd>Shift</kbd>+<kbd>Right</kbd> или <kbd>Shift</kbd>+<kbd>Down</kbd> | Активировать последнюю неотключённую вкладку                 |
+| <kbd>End</kbd>                                                         | Активировать последнюю неотключённую вкладку                 |
+| <kbd>Tab</kbd>                                                         | Перевести фокус на содержимое активной вкладки               |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd>                                        | Перевести фокус на предыдущий элемент управления на странице |
 
-Disable keyboard navigation by setting the prop `no-key-nav`. Behavior will now default to regular
-browser navigation with TAB key.
+Отключить навигацию с клавиатуры можно, установив проп `no-key-nav`. В этом случае поведение будет соответствовать обычной навигации браузера с помощью клавиши TAB.
 
-| Keypress                             | Action                                                 |
-| ------------------------------------ | ------------------------------------------------------ |
-| <kbd>Tab</kbd>                       | Move to the next tab button or control on the page     |
-| <kbd>Shift</kbd>+<kbd>Tab</kbd>      | Move to the previous tab button or control on the page |
-| <kbd>Enter</kbd> or <kbd>Space</kbd> | Activate current focused button's tab                  |
+| Клавиша                               | Действие                                                      |
+| ------------------------------------- | ------------------------------------------------------------- |
+| <kbd>Tab</kbd>                        | Перейти к следующей кнопке вкладки или элементу управления    |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd>       | Перейти к предыдущей кнопке вкладки или элементу управления   |
+| <kbd>Enter</kbd> или <kbd>Space</kbd> | Активировать вкладку, соответствующую текущей кнопке в фокусе |
 
-## Programmatically activating and deactivating tabs
+## Программное включение и выключение вкладок
 
-Use the `<BTabs>` `v-model` to control which tab is active by setting the `v-model` to the index
-(zero-based) of the tab to be shown (see example below).
+Используйте `v-model` на `<BTabs>`, чтобы управлять активной вкладкой, устанавливая значение `v-model` в индекс (начиная с нуля) вкладки, которую нужно показать (см. пример ниже).
 
-Alternatively, you can use the boolean model named `active` on each `<BTab>` to activate
-the tab, or to detect if a particular tab is active.
+В качестве альтернативы можно использовать булевый проп `active` на каждом `<BTab>`, чтобы активировать вкладку или определить, активна ли конкретная вкладка.
 
-Each `<BTab>`instance also exposes to activate or deactivate the tab. The
-methods are`.activate()`and`.deactivate()`, respectively. If activation or deactivation fails
-(i.e. a tab is disabled or no tab is available to move activation to), then the currently active tab
-will remain active and the method will return `false`. You will need a reference to the `<BTab>` in
-order to use these methods.
+Каждый экземпляр `<BTab>` также предоставляет методы для активации или деактивации вкладки: `.activate()` и `.deactivate()`. Если активация или деактивация не удалась (например, вкладка отключена или нет доступной вкладки для активации), то текущая активная вкладка останется активной, а метод вернёт `false`. Для использования этих методов вам потребуется ссылка на соответствующий `<BTab>`.
 
-## Preventing a `<BTab>` from being activated
+## Предотвращение активации `<BTab>`
 
-To prevent a tab from activating, simply set the `disabled` prop on the `<BTab>` component.
+Чтобы предотвратить активацию вкладки, просто установите проп `disabled` на компоненте `<BTab>`.
 
-Alternatively, you can listen for the `activate-tab` event, which provides an option to prevent the
-tab from activating. The `activate-tab` event is emitted with five arguments:
+В качестве альтернативы, вы можете отследить событие `activate-tab`, которое позволяет предотвратить активацию вкладки. Событие `activate-tab` вызывается с пятью аргументами:
 
-- `newTabId`: The id of the tab that is going to be activated
-- `prevTabId`: The id of the currently active tab
-- `newTabIndex`: The index of the tab that is going to be activated
-- `prevTabIndex`: The index of the currently active tab
-- `event`: The `BvEvent` object. Call `bvEvent.preventDefault()` to prevent `newTabIndex` from
-  being activated
+- `newTabId`: id вкладки, которую пытаются активировать
+- `prevTabId`: id текущей активной вкладки
+- `newTabIndex`: индекс вкладки, которую пытаются активировать
+- `prevTabIndex`: индекс текущей активной вкладки
+- `event`: объект `BvEvent`. Вызовите `bvEvent.preventDefault()`, чтобы предотвратить активацию вкладки с индексом `newTabIndex`
 
-For accessibility reasons, when using the `activate-tab` event to prevent a tab from activating, you
-should provide some means of notification to the user as to why the tab is not able to be activated.
-It is recommended to use the `disabled` attribute on the `<BTab>` component instead of using the
-`activate-tab` event (as `disabled` is more intuitive for screen reader users).
+Для обеспечения доступности, если вы используете событие `activate-tab` для предотвращения активации вкладки, рекомендуется уведомлять пользователя о причине невозможности активации вкладки. Однако предпочтительнее использовать атрибут `disabled` на компоненте `<BTab>`, так как это более понятно для пользователей скринридеров.
 
-## Advanced examples
+## Продвинутые примеры
 
-### External controls using `v-model`
+### Внешнее управление с помощью `v-model`
 
 <<< DEMO ./demo/TabsModelControl.vue
 
-### External controls using `active` model
+### Внешнее управление с помощью модели `active`
 
 <<< DEMO ./demo/TabsActiveModelControl.vue
 
-### External controls using exposed methods
+### Внешнее управление с помощью открытых методов
 
 <<< DEMO ./demo/TabsExposedMethodControl.vue
 
-### Dynamic tabs + tabs-end slot
+### Динамические вкладки + слот tabs-end
 
 <<< DEMO ./demo/TabsDynamic.vue
 

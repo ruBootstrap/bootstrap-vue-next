@@ -2,13 +2,13 @@
 
 <PageHeader>
 
-Placeholders are components that indicate that something may still be loading.
+Заглушки — это компоненты, которые указывают на то, что что-то еще может загружаться.
 
 </PageHeader>
 
-## Basic Usage
+## Основное использование
 
-At the placeholder core, you have the `BPlaceholder` component:
+В ядре заглушки у вас есть компонент `BPlaceholder`:
 
 <HighlightCard>
   <BPlaceholder />
@@ -25,9 +25,9 @@ At the placeholder core, you have the `BPlaceholder` component:
   </template>
 </HighlightCard>
 
-## Width
+## Ширина
 
-You can adjust the width using props `width` and `cols`. Cols is a number value 1-12, whereas width is a percentage. Width takes priority over cols.
+Вы можете настроить ширину с помощью пропсов `width` и `cols`. `cols` — это числовое значение от 1 до 12, а `width` — это процент. Ширина имеет приоритет над `cols`.
 
 <HighlightCard>
   <BPlaceholder width="30" cols="12" />
@@ -48,11 +48,11 @@ You can adjust the width using props `width` and `cols`. Cols is a number value 
   </template>
 </HighlightCard>
 
-## Placeholder Animations
+## Анимации заглушки
 
-Bootstrap supports two types of animations, `wave` and `glow`.
+Bootstrap поддерживает два типа анимаций: `wave` и `glow`.
 
-- Note: when using `BPlaceholderCard`, the image does not inherit an animation
+- Примечание: при использовании `BPlaceholderCard` изображение не наследует анимацию
 
 <HighlightCard>
   <BPlaceholderCard style="max-width: 20rem; " animation="glow" class="mb-3" />
@@ -69,9 +69,9 @@ Bootstrap supports two types of animations, `wave` and `glow`.
   </template>
 </HighlightCard>
 
-## Sizing
+## Размеры
 
-You can adjust the sizing of a placeholder by using the `size` prop. Acceptable values are 'xs', 'sm', or 'lg'.
+Вы можете настроить размер заглушки с помощью пропса `size`. Допустимые значения: 'xs', 'sm', или 'lg'.
 
 <HighlightCard>
   <BPlaceholder size="lg" />
@@ -88,13 +88,13 @@ You can adjust the sizing of a placeholder by using the `size` prop. Acceptable 
   </template>
 </HighlightCard>
 
-## Helper Components
+## Вспомогательные компоненты
 
-`BPlaceholder` has several wrapper components to quickly create larger component sets, such as `BPlaceholderCard`, `BPlaceholderTable`, and `BPlaceholderButton`.
+Компонент `BPlaceholder` имеет несколько обернутых компонентов для быстрого создания наборов компонентов, таких как `BPlaceholderCard`, `BPlaceholderTable`, и `BPlaceholderButton`.
 
-### Placeholder Wrapper
+### Обернутый заглушкой компонент
 
-The `BPlaceholderWrapper` is a renderless component that picks between a 'loading' component, and a 'finished' component. It is useful when you have to wait for loading to finish, before rendering the actual content. Depending on the use case, you may prefer to use [Suspense](https://vuejs.org/guide/built-ins/suspense.html) instead.
+Компонент `BPlaceholderWrapper` — это компонент без рендеринга, который выбирает компонент 'загрузки', и компонент 'завершенный'. Он полезен, когда вам нужно дождаться завершения загрузки, прежде чем отображать фактическое содержимое. В зависимости от случая использования, вы можете предпочесть использовать [Suspense](https://vuejs.org/guide/built-ins/suspense.html) вместо этого.
 
 <HighlightCard>
   <BPlaceholderWrapper :loading="loading">
@@ -167,9 +167,9 @@ onMounted(startLoading)
   </template>
 </HighlightCard>
 
-### Placeholder Buttons
+### Заглушка кнопок
 
-You can easily render a placeholder that has the button styling by using `BPlaceholderButton`.
+Вы можете легко отрендерить заглушку, которая имеет стили кнопки, используя `BPlaceholderButton`.
 
 <HighlightCard>
   <BPlaceholderButton cols="3" />
@@ -182,9 +182,9 @@ You can easily render a placeholder that has the button styling by using `BPlace
   </template>
 </HighlightCard>
 
-### Placeholder Cards
+### Заглушка карточек
 
-Placeholders have built-in support for rendering a placeholder card with `BPlaceholderCard`.
+Заглушки имеют встроенную поддержку для рендеринга заглушки карточки с `BPlaceholderCard`.
 
 <HighlightCard>
   <BPlaceholderCard style="max-width: 20rem" />
@@ -197,9 +197,9 @@ Placeholders have built-in support for rendering a placeholder card with `BPlace
   </template>
 </HighlightCard>
 
-### Placeholder Tables
+### Заглушка таблиц
 
-You can also render a full placeholder table with `BPlaceholderTable`.
+Вы также можете отрендерить полную заглушку таблицы с `BPlaceholderTable`.
 
 <HighlightCard>
   <BPlaceholderTable />
@@ -212,17 +212,17 @@ You can also render a full placeholder table with `BPlaceholderTable`.
   </template>
 </HighlightCard>
 
-### Advanced Helper Component Usage
+### Расширенное использование вспомогательных компонентов
 
-#### Advanced Cards
+#### Расширенные карточки
 
-Cards expose various props and slots to make them more personalized.
+Карточки имеют различные пропсы и слоты, чтобы сделать их более персонализированными.
 
-You can adjust the image using various props, such as `imgBlankColor`, and `imgBottom`, or you can optionally use `imgSrc` to place a real image, rather than a blank.
+Вы можете настроить изображение с помощью различных пропсов, таких как `imgBlankColor`, и `imgBottom`, или вы можете использовать `imgSrc`, чтобы разместить реальное изображение, а не пустое.
 
-Each section of the `BPlaceholderCard` exposes its slot elements, so you can easily override the defaults. Available slots are: `img`, `header`, `default`, and `footer`.
+Каждая секция `BPlaceholderCard` экспортирует свои элементы слота, поэтому вы можете легко переопределить дефолты. Доступные слоты: `img`, `header`, `default`, и `footer`.
 
-The footer also exposes some props that you can use to adjust the behavior of a button. Most notably prop `noButton`. If set to true, it will convert it to a basic placeholder appearance. Alternatively, you can use the `noFooter` prop to remove it altogether.
+Footer также экспортирует некоторые пропсы, которые вы можете использовать для настройки поведения кнопки. Наиболее важным пропсом является `noButton`. Если он установлен в true, он преобразуется в базовое представление заглушки. В качестве альтернативы вы можете использовать пропс `noFooter`, чтобы удалить его полностью.
 
 <HighlightCard>
   <BPlaceholderCard img-src="https://picsum.photos/1024/480/?image=1" img-bottom no-header>
@@ -254,13 +254,13 @@ The footer also exposes some props that you can use to adjust the behavior of a 
   </template>
 </HighlightCard>
 
-#### Advanced Tables
+#### Расширенные таблицы
 
-`BPlaceholderTable` comes with various props to adjust the number of rows, columns, header/footer, and their stylings.
+`BPlaceholderTable` имеет различные пропсы для настройки количества строк, столбцов, заголовка/подвала и их стилей.
 
-You can adjust the number of columns and rows using props `columns` and `rows` respectively. You can use `showFooter` to show the footer, or `noHeader` to hide the header. Both the footer and header have cellWidth, size, animation, and variant adjustments by prepending the type with the styling, eg: `headerCellWidth`, `headerSize`, `footerAnimation`, `footerVariant`.
+Вы можете настроить количество столбцов и строк с помощью пропсов `columns` и `rows` соответственно. Вы можете использовать `showFooter`, чтобы показать подвал, или `noHeader`, чтобы скрыть заголовок. И для подвала, и для заголовка есть настройки `cellWidth`, `size`, `animation`, и `variant`, которые предшествуют типу с стилем, например: `headerCellWidth`, `headerSize`, `footerAnimation`, `footerVariant`.
 
-Optionally, you can manually adjust any scope of the table using slots. The following slots are available: `thead`, `default`, and `tfoot`. Do note that the slots wrap the **entire** table scope, slot `thead` is the entire thead, and slot `default` is the entire tbody, so you will likely need to manually wrap your slot usages in these elements if you plan on using them.
+В качестве альтернативы вы можете вручную настроить любой диапазон таблицы с помощью слотов. Доступные слоты: `thead`, `default`, и `tfoot`. Обратите внимание, что слоты обертывают **весь** диапазон таблицы, слот `thead` — это весь `thead`, а слот `default` — это весь `tbody`, поэтому вам, вероятно, потребуется вручную обернуть свои использования слотов в эти элементы, если вы планируете их использовать.
 
 <HighlightCard>
   <BPlaceholderTable

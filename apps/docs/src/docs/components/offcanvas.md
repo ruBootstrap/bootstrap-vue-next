@@ -2,33 +2,33 @@
 
 <PageHeader>
 
-Build hidden sidebars into your project. Sidebars can aid in enhancing user interaction or preventing further interaction.
+Создавайте скрытые боковые панели в вашем проекте. Боковые панели могут помочь улучшить взаимодействие пользователей или предотвратить дальнейшее взаимодействие.
 
 </PageHeader>
 
 <<< DEMO ./demo/OffcanvasOverview.vue#template{vue-html}
 
-## Customizing Location
+## Настройка расположения
 
-Customize location with four standard options `top, bottom, start, end`.
+Настройте расположение с помощью четырех стандартных опций `top, bottom, start, end`.
 
 <<< DEMO ./demo/OffcanvasLocations.vue#template{vue-html}
 
-## Responsive
+## Адаптивность
 
-The `responsive` prop in the BOffcanvas component enables adaptive display behavior based on the viewport size. When set, the offcanvas content displays inline for viewports wider than the specified breakpoint, and as a traditional offcanvas for narrower viewports
+Свойство `responsive` в компоненте BOffcanvas включает адаптивную поведенческую отображение в зависимости от размера экрана. Когда оно установлено, контент offcanvas отображается встроенным для экранов шире указанного брейкпоинта, а для узких экранов - как традиционный offcanvas.
 
-::: info NOTE
-In SSR environments, the BOffcanvas component must be rendered client-side due to its dependency on browser context for responsive behavior. Use client-only directives or components to ensure proper functionality
+::: info ПРИМЕЧАНИЕ
+В средах SSR компонент BOffcanvas должен быть отрендерен клиент-стороне из-за его зависимости от браузерного контекста для поведения адаптивности. Используйте директивы client-only или компоненты для обеспечения правильной функциональности
 :::
 
 <<< FRAGMENT ./demo/OffcanvasResponsive.vue#template{vue-html}
 
-## Sidebar
+## Боковая панель
 
-One common use of offcanvas is to create a table of contents sider that is visible on a large screen, but becomes an offcanvas component below a certain breakpoint. This is common for documentation sites like the one you're reading now which includes two such sidebars - a "table of contents" on the left and a "on this page" on the right.
+Одна из распространенных задач offcanvas - создание таблицы содержимого, которая видна на большом экране, но становится компонентом offcanvas ниже определенного брейкпоинта. Это общее для сайтов документации, таких как тот, который вы читаете сейчас, который включает две такие боковые панели - "содержание" слева и "на этой странице" справа.
 
-Below is a simple example showing how to set up such a site.
+Ниже приведен простой пример, показывающий, как настроить такой сайт.
 
 <<< FRAGMENT ./demo/OffcanvasSidebar.vue
 

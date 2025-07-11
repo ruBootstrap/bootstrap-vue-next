@@ -2,121 +2,119 @@
 
 <PageHeader>
 
-The Popover feature, which provides a tooltip-like behavior, can be easily applied to any
-interactive element via the `<BPopover>` component or [`v-b-popover`](/docs/directives/b-popover)
-directive. Popovers can also be created and programmatically controlled via the `usePopoverController`
+Функция Popover, которая обеспечивает поведение, похожее на всплывающую подсказку, может быть легко применена к любому
+взаимодействующему элементу через компонент `<BPopover>` или директиву [`v-b-popover`](/docs/directives/b-popover).
+Popovers также могут быть созданы и программно управляются через `usePopoverController`
 
 </PageHeader>
 
 <<< DEMO ./demo/PopoverOverview.vue#template{vue-html}
 
-## Overview
+## Обзор
 
-Things to know when using the popover component:
+Что нужно знать при использовании компонента Popover:
 
-- Popovers rely on the 3rd party library [floating-ui](https://floating-ui.com/docs) for positioning.
-- Use `teleportTo` and `teleportDisabled` to control where in the DOM the popover is rendered. See the [Vue.js Docs](https://vuejs.org/guide/built-ins/teleport.html) for details. When using Nuxt, `teleportTo` defaults to `#teleport`, set `teleportDisabled` to disable this behavior. For non-nuxt environments, `teleportTo` defaults to `undefined`.
-- Triggering popovers on hidden elements will not work.
-- Popovers for `disabled` elements must be triggered on a wrapper element.
-- When triggered from hyperlinks that span multiple lines, popovers will be centered. Set the `inline` prop to improve the positioning see the [Floating UI docs](https://floating-ui.com/docs/inline) for details.
+- Popovers зависят от сторонней библиотеки [floating-ui](https://floating-ui.com/docs) для позиционирования.
+- Используйте `teleportTo` и `teleportDisabled`, чтобы контролировать, где в DOM рендерится popover. См. [документацию Vue.js](https://vuejs.org/guide/built-ins/teleport.html) для деталей. При использовании Nuxt, `teleportTo` по умолчанию равен `#teleport`, установите `teleportDisabled` для отключения этого поведения. Для не-nuxt окружений, `teleportTo` по умолчанию равен `undefined`.
+- Попытка запуска popovers на скрытых элементах не будет работать.
+- Popovers для элементов `disabled` должны запускаться на оберточном элементе.
+- Когда попытки запускаются из гиперссылок, которые занимают несколько строк, popovers будут центрироваться. Установите пропс `inline`, чтобы улучшить позиционирование, см. [документацию Floating UI](https://floating-ui.com/docs/inline) для деталей.
 
-## Target
+## Цель
 
-The target is the _trigger_ element (or component) that will trigger the popover. The target is
-specified via the `target` slot or prop, and can be any of the following:
+Цель - это _триггер_ элемент (или компонент), который запустит popover. Цель указывается через слот `target` или пропс, и может быть любой из следующих:
 
-The `target` prop may be any of the following:
+Пропс `target` может быть любым из следующих:
 
-- A string identifying the ID of the trigger element (or ID of the root element of a component)
-- A string with querySelector. (ie. '#toolbar > div:first-child')
-- A reference (ref) to an `HTMLElement` or an `SVGElement` via a [Template Ref](https://vuejs.org/guide/essentials/template-refs.html)
-- A reference (ref) to a component that has either an `HTMLElement` or `SVGElement` as its root
-  element via [Template Ref](https://vuejs.org/guide/essentials/template-refs.html)
+- Строка, идентифицирующая ID триггерного элемента (или ID корневого элемента компонента)
+- Строка с querySelector. (например, '#toolbar > div:first-child')
+- Ссылка (ref) на `HTMLElement` или `SVGElement` через [Шаблонную ссылку](https://vuejs.org/guide/essentials/template-refs.html)
+- Ссылка (ref) на компонент, который имеет либо `HTMLElement`, либо `SVGElement` в качестве своего корневого элемента
+  через [Шаблонную ссылку](https://vuejs.org/guide/essentials/template-refs.html)
 
-:::info NOTE
+:::info ПРИМЕЧАНИЕ
 
-`HTMLElement` refers to standard HTML elements such as `<div>`, `<button>`, etc., while `SVGElement`
-refers to `<svg>` or supported child elements of SVGs.
+`HTMLElement` относится к стандартным HTML элементам, таким как `<div>`, `<button>`, и т.д., а `SVGElement`
+относится к `<svg>` или поддерживаемым дочерним элементам SVG.
 
 :::
 
-## Positioning
+## Позиционирование
 
-Twelve static options are available for the `placement` prop: `top`, `top-left`, `top-right`,
-`bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` from
-[@floating-ui/vue](https://floating-ui.com/) as well as three [auto placement](https://floating-ui.com/docs/autoplacement)
-options `auto`, `auto-start` and `auto-end`.
+Доступно 12 статических опций для пропса `placement`: `top`, `top-left`, `top-right`,
+`bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` из
+[@floating-ui/vue](https://floating-ui.com/) вместе с тремя [автоматическим позиционированием](https://floating-ui.com/docs/autoplacement)
+опциями `auto`, `auto-start` и `auto-end`.
 
-Positioning is relative to the trigger element.
+Позиционирование относительно триггерного элемента.
 
 <<< DEMO ./demo/PopoverPositioning.vue#template{vue-html}
 
-## Triggers
+## Триггеры
 
-By default, popovers are shown by `pointerenter` and `focus` events and closed by `pointerleave` and `blur` events
-on the `target` element by default. To override this behavior and make the popover show and hide based
-on `click` events, set the `click` prop to `true`.
+По умолчанию, popovers показываются событиями `pointerenter` и `focus` и закрываются событиями `pointerleave` и `blur`
+на элементе `target` по умолчанию. Чтобы переопределить это поведение и сделать popover показываться и скрываться
+на событиях `click`, установите пропс `click` в `true`.
 
 <<< DEMO ./demo/PopoverTriggers.vue#template{vue-html}
 
-To take finer control of popover visibility, you can use the [useToggle](/docs/composables/useToggle) or
-[usePopoverController](/docs/composables/usePopoverController). Alternately, you can set the `manual` prop
-and use the [`v-model`](#programmatic-control-via-v-model) or
-[exposed functions](#exposed-functions) to control visibility.
+Чтобы более точно контролировать видимость popover, вы можете использовать [useToggle](/docs/composables/useToggle) или
+[usePopoverController](/docs/composables/usePopoverController). В качестве альтернативы, вы можете установить пропс `manual`
+и использовать [`v-model`](#programmatic-control-via-v-model) или
+[экспортированные функции](#exposed-functions) для управления видимостью.
 
-## Content
+## Содержимое
 
-The title and body content of a popover can be set via the `title` and `body` props or the `title`
-and `default` slots.
+Заголовок и содержимое popover можно установить через пропсы `title` и `body` или слоты `title`
+и `default`.
 
 <<< DEMO ./demo/PopoverContent.vue#template{vue-html}
 
-## Custom Classes and Variants
+## Пользовательские классы и варианты
 
-Custom classes can be applied to the popover's title `<div>` by using the `title-class` prop and to
-the popover's body `<div>` by using the `body-class` prop:
+К пользовательским классам можно применить заголовок popover'а `<div>` через пропс `title-class`, а тело popover'а `<div>` через пропс `body-class`:
 
 <<< FRAGMENT ./demo/PopoverCustomClass.vue#template{vue-html}
 
-Similarly, use [Bootstrap's Color and background](https://getbootstrap.com/docs/5.3/helpers/color-background/)
-utilities to change the variant of the popover.
+Аналогично, используйте [Bootstrap's Color and background](https://getbootstrap.su/docs/5.3/helpers/color-background/)
+утилиты для изменения варианта popover'а.
 
 <<< DEMO ./demo/PopoverVariant.vue#template{vue-html}
 
-`body-class` and `title-class` are reactive and can be changed while the popover is open.
+`body-class` и `title-class` являются реактивными и могут изменяться, пока popover открыт.
 
-Refer to the [popover directive](/docs/directives/popover) docs on applying custom
-classes to the directive version.
+См. [директиву popover](/docs/directives/popover) для применения пользовательских
+классов к директивной версии.
 
-For finer control, use the bootstrap 5 css variables to apply styles directly.
+Для более точного контроля используйте переменные CSS Bootstrap 5 для применения стилей напрямую.
 
 <<< DEMO ./demo/PopoverStyles.vue#template{vue-html}
 
-## Programmatic control via v-model
+## Программное управление через v-model
 
-You can manually control the visibility of a popover via the v-model. Setting it to true will show the popover,
-while setting it to false will hide the popover.
+Вы можете вручную управлять видимостью popover'а через v-model. Установка его в `true` покажет popover,
+а установка в `false` скроет его.
 
 <<< DEMO ./demo/PopoverModel.vue
 
-To make the popover shown on initial render, simply add prop `show` to `<BPopover>`:
+Чтобы сделать popover показанным при первоначальном рендеринге, просто добавьте пропс `show` к `<BPopover>`:
 
 <<< DEMO ./demo/PopoverStartOpen.vue#template{vue-html}
 
-Popovers can also be controlled via [Exposed functions](#exposed-functions).
+Popovers также могут управляться через [Экспортированные функции](#exposed-functions).
 
-## Close on Hide
+## Закрытие при скрытии
 
-The `close-on-hide` prop can be used to have the popover automatically close
-when the target is scrolled out of view. The `boundary` and `boundary-padding`
-props can be used to control what's considered clipping.
+Пропс `close-on-hide` может использоваться для автоматического закрытия
+popover'а, когда цель выходит за пределы видимости. Пропсы `boundary` и `boundary-padding`
+могут использоваться для контроля того, что считается отсечением.
 
 <<< DEMO ./demo/PopoverCloseOnHide.vue
 
-## Exposed functions
+## Экспортированные функции
 
-`BPopover` exposes several functions to allow manipulation of the state of the component.
-These are accessed through the [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs)
+`BPopover` экспортирует несколько функций для управления состоянием компонента.
+Эти функции доступны через [шаблонную ссылку](https://vuejs.org/guide/essentials/template-refs.html#template-refs)
 
 <<< DEMO ./demo/PopoverExposed.vue
 

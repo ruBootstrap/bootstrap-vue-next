@@ -1,191 +1,171 @@
-# Form Rating
+# Рейтинг формы
 
 <PageHeader>
 
-BootstrapVue's custom star rating component, `BFormRating`, is for entering or displaying a rating value. The component is fully WAI-ARIA accessible and supports keyboard control.
+Кастомный компонент звёздочного рейтинга BootstrapVue, `BFormRating`, предназначен для ввода или отображения значения рейтинга. Компонент полностью доступен по WAI-ARIA и поддерживает управление с клавиатуры.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Rating values range from 1 to the number of stars allowed (default stars is `5`, minimum stars is `3`). Since `BFormRating` uses the Bootstrap class `form-control`, it can easily be placed inside [input groups](/docs/components/input-group.html).
+Значения рейтинга варьируются от 1 до количества звёзд (по умолчанию — `5`, минимум — `3`). Поскольку `BFormRating` использует класс Bootstrap `form-control`, его легко разместить внутри [input group](/docs/components/input-group.html).
 
-There are two main modes for `BFormRating`: interactive and readonly.
+У компонента `BFormRating` два основных режима: интерактивный и только для чтения.
 
-Interactive mode allows the user to choose a rating from 1 to the number of stars (default 5) in whole number increments.
+В интерактивном режиме пользователь может выбрать рейтинг от 1 до количества звёзд (по умолчанию 5) с шагом 1.
 
-**Interactive rating (input mode):**
+**Интерактивный рейтинг (режим ввода):**
 
 <<< DEMO ./demo/RatingInteractive.vue
 
-Readonly mode is used for displaying an aggregated rating, and supports `half` stars.
+В режиме только для чтения компонент отображает агрегированный рейтинг и поддерживает «половинные» звёзды.
 
-**Readonly (non-interactive) rating:**
+**Рейтинг только для чтения:**
 
 <<< DEMO ./demo/RatingNonInteractive.vue
 
-## Styling
+## Стилизация
 
-### Variant and color
+### Вариант и цвет
 
-Easily apply one of the Bootstrap theme color variants to the rating icon via the `variant` prop.
-The default is to use the default form control text color.
+Легко применяйте одну из цветовых тем Bootstrap к иконке рейтинга через пропс `variant`. По умолчанию используется цвет текста формы.
 
 <<< DEMO ./demo/RatingVariant.vue
 
-To apply a _custom color_, use the `color` prop which accepts a standard CSS color name, HEX color
-value (`#...`) or RGB/RGBA (`rgb(...)`/`rgba(...)`) color value:
+Для применения _кастомного цвета_ используйте пропс `color`, который принимает стандартное CSS-имя цвета, HEX (`#...`) или RGB/RGBA (`rgb(...)`/`rgba(...)`).
 
 <<< DEMO ./demo/RatingCustomColor.vue
 
-**Notes:**
+**Примечания:**
 
-- The prop `color` takes precedence over the `variant` prop
-- Variants translate to the `text-{variant}` utility class on the icon
+- Пропс `color` имеет приоритет над пропсом `variant`
+- Варианты переводятся в класс `text-{variant}` на иконке
 
-### Number of stars
+### Количество звёзд
 
-By default, `<BFormRating>` defaults to `5` stars. You can change the number of stars via the
-`stars` prop. The minimum allowed stars is `3`.
+По умолчанию `<BFormRating>` отображает `5` звёзд. Изменить количество можно через пропс `stars`. Минимум — `3`.
 
 <<< DEMO ./demo/RatingStars.vue
 
-### Show value
+### Отображение значения
 
-By default, `<BFormRating>` does not display the current numerical value. To show the current value
-simply set the `show-value` prop to `true`. To control the precision (number of digits after the
-decimal) simply set the `precision` prop to the number of digits after the decimal to show. The
-`precision` setting is useful when showing an aggregated or average rating value in `readonly` mode.
+По умолчанию `<BFormRating>` не показывает текущее числовое значение. Чтобы отобразить его, установите пропс `show-value` в `true`. Для управления точностью (число знаков после запятой) используйте пропс `precision`. Это полезно для отображения среднего рейтинга в режиме только для чтения.
 
 <<< DEMO ./demo/RatingValue.vue
 
-**With precision set:**
+**С точностью:**
 
 <<< DEMO ./demo/RatingPrecision.vue
 
-#### Show maximum value
+#### Отображение максимального значения
 
-Optionally, show the maximum rating possible by also setting the prop `show-value-max` to `true`:
+Можно дополнительно показать максимальное значение рейтинга, установив пропс `show-value-max` в `true`:
 
 <<< DEMO ./demo/RatingValueMax.vue
 
-### Control sizing
+### Размеры
 
-Fancy a small or large rating control? Simply set the prop `size` to either `'sm'` or `'lg'`
-respectively.
+Хотите маленький или большой рейтинг? Просто установите пропс `size` в `'sm'` или `'lg'` соответственно.
 
 <<< DEMO ./demo/RatingSizing.vue
 
-### Inline mode
+### В одну строку
 
-By default, `<BFormRating>` occupies 100% width of the parent container. In some situations, you
-may prefer the custom input to occupy only the space required for its contents. Simply set the
-`inline` prop to `true` to render the component in inline mode:
+По умолчанию `<BFormRating>` занимает 100% ширины контейнера. Если нужно, чтобы компонент занимал только необходимое место, установите пропс `inline` в `true`.
 
 <<< DEMO ./demo/RatingInline.vue
 
-### Borderless
+### Без рамки
 
-By default, `BFormRating` has standard Bootstrap form-control styling. To disable the default form-control border, simply set the no-border prop to true.
+По умолчанию `BFormRating` имеет стандартное оформление формы. Чтобы убрать рамку, установите пропс `no-border` в true.
 
 <<< DEMO ./demo/RatingBorder.vue
 
-### Disabled
+### Отключённый
 
-If you require additional information before a user can chose a ratings value, simply set the `disabled` prop to `true` to disable any user interactivity on the component:
+Если требуется, чтобы пользователь не мог выбрать рейтинг до выполнения условия, установите пропс `disabled` в `true`.
 
 <NotYetImplemented />
 
-### Readonly
+### Только для чтения
 
-Readonly ratings remain focusable, but are not interactive. This state is useful for displaying an
-aggregated or average ratings value. Fractional values are allowed and will result in the displaying
-of _half icons_ when the `value` is not a whole number (the half icon threshold is `0.5`).
+Рейтинг только для чтения остаётся доступным для фокуса, но не интерактивен. Это удобно для отображения агрегированного или среднего значения. Допускаются дробные значения, при которых отображаются «половинные» иконки (порог — `0.5`).
 
 <<< DEMO ./demo/RatingReadOnly.vue
 
-### Clear button
+### Кнопка очистки
 
-Optionally show a clear icon via the `show-clear` prop. The value will be set to `null` when the clear icon is clicked.
+Можно отобразить иконку очистки через пропс `show-clear`. При нажатии на неё значение будет установлено в `null`.
 
 <<< DEMO ./demo/RatingClear.vue
 
-**Notes:**
+**Примечания:**
 
-- The clear icon will not be shown when the props `readonly` or `disabled` are set.
+- Иконка очистки не отображается, если установлены пропсы `readonly` или `disabled`.
 
-### Icons
+### Иконки
 
-By default, `BFormRating` uses built-in star SVG icons:
+По умолчанию `BFormRating` использует встроенные SVG-иконки звёзд:
 
-- Empty star: outlined star
-- Half star: half-filled star
-- Full star: filled star
-- Clear button: x icon
+- Пустая звезда: контурная звезда
+- Половина: наполовину заполненная звезда
+- Полная: заполненная звезда
+- Кнопка очистки: иконка x
 
-#### Default icons styling
+#### Стилизация стандартных иконок
 
-When using the default icons, you can style them with the `variant`, `color`, and `size` props. These props apply Bootstrap classes and styles to the built-in SVG icons.
+Для стандартных иконок можно использовать пропсы `variant`, `color` и `size`. Они применяют классы Bootstrap и стили к SVG.
 
-#### Custom icons
+#### Кастомные иконки
 
-To use completely custom icons, use the default scoped slot which provides access to `starIndex`, `isFilled`, and `isHalf` properties:
+Для использования своих иконок используйте scoped slot по умолчанию, где доступны `starIndex`, `isFilled`, `isHalf`:
 
 <<< DEMO ./demo/RatingCustomIcon.vue
 
-**Important notes for custom icons:**
+**Важные замечания по кастомным иконкам:**
 
-- The `variant`, `color`, and `size` props **do not apply** to custom icons provided via scoped slots
-- You must handle all styling (colors, sizes, hover effects) yourself in your custom CSS
-- You're responsible for implementing click handlers if needed: `@click="rating = starIndex"`
-- Custom icons completely replace the default star rendering
+- Пропсы `variant`, `color` и `size` **не применяются** к кастомным иконкам через slot
+- Все стили (цвет, размер, эффекты наведения) реализуйте самостоятельно в CSS
+- Вы сами реализуете обработчики клика: `@click="rating = starIndex"`
+- Кастомные иконки полностью заменяют стандартные
 
-#### Icon props (Advanced)
+#### Пропсы для иконок (Advanced)
 
-The `icon-empty`, `icon-half`, `icon-full`, and `icon-clear` props are available for specifying alternate Bootstrap Icon names, but require the corresponding Bootstrap Icon components to be registered. Most users should use the scoped slot approach shown above for custom icons.
+Пропсы `icon-empty`, `icon-half`, `icon-full` и `icon-clear` позволяют указать альтернативные имена иконок Bootstrap, но требуют регистрации соответствующих компонентов. Обычно для кастомизации используйте scoped slot.
 
-## Form submission
+## Отправка формы
 
-If you intend to submit the rating value via standard form submission, set the `name` prop to the
-desired form field name. A hidden input will be generated with the current value (or an empty string
-if there is no value).
+Если нужно отправлять значение рейтинга через стандартную отправку формы, задайте пропс `name` — будет создан скрытый input с текущим значением (или пустой строкой, если значения нет).
 
 <NotYetImplemented />
 
-## Using in input groups
+## Использование в input group
 
-The following is an example of placing `<BFormRating>` in an input group:
-
-<NotYetImplemented />
-
-## Internationalization
-
-When a `locale` is specified, the displayed value (when the `show-value` prop is `true`) will be in
-the browser's default locale. To change the locale, simple set the `locale` prop to the preferred
-locale, or an array of preferred locales (most preferred locale first). This will affect the
-optional displayed value and the left-to-right or right-to-left orientation of the component.
+Пример размещения `<BFormRating>` в input group:
 
 <NotYetImplemented />
 
-## Implementation notes
+## Интернационализация
 
-The ratings control uses the Bootstrap v5 `form-control*`, `d-*` (display), and
-`text-{variant}` classes, as well as BootstrapVue's custom CSS for proper styling.
+Если задан `locale`, отображаемое значение (при `show-value=true`) будет в локали браузера. Для смены локали укажите нужную строку или массив локалей (приоритет — первый элемент). Это влияет на отображаемое значение и направление компонента (LTR/RTL).
 
-<NotYetImplemented/>The root element of the control is an `<output>` element, which allows a `<label>` element to be
-associated with it.
+<NotYetImplemented />
 
-## Accessibility
+## Особенности реализации
 
-To screen reader users `<BFormRating>` appears as a _slider_ type input input.
+Контрол рейтинга использует классы Bootstrap v5 `form-control*`, `d-*` (display), `text-{variant}` и кастомный CSS BootstrapVue.
 
-Keyboard navigation is employed to select the rating value, and mimics the keyboard controls of
-`range` inputs:
+<NotYetImplemented/>Корневой элемент — `<output>`, что позволяет ассоциировать с ним `<label>`.
 
-- <kbd>Left</kbd> or <kbd>Down</kbd> will decrement the rating value by `1`
-- <kbd>Right</kbd> or <kbd>Up</kbd> will increment the rating value by `1`
-- When the [`locale`](#internationalization) resolves to a right-to-left language, the
-  <kbd>Left</kbd> and <kbd>Right</kbd> behaviour is reversed.
+## Доступность
+
+Для пользователей экранных читалок `<BFormRating>` выглядит как input типа _slider_.
+
+Навигация с клавиатуры аналогична полям типа range:
+
+- <kbd>Left</kbd> или <kbd>Down</kbd> уменьшают значение на 1
+- <kbd>Right</kbd> или <kbd>Up</kbd> увеличивают значение на 1
+- Если [`locale`](#internationalization) — язык с направлением справа налево, поведение <kbd>Left</kbd> и <kbd>Right</kbd> меняется местами
 
 <ComponentReference :data="data" />
 

@@ -1,128 +1,125 @@
-# Form Spinbutton
+# Спиннер формы
 
 <PageHeader>
 
-The Form SpinButton allows the user to adjusting a numeric range with finite control
+Спиннер формы позволяет пользователю изменять числовое значение в заданном диапазоне с точным контролем
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-The component `BFormSpinbutton` is
-[WAI-ARIA compliant](https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton), allowing for [keyboard control](#accessibility), and supports both horizontal (default) and vertical layout
+Компонент `BFormSpinbutton` [соответствует WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton), поддерживает [управление с клавиатуры](#accessibility) и может быть горизонтальным (по умолчанию) или вертикальным
 
-Similar to range type inputs, BootstrapVue's `BFormSpinbutton` does not allow the user to type in a value
+Как и поля типа range, спиннер `BFormSpinbutton` не позволяет пользователю вводить значение вручную
 
 <<< DEMO ./demo/FormSpinbuttonOverview.vue
 
-The <kbd>ArrowUp</kbd> and <kbd>ArrowDown</kbd> keys can be used to increment or decrement the value
+Клавиши <kbd>ArrowUp</kbd> и <kbd>ArrowDown</kbd> используются для увеличения и уменьшения значения
 
-To be submitted via native browser form submits, the spinbutton must have a name set via the `name` prop. This will create a hidden input containing the current value of the spinbutton. If the spinbutton does not have a value, the hidden input's value will be an empty string
+Чтобы значение спиннера отправлялось при нативной отправке формы, необходимо задать имя через пропс `name`. Это создаст скрытое поле с текущим значением спиннера. Если значение не задано, скрытое поле будет содержать пустую строку
 
-## `v-model` value
+## Значение v-model
 
-The `v-model` always returns the value as a number. The `v-model` can be `null` if no initial value is set
+`v-model` всегда возвращает значение как число. Если начальное значение не задано, `v-model` может быть `null`
 
-If the initial value is `null` no value will be displayed in the spinbutton. Use the `placeholder` prop to show a string when the spinbutton has no value
+Если начальное значение `null`, спиннер не отображает значение. Используйте пропс `placeholder`, чтобы показать строку, когда значение отсутствует
 
-## Min, max, and step
+## Min, max и step
 
-Spinbuttons have a default range from `1` to `100`, which can be changed by setting the `min` and `max` props. The default step increment is `1`, and can be changed via the `step` prop (decimal values allowed)
+По умолчанию диапазон спиннера — от `1` до `100`, его можно изменить через пропсы `min` и `max`. Шаг по умолчанию — `1`, его можно изменить через пропс `step` (допустимы дробные значения)
 
 <<< DEMO ./demo/FormSpinbuttonStep.vue#template{vue-html}
 
-## Number wrapping
+## Зацикливание значений
 
-By default, when the value is increased to the `max` value, it pressing the increment button will have no effect. Similarly when the value is as the `min` value, pressing the decrement button will have no effect
+По умолчанию, если значение достигло `max`, дальнейшее увеличение не изменит его. Аналогично, при достижении `min` уменьшение не сработает
 
-To allow the spin button to wrap from max to min when incrementing (or min to max when decrementing), set the `wrap` prop to true
+Чтобы разрешить зацикливание (от max к min и наоборот), установите пропс `wrap` в true
 
 <<< DEMO ./demo/FormSpinbuttonWrapping.vue#template{vue-html}
 
-## Styling
+## Стилизация
 
-### Sizing
+### Размеры
 
-As with other form controls, `BFormSpinbutton` supports small and large sizing via setting the size prop to either 'sm' or 'lg', respectively
+Как и другие элементы формы, `BFormSpinbutton` поддерживает маленький и большой размер через пропс `size` (`'sm'` или `'lg'`)
 
 <<< DEMO ./demo/FormSpinbuttonSizing.vue#template{vue-html}
 
-### Inline
+### В одну строку
 
 <<< DEMO ./demo/FormSpinbuttonInline.vue#template{vue-html}
 
-The `Spinbutton` will automatically adjust it's width to fit the displayed value. See the [Width](#width) section below for details on controlling or setting the width
+Спиннер автоматически подстраивает ширину под отображаемое значение. Подробнее о контроле ширины см. раздел [Ширина](#width)
 
-### Vertical
+### Вертикальный режим
 
-`Spinbuttons` can be oriented in vertical mode:
+Спиннеры могут быть вертикальными:
 
 <<< DEMO ./demo/FormSpinbuttonVertical.vue#template{vue-html}
 
-Vertical spin buttons can also be sized using the `size` prop. When in vertical mode, the spin button is rendered as an inline element
+Вертикальные спиннеры также поддерживают пропс `size`. В вертикальном режиме спиннер отображается как inline-элемент
 
-The spin button will automatically adjust its width to fit the displayed value. See the [Width section](#width) below for details on controlling or setting the width.
+Ширина спиннера автоматически подстраивается под значение. Подробнее о контроле ширины см. раздел [Ширина](#width)
 
-### Width
+### Ширина
 
-The control (when not `vertical` or `inline`) will expand to the maximum width of the parent container You can control width via utility classes such as `w-25`, `w-50`, `w-75`, or use styles to set the width
+Если не установлен `vertical` или `inline`, элемент расширяется на всю ширину контейнера. Для управления шириной используйте утилитарные классы (`w-25`, `w-50`, `w-75`) или стили
 
-When either `vertical` or `inline` is set, the control will adjust its width based on the displayed value. You can use css style to control the overall width of the control (i.e. `style="width: 10rem`)
+Если установлен `vertical` или `inline`, ширина подстраивается под значение. Для управления шириной используйте CSS (например, `style="width: 10rem"`)
 
-### Number formatting and locale
+### Форматирование числа и локаль
 
-By default `BFormSpinbutton` will format the displayed number in the users browser default locale. You can change the localized formatting by specifying a locale (or array of locales) via the `locale` prop. Number format localization is performed via Intl.NumberFormat. The locales available will be dependent on the browser implementation. Localization only controls the presentation of the value to the user, and does not affect the `v-model`
+По умолчанию `BFormSpinbutton` форматирует число в соответствии с локалью браузера пользователя. Можно изменить локализацию, указав locale (или массив локалей) через пропс `locale`. Форматирование выполняется через Intl.NumberFormat. Доступные локали зависят от браузера. Локализация влияет только на отображение, не на значение v-model
 
 <<< DEMO ./demo/FormSpinbuttonFormatting.vue
 
-Alternatively, you can provide your own number formatter function to format the value displayed. This is useful for displaying text instead of a number, or if you want to implement different features of `Intl.NumberFormat`
+Также можно передать свою функцию форматирования через пропс `formatter-fn`. Функция получает текущее значение и возвращает строку для отображения. Это удобно для вывода текста вместо числа или для расширенного форматирования через Intl.NumberFormat. Форматтер влияет только на отображение, не на v-model
 
-To provide a formatter function, set the prop `formatter-fn` to a method reference. The formatter is passed a single argument which is the current value. Note the formatter only affects the value displayed to the user and does not affect the v-model
-
-### Custom Formatter
+### Кастомный форматтер
 
 <<< DEMO ./demo/FormSpinbuttonCustomFormatting.vue
 
-## Disabled and readonly states
+## Состояния disabled и readonly
 
 <<< DEMO ./demo/FormSpinbuttonReadonly.vue
 
-## Validation states
+## Стили валидации
 
-When you default to a null value, and the user has not selected a value, you can use the state prop to apply one of the contextual validation styles to the component
+Если по умолчанию значение null и пользователь не выбрал значение, можно использовать пропс `state` для применения стилей валидации:
 
-- `true` applies the valid styling to the component
-- `false` applies the invalid styling to the component
-- `null` applies no contextual styling (the default)
+- `true` — применяет стиль valid
+- `false` — применяет стиль invalid
+- `null` — не применяет стили (по умолчанию)
 
-## Required prop
+## Пропс required
 
-Note that the `required` prop only generates the `aria-required="true"` attribute on the component, and does not perform any validation on form submit. You must validate the `v-model` in your application logic
+Обратите внимание: пропс `required` только добавляет атрибут `aria-required="true"` и не выполняет валидацию при отправке формы. Валидацию v-model нужно реализовать самостоятельно
 
-Note that if the prop `required` is set, and the `v-model` is `null`, the attribute `aria-invalid="true"` will be rendered on the component
+Если установлен пропс `required` и v-model равен null, компоненту будет добавлен атрибут `aria-invalid="true"`
 
-## Events
+## События
 
-The `update:model-value` event is used to update the `v-model` and is emitted any time the value changes
+Событие `update:model-value` используется для обновления v-model и срабатывает при каждом изменении значения
 
-The `change` event is emitted once the user releases the mouse button (when pressing the increment or decrement buttons) or when the user releases the <kbd>ArrowDown</kbd> or <kbd>ArrowUp</kbd> key. This can be handy when you need to debounce the input
+Событие `change` срабатывает при отпускании кнопки мыши (при нажатии на кнопки увеличения/уменьшения) или при отпускании клавиш <kbd>ArrowDown</kbd> или <kbd>ArrowUp</kbd>. Это удобно для debounce
 
-The following example illustrates the difference between the `update:model-value` and `change` events. Click and hold the increment or decrement button (or use the up/down arrow keys)
+В следующем примере показана разница между событиями `update:model-value` и `change`. Зажмите кнопку увеличения/уменьшения или используйте стрелки вверх/вниз
 
 <<< DEMO ./demo/FormSpinbuttonEvents.vue
 
-## Accessibility
+## Доступность
 
-The following keyboard controls are available when the spin button is focused:
+Доступны следующие клавиши при фокусе на спиннере:
 
-- <kbd>Home</kbd> Sets the value to the `min` value
-- <kbd>End</kbd> Sets the value to the `max` value
-- <kbd>ArrowUp</kbd> Increases the value by the step amount
-- <kbd>ArrowDown</kbd> Decreases the value by the step amount
-- <kbd>PageUp</kbd> Increases the value by the step amount times the `repeat-step-multiplier` amount
-- <kbd>PageDown</kbd> Decreases the value by the step amount times the `repeat-step-multiplier` amount
+- <kbd>Home</kbd> — установить значение в `min`
+- <kbd>End</kbd> — установить значение в `max`
+- <kbd>ArrowUp</kbd> — увеличить значение на шаг
+- <kbd>ArrowDown</kbd> — уменьшить значение на шаг
+- <kbd>PageUp</kbd> — увеличить значение на шаг, умноженный на `repeat-step-multiplier`
+- <kbd>PageDown</kbd> — уменьшить значение на шаг, умноженный на `repeat-step-multiplier`
 
-Note the the `repeat-delay`, `repeat-threshold` and `repeat-interval` only applies to the <kbd>ArrowUp</kbd> or <kbd>ArrowDown</kbd> keys
+Обратите внимание: параметры `repeat-delay`, `repeat-threshold` и `repeat-interval` применяются только к клавишам <kbd>ArrowUp</kbd> и <kbd>ArrowDown</kbd>
 
 <ComponentReference :data="data" />
 

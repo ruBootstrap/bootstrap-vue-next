@@ -1,104 +1,82 @@
-# Collapse
+# Сворачивание (Collapse)
 
 <PageHeader>
 
-Easily toggle visibility of almost any content on your pages in a vertically collapsing container.
-Includes support for making accordions. Visibility can be easily toggled with our
-[`v-b-toggle` directive](/docs/directives/BToggle), or via [`v-model`](#v-model-support).
+Легко переключайте видимость практически любого контента на странице в вертикально сворачиваемом контейнере. Поддерживается создание аккордеонов. Видимость можно легко переключать с помощью нашей [директивы `v-b-toggle`](/docs/directives/BToggle) или через [`v-model`](#v-model-support).
 
 </PageHeader>
 
 <<< DEMO ./demo/CollapseOverview.vue#template{vue-html}
 
-## Usage
+## Использование
 
-Other elements can easily toggle `BCollapse` components using the
-[`v-b-toggle` directive](/docs/directives/toggle).
+Другие элементы могут легко переключать компоненты `BCollapse` с помощью [директивы `v-b-toggle`](/docs/directives/toggle).
 
 <<< DEMO ./demo/CollapseUsage.vue#template{vue-html}
 
-## Initial visibility (start expanded)
+## Начальная видимость (открыт при старте)
 
-To make the `BCollapse` show initially, set the `v-model` prop:
+Чтобы `BCollapse` был видимым изначально, установите пропс `v-model`:
 
 <<< DEMO ./demo/CollapseInitial.vue#template{vue-html}
 
-## `v-model` support
+## Поддержка `v-model`
 
-The component's collapsed (visible) state can also be set with `v-model` which binds internally to
-the `visible` prop.
+Состояние свёрнутости (видимости) компонента также можно задать через `v-model`, который внутри связывается с пропсом `visible`.
 
-Note, when using `v-model` to control `BCollapse`, the `aria-*` attributes and class `collapsed`
-are not automatically placed on the trigger button (as is the case when using the `v-b-toggle`
-directive). In this example we **must control the attributes ourselves** for proper accessibility
-support.
+Обратите внимание: при использовании `v-model` для управления `BCollapse` атрибуты `aria-*` и класс `collapsed` не добавляются автоматически к кнопке-триггеру (в отличие от случая с директивой `v-b-toggle`). В этом примере **необходимо самостоятельно управлять атрибутами** для корректной поддержки доступности.
 
-By default, an initially visible collapse will not animate on mount. To enable the collapse expanding animation on mount,
-set the `initial-animation` prop on `<BCollapse>` and leave the `visible` prop as false.
+По умолчанию, если сворачивание изначально видно, анимация при монтировании не проигрывается. Чтобы включить анимацию раскрытия при монтировании, установите пропс `initial-animation` на `<BCollapse>` и оставьте пропс `visible` равным false.
 
 <<< DEMO ./demo/CollapseModel.vue
 
-## Trigger multiple collapse elements
+## Переключение нескольких элементов
 
-You can even collapse multiple `BCollapse` components via a single `v-b-toggle` by providing
-multiple target Ids using _modifiers_.
+Можно сворачивать несколько компонентов `BCollapse` одной директивой `v-b-toggle`, указав несколько целевых ID через _модификаторы_.
 
-You can also pass multiple target Ids via the directive _value_ in BootstrapVueNext.
+Также можно передать несколько целевых ID через значение директивы в BootstrapVueNext.
 
 <<< DEMO ./demo/CollapseMultiple.vue#template{vue-html}
 
-## Slots
+## Слоты
 
-The `header` and `footer` slots can be used to create custom toggles for your collapsible content. The default slot is
-used for the content to be hidden or shown.
+Слоты `header` и `footer` можно использовать для создания пользовательских переключателей для вашего сворачиваемого контента. Слот по умолчанию используется для контента, который будет скрываться или показываться.
 
-Using the `v-b-toggle` directive to toggle the `BCollapse` will still work but the `collapsed` CSS class will no longer be applied to the element with the directive.
+Использование директивы `v-b-toggle` для переключения `BCollapse` по-прежнему работает, но класс `collapsed` больше не будет применяться к элементу с этой директивой.
 
-The following properties are available for the `header` and `footer` and `default` slots:
+Для слотов `header`, `footer` и `default` доступны следующие свойства:
 
-| Property  | Type     | Description                           |
-| --------- | -------- | ------------------------------------- |
-| `visible` | Boolean  | Visible state of the collapse         |
-| `toggle`  | Function | When called, will toggle the collapse |
-| `show`    | Function | When called, will open the collapse   |
-| `hide`    | Function | When called, will close the collapse  |
-| `id`      | String   | The ID of the collapsible element     |
+| Свойство  | Тип      | Описание                    |
+| --------- | -------- | --------------------------- |
+| `visible` | Boolean  | Состояние видимости         |
+| `toggle`  | Function | Вызов переключает видимость |
+| `show`    | Function | Вызов открывает             |
+| `hide`    | Function | Вызов закрывает             |
+| `id`      | String   | ID сворачиваемого элемента  |
 
-`BCollapse` also [provides](https://vuejs.org/guide/components/provide-inject.html) the above variables
-to its children as well as the value of the `isNav` prop.
+`BCollapse` также [передаёт](https://vuejs.org/guide/components/provide-inject.html) эти переменные своим потомкам, а также значение пропса `isNav`.
 
 <<< DEMO ./demo/CollapseContent.vue#template{vue-html}
 
-## Exposed functions
+## Экспортируемые функции
 
-`BCollapse` exposes several functions and properties that allow manipulation and examination of the state of the components.
-These are accessed through the [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs)
+`BCollapse` предоставляет несколько функций и свойств для управления и проверки состояния компонента. Доступ к ним осуществляется через [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs):
 
-- hide: Hides the collapse and fires the `hide` event
-- show: Shows the collapse and fires the `show` event
-- toggle: Toggles the collapse and fires the `hide` or `show` event, as appropriate
-- isNav: The value of the `isNav` prop of the collapse
-- visible: The visible state of the collapse
+- hide: Скрывает и вызывает событие `hide`
+- show: Показывает и вызывает событие `show`
+- toggle: Переключает и вызывает событие `hide` или `show` в зависимости от состояния
+- isNav: Значение пропса `isNav` у компонента
+- visible: Состояние видимости
 
 <<< DEMO ./demo/CollapseExpose.vue
 
-## Accessibility
+## Доступность
 
-The `v-b-toggle` directive will automatically add the ARIA attributes `aria-controls` and
-`aria-expanded` to the component that the directive appears on (as well as add the class `collapsed`
-when not expanded). `aria-expanded` will reflect the state of the target `BCollapse` component,
-while `aria-controls` will be set to the Id(s) of the target `BCollapse` component(s).
+Директива `v-b-toggle` автоматически добавляет ARIA-атрибуты `aria-controls` и `aria-expanded` к компоненту, на котором она используется (а также класс `collapsed`, если элемент не раскрыт). `aria-expanded` отражает состояние целевого компонента `BCollapse`, а `aria-controls` содержит ID целевого компонента(ов).
 
-If using `v-model` to set the visible state instead of the directive `v-b-toggle`, you will be
-required to, on the toggle element, add the `aria-controls` and other appropriate attributes and
-classes yourself.
+Если вы используете `v-model` для управления видимостью вместо директивы `v-b-toggle`, вам потребуется самостоятельно добавить на элемент-триггер атрибуты `aria-controls` и другие необходимые атрибуты и классы.
 
-While the `v-b-toggle` directive can be placed on almost any HTML element or Vue component, it is
-recommended to use a button or link (or similar component) to act as your toggler; otherwise your
-trigger elements may be inaccessible to keyboard or screen reader users. If you do place them on
-something other than a button or link (or similar component), you should add the attributes
-`tabindex="0"` and `role="button"` to allow users of assistive technology to reach your trigger
-element.
+Хотя директиву `v-b-toggle` можно размещать практически на любом HTML-элементе или компоненте Vue, рекомендуется использовать кнопку или ссылку (или аналогичный компонент) в качестве переключателя; иначе ваши элементы могут быть недоступны для пользователей клавиатуры или экранных читалок. Если вы размещаете её не на кнопке или ссылке, добавьте атрибуты `tabindex="0"` и `role="button"`, чтобы пользователи вспомогательных технологий могли взаимодействовать с вашим элементом.
 
 <ComponentReference :data="data" />
 

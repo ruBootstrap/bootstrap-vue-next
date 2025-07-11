@@ -1,132 +1,99 @@
-# Image
+# Изображение
 
 <PageHeader>
 
-Documentation and examples for opting images (via `BImg` component) into responsive behavior (so they never become larger than their parent elements), optionally adding lightweight styles to them — all via props.
+Документация и примеры использования изображений (через компонент `BImg`) с поддержкой адаптивного поведения (чтобы они никогда не становились больше родительского элемента), а также с возможностью добавления лёгких стилей — всё это через пропсы.
 
 </PageHeader>
 
-BootstrapVueNext's image components support rounded images, thumbnail styling, alignment, and even the
-ability to create blank images with an optional solid background color. Support for lazy loaded
-images is available via the `lazy` prop.
+Компоненты изображений BootstrapVueNext поддерживают скругление, стилизацию под миниатюру, выравнивание, а также возможность создавать пустые изображения с опциональным сплошным цветом фона. Поддержка ленивой загрузки изображений реализована через пропс `lazy`.
 
-## Image src resolving
+## Разрешение src изображения
 
-The `src` prop and `blank-src` prop, out of the box, works only with absolute or fully-qualified-domain-name URLs.
-See the [Image Support](/docs/reference/images) referece page for more details.
+Пропсы `src` и `blank-src` из коробки работают только с абсолютными или полностью квалифицированными URL-адресами. Подробнее см. на странице [Поддержка изображений](/docs/reference/images).
 
-## Styling images
+## Стилизация изображений
 
-Several props are available for styling the rendered image element. The following sub-sections cover
-the various options.
+Для стилизации отображаемого изображения доступно несколько пропсов. В следующих разделах описаны различные варианты.
 
-### Responsive images
+### Адаптивные изображения
 
-Images in BootstrapVueNext can be made responsive with the `fluid` prop (which sets
-`max-width: 100%; height: auto;` via CSS classes) so that it scales with the parent element - up to
-the maximum native width of the image.
+Изображения в BootstrapVueNext могут быть адаптивными с помощью пропса `fluid` (устанавливает `max-width: 100%; height: auto;` через CSS-классы), чтобы изображение масштабировалось вместе с родительским элементом — до максимальной нативной ширины изображения.
 
 <<< DEMO ./demo/ImageResponsive.vue#template{vue-html}
 
-To make a fluid image that will grow to fill the width of its container, use the `fluid-grow` prop.
-Note this may cause blurring on small bitmap images.
+Чтобы сделать изображение, которое будет расти до ширины контейнера, используйте пропс `fluid-grow`. Обратите внимание, что это может привести к размытию маленьких растровых изображений.
 
 <<< DEMO ./demo/ImageFluid.vue#template{vue-html}
 
-Use the `block` prop to force the image to display as a block element rather than the browser
-default of inline-block element.
+Используйте пропс `block`, чтобы принудительно отобразить изображение как блочный элемент вместо стандартного inline-block.
 
-### Image thumbnails
+### Миниатюры изображений
 
-You can use prop `thumbnail` to give an image a rounded light border appearance.
+Вы можете использовать пропс `thumbnail`, чтобы придать изображению вид миниатюры с лёгкой скруглённой рамкой.
 
 <<< DEMO ./demo/ImageThumbnail.vue#template{vue-html}
 
-### Rounded corners
+### Скруглённые углы
 
-`BImg` renders without rounding by default. You can change the rounding by setting the prop
-`rounded` to any of the values of [`RadiusElement`](/docs/types#radiuselement).
-When set to `true` (or the empty string `''`), it uses the Bootstrap default of medium rounding.
-When set to `circle`, it uses a border radius of 50%, resulting in a circle.
-Rounding specific edges is accomplished via the `rounded-top`, `rounded-bottom`, `rounded-start` and
-`rounded-end` props. See the [migration guide](/docs/migration-guide#BAvatar) for differences
-from `bootstrap-vue`
+По умолчанию `BImg` отображается без скругления. Вы можете изменить скругление, установив пропс `rounded` в любое из значений [`RadiusElement`](/docs/types#radiuselement). Если указать `true` (или пустую строку `''`), будет использовано стандартное среднее скругление Bootstrap. Если указать `circle`, будет применён радиус 50%, что даст круглое изображение. Для скругления отдельных углов используйте пропсы `rounded-top`, `rounded-bottom`, `rounded-start` и `rounded-end`. Подробнее см. [гайд по миграции](/docs/migration-guide#BAvatar) для отличий от `bootstrap-vue`.
 
 <<< DEMO ./demo/ImageRounded.vue
 
-### Aligning images
+### Выравнивание изображений
 
-Align images with the boolean props `left` (floats left) `right`(floats right), and `center` (auto
-left+right margins). You can also center images by placing them in a container that has the class
-`text-center`.
+Выравнивайте изображения с помощью булевых пропсов `left` (float влево), `right` (float вправо) и `center` (автоматические отступы слева и справа). Также можно центрировать изображение, поместив его в контейнер с классом `text-center`.
 
-**Left and right aligned: (float)**
+**Влево и вправо (float):**
 
 <<< DEMO ./demo/ImageLeftRight.vue#template{vue-html}
 
-**Center aligned: (block)**
+**По центру (block):**
 
 <<< DEMO ./demo/ImageCenter.vue#template{vue-html}
 
-Note: `left` takes precedence over `right` which takes precedence over `center`.
+Примечание: `left` имеет приоритет над `right`, который, в свою очередь, имеет приоритет над `center`.
 
-## Blank (or solid color) images
+## Пустые (или однотонные) изображения
 
-`BImg` provides built-in support for generating blank images (transparent by default) of any
-width and height, by setting the `blank` prop, and specifying `width` and `height` values (in
-pixels). You can apply any of the other `BImg` props to change the style/behavior of the
-generated image.
+`BImg` поддерживает генерацию пустых изображений (по умолчанию прозрачных) любой ширины и высоты при установке пропса `blank` и указании значений `width` и `height` (в пикселях). Можно применять любые другие пропсы `BImg` для изменения стиля/поведения сгенерированного изображения.
 
-Use the `blank-color` prop to set the blank image color. The `blank-color`prop can accept any CSS
-color value:
+Используйте пропс `blank-color`, чтобы задать цвет пустого изображения. Пропс `blank-color` принимает любое CSS-значение цвета:
 
-- Named colors — i.e. `orange` or `blue`
-- Hex colors — i.e. `#FF9E2C`
-- RGB and RGBa colors — i.e. `rgb(255, 158, 44)` and `rgba(255, 158, 44, .5)`
-- HSL and HSLa colors — i.e. `hsl(32, 100%, 59%)` and `hsla(32, 100%, 59%, .5)`
+- Именованные цвета — например, `orange` или `blue`
+- Hex-цвета — например, `#FF9E2C`
+- RGB и RGBa — например, `rgb(255, 158, 44)` и `rgba(255, 158, 44, .5)`
+- HSL и HSLa — например, `hsl(32, 100%, 59%)` и `hsla(32, 100%, 59%, .5)`
 
-The default `blank-color` is `transparent`.
+По умолчанию `blank-color` — `transparent`.
 
 <<< DEMO ./demo/ImageBlank.vue
 
-**Notes:**
+**Примечания:**
 
-- In blank image mode, if only one of width or height is set, the image will have both width and
-  height set to the same value
-- In blank image mode, if width and height are not set, both width and height will internally be set
-  to 1
-- The `blank` prop takes precedence over the `src` prop. If you set both and later set `blank` to
-  `false` the image specified in `src` will then be displayed
-- Blank images are rendered using SVG image data URLs
-- The `width` and `height` props will also apply the `width` and `height` attributes to the rendered
-  `<img>` tag, even if `blank` is not set
+- В режиме пустого изображения, если задан только один из параметров width или height, изображение будет квадратным (оба значения одинаковы)
+- В режиме пустого изображения, если width и height не заданы, оба значения будут равны 1
+- Пропс `blank` имеет приоритет над пропсом `src`. Если задать оба, а затем установить `blank` в `false`, будет отображено изображение из `src`
+- Пустые изображения рендерятся с помощью SVG data URL
+- Пропсы `width` и `height` также применяются как атрибуты к тегу `<img>`, даже если `blank` не установлен
 
-## `srcset` support
+## Поддержка `srcset`
 
-`BImg` supports the
-[`srcset` and `sizes` attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
-on images. The props accept either a string value, or an array of strings (the array of strings will
-be converted into a single string separated by commas).
+`BImg` поддерживает атрибуты [`srcset` и `sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) для изображений. Пропсы принимают строку или массив строк (массив будет преобразован в строку, разделённую запятыми).
 
-For details on usage of these attributes, refer to
-[MDN's Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
-guide.
+Подробнее об использовании этих атрибутов см. в [руководстве MDN по адаптивным изображениям](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-**Notes:**
+**Примечания:**
 
-- If the `blank` prop is set, then `srcset` and `sizes` props are ignored
-- IE 11 does not support `srcset` and `sizes`, so ensure you have a value for the `src` prop
-- Vue-loader does not support project relative URLs (asset URLs) on the `srcset` attribute; instead
-  use `require(...)` to resolve the individual URL paths. Be cautious of creating a string of data
-  URI's longer than supported by the maximum attribute value length of the browser. If your webpack
-  config has a limit for the `url-loader` and you want to prevent inline data-urls, you may have to
-  overwrite the loader limits: `require('!!url-loader?limit=0!./assets/photo.jpg')`
+- Если установлен пропс `blank`, то пропсы `srcset` и `sizes` игнорируются
+- IE 11 не поддерживает `srcset` и `sizes`, поэтому обязательно указывайте значение для пропса `src`
+- Vue-loader не поддерживает относительные к проекту URL (asset URL) в атрибуте `srcset`; используйте `require(...)` для разрешения отдельных путей. Будьте осторожны с длиной строки data URI — она не должна превышать максимальную длину атрибута в браузере. Если в вашей конфигурации webpack есть лимит для `url-loader` и вы хотите избежать inline data-urls, возможно, потребуется изменить лимиты: `require('!!url-loader?limit=0!./assets/photo.jpg')`
 
-## Lazy loaded images
+## Ленивые изображения
 
-Lazy loaded images are actived through the `lazy` prop. Eventually, the component will be expanded to include placeholder slots, but are not available at this time. See the [migration guide](/docs/migration-guide#bimg) for details.
+Ленивая загрузка изображений активируется через пропс `lazy`. В будущем компонент будет расширен поддержкой placeholder-слотов, но сейчас они недоступны. Подробнее см. [гайд по миграции](/docs/migration-guide#bimg).
 
-We implement this `lazy` prop using the native `loading` attribute. See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading) for details including how this effect how the native [`load` event](https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event) works.
+Этот пропс реализован через нативный атрибут `loading`. Подробнее см. [документацию MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading), включая то, как это влияет на нативное событие [`load`](https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event).
 
 <ComponentReference :data="data" />
 

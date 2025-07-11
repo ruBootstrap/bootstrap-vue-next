@@ -1,42 +1,37 @@
-# Breadcrumb
+# Хлебные крошки
 
 <PageHeader>
 
-Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
+Указывайте местоположение текущей страницы в иерархии навигации. Разделители добавляются автоматически с помощью CSS.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
 <<< DEMO ./demo/BreadcrumbOverview.vue
 
-## Breadcrumb items
+## Элементы хлебных крошек
 
-Items are rendered using `:items` prop. It can be an array of objects to provide link and active
-state or an array of strings. Links can be `href`'s for anchor tags, or `to`'s for router-links.
-The active state of last element is automatically set if it is `undefined`.
+Элементы отображаются с помощью пропса `:items`. Это может быть массив объектов для задания ссылки и состояния активности или массив строк. Ссылки могут быть заданы через `href` для тегов anchor или через `to` для router-link. Состояние активности последнего элемента устанавливается автоматически, если оно не определено.
 
-### Breadcrumb items as array of strings
+### Элементы хлебных крошек как массив строк
 
 <<< DEMO ./demo/BreadcrumbAsArray.vue
 
-## Manually placed items
+## Ручное размещение элементов
 
-You may also manually place individual `BBreadcrumbItem` child components in the default slot of
-the `BBreadcrumb` component, as an alternative to using the `items` prop, for greater control
-over the content of each item:
+Вы также можете вручную размещать отдельные дочерние компоненты `BBreadcrumbItem` в слоте по умолчанию компонента `BBreadcrumb` вместо использования пропса `items` — это даёт больший контроль над содержимым каждого элемента:
 
 <<< DEMO ./demo/BreadcrumbManual.vue
 
-Remember to set the `active` prop on the last item.
+Не забудьте установить пропс `active` для последнего элемента.
 
-`BBreadcrumbItem` also supports the various `RouterLink` props such as `to`, etc. See the
-[Router Links](/docs/reference/router-links) refererence page for more information.
+`BBreadcrumbItem` также поддерживает различные пропсы `RouterLink`, такие как `to` и другие. Подробнее смотрите на странице [Router Links](/docs/reference/router-links).
 
-## Slots
+## Слоты
 
-Two slots are provided to put additional content before and after the breadcrumb.
-Use slot `prepend` to put content before the breadcrumb. Use slot `append` to put content after the breadcrumb.
+Доступны два слота для размещения дополнительного контента до и после хлебных крошек.
+Используйте слот `prepend`, чтобы добавить контент перед хлебными крошками. Используйте слот `append`, чтобы добавить контент после хлебных крошек.
 
 <<< DEMO ./demo/BreadcrumbSlots.vue#template{vue-html}
 

@@ -1,159 +1,129 @@
-# Form Select
+# Селект формы
 
 <PageHeader>
 
-Bootstrap custom `<select>` using custom styles. Optionally specify options based on an array, array of objects, or an object.
+Кастомный `<select>` Bootstrap с пользовательскими стилями. Опции можно задать массивом, массивом объектов или объектом.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Generate your select options by passing an array or object to the `options` props:
+Генерируйте опции для select, передавая массив или объект в пропс `options`:
 
 <<< DEMO ./demo/SelectOverview.vue
 
-You can even define option groups with the `options` prop:
+Вы также можете определить группы опций через пропс `options`:
 
 <<< DEMO ./demo/SelectOptionsGroup.vue
 
-Or manually provide your options and option groups:
+Или задать опции и группы опций вручную:
 
 <<< DEMO ./demo/SelectOptionsManual.vue
 
-Feel free to mix the `options` prop with `BFormSelectOption` and
-`BFormSelectOptionGroup`. Manually placed options and option groups will appear _below_ the
-options generated via the `options` prop. To place manual options and option groups _above_ the
-options specified by the `options` prop, use the named slot `first`.
+Можно свободно комбинировать пропс `options` с `BFormSelectOption` и `BFormSelectOptionGroup`. Вручную размещённые опции и группы появятся _ниже_ тех, что сгенерированы через `options`. Чтобы они были _выше_, используйте именованный слот `first`.
 
 <<< DEMO ./demo/SelectOptionsMixed.vue
 
-## Options property
+## Свойство options
 
 <!--@include: ./_options.md{5,}-->
 
 <<< DEMO ./demo/SelectCustomFields.vue
 
-### Options groups
+### Группы опций
 
-To define option groups, just add an object with a `label` prop as the groups name and a `options` property with the array of options of the group.
+Чтобы задать группу опций, добавьте объект с пропсом `label` (название группы) и свойством `options` (массив опций группы).
 
 <<< FRAGMENT ./demo/OptionsGroups.ts#snippet{ts}
 
-### Option notes
+### Примечания по опциям
 
-If the initial value of your `v-model` expression does not match any of the options, the
-`BFormSelect` component (which is a native HTML5 `<select>` under the hood) will render in an
-_unselected_ state. On iOS this will cause the user not being able to select the first item because
-iOS does not fire a change event in this case. It is therefore recommended providing a disabled
-option with an empty value as your first option.
+Если начальное значение v-model не совпадает ни с одной из опций, компонент `BFormSelect` (который под капотом является обычным HTML5 `<select>`) будет отображаться в состоянии _без выбора_. На iOS это приведёт к невозможности выбрать первый элемент, так как в этом случае не срабатывает событие change. Поэтому рекомендуется добавлять первую опцию с пустым значением и атрибутом disabled.
 
 ```vue-html
 <BFormSelect v-model="selected" :options="options">
   <template #first>
-    <BFormSelectOption value="" disabled>-- Please select an option --</BFormSelectOption>
+    <BFormSelectOption value="" disabled>-- Пожалуйста, выберите опцию --</BFormSelectOption>
   </template>
 </BFormSelect>
 ```
 
-See the [Vue select](https://v3.vuejs.org/guide/forms.html#select) documentation for more details.
+Подробнее см. в [документации Vue по select](https://v3.vuejs.org/guide/forms.html#select).
 
-## Standard (single) select
+## Обычный (одиночный) select
 
-By default, Bootstrap v5's custom select styling is applied.
+По умолчанию применяется кастомное оформление select из Bootstrap v5.
 
-### Value in single mode
+### Значение в одиночном режиме
 
-In non `multiple` mode, `BFormSelect` returns the single `value` of the currently selected
-option.
+В режиме без `multiple` компонент `BFormSelect` возвращает значение выбранной опции.
 
 <<< DEMO ./demo/SelectSingleValue.vue
 
-### Select sizing (displayed rows)
+### Размер select (число отображаемых строк)
 
-You can use the `select-size` prop to switch the custom select into a select list-box, rather than a
-dropdown. Set the `select-size` prop to a numerical value greater than 1 to control how many rows of
-options are visible.
+Вы можете использовать пропс `select-size`, чтобы превратить select в список, а не выпадающее меню. Установите числовое значение больше 1, чтобы контролировать количество видимых строк.
 
-Note when `select-size` is set to a value greater than 1, the Bootstrap v5 custom styling will
-**not** be applied, unless the `multiple` prop is also set.
+Обратите внимание: если `select-size` больше 1, кастомные стили Bootstrap v5 **не** применяются, если только не установлен пропс `multiple`.
 
-Note that not all mobile browsers will show the select as a list-box.
+Также не все мобильные браузеры отображают select как список.
 
 <<< DEMO ./demo/SelectSizing.vue
 
-## Multiple select support
+## Множественный выбор
 
-Enable multiple select mode by setting the prop `multiple`, and control how many rows are displayed
-in the multiple select list-box by setting `select-size` to the number of rows to display. The
-default is to let the browser use its default (typically 4).
+Включите режим множественного выбора, установив пропс `multiple`, и управляйте количеством отображаемых строк через `select-size`. По умолчанию браузер сам определяет количество строк (обычно 4).
 
-### Value in multiple mode
+### Значение в режиме multiple
 
-In `multiple` mode, `BFormSelect` always returns an array of option values. You **must** provide
-an array reference as your `v-model` when in `multiple` mode.
+В режиме `multiple` компонент `BFormSelect` всегда возвращает массив значений опций. В этом режиме **обязательно** используйте массив в v-model.
 
 <<< DEMO ./demo/SelectMultiValue.vue
 
-## Control sizing
+## Размеры
 
-Set the form-control text size using the `size` prop to `sm` or `lg` for small or large
-respectively.
+Задайте размер текста с помощью пропса `size`: `sm` или `lg` для маленького или большого размера соответственно.
 
-By default, `BFormSelect` will occupy the full width of the container that it appears in. To
-control the select width, place the input inside standard Bootstrap grid column.
+По умолчанию `BFormSelect` занимает всю ширину контейнера. Для управления шириной поместите select в стандартную колонку Bootstrap.
 
-## Autofocus
+## Автофокус
 
-When the `autofocus` prop is set on `BFormSelect`, the select will be auto-focused when it is
-inserted (i.e. **mounted**) into the document or re-activated when inside a Vue `KeepAlive`
-component. Note that this prop **does not** set the `autofocus` attribute on the select, nor can it
-tell when the select becomes visible.
+Если пропс `autofocus` установлен на `BFormSelect`, select будет автоматически в фокусе при вставке (монтировании) в документ или повторной активации внутри компонента Vue `KeepAlive`. Обратите внимание: этот пропс **не** устанавливает атрибут `autofocus` на select и не отслеживает его появление.
 
-## Contextual states
+## Контекстные состояния
 
-Bootstrap includes validation styles for `valid` and `invalid` states on most form controls.
+Bootstrap поддерживает стили валидации для состояний `valid` и `invalid` для большинства элементов формы.
 
-Generally speaking, you'll want to use a particular state for specific types of feedback:
+Обычно рекомендуется использовать определённое состояние для разных типов обратной связи:
 
-- `false` (denotes invalid state) is great for when there is a blocking or required field. A user
-  must fill in this field properly to submit the form
-- `true` (denotes valid state) is ideal for situations when you have per-field validation throughout
-  a form and want to encourage a user through the rest of the fields
-- `null` Displays no validation state (neither valid nor invalid)
+- `false` (некорректное состояние) — для обязательных или блокирующих полей. Пользователь должен корректно заполнить это поле для отправки формы
+- `true` (корректное состояние) — для поэтапной валидации, чтобы поощрять пользователя при заполнении формы
+- `null` — не отображает состояние валидации
 
-To apply one of the contextual state icons on `BFormSelect`, set the `state` prop to `false`
-(for invalid), `true` (for valid), or `null` (no validation state).
+Чтобы применить одну из иконок состояния к `BFormSelect`, установите пропс `state` в `false` (некорректно), `true` (корректно) или `null` (без состояния).
 
-### Conveying contextual validation state to assistive technologies and colorblind users
+### Передача состояния вспомогательным технологиям и людям с дальтонизмом
 
-Using these contextual states to denote the state of a form control only provides a visual,
-color-based indication, which will not be conveyed to users of assistive technologies - such as
-screen readers - or to colorblind users.
+Использование только цветовой индикации состояния не даст информации пользователям вспомогательных технологий (например, экранных читалок) и людям с дальтонизмом.
 
-Ensure that an alternative indication of state is also provided. For instance, you could include a
-hint about state in the form control's `<label>` text itself, or by providing an additional help
-text block (via `BFormGroup` or `BForm*Feedback`). Specifically for assistive technologies,
-invalid form controls can also be assigned an `aria-invalid="true"` attribute (see below).
+Обеспечьте альтернативную индикацию состояния. Например, добавьте подсказку в текст метки или отдельный блок с пояснением (через `BFormGroup` или `BForm*Feedback`). Для вспомогательных технологий некорректным полям можно добавить атрибут `aria-invalid="true"` (см. ниже).
 
-### ARIA `aria-invalid` attribute
+### ARIA `aria-invalid` атрибут
 
-When `BFormSelect` has an invalid contextual state (i.e. state = `false`) you may also want to
-set the `BFormSelect` prop `aria-invalid` to `true`.
+Если у `BFormSelect` некорректное состояние (`state = false`), рекомендуется также установить пропс `aria-invalid` в `true`.
 
-Supported `invalid` values are:
+Поддерживаемые значения `invalid`:
 
-- `false` (default) No errors detected
-- `true` The value has failed validation
+- `false` (по умолчанию) — ошибок нет
+- `true` — значение не прошло валидацию
 
-When `state` is set to `false`, aria-invalid will also be set to true.
+Если `state` равен `false`, aria-invalid также будет установлен в true.
 
-## Non custom style select
+## Обычный select без кастомных стилей
 
-Set the prop `plain` to have a native browser `<select>` rendered (although the class
-`.form-control` will always be placed on the select).
+Установите пропс `plain`, чтобы отобразить нативный `<select>` браузера (класс `.form-control` всё равно будет добавлен).
 
-A `plain` select will always be rendered for non `multiple` selects which have the `select-size`
-prop set to a value greater than 1.
+Нативный select всегда будет отображаться для одиночных select с `select-size` больше 1.
 
 <ComponentReference :data="data" />
 

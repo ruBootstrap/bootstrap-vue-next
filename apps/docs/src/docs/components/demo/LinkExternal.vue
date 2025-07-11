@@ -1,7 +1,7 @@
 <template>
   <!-- #region template -->
   <BLink
-    href="https://getbootstrap.com/docs/5.3"
+    href="https://getbootstrap.su/docs/5.3"
     target="_blank"
     rel="noopener"
     class="me-2"

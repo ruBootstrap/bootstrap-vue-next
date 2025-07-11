@@ -1,123 +1,114 @@
-# List Group
+# Список
 
 <PageHeader>
 
-List Groups are a flexible and powerful component for displaying a series of content. List Group items can be modified to support just about any content within. They can also be used as navigation via various props.
+Списки — это гибкий и мощный компонент для отображения серии контента. Элементы списка можно модифицировать для поддержки практически любого контента. Они также могут использоваться в качестве навигации через различные пропсы.
 
 </PageHeader>
 
 <<< DEMO ./demo/ListGroupOverview.vue#template{vue-html}
 
-## Active items
+## Активные элементы
 
-Set the `active` prop on a `BListGroupItem` to indicate the current active selection.
+Установите пропс `active` на `BListGroupItem`, чтобы указать текущий активный выбор.
 
 <<< DEMO ./demo/ListGroupActive.vue#template{vue-html}
 
-## Disabled items
+## Отключенные элементы
 
-Set the `disabled` prop on a `BListGroupItem` to make it appear disabled (also works with
-actionable items. see below).
+Установите пропс `disabled` на `BListGroupItem`, чтобы сделать его выглядящим отключенным (также работает с
+действующими элементами. см. ниже).
 
 <<< DEMO ./demo/ListGroupDisabled.vue#template{vue-html}
 
-## Actionable list group items
+## Действующие элементы списка
 
-Turn a `BListGroupItem` into an actionable _link_ (`<a href="...">`) by specifying either an
-`href` prop or [router-link](/docs/reference/router-links) `to` prop.
+Преобразуйте `BListGroupItem` в действующую _ссылку_ (`<a href="...">`) с помощью указания либо
+`href` пропса, либо [router-link](/docs/reference/router-links) `to` пропса.
 
 <<< DEMO ./demo/ListGroupActionable.vue#template{vue-html}
 
-Or if you prefer `<button>` elements over links, set the `button` prop to `true`.
+Или, если вы предпочитаете `<button>` элементы вместо ссылок, установите пропс `button` в `true`.
 
 <<< DEMO ./demo/ListGroupActionableButton.vue#template{vue-html}
 
-**Notes:**
+**Примечания:**
 
-- When the prop `button` is `true`, all [link related props](/docs/components/link) (other than
-  `active`) and the `tag` prop will have no effect
-- When `href` or `to` are set, the `tag` prop has no effect
+- Когда пропс `button` равен `true`, все [ссылочные пропсы](/docs/components/link) (кроме
+  `active`) и пропс `tag` будут без эффекта
+- Когда `href` или `to` установлены, пропс `tag` не будет иметь эффекта
 
-Refer to the [Router support](/docs/reference/router-links) reference page for router-link specific
-props.
+См. страницу [Поддержка роутера](/docs/reference/router-links) для пропсов router-link.
 
-## Contextual variants
+## Контекстные варианты
 
-Use contextual variants to style list items with a stateful background and color, via the `variant`
-prop.
+Используйте контекстные варианты для стилизации элементов списка с состоятельным фоном и цветом через пропс `variant`.
 
 <<< DEMO ./demo/ListGroupVariants.vue#template{vue-html}
 
-Contextual variants also work with action items. Note the addition of the hover styling here not
-present in the previous example. Also supported is the `active` state; set it to indicate an active
-selection on a contextual list group item.
+Контекстные варианты также работают с действующими элементами. Обратите внимание на добавление стиля hover здесь, которого нет в предыдущем примере. Также поддерживается состояние `active`; установите его, чтобы указать активный выбор в контекстном списке.
 
 <<< DEMO ./demo/ListGroupActionableVariants.vue#template{vue-html}
 
-### Conveying meaning to assistive technologies
+### Передача смысла вспомогательным технологиям
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of
-assistive technologies – such as screen readers. Ensure that information denoted by the color is
-either obvious from the content itself (e.g. the visible text), or is included through alternative
-means, such as additional text hidden using the `.visually-hidden` class.
+Использование цвета для добавления смысла предоставляет визуальный индикатор, который не будет передан пользователям вспомогательных технологий – таких как экранные читалки. Убедитесь, что информация, обозначенная цветом, либо очевидна из контента (например, видимый текст), либо включена через альтернативные средства, такие как дополнительный скрытый текст с помощью класса `.visually-hidden`.
 
-## With badges
+## С бейджами
 
-Add [badges](/docs/components/badge) to any list group item to show unread counts, activity, and
-more with the help of some [flex utility classes](/docs/reference/utility-classes).
+Добавьте [бейджи](/docs/components/badge) к любому элементу списка, чтобы показать непрочитанные счетчики, активность и
+больше с помощью некоторых [утилитных классов](/docs/reference/utility-classes).
 
 <<< DEMO ./demo/ListGroupBadges.vue#template{vue-html}
 
-## Numbered
+## Нумерованные
 
-Add the `numbered` property to opt into numbered list group items. Numbers are generated via CSS (as opposed to a `<ol>s` default browser styling) for better placement inside list group items and to allow for better customization.
+Добавьте свойство `numbered` для включения нумерованных элементов списка. Номера генерируются через CSS (в отличие от стилей браузера по умолчанию для `<ol>`) для лучшего размещения внутри элементов списка и для возможности лучшей настройки.
 
 <<< DEMO ./demo/ListGroupNumbered.vue#template{vue-html}
 
-These work great with custom content as well.
+Эти элементы работают отлично с пользовательским контентом.
 
 <<< DEMO ./demo/ListGroupNumberedCustom.vue#template{vue-html}
 
-**Note:** When using the numbered property, it supersedes the tag property on `BListGroup` and `BListGroupItem`.
-With numbered set, the `BListGroup`is always rendered as a `ol`, while the `BListGroupItem` is rendered as a `li`.
+**Примечание:** Когда используется свойство `numbered`, оно переопределяет пропс `tag` на `BListGroup` и `BListGroupItem`.
+При установленном `numbered` `BListGroup` всегда отображается как `ol`, а `BListGroupItem` как `li`.
 
-## Checkboxes and radios
+## Чекбоксы и радиокнопки
 
-Place []checkboxes and radios within list group items and customize as needed. You can use them without `<label>`s, but please remember to include an aria-label attribute and value for accessibility
+Поместите []чекбоксы и радиокнопки внутрь элементов списка и настройте их по необходимости. Вы можете использовать их без `<label>`s, но пожалуйста, помните включить атрибут `aria-label` и значение для доступности
 
 <<< DEMO ./demo/ListGroupCheckbox.vue#template{vue-html}
 
 <<< DEMO ./demo/ListGroupRadio.vue#template{vue-html}
 
-## List Groups inside cards
+## Списки внутри карточек
 
-Incorporate list groups into [cards](/docs/components/card). Use the `BListGroup` prop `flush`
-prop when using cards with `no-body` to make the sides of the list group flush with the card.
+Включите списки в [карточки](/docs/components/card). Используйте пропс `flush` `BListGroup`
+когда используете карточки с `no-body` для того, чтобы боковые стороны списка совпадали с карточкой.
 
 <<< DEMO ./demo/ListGroupCard.vue#template{vue-html}
 
-## Horizontal list groups
+## Горизонтальные списки
 
-Set the prop `horizontal` to `true` to change the layout of list group items from vertical to
-horizontal across all breakpoints. Alternatively, set `horizontal` to a responsive breakpoint (`sm`,
-`md`, `lg` or `xl`) to make a list group horizontal starting at that breakpoint's min-width.
-Currently, horizontal list groups cannot be combined with `flush` list groups.
+Установите пропс `horizontal` в `true`, чтобы изменить расположение элементов списка с вертикального на
+горизонтальное на всех точках останова. Или установите `horizontal` в точку останова отзывчивости (`sm`,
+`md`, `lg` или `xl`), чтобы сделать список горизонтальным, начиная с минимальной ширины этой точки останова. В настоящее время горизонтальные списки не могут комбинироваться с `flush` списками.
 
-**ProTip:** Want equal-width list group items when horizontal? Add the class `flex-fill` to each
-list group item.
+**Проповерка:** Хотите, чтобы элементы списка имели одинаковую ширину при горизонтальном расположении? Добавьте класс `flex-fill` к каждому элементу списка.
 
-**Always horizontal:**
+**Всегда горизонтально:**
 
 <<< DEMO ./demo/ListGroupHorizontal.vue#template{vue-html}
 
-**Horizontal at breakpoint `md` and above:**
+**Горизонтально на точке останова `md` и выше:**
 
 <<< DEMO ./demo/ListGroupHorizontalMd.vue#template{vue-html}
 
-## Custom content
+## Пользовательский контент
 
-Add nearly any HTML or component within, even for linked list groups like the one below, with the
-help of [flexbox utility classes](/docs/reference/utility-classes).
+Добавьте практически любой HTML или компонент внутрь, даже для ссылочных списков, как в примере ниже, с помощью
+[утилитных классов flexbox](/docs/reference/utility-classes).
 
 <<< DEMO ./demo/ListGroupCustom.vue#template{vue-html}
 

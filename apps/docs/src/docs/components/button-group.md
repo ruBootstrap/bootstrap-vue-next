@@ -1,46 +1,44 @@
-# Button Group
+# Группа кнопок
 
 <PageHeader>
 
-Group a series of buttons together on a single line or stack them in a vertical column with `BButtonGroup`.
+Группируйте несколько кнопок в одну строку или располагайте их в вертикальной колонке с помощью `BButtonGroup`.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Button Groups are an easy way to group a series of buttons together.
+Группы кнопок — это простой способ объединить несколько кнопок вместе.
 
 <<< DEMO ./demo/ButtonGroupOverview.vue#template{vue-html}
 
-**Note:**
-In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate role attribute needs to be provided. `bootstrap-vue-next` will put the `role="group"` and `aria-role` attributes on the groups. By default, `aria-role` is set to `group`, but you can override that with the `aria-role` property.
+**Примечание:**
+Чтобы вспомогательные технологии (например, экранные читалки) могли определить, что серия кнопок объединена в группу, необходимо указать соответствующий атрибут role. `bootstrap-vue-next` добавляет атрибуты `role="group"` и `aria-role` для групп. По умолчанию `aria-role` устанавливается как `group`, но вы можете переопределить это с помощью пропса `aria-role`.
 
-In addition, groups should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, we use `aria-label`, but alternatives such as `aria-labelledby` can also be used.
+Кроме того, группам следует задавать явную метку, так как большинство вспомогательных технологий иначе не будут их озвучивать, несмотря на наличие правильного атрибута role. В приведённых примерах используется `aria-label`, но можно использовать и альтернативы, такие как `aria-labelledby`.
 
-## Sizing
+## Размеры
 
-Set the `size` prop to `lg` or `sm` to render larger or smaller buttons. There is no need to specify the size on the individual buttons.
+Установите пропс `size` в значение `lg` или `sm`, чтобы отобразить кнопки большего или меньшего размера. Нет необходимости указывать размер для каждой отдельной кнопки.
 
 <<< DEMO ./demo/ButtonGroupSizing.vue#template{vue-html}
 
-## Vertical variation
+## Вертикальный вариант
 
-Make a set of buttons appear vertically stacked rather than horizontally by setting the `vertical`
-prop. Split button dropdowns are not supported here.
+Чтобы кнопки располагались вертикально, а не горизонтально, установите пропс `vertical`. В этом режиме разделённые выпадающие кнопки не поддерживаются.
 
 <<< DEMO ./demo/ButtonGroupVertical.vue#template{vue-html}
 
-## Dropdown menu support
+## Поддержка выпадающих меню
 
-Add [`BDropdown`](/docs/components/dropdown) menus directly inside your `BButtonGroup`. Note
-that split dropdown menus are not supported when prop `vertical` is set.
+Добавляйте меню [`BDropdown`](/docs/components/dropdown) непосредственно внутрь вашего `BButtonGroup`.
+Обратите внимание, что разделённые выпадающие меню не поддерживаются, если установлен пропс `vertical`.
 
 <<< DEMO ./demo/ButtonGroupDropdown.vue#template{vue-html}
 
-## See also
+## См. также
 
-Also check out the [`BButtonToolbar`](/docs/components/button-toolbar) component for generating
-toolbars containing button groups and input groups.
+Также ознакомьтесь с компонентом [`BButtonToolbar`](/docs/components/button-toolbar) для создания панелей инструментов, содержащих группы кнопок и группы ввода.
 
 <ComponentReference :data="data" />
 

@@ -1,49 +1,45 @@
-# Toast
+# Тосты
 
 <PageHeader>
 
-Push notifications to your visitors with `BToast` and `BToastOrchestrator`. These are components that are easily customizable for generating alert messages
+Показывайте уведомления вашим пользователям с помощью компонентов `BToast` и `BToastOrchestrator`. Это компоненты, которые легко настраиваются для генерации сообщений-оповещений.
 
 </PageHeader>
 
-Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. Toasts are intended to be small interruptions to your visitors or users and therefore should contain minimal, to-the-point, non-interactive content. Please refer to the Accessibility Tips section below for important usage information
+Тосты — это лёгкие уведомления, созданные по аналогии с push-уведомлениями, популярными в мобильных и десктопных операционных системах. Тосты предназначены для кратких, лаконичных, неинтерактивных сообщений, которые минимально отвлекают пользователя. Пожалуйста, ознакомьтесь с разделом «Советы по доступности» ниже для важной информации по использованию.
 
-## Overview
+## Обзор
 
-This section only refers to using the raw component variation. Often times, `Toasts` are generated in a global context programatically, like showing a success message after saving a form. That functionality is covered under the composable docs [here](/docs/composables/useToastController)
+В этом разделе рассматривается только использование компонента напрямую. Часто тосты создаются глобально программно, например, для показа сообщения об успехе после сохранения формы. Эта функциональность описана в документации по composable [здесь](/docs/composables/useToastController).
 
-The component variation is shown by using the `v-model` like so
+Вариант с компонентом реализуется с помощью `v-model` следующим образом:
 
 <HighlightCard>
   <BToast v-model="active" variant="info">
     <template #title>
-      Title
+      Заголовок
     </template>
-      Body
+      Тело
   </BToast>
   <template #html>
 
 ```vue
 <template>
   <BToast v-model="active" variant="info">
-    <template #title> Title </template>
-    Body
+    <template #title> Заголовок </template>
+    Тело
   </BToast>
 </template>
-
-<script setup lang="ts">
-const isActive = ref(false)
-</script>
 ```
 
   </template>
 </HighlightCard>
 
-By default Toasts are rendered in place. You can use Vue's `Teleport` to change the location, commonly to `body`
+По умолчанию тосты рендерятся на месте. Вы можете использовать Vue `Teleport`, чтобы изменить их расположение, например, переместить в `body`.
 
-## Positioning
+## Позиционирование
 
-In combination with `Teleport`, you can render Toasts above the page, and in specific locations. You will need to create a wrapper component around said Toast to declare its location
+В сочетании с `Teleport` вы можете отображать тосты поверх страницы и в определённых местах. Для этого потребуется создать обёрточный компонент вокруг тоста и указать его расположение.
 
 <HighlightCard>
   <template
@@ -62,7 +58,7 @@ In combination with `Teleport`, you can render Toasts above the page, and in spe
       >
         <BToast v-model="values[index]">
           <template #title>
-            Title
+            Заголовок
           </template>
           {{ locations[index] }}
         </BToast>
@@ -80,7 +76,7 @@ In combination with `Teleport`, you can render Toasts above the page, and in spe
     <Teleport to="body">
       <div :class="locations[index]" class="toast-container position-fixed p-3">
         <BToast v-model="values[index]">
-          <template #title> Title </template>
+          <template #title> Заголовок </template>
           {{ locations[index] }}
         </BToast>
       </div>
@@ -108,57 +104,57 @@ const values = ref(Array.from({length: locations.length}, () => false))
   </template>
 </HighlightCard>
 
-## Static placement
+## Статичное размещение
 
-You can place toasts in static placements, and with more control by using them directly. Although, it is more uncommon
+Вы можете размещать тосты статично и с большим контролем, используя их напрямую. Однако это менее распространённый вариант.
 
 <HighlightCard>
   <BToast v-model="active" variant="info">
     <template #title>
-      Title
+      Заголовок
     </template>
-      Body
+      Тело
   </BToast>
-  <BButton @click="active = !active">Toggle</BButton>
+  <BButton @click="active = !active">Переключить</BButton>
   <template #html>
 
 ```vue-html
 <BToast v-model="active" variant="info">
   <template #title>
-    Title
+    Заголовок
   </template>
-    Body
+    Тело
 </BToast>
-<BButton @click="active = !active">Toggle</BButton>
+<BButton @click="active = !active">Переключить</BButton>
 ```
 
 </template>
 </HighlightCard>
 
-## Auto-dismissing Toasts
+## Автоматическое скрытие тостов
 
-To create a `BToast` that dismisses automatically after a specified duration, set the `value` prop to the number of **milliseconds** you want the `BToast` to remain visible. By default, the timer updates using `requestAnimationFrame`, which triggers an update approximately every second. Timed Toasts automatically pause when hovered over with a mouse, but you can disable this behavior using the `noHoverPause` prop. Ensure that the `value` is an integer representing milliseconds. Any change to the `value` will reset the timer.
+Чтобы создать `BToast`, который автоматически скрывается через заданное время, установите пропс `value` в количество **миллисекунд**, в течение которых тост будет видим. По умолчанию таймер обновляется с помощью `requestAnimationFrame`, что вызывает обновление примерно каждую секунду. Таймер автоматически приостанавливается при наведении мыши, но это поведение можно отключить с помощью пропса `noHoverPause`. Убедитесь, что `value` — это целое число в миллисекундах. Любое изменение `value` сбрасывает таймер.
 
-The **interval** prop determines how frequently the timer updates. While the default is `requestAnimationFrame`, you can set a custom interval. Negative values for either `value` or `interval` will stop the timer. If the `value` does not divide evenly by the interval, the timer will continue to the nearest interval. For example, a `value` of 5400 ms with an interval of 1000 ms will run for 6000 ms. To avoid this, choose an interval that divides evenly into the `value`, such as 540 ms or 1080 ms.
+Пропс **interval** определяет, как часто обновляется таймер. По умолчанию используется `requestAnimationFrame`, но можно задать свой интервал. Отрицательные значения для `value` или `interval` остановят таймер. Если `value` не делится нацело на `interval`, таймер продолжит до ближайшего интервала. Например, при `value` 5400 мс и интервале 1000 мс тост будет отображаться 6000 мс. Чтобы избежать этого, выберите интервал, который делится нацело на `value`, например 540 мс или 1080 мс.
 
 <HighlightCard>
   <BButton
     @click="
       show?.({
         props: {
-          title: 'Counting down!',
+          title: 'Обратный отсчёт!',
           variant: 'info',
           pos: 'middle-center',
           value: 10000,
           progressProps: {
             variant: 'danger',
           },
-          body: 'Watch me!'
+          body: 'Смотрите!',
         }
       })
     "
   >
-    Show
+    Показать
   </BButton>
 
 <template #html>
@@ -169,19 +165,19 @@ The **interval** prop determines how frequently the timer updates. While the def
     @click="
       show?.({
         props: {
-          title: 'Counting down!',
+          title: 'Обратный отсчёт!',
           variant: 'info',
           pos: 'middle-center',
           value: 10000,
           progressProps: {
             variant: 'danger',
           },
-          body: 'Watch me!',
+          body: 'Смотрите!',
         },
       })
     "
   >
-    Show
+    Показать
   </BButton>
 </template>
 ```
@@ -190,17 +186,17 @@ The **interval** prop determines how frequently the timer updates. While the def
 
 </HighlightCard>
 
-### ProgressBar Integration
+### Интеграция ProgressBar
 
-As you may have noticed in that example, there was a built-in progress bar. This is triggered when using a value that is a `number` and when `progressProps` is not `undefined`. This was implemented because it can be difficult to modify the behavior of `BToast` when using a pure method, and the appearance of a ticking down progress bar is a "nice to have". Although it is not out of the box behavior by Bootstrap, its behavior is opt-in. This functions similarly to examples in `BAlert`
+Как видно из примера выше, есть встроенная полоса прогресса. Она появляется, если используется числовой `value` и задан `progressProps`. Это реализовано для удобства, так как модифицировать поведение `BToast` при использовании чистого метода сложно, а визуальный индикатор времени — приятное дополнение. Хотя это не стандартное поведение Bootstrap, оно включается по желанию. Работает аналогично примерам в `BAlert`.
 
-## BLink Integration
+## Интеграция с BLink
 
-`Toast` can accept `BLink` props which will modify its behavior
+`Toast` может принимать пропсы компонента `BLink`, что изменяет его поведение.
 
 <HighlightCard>
-  <BButton @click="show?.({ props: {href: 'https://getbootstrap.com/', target: '_blank', body: 'I am a BLink'}})">
-    Show
+  <BButton @click="show?.({ props: {href: 'https://getbootstrap.su/', target: '_blank', body: 'Я — BLink'}})">
+    Показать
   </BButton>
 
 <template #html>
@@ -209,10 +205,10 @@ As you may have noticed in that example, there was a built-in progress bar. This
 <template>
   <BButton
     @click="
-      show?.({props: {href: 'https://getbootstrap.com/', target: '_blank', body: 'I am a BLink'}})
+      show?.({props: {href: 'https://getbootstrap.su/', target: '_blank', body: 'Я — BLink'}})
     "
   >
-    Show
+    Показать
   </BButton>
 </template>
 
@@ -225,15 +221,15 @@ const {show} = useToastController()
 
 </HighlightCard>
 
-## Programmatically Control
+## Программное управление
 
-To programmatically control your modals with global state, refer to our documentation at [useToastController](/docs/composables/useToastController)
+Для программного управления тостами с помощью глобального состояния смотрите документацию по [useToastController](/docs/composables/useToastController).
 
-## Accessibility
+## Доступность
 
-Toasts are intended to be **small interruptions** to your visitors or users, so to help those with screen readers and similar assistive technologies, toasts are wrapped in an aria-live region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupt the user. Additionally, `aria-atomic="true"` is automatically set to ensure that the entire toast is always announced as a single (atomic) unit, rather than announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time).
+Тосты предназначены для **кратких уведомлений** пользователя, поэтому для поддержки скринридеров и других вспомогательных технологий тосты оборачиваются в область с `aria-live`. Изменения в таких областях (например, появление/обновление тоста) автоматически озвучиваются скринридерами без необходимости перемещать фокус пользователя или иным образом его отвлекать. Кроме того, автоматически устанавливается `aria-atomic="true"`, чтобы всё содержимое тоста всегда озвучивалось как единое целое, а не только изменённая часть (это важно, если вы обновляете только часть содержимого или показываете тот же тост повторно).
 
-If you just need a single simple message to appear along the bottom or top of the user's window, use a fixed position `BAlert` instead.
+Если вам нужно просто показать простое сообщение внизу или вверху окна пользователя, используйте фиксированный по позиции компонент `BAlert`.
 
 <ComponentReference :data="data" />
 

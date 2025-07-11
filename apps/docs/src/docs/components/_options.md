@@ -1,46 +1,42 @@
-# Options
+# Опции
 
-## Options Property
+## Свойство options
 
-`options` can be an array of strings or objects, or a key-value object. Available fields:
+`options` может быть массивом строк или объектов, либо объектом-словарём. Доступные поля:
 
-- **`value`** The selected value which will be set on `v-model`
-- **`disabled`** Disables item for selection
-- **`text`** Display text
+- **`value`** Значение, которое будет установлено в `v-model` при выборе
+- **`disabled`** Отключает элемент для выбора
+- **`text`** Отображаемый текст
 
-`value` can be a string, number, or simple object. Avoid using complex types in values.
+`value` может быть строкой, числом или простым объектом. Избегайте использования сложных типов в значениях.
 
-::: info NOTE
-The BootstrapVue field `html` on the `options` object has been deprecated. See our
-[Migration Guide](/docs/migration-guide/#v-html) for details.
+::: info ПРИМЕЧАНИЕ
+Поле `html` в объекте `options` из BootstrapVue устарело. Подробнее см. в нашем
+[руководстве по миграции](/docs/migration-guide/#v-html).
 :::
 
-### Options as an array
+### Опции как массив
 
 <<< FRAGMENT ./demo/OptionsArray.ts#snippet{ts}
 
-If an array entry is a string, it will be used for both the generated `value` and `text` fields.
+Если элемент массива — строка, она будет использована и для `value`, и для `text`.
 
-You can mix using strings and [objects](#options-as-an-array-of-objects) in the array.
+Можно смешивать строки и [объекты](#options-as-an-array-of-objects) в массиве.
 
-Internally, BootstrapVueNext will convert the above array to the following array (the
-[array of objects](#options-as-an-array-of-objects)) format:
+Внутри BootstrapVueNext преобразует такой массив к формату [массива объектов](#options-as-an-array-of-objects):
 
 <<< FRAGMENT ./demo/OptionsObjectArray.ts#snippet{ts}
 
-### Options as an array of objects
+### Опции как массив объектов
 
 <<< FRAGMENT ./demo/OptionsObjectArrayRaw.ts#snippet{ts}
 
-If `value` is missing, then `text` will be used as both the `value` and `text` fields.
+Если `value` отсутствует, то `text` будет использовано и как `value`, и как `text`.
 
-Internally, BootstrapVueNext will convert the above array to the following array (the
-[array of objects](#options-as-an-array-of-objects)) format:
+Внутри BootstrapVueNext преобразует такой массив к формату [массива объектов](#options-as-an-array-of-objects):
 
 <<< FRAGMENT ./demo/OptionsObjectArrayNormalized.ts#snippet{ts}
 
-### Changing the option field names
+### Изменение имён полей опций
 
-If you want to customize the field property names (for example using `name` field for display
-`text`) you can easily change them by setting the `text-field`, `value-field`, and
-`disabled-field` props to a string that contains the property name you would like to use:
+Если вы хотите изменить имена свойств (например, использовать поле `name` для отображения текста), вы можете сделать это, установив пропсы `text-field`, `value-field` и `disabled-field` в строку с нужным именем свойства:

@@ -1,208 +1,180 @@
-# Form Checkbox
+# Чекбокс формы
 
 <PageHeader>
 
-For cross browser consistency, `BFormCheckboxGroup` and `BFormCheckbox` use Bootstrap's custom checkbox input to replace the browser default checkbox input. It is built on top of semantic and accessible markup, so it is a solid replacement for the default checkbox input.
+Для кроссбраузерной совместимости `BFormCheckboxGroup` и `BFormCheckbox` используют пользовательский чекбокс Bootstrap вместо стандартного чекбокса браузера. Он построен на семантической и доступной разметке, поэтому является отличной заменой стандартному чекбоксу.
 
 </PageHeader>
 
-## Single checkbox
+## Одиночный чекбокс
 
 <<< DEMO ./demo/CheckboxExample1.vue
 
-## Multiple choice checkboxes
+## Несколько чекбоксов (множественный выбор)
 
 <<< DEMO ./demo/CheckboxExample2.vue
 
-## Options property
+## Свойство options
 
 <!--@include: ./_options.md{5,}-->
 
 <<< DEMO ./demo/CheckboxCustomFields.vue
 
-## Checkbox values and `v-model`
+## Значения чекбокса и `v-model`
 
-By default, `BFormCheckbox` value will be true when checked and false when unchecked. You can customize the checked and unchecked values by specifying the `value` and `unchecked-value` properties, respectively.
+По умолчанию значение `BFormCheckbox` будет `true` при отмеченном состоянии и `false` при снятом. Вы можете изменить значения для отмеченного и неотмеченного состояния, указав свойства `value` и `unchecked-value` соответственно.
 
-When you have multiple checkboxes that bind to a single data state variable, you must provide an array reference (`[ ]`) to your v-model.
+Если у вас несколько чекбоксов, связанных с одной переменной состояния, вы должны передать массив (`[ ]`) в v-model.
 
-Note that when `v-model` is bound to multiple checkboxes (i.e an array ref), the `unchecked-value` is **not used**. Only the value(s) of the checked checkboxes will be returned in the `v-model` bound array. You should provide a unique `value` for each checkbox's `value` prop (the default of `true` will not work when bound to an array).
+Обратите внимание: если `v-model` связан с несколькими чекбоксами (т.е. массив), `unchecked-value` **не используется**. В массиве v-model будут только значения отмеченных чекбоксов. Для каждого чекбокса указывайте уникальный пропс `value` (значение по умолчанию `true` не подойдёт для массива).
 
-To pre-check any checkboxes, set the `v-model` to the value(s) of the checks that you would like pre-selected.
+Чтобы заранее отметить чекбоксы, установите v-model в массив значений, которые должны быть выбраны.
 
-When placing individual `BFormCheckbox` components within a `BFormCheckboxGroup`, most
-props and the `v-model` are inherited from the `BFormCheckboxGroup`.
+Если вы размещаете отдельные компоненты `BFormCheckbox` внутри `BFormCheckboxGroup`, большинство пропсов и v-model наследуются от `BFormCheckboxGroup`.
 
 ::: info NOTE
-The `unchecked-value` prop does not affect the native `<input>`'s `value` attribute, because browsers do not include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a native `<form>` submit (e.g. `'yes'` or `'no'`), use radio inputs instead. This is the same limitation that [Vue has with native checkbox inputs](https://vuejs.org/guide/essentials/forms.html#checkbox-1).
+Пропс `unchecked-value` не влияет на атрибут `value` нативного `<input>`, так как браузеры не включают неотмеченные чекбоксы в отправку формы. Чтобы гарантировать отправку одного из двух значений (например, `'yes'` или `'no'`), используйте радиокнопки. Это то же ограничение, что и [у Vue с нативными чекбоксами](https://vuejs.org/guide/essentials/forms.html#checkbox-1).
 :::
 
 <<< DEMO ./demo/CheckboxModel.vue
 
-### Multiple checkboxes and accessibility
+### Несколько чекбоксов и доступность
 
-When binding multiple checkboxes together, you must set the `name` prop to the same value for all `BFormCheckbox`s in the group individually. This will inform users of assistive technologies that the checkboxes are related and enables native browser keyboard navigation.
+При связывании нескольких чекбоксов вместе обязательно укажите одинаковый пропс `name` для всех `BFormCheckbox` в группе. Это даст понять вспомогательным технологиям, что чекбоксы связаны, и включит нативную навигацию с клавиатуры.
 
-Whenever using multiple checkboxes, it is recommended that the checkboxes be placed in a [`BFormGroup`](/docs/components/form-group) component to associate a label with the entire group of checkboxes. See examples above.
+При использовании нескольких чекбоксов рекомендуется помещать их в компонент [`BFormGroup`](/docs/components/form-group), чтобы связать метку с группой чекбоксов. См. примеры выше.
 
-## Inline and stacked checkboxes
+## Inline и вертикальные чекбоксы
 
-`BFormCheckboxGroup` components render inline checkboxes by default, while `BFormCheckbox`
-renders block-level (stacked) checkboxes.
+`BFormCheckboxGroup` по умолчанию отображает чекбоксы в одну строку (inline), а `BFormCheckbox` — блочно (вертикально).
 
-Set the prop `stacked` on `BFormCheckboxGroup` to place each form control one over the other,
-or if using individual checkboxes not inside a `BFormCheckboxGroup`, set the `inline` prop on
-`BFormCheckbox`.
+Установите пропс `stacked` на `BFormCheckboxGroup`, чтобы расположить элементы друг под другом, или, если используете отдельные чекбоксы вне группы, установите пропс `inline` на `BFormCheckbox`.
 
 <<< DEMO ./demo/CheckboxInline.vue
 
-## Control sizing
+## Размеры
 
-Use the `size` prop to control the size of the checkbox. The default size is medium. Supported size values are `sm` (small) and `lg` (large).
+Используйте пропс `size` для управления размером чекбокса. По умолчанию — средний размер. Поддерживаются значения `sm` (маленький) и `lg` (большой).
 
 <<< DEMO ./demo/CheckboxSize.vue#template{vue-html}
 
 ## Reverse
 
-Use the `reverse` prop to put your checkboxes and switches on the opposite side of the label.
+Используйте пропс `reverse`, чтобы разместить чекбоксы и переключатели с другой стороны от метки.
 
 <<< DEMO ./demo/CheckboxReverse.vue#template{vue-html}
 
-## Without Labels
+## Без меток
 
-In order to omit labels as described in the
-[bootstrap documentation](https://getbootstrap.com/docs/5.3/forms/checks-radios/#without-labels)
-just leave the default slot empty. Remember to still provide some form of accessible name for
-assistive technologies (for instance, using aria-label).
+Чтобы убрать метки, как описано в [документации bootstrap](https://getbootstrap.su/docs/5.3/forms/checks-radios/#without-labels), просто оставьте слот по умолчанию пустым. Не забудьте всё равно предоставить доступное имя для вспомогательных технологий (например, через aria-label).
 
 <<< DEMO ./demo/CheckboxNoLabel.vue#template{vue-html}
 
-## Button style checkboxes
+## Чекбоксы в виде кнопок
 
-You can optionally render checkboxes to appear as buttons, either individually, or in a group.
+Можно отобразить чекбоксы в виде кнопок — как по отдельности, так и в группе.
 
-Button style checkboxes will have the class `.active` automatically applied to the label when they are in the checked state.
+У чекбоксов в стиле кнопок класс `.active` автоматически применяется к метке при отмеченном состоянии.
 
-### Individual checkbox button style
+### Одиночный чекбокс-кнопка
 
-A single checkbox can be rendered with a button appearance by setting the prop `button` to `true`.
+Одиночный чекбокс можно отобразить как кнопку, установив пропс `button` в `true`.
 
-Change the button variant by setting the `button-variant` prop to one of the standard Bootstrap button variants
-(see [`BButton`](/docs/components/button) for supported variants). The default variant is `secondary`.
+Измените вариант кнопки с помощью пропса `button-variant` (см. [`BButton`](/docs/components/button) для поддерживаемых вариантов). По умолчанию — `secondary`.
 
 <<< DEMO ./demo/CheckboxButton.vue
 
-### Grouped button style checkboxes
+### Групповые чекбоксы-кнопки
 
-Render groups of checkboxes with the look of a button-group by setting the prop `buttons` on
-`BFormCheckboxGroup`. Change the button variant by setting the `button-variant` prop to one of
-the standard Bootstrap button variants (see [`BButton`](/docs/components/button) for supported
-variants). The default `button-variant` is `secondary`.
+Группу чекбоксов можно отобразить как button-group, установив пропс `buttons` на `BFormCheckboxGroup`. Вариант кнопки задаётся через пропс `button-variant` (по умолчанию — `secondary`).
 
 <<< DEMO ./demo/CheckboxButtonGroup.vue
 
-## Switch style checkboxes
+## Чекбоксы в виде переключателей (switch)
 
-Switch styling is supported on `BFormCheckbox` and `BFormCheckboxGroup` components.
+Стилизация под переключатель поддерживается в компонентах `BFormCheckbox` и `BFormCheckboxGroup`.
 
 ::: info NOTE
-If the checkbox is in [button mode](#button-style-checkboxes), switch mode will have no
-effect.
+Если чекбокс в [режиме кнопки](#button-style-checkboxes), режим переключателя не применяется.
 :::
 
-### Individual checkbox switch style
+### Одиночный чекбокс-переключатель
 
-A single checkbox can be rendered with a switch appearance by setting the prop `switch` to `true`.
+Одиночный чекбокс можно отобразить как переключатель, установив пропс `switch` в `true`.
 
 <<< DEMO ./demo/CheckboxSwitch.vue
 
-### Grouped switch style checkboxes
+### Групповые чекбоксы-переключатели
 
-Render groups of checkboxes with the look of a switches by setting the prop `switches` on
-`BFormCheckboxGroup`.
+Группу чекбоксов можно отобразить как переключатели, установив пропс `switches` на `BFormCheckboxGroup`.
 
 <<< DEMO ./demo/CheckboxSwitchGroup.vue
 
-### Switch sizing
+### Размеры переключателей
 
-Use the `size` prop to control the size of the switch. The default size is medium. Supported size
-values are `sm` (small) and `lg` (large).
+Используйте пропс `size` для управления размером переключателя. По умолчанию — средний размер. Поддерживаются значения `sm` (маленький) и `lg` (большой).
 
 <<< DEMO ./demo/CheckboxSwitchSize.vue#template{vue-html}
 
-Sizes can be set on individual `BFormCheckbox` components, or inherited from the size setting of
-`BFormCheckboxGroup`.
+Размеры можно задавать для отдельных компонентов `BFormCheckbox` или наследовать от группы.
 
 ::: info NOTE
-Bootstrap v5.x does not natively support sizes for the custom switch control. However,
-bootstrap-vue-next includes custom SCSS/CSS that adds support for sizing the custom switches.
+Bootstrap v5.x не поддерживает размеры для пользовательских переключателей, но bootstrap-vue-next включает SCSS/CSS для поддержки размеров.
 :::
 
-## Non-custom check inputs (plain)
+## Обычные чекбоксы (plain)
 
-You can have `BFormCheckboxGroup` or `BFormCheckbox` render a browser native checkbox input
-by setting the `plain` prop.
+Можно отобразить нативный чекбокс браузера, установив пропс `plain` на `BFormCheckboxGroup` или `BFormCheckbox`.
 
 <<< DEMO ./demo/CheckboxPlain.vue
 
 ::: info NOTE
-The `plain` prop has no effect when `button` or `buttons` is set.
+Пропс `plain` не работает, если установлен `button` или `buttons`.
 :::
 
-## Contextual states
+## Контекстные состояния
 
-Bootstrap includes validation styles for valid and invalid states on most form controls.
+Bootstrap поддерживает стили валидации для валидных и невалидных состояний большинства элементов формы.
 
-Generally speaking, you'll want to use a particular state for specific types of feedback:
+Обычно рекомендуется использовать определённое состояние для конкретных типов обратной связи:
 
-- `false` (denotes invalid state) is great for when there is a blocking or required field. A user must fill in this field properly to submit the form
-- `true` (denotes valid state) is ideal for situations when you have per-field validation throughout a form and want to encourage a user through the rest of the fields
-- `null` Displays no validation state (neither valid nor invalid)
+- `false` (невалидное состояние) — для обязательных или блокирующих полей
+- `true` (валидное состояние) — для поощрения пользователя при пошаговой валидации
+- `null` — не отображать состояние валидации
 
-To apply one of the contextual state icons on `BFormCheckbox`, set the `state` prop to `false`
-(for invalid), `true` (for valid), or `null` (no validation state).
+Чтобы применить иконку состояния к `BFormCheckbox`, установите пропс `state` в `false` (невалидно), `true` (валидно) или `null` (нет состояния).
 
 ::: info NOTE
-Contextual states are **not** supported when in button mode.
+Контекстные состояния **не поддерживаются** в режиме кнопки.
 :::
 
-### Contextual state and validation example
+### Пример состояния и валидации
 
 <<< DEMO ./demo/CheckboxValidation.vue
 
-### Required constraint
+### Обязательное поле
 
-When using individual `BFormCheckbox` components (not in a `BFormCheckboxGroup`), and you
-want the checkbox(es) to be `required` in your form, you **must** provide a `name` on each
-`BFormCheckbox` in order for the required constraint to work. All `BFormCheckbox` components
-tied to the same `v-model` **must** have the same `name`.
+Если вы используете отдельные компоненты `BFormCheckbox` (не в группе), и хотите, чтобы чекбокс был обязательным, **обязательно** укажите `name` для каждого чекбокса, чтобы работало ограничение required. Все чекбоксы, связанные с одним v-model, **должны** иметь одинаковое имя.
 
-The `name` is required in order for Assistive Technologies (such as screen readers, and keyboard
-only users) to know which checkboxes belong to the same form variable (the name also automatically
-enables native browser keyboard navigation), hence `required` will only work if `name` is set.
-`BFormCheckboxGroup` will automatically generate a unique input name if one is not provided on
-the group.
+Имя требуется, чтобы вспомогательные технологии (экранные читалки, пользователи клавиатуры) понимали, какие чекбоксы относятся к одной переменной формы (имя также включает нативную навигацию с клавиатуры), поэтому required работает только если задан name. `BFormCheckboxGroup` автоматически сгенерирует уникальное имя, если оно не указано.
 
-## Autofocus
+## Автофокус
 
-When the `autofocus` prop is set on `BFormCheckbox`, the input will be auto-focused when it is
-inserted (i.e. **mounted**) into the document, or re-activated when inside a Vue `KeepAlive`
-component. Note that this prop **does not** set the `autofocus` attribute on the input, nor can it
-tell when the input becomes visible.
+Если пропс `autofocus` установлен на `BFormCheckbox`, инпут будет автоматически в фокусе при монтировании или повторной активации внутри компонента Vue `KeepAlive`. Обратите внимание: этот пропс **не** устанавливает атрибут `autofocus` на инпут и не отслеживает появление инпута.
 
-## Indeterminate (tri-state) support
+## Поддержка неопределённого состояния (indeterminate, три состояния)
 
-Normally a checkbox input can only have two states: checked or unchecked. They can have any value, but they either submit that value (checked) or do not (unchecked) with a form submission (although BootstrapVueNext allows a value for the unchecked state on a single checkbox).
+Обычно чекбокс может быть только в двух состояниях: отмечен или не отмечен. Они могут иметь любые значения, но либо отправляют значение (отмечен), либо не отправляют (не отмечен) при отправке формы (хотя bootstrap-vue-next позволяет задать значение для неотмеченного состояния у одиночного чекбокса).
 
-Visually, there are actually three states a checkbox can be in: _checked_, _unchecked_, or **_indeterminate_**.
+Визуально чекбокс может быть в трёх состояниях: _отмечен_, _не отмечен_ или **_неопределён_** (indeterminate).
 
-The _indeterminate_ state is **visual only**. The checkbox is still either checked or unchecked as a value. That means the visual indeterminate state masks the real value of the checkbox, so that better make sense in your UI!.
+Состояние _indeterminate_ — **только визуальное**. Чекбокс всё равно либо отмечен, либо нет как значение. Это визуальное состояние маскирует реальное значение чекбокса, поэтому используйте его осознанно!
 
-`BFormCheckbox` supports setting this visual indeterminate state via a secondary named model called `indeterminate` (defaults to `undefined`). Clicking the checkbox will clear the `indeterminate` state and emit an `update:indeterminate=false` event. To reset the state set `v-model:indeterminate` value to `true`.
+`BFormCheckbox` поддерживает установку визуального состояния indeterminate через дополнительную модель `indeterminate` (по умолчанию `undefined`). Клик по чекбоксу сбрасывает состояние indeterminate и эмитит событие `update:indeterminate=false`. Чтобы вернуть состояние, установите `v-model:indeterminate` в `true`.
 
 <<< DEMO ./demo/CheckboxTriState.vue
 
-**Indeterminate checkbox use-case example:**
+**Пример использования indeterminate:**
 
 <<< DEMO ./demo/CheckboxIndeterminate.vue
 

@@ -1,209 +1,162 @@
-# Card
+# Карточка
 
 <PageHeader>
 
-A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
+Карточка — это гибкий и расширяемый контейнер для контента. Она поддерживает заголовки и подвал, разнообразный контент, контекстные цвета фона и мощные опции отображения.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Cards are built with as little markup and styles as possible, but still manage to deliver a ton of
-control and customization. Built with flexbox, they offer easy alignment and mix well with other
-components.
+Карточки построены с минимальным количеством разметки и стилей, но при этом обеспечивают множество возможностей для управления и кастомизации. Построенные на flexbox, они легко выравниваются и хорошо сочетаются с другими компонентами.
 
-`BCard` has no fixed width to start, so they'll naturally fill the full width of its parent
-element. This is easily customized via styles or standard Bootstrap 5 sizing classes.
+`BCard` изначально не имеет фиксированной ширины, поэтому по умолчанию занимает всю ширину родительского элемента. Это легко изменить с помощью стилей или стандартных классов размеров Bootstrap 5.
 
-Change the default `div` root tag to any other HTML element by specifying via the `tag` prop.
+Измените тег-обёртку по умолчанию (`div`) на любой другой HTML-элемент, указав его через пропс `tag`.
 
 <<< DEMO ./demo/CardOverview.vue#template{vue-html}
 
-## Content types
+## Типы контента
 
-Cards support a wide variety of content, including images, text, list groups, links and more. The
-following are examples of what is supported inside a `BCard`.
+Карточки поддерживают множество типов контента, включая изображения, текст, списки, ссылки и многое другое. Ниже приведены примеры того, что можно разместить внутри `BCard`.
 
-### Card body
+### Тело карточки
 
-The building block of a `BCard` is the `BCardBody` section which provides a padded section
-within a card.
+Основной строительный блок `BCard` — это секция `BCardBody`, которая обеспечивает внутренние отступы.
 
-By default, the `BCard` content is automatically placed in a `BCardBody` section:
+По умолчанию содержимое `BCard` автоматически помещается в секцию `BCardBody`:
 
 <<< DEMO ./demo/CardBody.vue#template{vue-html}
 
-Disable the automatic `BCardBody` section (and associated padding) by setting the prop `no-body`
-on the `BCard`.
+Отключите автоматическую секцию `BCardBody` (и связанные с ней отступы), установив пропс `no-body` на `BCard`.
 
 <<< DEMO ./demo/CardNoBody.vue#template{vue-html}
 
-Note that with `no-body` enabled, the content of the `title` and `subtitle` props will not be
-rendered.
+Обратите внимание, что при включённом `no-body` содержимое пропсов `title` и `subtitle` отображаться не будет.
 
-Use the `BCardBody` sub-component to place your own card body anywhere in a `BCard` component
-that has `no-body` set.
+Используйте подкомпонент `BCardBody`, чтобы разместить своё тело карточки в любом месте компонента `BCard` с установленным `no-body`.
 
-#### Titles, text, and links
+#### Заголовки, текст и ссылки
 
-_Card titles_ are adding via the `title` prop, and _sub titles_ are added via the `subtitle` prop.
-The title is rendered using the sub-component `BCardTitle` while the Sub Title is rendered using
-the sub-component `BCardSubtitle`.
+_Заголовки карточки_ добавляются через пропс `title`, а _подзаголовки_ — через пропс `subtitle`. Заголовок отображается с помощью подкомпонента `BCardTitle`, а подзаголовок — с помощью `BCardSubtitle`.
 
-With sub-component `BCardText`, paragraph text can be added to the card. The last
-`BCardText` in the card body will have its bottom margin automatically removed (via CSS). Text
-within `BCardText` can also be styled with the standard HTML tags.
+С помощью подкомпонента `BCardText` можно добавить абзац текста в карточку. У последнего `BCardText` в теле карточки автоматически убирается нижний внешний отступ (через CSS). Текст внутри `BCardText` можно стилизовать стандартными HTML-тегами.
 
-Links can be added and placed next to each other by adding the `.card-link` class to a `<a>` tag (or
-`BLink` component).
+Ссылки можно добавить и разместить рядом друг с другом, добавив класс `.card-link` к тегу `<a>` (или компоненту `BLink`).
 
 <<< DEMO ./demo/CardParts.vue#template{vue-html}
 
-### Images
+### Изображения
 
-The `BCard` prop `img-src` places an image on the top of the card, and use the `img-alt` prop to
-specify a string to be placed in the image's `alt` attribute. The image specified by the `img-src`
-prop will be responsive and will adjust its width when the width of the card is changed.
+Пропс `img-src` у `BCard` размещает изображение в верхней части карточки, а с помощью пропса `img-alt` можно задать строку для атрибута `alt` изображения. Изображение, заданное через пропс `img-src`, будет адаптивным и изменять ширину вместе с карточкой.
 
-Alternatively you can manually place images inside `BCard` using the sub-component
-`BCardImg`. See the kitchen sink example below for usage.
+Также можно вручную размещать изображения внутри `BCard` с помощью подкомпонента `BCardImg`. Пример использования смотрите ниже в kitchen sink.
 
 <<< DEMO ./demo/CardImages.vue#template{vue-html}
 
-**Note:** For left and right images, you may need to apply additional styles to classes
-`.card-img-start` and `.card-img-end`, as images will "stretch" in height if you have content that
-is taller than your image. Note headers and footers are not supported when images are left or right
-aligned. You may find the [Horizontal Card Layout](#horizontal-card-layout) example to be more
-flexible when creating a responsive horizontal card.
+**Примечание:** Для изображений слева и справа может потребоваться добавить дополнительные стили к классам `.card-img-start` и `.card-img-end`, так как изображения будут «растягиваться» по высоте, если контент выше изображения. Заголовки и подвал не поддерживаются при размещении изображений слева или справа. Для создания адаптивной горизонтальной карточки может быть удобнее использовать пример [Горизонтальная карточка](#horizontal-card-layout).
 
-#### Overlay image
+#### Изображение-оверлей
 
-Place the image in the background of the card by setting the boolean prop `overlay`:
+Разместите изображение на фоне карточки, установив булевый пропс `overlay`:
 
 <<< DEMO ./demo/CardOverlayImage.vue#template{vue-html}
 
-#### Lazy loaded images
+#### Ленивые изображения
 
-`BCardImgLazy` has been removed in favor of using a standalone prop on BImg. Use prop `lazy` on BImg and it will automatically use the browsers built in lazy-loading features that are supported natively on all major browsers.
+`BCardImgLazy` был удалён в пользу отдельного пропса у BImg. Используйте пропс `lazy` у BImg — он автоматически задействует встроенную в браузер ленивую загрузку, поддерживаемую всеми основными браузерами.
 
-### Header and footer
+### Заголовок и подвал
 
-Add an optional header and/or footer within a card via the `header`/`footer` props or named slots.
-You can control the wrapper element tags used by setting the `header-tag` and `footer-tag` props
-(both default is `div`).
+Добавьте необязательные заголовок и/или подвал внутри карточки через пропсы `header`/`footer` или именованные слоты. Вы можете управлять тегами-обёртками с помощью пропсов `header-tag` и `footer-tag` (по умолчанию оба — `div`).
 
 <<< DEMO ./demo/CardHeaderFooter.vue#template{vue-html}
 
-### Kitchen sink example
+### Пример kitchen sink
 
-Mix and match multiple content types to create the card you need, or throw everything in there.
-Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width
-card.
+Комбинируйте различные типы контента, чтобы создать нужную карточку, или добавьте всё сразу. Ниже показаны стили изображений, блоки, стили текста и список — всё это в карточке с фиксированной шириной.
 
 <<< DEMO ./demo/CardKitchenSink.vue#template{vue-html}
 
-## Horizontal card layout
+## Горизонтальная карточка
 
-Using a combination of grid components, utility classes and individual card sub-components, cards
-can be made horizontal in a mobile-friendly and responsive way.
+Сочетая grid-компоненты, утилитарные классы и отдельные подкомпоненты карточки, можно сделать карточки горизонтальными, адаптивными и мобильными.
 
-In the example below, we remove the row grid gutters with the `class="g-0"` prop on `BRow` and use
-`md` props on `BCol` to make the card horizontal at the `md` breakpoint. Class `rounded-0`
-removes the rounding of the `BCardImg` corners while class `overflow-hidden` on `BCard` will
-appropriately clip the image's corners based on the border-radius of the card. Further adjustments
-may be needed depending on your card content.
+В примере ниже мы убираем внешние отступы между колонками с помощью `class="g-0"` у `BRow` и используем пропсы `md` у `BCol`, чтобы сделать карточку горизонтальной на брейкпоинте `md`. Класс `rounded-0` убирает скругление углов у `BCardImg`, а класс `overflow-hidden` у `BCard` корректно обрезает углы изображения в зависимости от border-radius карточки. Возможно, потребуется дополнительная настройка в зависимости от содержимого карточки.
 
 <<< DEMO ./demo/CardHorizontal.vue#template{vue-html}
 
-## Text variants
+## Варианты текста
 
-By default, cards use dark text and assume a light background. You can reverse that by toggling the
-color of text within, as well as that of the card's sub-components, via the prop `text-variant`.
-Then, specify a dark background variant.
+По умолчанию карточки используют тёмный текст и предполагают светлый фон. Это можно изменить, переключив цвет текста внутри карточки и её подкомпонентов с помощью пропса `text-variant`. Затем укажите тёмный вариант фона.
 
 <<< DEMO ./demo/CardTextVariants.vue#template{vue-html}
 
-## Background and border variants
+## Варианты фона и границ
 
-Cards include their own variant style for quickly changing the background-color and of a card via
-the `bg-variant` and `border-variant` props. Darker solid variants may require setting the prop
-`text-variant` to adjust the text color.
+Карточки имеют собственные варианты стилей для быстрого изменения цвета фона и границ с помощью пропсов `bg-variant` и `border-variant`. Для тёмных вариантов фона может потребоваться установить пропс `text-variant` для корректного цвета текста.
 
-### Solid
+### С заливкой
 
 <<< DEMO ./demo/CardSolidVariants.vue#template{vue-html}
 
-### Bordered
+### С границей
 
 <<< DEMO ./demo/CardBorderedVariants.vue#template{vue-html}
 
-#### Variant to class mapping
+#### Соответствие вариантов и классов
 
-bootstrap-vue-next `BCard` variants are directly mapped to Bootstrap v5 card classes by pre-pending
-`bg-` (for solid) or `border-` (for bordered) to the above variant names.
+Варианты `BCard` из bootstrap-vue-next напрямую сопоставляются с классами карточек Bootstrap v5 путём добавления префикса `bg-` (для заливки) или `border-` (для границы) к названиям вариантов.
 
-### Header and footer variants
+### Варианты для заголовка и подвала
 
-You can also apply the solid and border variants individually to card headers and footers via the
-`header-bg-variant`, `header-border-variant`, `header-text-variant`, `footer-bg-variant`,
-`footer-border-variant`, and `footer-text-variant` props.
+Вы также можете применять варианты заливки и границы отдельно к заголовкам и подвалам карточки с помощью пропсов `header-bg-variant`, `header-border-variant`, `header-text-variant`, `footer-bg-variant`, `footer-border-variant` и `footer-text-variant`.
 
 <<< DEMO ./demo/CardHeaderFooterVariants.vue#template{vue-html}
 
-### Conveying meaning to assistive technologies
+### Передача смысла вспомогательным технологиям
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of
-assistive technologies – such as screen readers. Ensure that information denoted by the color is
-either obvious from the content itself (e.g. the visible text), or is included through alternative
-means, such as additional text hidden with the `.visually-hidden` class.
+Использование цвета для передачи смысла даёт только визуальное различие, которое не будет доступно пользователям вспомогательных технологий, например, экранных читалок. Убедитесь, что информация, обозначенная цветом, очевидна из самого содержимого (например, видимый текст) или дополнительно предоставлена с помощью других средств, например, скрытого текста с классом `.visually-hidden`.
 
-## Nav integration
+## Интеграция с навигацией
 
-Integrate [`BNav`](/docs/components/nav) into card headers easily.
+Легко интегрируйте [`BNav`](/docs/components/nav) в заголовки карточек.
 
-**Using the `header` slot**:
+**Использование слота `header`:**
 
 <<< DEMO ./demo/CardNavSlot.vue#template{vue-html}
 
-**Using `BCardHeader` sub-component:**
+**Использование подкомпонента `BCardHeader`:**
 
 <<< DEMO ./demo/CardNavComponent.vue#template{vue-html}
 
-For more information on using `BNav` in card headers, refer to the
-[Navs documentation](/docs/components/nav).
+Подробнее об использовании `BNav` в заголовках карточек смотрите в [документации по навигации](/docs/components/nav).
 
-## Card groups
+## Группы карточек
 
-In addition to styling the content within cards, BootstrapVueNext includes a `BCardGroup` component
-for laying out series of cards.
+В дополнение к стилизации содержимого карточек, BootstrapVueNext включает компонент `BCardGroup` для размещения серии карточек.
 
-<NotYetImplemented>For the time being, these layout options are not responsive.</NotYetImplemented>
+<NotYetImplemented>Пока что эти варианты размещения не являются адаптивными.</NotYetImplemented>
 
-### Default card group
+### Группа карточек по умолчанию
 
-Use card groups to render cards as a single, attached element with equal width and height columns.
-Card groups use display: flex; to achieve their uniform sizing.
+Используйте группы карточек, чтобы отображать карточки как единый элемент с равной шириной и высотой колонок. Группы карточек используют display: flex; для равномерного размера.
 
-When using card groups with footers, their content will automatically line up.
+При использовании групп карточек с подвалами их содержимое будет автоматически выравниваться.
 
 <<< DEMO ./demo/CardGroup.vue#template{vue-html}
 
-### Card deck groups
+### Группы карточек-deck
 
-Need a set of equal width and height cards that aren't attached to one another? Use card decks by
-setting the `deck` prop. And just like with regular card groups, card footers in decks will
-automatically line up.
+Нужен набор карточек одинаковой ширины и высоты, но не объединённых друг с другом? Используйте deck-группы, установив пропс `deck`. Как и в обычных группах, футеры карточек в deck-группах будут автоматически выравниваться.
 
 <<< DEMO ./demo/CardDeck.vue#template{vue-html}
 
-### Card column groups
+### Группы карточек-колонок
 
-Cards can be organized into Masonry-like columns with by wrapping them in a `BCardGroup` with
-the prop `columns` set. Cards are built with CSS column properties instead of flexbox for easier
-alignment. Cards are ordered from top to bottom and left to right.
+Карточки можно организовать в колонки по типу Masonry, обернув их в `BCardGroup` с установленным пропсом `columns`. Карточки строятся с помощью CSS-свойств column, а не flexbox, для более простого выравнивания. Карточки располагаются сверху вниз и слева направо.
 
-Heads up! Your mileage with card columns may vary. To prevent cards breaking across columns, we must
-set them to display: inline-block as column-break-inside: avoid is not a bulletproof solution yet.
+Обратите внимание! Поведение карточек-колонок может отличаться. Чтобы предотвратить разрыв карточек между колонками, им нужно задать display: inline-block, так как column-break-inside: avoid пока не является надёжным решением.
 
 <<< DEMO ./demo/CardColumn.vue#template{vue-html}
 

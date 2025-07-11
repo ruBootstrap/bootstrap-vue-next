@@ -2,7 +2,7 @@
   <!-- #region template -->
   <BLink
     class="btn btn-primary me-2"
-    href="https://getbootstrap.com/docs/5.3"
+    href="https://getbootstrap.su/docs/5.3"
     target="_blank"
     rel="noopener"
   >
@@ -10,7 +10,7 @@
   </BLink>
   <BLink
     class="btn btn-primary disabled"
-    href="https://getbootstrap.com/docs/5.3"
+    href="https://getbootstrap.su/docs/5.3"
     target="_blank"
     rel="noopener"
   >

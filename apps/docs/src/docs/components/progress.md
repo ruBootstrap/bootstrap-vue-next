@@ -2,79 +2,76 @@
 
 <PageHeader>
 
-Use our custom progress component for displaying simple or complex progress bars, featuring
-support for horizontally stacked bars, animated backgrounds, and text labels.
+Используйте наш пользовательский компонент прогресс-бара для отображения простых или сложных прогресс-баров, поддерживающий горизонтально наложенные полосы, анимированные фона, и текстовые метки.
 
 </PageHeader>
 
-## Basic Usage
+## Основное использование
 
 <<< DEMO ./demo/ProgressBasic.vue
 
-## Value
+## Значение
 
-Set the maximum value with the `max` prop (default is `100`), and the current value via the `value` prop (default `0`).
+Установите максимальное значение с помощью пропса `max` (по умолчанию `100`), и текущее значение с помощью пропса `value` (по умолчанию `0`).
 
-When creating multiple bars in a single process, place the value prop on the individual `BProgressBar` sub-components (see the [Multiple Bars](#multiple-bars) section below for more details)
+При создании нескольких полос в одном процессе, разместите пропс `value` на отдельных подкомпонентах `BProgressBar` (см. раздел [Множественные полосы](#multiple-bars) ниже для более подробной информации)
 
-## Labels
+## Метки
 
-Add labels to your progress bars by either enabling `show-progress` (percentage of max) or `show-value` for the current absolute value. You may also set the precision (number of digits after the decimal) via the `precision` prop (default is `0` digits after the decimal).
+Добавьте метки к вашим прогресс-барам, включив `show-progress` (процент от максимума) или `show-value` для текущего абсолютного значения. Вы также можете установить точность (количество цифр после десятичной точки) с помощью пропса `precision` (по умолчанию `0` цифр после десятичной точки).
 
 <<< DEMO ./demo/ProgressLabels.vue
 
-### Custom progress label
+### Пользовательская метка прогресса
 
-Need more control over the label? Provide your own label by using the default slot within a `BProgressBar` sub-component, or by using the `label` property on `BProgressBar`:
+Нужна больше контроля над меткой? Предоставьте свою метку, используя слот по умолчанию в подкомпоненте `BProgressBar` или свойство `label` на `BProgressBar`:
 
 <<< DEMO ./demo/ProgressCustomLabels.vue
 
-## Width
+## Ширина
 
-`<BProgress>` will always expand to the maximum with of its parent container. To change the width,
-place `<BProgress>` in a standard Bootstrap column or apply one of the standard Bootstrap width
-classes.
+`<BProgress>` всегда расширяется до максимальной ширины своего родительского контейнера. Чтобы изменить ширину, поместите `<BProgress>` в стандартный столбец Bootstrap или примените один из стандартных классов Bootstrap для ширины.
 
 <<< DEMO ./demo/ProgressWidth.vue
 
-## Height
+## Высота
 
-The height of the progress bar can be controlled with the height prop. The height value should be a standard CSS dimension (px, rem, em, etc.). The default height is 1rem.
+Высоту прогресс-бара можно контролировать с помощью пропса `height`. Значение высоты должно быть стандартным CSS-размером (px, rem, em и т.д.). По умолчанию высота 1rem.
 
 <<< DEMO ./demo/ProgressHeight.vue
 
-## Backgrounds
+## Фоны
 
-Use background variants to change the appearance of individual progress bars. The default variant is `primary`.
+Используйте варианты фона, чтобы изменить внешний вид отдельных прогресс-баров. По умолчанию вариант `primary`.
 
 <<< DEMO ./demo/ProgressBackgrounds.vue
 
-## Striped Background
+## Полосатый фон
 
-Set `striped` to apply a stripe via CSS gradient over the progress bar's background variant.
+Установите `striped` для применения полосы через CSS-градиент к фону прогресс-бара.
 
 <<< DEMO ./demo/ProgressStriped.vue
 
-## Animated Background
+## Анимированный фон
 
-The striped gradient can also be animated by setting the `animated` prop.
+Градиент полосы также может быть анимирован с помощью пропса `animated`.
 
 <<< DEMO ./demo/ProgressAnimated.vue
 
 ::: info NOTE
-If `animated` is true, `striped` will automatically be enabled.
+Если `animated` равно `true`, `striped` будет автоматически включен.
 :::
 
-## Multiple bars
+## Множественные полосы
 
-Include multiple `BProgressBar` sub-components in a `BProgress` component to build a horizontally stacked set of progress bars.
+Включите несколько подкомпонентов `BProgressBar` в компонент `BProgress`, чтобы создать горизонтально наложенный набор прогресс-баров.
 
 <<< DEMO ./demo/ProgressMultipleBars.vue
 
 ::: info NOTE
 
-- height, if specified, should always set on the `<BProgress>` component.
-- `<BProgressBar>` will not inherit value from `<BProgress>`.
+- высота, если указана, всегда должна быть установлена на компоненте `<BProgress>`.
+- `<BProgressBar>` не наследует значение от `<BProgress>`.
 
 :::
 

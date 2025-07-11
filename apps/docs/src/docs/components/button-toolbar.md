@@ -1,35 +1,32 @@
-# Button Toolbar
+# Панель инструментов с кнопками
 
-Group a series of button-groups and/or input-groups together on a single line.
+Группируйте несколько групп кнопок и/или групп ввода в одну строку.
 
-**Example 1:** with button groups
+**Пример 1:** с группами кнопок
 
 <<< DEMO ./demo/ButtonToolbarExample1.vue#template{vue-html}
 
-**Example 2:** with mixture of small button group and small input group.
+**Пример 2:** с комбинацией небольшой группы кнопок и небольшой группы ввода.
 
 <<< DEMO ./demo/ButtonToolbarExample2.vue#template{vue-html}
 
-**Example 3:** with button groups and dropdown menu.
+**Пример 3:** с группами кнопок и выпадающим меню.
 
 <<< DEMO ./demo/ButtonToolbarExample3.vue#template{vue-html}
 
-## Usage
+## Использование
 
-Feel free to mix input groups and dropdowns with button groups in your toolbars. Similar to the
-example above, you'll likely need some utility classes though to space things properly.
+Вы можете свободно комбинировать группы ввода и выпадающие меню с группами кнопок в своих панелях инструментов. Как и в приведённом выше примере, скорее всего, вам понадобятся утилитарные классы для правильного размещения элементов.
 
-## Sizing
+## Размеры
 
-Note, if you want smaller or larger buttons or controls, set the `size` prop directly on the
-`BButtonGroup`, `BInputGroup`, and `BDropdown` components.
+Если вы хотите использовать кнопки или элементы управления меньшего или большего размера, установите пропс `size` непосредственно на компоненты `BButtonGroup`, `BInputGroup` и `BDropdown`.
 
 <<< DEMO ./demo/ButtonToolbarSizing.vue#template{vue-html}
 
-## Justify
+## Растяжение по ширине
 
-Make the toolbar span the maximum available width, by increasing spacing between the button groups,
-input groups and dropdowns, by setting the prop `justify`.
+Чтобы панель инструментов занимала максимально доступную ширину, увеличьте расстояние между группами кнопок, группами ввода и выпадающими меню, установив пропс `justify`.
 
 <<< DEMO ./demo/ButtonToolbarJustify.vue#template{vue-html}
 

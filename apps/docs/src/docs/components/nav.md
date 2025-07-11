@@ -2,201 +2,178 @@
 
 <PageHeader>
 
-Navigation available in Bootstrap share general markup and styles, from the base `<BNav>` class
-to the `active` and `disabled` states. Swap modifier props to switch between each style.
+Навигация, доступная в Bootstrap, имеет общий формат разметки и стилей, начиная с базового `<BNav>` класса
+до состояний `active` и `disabled`. Измените модификаторные пропсы, чтобы переключиться между каждым стилем.
 
 </PageHeader>
 
 <<< DEMO ./demo/NavOverview.vue#template{vue-html}
 
-## Overview
+## Обзор
 
-The base `<BNav>` component is built with flexbox and provides a strong foundation for building all
-types of navigation components. It includes some style overrides (for working with lists), some link
-padding for larger hit areas, and basic disabled styling. No active states are included in the base
-nav.
+Базовый компонент `<BNav>` построен с помощью flexbox и предоставляет прочную основу для создания всех
+типов компонентов навигации. Он включает некоторые переопределения стилей (для работы со списками), некоторый отступ для больших областей нажатия, а также базовое отключенное стилирование. Активные состояния не включены в базовую навигацию.
 
-`<BNav>` supports the following child components:
+`<BNav>` поддерживает следующие дочерние компоненты:
 
-- `<BNavItem>` for actionable links (or router-links)
-- `<BNavItemDropdown>` for dropdowns
-- `<BNavText>` for plain text content
-- `<BNavForm>` for inline forms
+- `<BNavItem>` для действующих ссылок (или ссылок-роутеров)
+- `<BNavItemDropdown>` для выпадающих списков
+- `<BNavText>` для контента с простым текстом
+- `<BNavForm>` для встроенных форм
 
-## Link appearance
+## Внешний вид ссылок
 
-Two style variations are supported: `tabs` and `pills`, which support `active` state styling. These
-variants are mutually exclusive - use only one style or the other.
+Поддерживаются два стиля вариаций: `tabs` и `pills`, которые поддерживают стилирование состояния `active`. Эти варианты являются взаимоисключающими - используйте только один стиль или другой.
 
-### Tab style
+### Стиль вкладок
 
-Make the nav look like tabs by setting the `tabs` prop.
+Сделайте навигацию похожей на вкладки, установив пропс `tabs`.
 
 <<< DEMO ./demo/NavTab.vue#template{vue-html}
 
-### Pill style
+### Стиль таблетов
 
-Use the pill style by setting the `pills` prop.
+Используйте стиль таблетов, установив пропс `pills`.
 
 <<< DEMO ./demo/NavPill.vue#template{vue-html}
 
-### Small
+### Маленький
 
-Make the nav smaller by setting the `small` prop.
+Сделайте навигацию меньше, установив пропс `small`.
 
 <<< DEMO ./demo/NavSmall.vue#template{vue-html}
 
-## Fill and justify
+## Заполнение и выравнивание
 
-Force your `<BNav>` content to extend the full available width.
+Принудительно расширьте содержимое вашей `<BNav>` на полную доступную ширину.
 
-### Fill
+### Заполнение
 
-To proportionately fill all available space with your `<BNavItem>` components, set the `fill`
-prop. Notice that all horizontal space is occupied, but not every nav item has the same width.
+Чтобы пропорционально заполнить все доступное пространство вашими компонентами `<BNavItem>`, установите пропс `fill`. Обратите внимание, что все горизонтальное пространство занято, но не каждый элемент навигации имеет одинаковую ширину.
 
 <<< DEMO ./demo/NavFill.vue#template{vue-html}
 
-### Justified
+### Выровненный
 
-For equal-width elements, set the `justified` prop instead. All horizontal space will be occupied by
-nav links, but unlike `fill` above, every `<BNavItem>` will be the same width.
+Для равной ширины элементов установите пропс `justified`. Все горизонтальное пространство будет занято ссылками навигации, но в отличие от `fill` выше, каждый `<BNavItem>` будет иметь одинаковую ширину.
 
 <<< DEMO ./demo/NavJustified.vue#template{vue-html}
 
-## Alignment
+## Выравнивание
 
-To align your `<BNavItem>` components, use the `align` prop. Available values are those from
-[`AlignmentJustifyContent`](/docs/types/alignment): `start`, `center`, `end`, `between`, `around`, and `evenly`.
+Чтобы выровнять ваши компоненты `<BNavItem>`, используйте пропс `align`. Доступные значения - это те, которые из [`AlignmentJustifyContent`](/docs/types/alignment): `start`, `center`, `end`, `between`, `around`, и `evenly`.
 
 <<< DEMO ./demo/NavAlignment.vue#template{vue-html}
 
-## Vertical variation
+## Вертикальная вариация
 
-By default `<BNav>` appear on a horizontal line. Stack your navigation by setting the `vertical`
-prop.
+По умолчанию `<BNav>` появляется на горизонтальной линии. Наложите навигацию, установив пропс `vertical`.
 
 <<< DEMO ./demo/NavVertical.vue#template{vue-html}
 
-## Dropdown support
+## Поддержка выпадающих списков
 
-Use `<BNavItemDropdown>` to place dropdown items within your nav.
+Используйте `<BNavItemDropdown>`, чтобы разместить элементы выпадающего списка в вашей навигации.
 
 <<< DEMO ./demo/NavDropdown.vue#template{vue-html}
 
-Sometimes you want to add your own class names to the generated dropdown toggle button, that by
-default have the classes `nav-link` and `dropdown-toggle`. Use the `toggle-class` prop to add them
-(like above) which will render HTML similar to:
+Иногда вам может понадобиться добавить свои собственные классы к сгенерированной кнопке переключения выпадающего списка по умолчанию, которые по умолчанию имеют классы `nav-link` и `dropdown-toggle`. Используйте пропс `toggle-class`, чтобы добавить их (как выше), что приведет к рендерингу HTML, похожему на:
 
 <<< FRAGMENT ./demo/NavDropdown.html#template
 
-Refer to [`<BDropdown>`](/docs/components/dropdown) for a list of supported sub-components.
+См. [`<BDropdown>`](/docs/components/dropdown) для списка поддерживаемых подкомпонентов.
 
-### Optionally scoped default slot
+### Опциональный скрытый слот по умолчанию
 
-The dropdown default slot is optionally scoped with the following scope available:
+Слот по умолчанию выпадающего списка опционально заключен в следующий объект с доступными свойствами:
 
-| Property or Method | Description                             |
-| ------------------ | --------------------------------------- |
-| `hide()`           | Can be used to close the dropdown menu. |
-| `show()`           | Can be used to show the dropdown menu.  |
+| Свойство или Метод | Описание                                                      |
+| ------------------ | ------------------------------------------------------------- |
+| `hide()`           | Может использоваться для закрытия меню выпадающего списка.    |
+| `show()`           | Может использоваться для отображения меню выпадающего списка. |
 
-### Lazy dropdown
+### Ленивый выпадающий список
 
-By default, `<BNavItemDropdown>` renders the menu contents in the DOM even when the menu is not
-shown. When there are a large number of dropdowns rendered on the same page, performance could be
-impacted due to larger overall memory utilization. You can instruct `<BNavItemDropdown>` to
-render the menu contents only when it is shown by setting the `lazy` prop to true.
+По умолчанию `<BNavItemDropdown>` рендерит содержимое меню в DOM, даже когда меню не отображается. Когда на странице отображается большое количество выпадающих списков, производительность может быть снижена из-за большего общего использования памяти. Вы можете указать `<BNavItemDropdown>`, чтобы он рендерил содержимое меню только тогда, когда оно отображается, установив пропс `lazy` в `true`.
 
-### Dropdown placement
+### Расположение выпадающего списка
 
-Use the `start`, `end`, `center`, `placement`, `no-flip`, and `offset` to control the positioning of
-`<BNavItemDropdown>`.
+Используйте `start`, `end`, `center`, `placement`, `no-flip`, и `offset`, чтобы контролировать позиционирование `<BNavItemDropdown>`.
 
-Refer to the [`<BDropdown>` positioning section](/docs/components/dropdown#positioning) for details
-on the effects and usage of these props.
+См. [`<BDropdown>` раздел позиционирования](/docs/components/dropdown#positioning) для деталей эффектов и использования этих пропсов.
 
-### Dropdown implementation note
+### Заметка реализации выпадающего списка
 
-Note that the toggle button is actually rendered as a link `<a>` tag with `role="button"` for
-styling purposes, and typically has the `href` set to `#` unless an ID is provided via the `id`
-prop.
+Обратите внимание, что кнопка переключения фактически рендерится как тег `<a>` с `role="button"` для целей стилизации, и обычно имеет `href` установленным в `#`, если не предоставлен ID через пропс `id`.
 
-The toggle will prevent scroll-top-top behaviour (via JavaScript) when clicking the toggle link. In
-some cases when using SSR, and the user clicks the toggle button _before_ Vue has had a chance to
-hydrate the component, the page will scroll to top. In these cases, simply providing a unique ID via
-the `id` prop will prevent the unwanted scroll-to-top behaviour.
+Кнопка переключения предотвратит поведение прокрутки к верху (через JavaScript) при нажатии на ссылку переключения. В некоторых случаях при использовании SSR, и пользователь нажимает кнопку переключения _перед_ Vue успел гидратировать компонент, страница прокрутится вверх. В этих случаях просто предоставьте уникальный ID через пропс `id`, чтобы предотвратить нежелательное поведение прокрутки к верху.
 
-### Dropdown Exposed Methods
+### Экспонированные методы выпадающего списка
 
-`<BNavItemDropdown>` exposes the same methods as `<BDropdown>`, see the
-[dropdown documentation](/docs/components/dropdown#exposed-methods) for details.
+`<BNavItemDropdown>` экспортирует те же методы, что и `<BDropdown>`, см.
+[документацию по выпадающему списку](/docs/components/dropdown#exposed-methods) для деталей.
 
-## Nav text content
+## Содержимое текста навигации
 
-Use the `<BNavText>` child component to place plain text content into the nav:
+Используйте дочерний компонент `<BNavText>`, чтобы разместить контент с простым текстом в навигацию:
 
 <<< DEMO ./demo/NavText.vue#template{vue-html}
 
-## Nav inline forms
+## Встроенные формы навигации
 
-Use the `<BNavForm>` child component to place an _inline_ form into the nav:
+Используйте дочерний компонент `<BNavForm>`, чтобы разместить _встроенную_ форму в навигацию:
 
 <<< DEMO ./demo/NavInlineForm.vue
 
-Refer to the [`<BForm>` inline](/docs/components/form#inline-form) documentation for additional
-details on placing form controls.
+См. [`<BForm>` встроенную](/docs/components/form#inline-form) документацию для дополнительных
+деталей о размещении элементов управления формы.
 
-## Tabbed local content support
+## Поддержка локального содержимого вкладок
 
-See the [`<BTabs>`](/docs/components/tabs) component for creating tabbable panes of local content
-(not suited for navigation).
+См. компонент [`<BTabs>`](/docs/components/tabs) для создания вкладываемых панелей локального содержимого (не подходит для навигации).
 
-## Card integration
+## Интеграция карточек
 
-Use a `<BNav>` in a [`<BCard>`](/docs/components/card) header, by enabling the `card-header` prop
-on `<BNav>` and setting either the `pills` or `tabs` props:
+Используйте `<BNav>` в заголовке [`<BCard>`](/docs/components/card), включив пропс `card-header` на `<BNav>` и установив либо пропс `pills`, либо пропс `tabs`:
 
-**Tabs style:**
+**Стиль вкладок:**
 
 <<< DEMO ./demo/NavTabCard.vue#template{vue-html}
 
-**Pill style:**
+**Стиль таблетов:**
 
 <<< DEMO ./demo/NavPillCard.vue#template{vue-html}
 
-**Plain style:**
+**Стиль обычный:**
 
-The `card-header` prop is only needed when you are applying `tabs` or `pills` style. Note that
-Bootstrap v5 SCSS does not have special styling for `active` state plain style nav items.
+Пропс `card-header` требуется только тогда, когда вы применяете стиль `tabs` или `pills`. Обратите внимание, что Bootstrap v5 SCSS не имеет специального стилирования для обычных стилевых элементов навигации `active` состояния.
 
 <<< DEMO ./demo/NavPlainCard.vue#template{vue-html}
 
-The `card-header` prop has no styling effect if the `<BNav>` is in `vertical` mode.
+Пропс `card-header` не имеет эффекта стилизации, если `<BNav>` находится в режиме `vertical`.
 
-### Using with Vue Router
+### Использование с Vue Router
 
-Have your card `<BNav>` control vue router nested routes via `<router-view>` or `<nuxt-child>`
-components, to created tabbed content that changes with route URL:
+Позвольте вашей карточной `<BNav>` управлять вложенными маршрутами Vue Router через компоненты `<router-view>` или `<nuxt-child>`, чтобы создать вкладываемое содержимое, которое меняется в зависимости от URL маршрута:
 
 <<< FRAGMENT ./demo/NavRouter.vue#template{vue-html}
 
 ::: info
-Vue Router does not support defining active routes with hashes (`#`), which is why you must
-define the "tab" content as child routes.
+Vue Router не поддерживает определение активных маршрутов с хэшами (`#`), поэтому вы должны
+определить "контент вкладки" как дочерние маршруты.
 :::
 
-**Example router config for above:**
+**Пример конфигурации маршрутизатора для вышеуказанного:**
 
 <!-- eslint-disable no-unused-vars, no-undef -->
 
 <<< FRAGMENT ./demo/NavRouter.js
 
-One can also use Vue Router
-[named routes](https://router.vuejs.org/guide/essentials/named-routes.html#named-routes) and/or
-route params instead of path based routes.
+Также можно использовать Vue Router
+[именованные маршруты](https://router.vuejs.org/guide/essentials/named-routes.html#named-routes) и/или
+маршрутные параметры вместо маршрутных путей.
 
-For more details see:
+См. подробности:
 
 - [Vue Router `<router-view>`](https://router.vuejs.org/api/#router-view)
 - [Nuxt.JS `<nuxt-child>`](https://nuxtjs.org/api/components-nuxt-child)

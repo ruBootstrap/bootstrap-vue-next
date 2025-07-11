@@ -1,188 +1,135 @@
-# Form
+# Форма
 
 <PageHeader>
 
-BootstrapVueNext form component and helper components that optionally support inline form styles and
-validation states. Pair them up with other BootstrapVueNext form control components for an easy
-customized, and responsive, layout with a consistent look and feel.
+Компонент формы BootstrapVueNext и вспомогательные компоненты, которые опционально поддерживают inline-стили и состояния валидации. Используйте их вместе с другими компонентами управления формой BootstrapVueNext для лёгкой настройки, адаптивной верстки и единого внешнего вида.
 
 </PageHeader>
 
-## Introduction to forms and controls
+## Введение в формы и элементы управления
 
-Be sure to use an appropriate `type` on all inputs (e.g., `email` for email address or `number` for
-numerical information) to take advantage of newer input controls like email verification, number
-selection, and more.
+Обязательно указывайте подходящий `type` для всех полей (например, `email` для email-адреса или `number` для числовых данных), чтобы использовать современные элементы управления, такие как проверка email, выбор числа и др.
 
-Here is a quick example to demonstrate BootstrapVueNext's form styles. Keep reading for documentation on
-supported components, form layout, and more.
+Ниже приведён пример стилей формы BootstrapVueNext. Далее — документация по поддерживаемым компонентам, макетам форм и др.
 
 <<< DEMO ./demo/FormOverview.vue
 
-## Inline form
+## Inline-форма
 
-Bootstrap 5 has dropped form-specific layout classes for the grid system. See the
-[Bootstrap 5 Changelog](https://getbootstrap.com/docs/5.3/migration/#forms).
+В Bootstrap 5 классы для макета форм заменены на grid-систему. См. [Changelog Bootstrap 5](https://getbootstrap.su/docs/5.3/migration/#forms).
 
-To create horizontal forms with the grid add the `.row` class to form groups and use the `.col-_-_` classes
-to specify the width of your labels and controls. Be sure to add `.col-form-label` to your `<label>`s as well,
-so they’re vertically centered with their associated form controls.
+Для создания горизонтальных форм используйте класс `.row` для групп и классы `.col-_-_` для задания ширины меток и полей. Не забудьте добавить `.col-form-label` к `<label>`, чтобы они были выровнены по вертикали с полями.
 
-You may need to manually address the width and alignment of individual form controls with
-[spacing utilities](/docs/reference/spacing-classes) (as shown below). Lastly, be sure to always
-include a `<label>` with each form control, even if you need to hide it from non-screenreader
-visitors with class `.visually-hidden`.
+Возможно, потребуется вручную настроить ширину и выравнивание отдельных полей с помощью [утилит отступов](/docs/reference/spacing-classes) (см. пример ниже). Также всегда добавляйте `<label>` к каждому полю, даже если нужно скрыть его от обычных пользователей с помощью `.visually-hidden`.
 
 <<< DEMO ./demo/FormInline.vue#template{vue-html}
 
-Custom form controls and selects are also supported.
+Поддерживаются и кастомные элементы управления и select.
 
 <<< DEMO ./demo/FormInlineSelect.vue
 
-## Floating Labels
+## Плавающие метки
 
-Wrap a `BFormInput`, `BFormTextarea`, or `BFormSelect` in a `BFormFloatingLable` to enable floating labesl. A `placeholder`
-is required on each input in order to make the Bootstrap 5 `css` work correctly.
+Обёрните `BFormInput`, `BFormTextarea` или `BFormSelect` в `BFormFloatingLable`, чтобы включить плавающие метки. Для корректной работы Bootstrap 5 требуется указать `placeholder` для каждого поля.
 
 <<< DEMO ./demo/FormFloatingLabels.vue#template{vue-html}
 
-Floating labels work correclty for disable state and readonly states. In addition to styled textual inputs, floating labels
-also work for plaintext inputs, textareas, input groups and selects.
-See the [Bootstrap 5 documentation](https://getbootstrap.com/docs/5.3/forms/floating-labels) for more details.
+Плавающие метки корректно работают для состояний disabled и readonly. Помимо текстовых полей, они поддерживаются для plaintext, textarea, input group и select. Подробнее см. в [документации Bootstrap 5](https://getbootstrap.su/docs/5.3/forms/floating-labels).
 
-The `floating` attribute on the `BForm` component only applies to single form controls like this:
+Атрибут `floating` на компоненте `BForm` применяется только к одиночным полям:
 
 <<< DEMO ./demo/FormSingleFloat.vue#template{vue-html}
 
-## Accessibility
+## Доступность
 
-Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of
-assistive technologies. The simplest way to achieve this is to use a `<label>` element, or—in the case of buttons—to
-include sufficiently descriptive text as part of the `<button>...</button>` content.
+Убедитесь, что у всех элементов управления формой есть доступное имя, чтобы их назначение было понятно пользователям вспомогательных технологий. Самый простой способ — использовать элемент `<label>`, либо для кнопок — добавить описательный текст внутри `<button>...</button>`.
 
-For situations where it’s not possible to include a visible `<label>` or appropriate text content, there are
-alternative ways of still providing an accessible name, such as:
+Если невозможно добавить видимый `<label>` или текст, используйте альтернативные способы:
 
-- `<label>` elements hidden using the `.visually-hidden` class
-- Pointing to an existing element that can act as a label using `aria-labelledby`
-- Providing a title attribute
-- Explicitly setting the accessible name on an element using aria-label
+- `<label>`, скрытый с помощью `.visually-hidden`
+- Указание существующего элемента как метки через `aria-labelledby`
+- Атрибут title
+- Явное задание имени через aria-label
 
-If none of these are present, assistive technologies may resort to using the placeholder attribute as a fallback for
-the accessible name on `<input>` and `<textarea>` elements. The examples in this section provide a few suggested, case-specific approaches.
+Если ничего из этого не указано, вспомогательные технологии могут использовать placeholder как имя для `<input>` и `<textarea>`. Примеры ниже показывают рекомендуемые подходы для разных случаев.
 
-While using visually hidden content (`.visually-hidden`, `aria-label`, and even placeholder content, which
-disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may
-still be problematic for certain users. Some form of visible label is generally the best approach,
-both for accessibility and usability.
+Хотя скрытый текст (`.visually-hidden`, `aria-label`, а также placeholder, который исчезает при вводе) помогает пользователям вспомогательных технологий, отсутствие видимой метки может быть неудобно для некоторых пользователей. Лучше всего использовать видимую метку — это полезно и для доступности, и для удобства.
 
-## Related form control and layout components
+## Связанные компоненты для форм и макета
 
-See also:
+См. также:
 
-- [`BFormInput`](/docs/components/form-input) Textual and text-like inputs
-- [`BFormTextarea`](/docs/components/form-textarea) Text area inputs
-- [`BFormSelect`](/docs/components/form-select) Select input
-- [`BFormRadio`](/docs/components/form-radio) Radio Inputs
-- [`BFormCheckbox`](/docs/components/form-checkbox) Checkbox Inputs
-- [`BFormFile`](/docs/components/form-file) File Input
-- [`BFormSpinbutton`](/docs/components/form-spinbutton) Numerical range spinbutton input
-- [`BFormTags`](/docs/components/form-tags) Customizable tag input
-- `BFormRating` Star rating custom form input and display (<NotYetImplemented/>)
-- [`BButton`](/docs/components/button) Buttons
-- [`BFormGroup`](/docs/components/form-group) Form Input wrapper to generate form-groups that
-  support labels, help text and feedback
-- [`BInputGroup`](/docs/components/input-group) Form Inputs with add-ons
-- [`BFormRow`](/docs/components/grid-system) Create grid rows and columns with tighter margins
-  (available via the [Layout and grid components](/docs/components/grid-system))
+- [`BFormInput`](/docs/components/form-input) — текстовые и подобные поля
+- [`BFormTextarea`](/docs/components/form-textarea) — многострочные поля
+- [`BFormSelect`](/docs/components/form-select) — выпадающие списки
+- [`BFormRadio`](/docs/components/form-radio) — радиокнопки
+- [`BFormCheckbox`](/docs/components/form-checkbox) — чекбоксы
+- [`BFormFile`](/docs/components/form-file) — выбор файла
+- [`BFormSpinbutton`](/docs/components/form-spinbutton) — числовой спиннер
+- [`BFormTags`](/docs/components/form-tags) — ввод тегов
+- `BFormRating` — рейтинг в виде звёзд (<NotYetImplemented/>)
+- [`BButton`](/docs/components/button) — кнопки
+- [`BFormGroup`](/docs/components/form-group) — обёртка для полей с меткой, подсказкой и обратной связью
+- [`BInputGroup`](/docs/components/input-group) — поля с аддонами
+- [`BFormRow`](/docs/components/grid-system) — строки и колонки с уменьшенными отступами (см. [Layout и grid](/docs/components/grid-system))
 
-## Form helper components
+## Вспомогательные компоненты для форм
 
-The following helper components are available with the `Form` plugin:
+Вместе с плагином Form доступны следующие компоненты:
 
-- `BFormText` Help text blocks for inputs
-- `BFormInvalidFeedback` Invalid feedback text blocks for input `invalid` states
-- `BFormValidFeedback` Valid feedback text blocks for input `valid` states
-- `BFormDatalist` Easily create a `<datalist>` for use with `BFormInput` or plain `<input>`
+- `BFormText` — блоки подсказок для полей
+- `BFormInvalidFeedback` — текст для невалидных состояний
+- `BFormValidFeedback` — текст для валидных состояний
+- `BFormDatalist` — быстрое создание `<datalist>` для `BFormInput` или обычного `<input>`
 
-### Form text helper
+### Вспомогательный компонент для текста
 
-Display a block of help text below an input with the `BFormText` helper component. text is
-displayed with a muted color and slightly smaller font-size.
+Покажите подсказку под полем с помощью компонента `BFormText`. Текст отображается приглушённым цветом и меньшим шрифтом.
 
 ::: info Tip
-Help text should be explicitly associated with the form control it relates to using the
-`aria-describedby` attribute. This will ensure that assistive technologies, such as screen readers,
-will announce this help text when the user focuses or enters the control.
+Подсказку следует явно связать с полем через атрибут `aria-describedby`, чтобы вспомогательные технологии (например, экранные читалки) озвучивали её при фокусе на поле.
 :::
 
 <<< DEMO ./demo/FormTextHelper.vue#template{vue-html}
 
-### Feedback helpers
+### Вспомогательные компоненты для обратной связи
 
-The `BFormValidFeedback` and `BFormInvalidFeedback` helper components will display
-feedback (based on input state) as a block of colored text. They rely on being placed after an input
-(sibling) and will show based on the browser native validation state of the input. To force them to
-show, set the prop `force-show` to `true`, or bind the controls `state` to the `state` prop of the
-feedback helper, or set the `was-validated` class on a parent element (such as a form). See the
-[**Validation**](#validation) section below for additional details.
+Компоненты `BFormValidFeedback` и `BFormInvalidFeedback` показывают обратную связь (в зависимости от состояния поля) как цветной текст. Они должны располагаться после поля (быть его «соседом») и отображаются на основе нативного состояния валидации браузера. Чтобы показать их принудительно, используйте пропс `force-show`, или привяжите состояние поля к пропсу `state` компонента обратной связи, или добавьте класс `was-validated` родителю (например, форме). Подробнее см. раздел [**Валидация**](#validation).
 
-Use the optional Boolean prop `tooltip` to change the display from a block to a static tooltip
-style. The feedback will typically appear below the form control. When this mode is enabled, it is
-important that the parent container have a `position: relative:` css style (or `position-relative`
-class). Note that tooltip style feedback may, since its positioning is static, obscure other inputs,
-labels, etc.
+Используйте булевый пропс `tooltip`, чтобы изменить отображение с блока на статический tooltip. Обычно обратная связь появляется под полем. В этом режиме важно, чтобы родитель имел стиль `position: relative;` (или класс `position-relative`). Обратите внимание: tooltip может перекрывать другие поля, метки и т.д.
 
 :::info NOTE
-Some form controls, such as [`BFormRadio`](/docs/components/form-radio#contextual-states) and
-[`BFormCheckbox`](/docs/components/form-checkbox#contextual-states) have wrapper elements which will prevent
-the feedback text from automatically showing (as the feedback component is not a direct sibling of the form
-control's input). Use the feedback component's `state` prop (bound to the state of the form control)
-or the `force-show` prop to display the feedback.
+Некоторые элементы (например, [`BFormRadio`](/docs/components/form-radio#contextual-states) и [`BFormCheckbox`](/docs/components/form-checkbox#contextual-states)) имеют обёртки, которые мешают автоматическому отображению обратной связи (так как компонент обратной связи не является соседом поля). Используйте пропс `state` (привязанный к состоянию поля) или `force-show`, чтобы показать обратную связь.
 :::
 
 <<< DEMO ./demo/FormFeedbackHelper.vue
 
-### Datalist helper
+### Вспомогательный компонент Datalist
 
-For browsers that support
-[`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) elements, the
-`<BFormDatalist>` helper component will allow you to quickly create a `<datalist>` and child
-`<option>` elements via an array passed to the `options` prop.
+Для браузеров, поддерживающих [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist), компонент `<BFormDatalist>` позволяет быстро создать `<datalist>` и дочерние `<option>` через массив в пропсе `options`.
 
-You may also manually provide `<option>` elements inside `<BFormDatalist>`. They will appear below
-any `<option>` elements generated from the `options` prop. Or use the `first` slot to place options
-above the generated options.
+Можно также вручную добавить `<option>` внутрь `<BFormDatalist>`. Они появятся ниже сгенерированных через `options`. Или используйте слот `first`, чтобы разместить опции выше сгенерированных.
 
 <<< DEMO ./demo/FormDataHelper.vue
 
-See also:
+См. также:
 
-- [`<BFormInput> datalist`](/docs/components/form-input#datalist-support) for datalist usage.
-- [`<BFormSelect>` `options` prop](/docs/components/form-select#options-property) docs for details
-  on the formats and helper props associated with `options`. Note that `<BFormDatalist>` only support
-  a flat list of `BFormSelectOptions`, unlike `<BFormSelect>` which support a heirarchy of
-  `BFormSelectOption` and `BFormSelectOptionGroup`.
+- [`<BFormInput> datalist`](/docs/components/form-input#datalist-support) — использование datalist
+- [`<BFormSelect>` пропс `options`](/docs/components/form-select#options-property) — форматы и вспомогательные пропсы для options. Обратите внимание: `<BFormDatalist>` поддерживает только плоский список опций, в отличие от `<BFormSelect>`, который поддерживает и группы.
 
-## Validation
+## Валидация
 
-Disable browser native HTML5 validation by setting the `novalidate` prop to true on `BForm`.
+Отключите нативную HTML5-валидацию, установив пропс `novalidate` в true на `BForm`.
 
-Set the `validated` prop, on `BForm`, to `true` to add the Bootstrap v5 `.was-validated` class to
-the form to trigger validation states.
+Установите пропс `validated` на `BForm` в `true`, чтобы добавить класс `.was-validated` и включить стили валидации Bootstrap v5.
 
-All form controls support a `state` prop, which can be used to set the form control into one
-of three contextual states:
+Все элементы управления формой поддерживают пропс `state`, который переводит поле в одно из трёх контекстных состояний:
 
-- `false` (denotes invalid state) is great for when there is a blocking or required field. A user
-  must fill in this field properly to submit the form
-- `true` (denotes valid state) is ideal for situations when you have per-field validation throughout
-  a form and want to encourage a user through the rest of the fields
-- `null` Displays no validation state (neither valid nor invalid)
+- `false` (некорректное состояние) — для обязательных или блокирующих полей. Пользователь должен корректно заполнить это поле для отправки формы
+- `true` (корректное состояние) — для поэтапной валидации, чтобы поощрять пользователя при заполнении формы
+- `null` — не отображает состояние валидации
 
-Refer to the
-[Bootstrap v5 Form Validation Documentation](https://getbootstrap.com/docs/5.3/forms/validation/)
-for details on the Bootstrap v5 validation states.
+Подробнее см. в [документации Bootstrap v5 по валидации форм](https://getbootstrap.su/docs/5.3/forms/validation/).
 
 <ComponentReference :data="data" />
 

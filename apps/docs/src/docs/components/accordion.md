@@ -1,36 +1,36 @@
-# Accordion
+# Аккордеон
 
 <PageHeader>
 
-Build vertically collapsing accordions in combination with `BCollapse` component.
+Создавайте вертикально сворачиваемые аккордеоны в сочетании с компонентом `BCollapse`.
 
 </PageHeader>
 
-## How it works
+## Как это работает
 
-The `BAccordionItem` uses the `BCollapse` component internally to make it collapsible. To render an accordion that’s expanded, add the `visible` property on the `BAccordionItem` component.
+`BAccordionItem` использует компонент `BCollapse` для обеспечения сворачиваемости. Чтобы отобразить раскрытый аккордеон, добавьте свойство `visible` к компоненту `BAccordionItem`.
 
 <BAlert variant="info" :model-value="true" class="my-5">
 
-The animation effect of this component is dependent on the prefers-reduced-motion media query. See the [reduced motion section of bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion).
+Анимация этого компонента зависит от медиа-запроса prefers-reduced-motion. Подробнее см. [раздел о снижении анимации в документации по доступности Bootstrap](https://getbootstrap.su/docs/5.3/getting-started/accessibility/#reduced-motion).
 
 </BAlert>
 
-## Example
+## Пример
 
-Click the accordions below to expand/collapse the accordion content.
+Нажмите на аккордеоны ниже, чтобы раскрыть/свернуть содержимое.
 
 <<< DEMO ./demo/AccordionOverview.vue#template{vue-html}
 
-### Flush
+### Без отступов
 
-Add `flush` property to remove the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container.
+Добавьте свойство `flush`, чтобы убрать фон, некоторые границы и скругления, чтобы аккордеон был вровень с контейнером.
 
 <<< DEMO ./demo/AccordionFlush.vue#template{vue-html}
 
-### Always open
+### Всегда открыто
 
-Add `free` property to make accordion items stay open when another item is opened.
+Добавьте свойство `free`, чтобы элементы аккордеона оставались открытыми при открытии других элементов.
 
 <<< DEMO ./demo/AccordionFree.vue#template{vue-html}
 

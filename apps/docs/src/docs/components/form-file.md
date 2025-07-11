@@ -1,23 +1,23 @@
-# Form File
+# Файл формы
 
 <PageHeader>
 
-File input control that supports single and multiple file modes
+Элемент для выбора файлов, поддерживающий одиночный и множественный режимы
 
 </PageHeader>
 
 <BAlert :model-value="true" variant="danger">
-The current variation is subject to change pre v1.0. The implementation may change to become closer to the Bootstrap-vue implementation based on feedback <BLink target="_blank" href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/discussions/1213" rel="noopener">vote here</BLink>
+Текущая реализация может измениться до версии v1.0. Реализация может быть изменена и стать ближе к реализации Bootstrap-vue на основе отзывов <BLink target="_blank" href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/discussions/1213" rel="noopener">проголосуйте здесь</BLink>
 </BAlert>
 
-## Single File Mode
+## Одиночный режим
 
-The default behavior is single file mode. While using single file mode the `modelValue` will be a single `File` object
+По умолчанию используется одиночный режим выбора файла. В этом режиме `modelValue` будет одним объектом `File`
 
 <HighlightCard>
   <BFormFile v-model="first" label="Hello!" />
   <div class="mt-3">
-    File: <strong>{{ first }}</strong>
+    Файл: <strong>{{ first }}</strong>
   </div>
   <template #html>
 
@@ -25,7 +25,7 @@ The default behavior is single file mode. While using single file mode the `mode
 <template>
   <BFormFile v-model="file" label="Hello!" />
   <div class="mt-3">
-    Files: <strong>{{ file }}</strong>
+    Файлы: <strong>{{ file }}</strong>
   </div>
 </template>
 
@@ -37,14 +37,14 @@ const file = ref<null | File>(null)
   </template>
 </HighlightCard>
 
-## Multiple File Mode
+## Множественный режим
 
-To toggle multiple file mode, simply set the `multiple` prop to `true`. While in multiple file mode, the `modelValue` will be a `File[]`, even if only one file is selected
+Чтобы включить множественный режим, просто установите пропс `multiple` в `true`. В этом режиме `modelValue` будет массивом `File[]`, даже если выбран только один файл
 
 <HighlightCard>
   <BFormFile v-model="second" multiple />
   <div class="mt-3">
-    Files: <strong>{{ second }}</strong>
+    Файлы: <strong>{{ second }}</strong>
   </div>
   <template #html>
 
@@ -52,7 +52,7 @@ To toggle multiple file mode, simply set the `multiple` prop to `true`. While in
 <template>
   <BFormFile v-model="files" multiple />
   <div class="mt-3">
-    Files: <strong>{{ files }}</strong>
+    Файлы: <strong>{{ files }}</strong>
   </div>
 </template>
 
@@ -64,14 +64,14 @@ const files = ref<null | File[]>(null)
   </template>
 </HighlightCard>
 
-## Limiting to certain file types
+## Ограничение типов файлов
 
-You can limit the file types by setting the `accept` prop. The `accept` attribute is a csv list of acceptable types. This can be a `string` or `string[]`. If a `string[]` is inputted, it simply gets joined as a csv list
+Вы можете ограничить типы файлов с помощью пропса `accept`. Атрибут `accept` — это csv-список допустимых типов. Это может быть `string` или `string[]`. Если передан `string[]`, он будет объединён в csv-строку
 
 <HighlightCard>
   <BFormFile v-model="third" accept="image/*" />
   <div class="mt-3">
-    File: <strong>{{ third }}</strong>
+    Файл: <strong>{{ third }}</strong>
   </div>
   <template #html>
 
@@ -79,7 +79,7 @@ You can limit the file types by setting the `accept` prop. The `accept` attribut
 <template>
   <BFormFile v-model="file" accept="image/*" />
   <div class="mt-3">
-    Files: <strong>{{ file }}</strong>
+    Файлы: <strong>{{ file }}</strong>
   </div>
 </template>
 
@@ -91,14 +91,14 @@ const file = ref<null | File>(null)
   </template>
 </HighlightCard>
 
-## Drag and Drop Support
+## Поддержка drag and drop
 
-Drag and drop support uses the browsers default behavior. You can explicitly disable drag and drop by using the `noDrop` prop
+Поддержка drag and drop использует стандартное поведение браузера. Вы можете явно отключить drag and drop с помощью пропса `noDrop`
 
 <HighlightCard>
   <BFormFile v-model="fourth" no-drop />
   <div class="mt-3">
-    File: <strong>{{ fourth }}</strong>
+    Файл: <strong>{{ fourth }}</strong>
   </div>
   <template #html>
 
@@ -106,7 +106,7 @@ Drag and drop support uses the browsers default behavior. You can explicitly dis
 <template>
   <BFormFile v-model="file" no-drop />
   <div class="mt-3">
-    Files: <strong>{{ file }}</strong>
+    Файлы: <strong>{{ file }}</strong>
   </div>
 </template>
 
@@ -118,9 +118,9 @@ const file = ref<null | File>(null)
   </template>
 </HighlightCard>
 
-## Sizing
+## Размеры
 
-You can modify the size of the form control by using the `size` prop
+Вы можете изменить размер элемента управления с помощью пропса `size`
 
 <HighlightCard>
   <BFormFile class="mt-3" size="sm" />
@@ -138,15 +138,15 @@ You can modify the size of the form control by using the `size` prop
   </template>
 </HighlightCard>
 
-## Label
+## Метка
 
-You can add a label above the input by using the `label` prop or the `label` slot
+Вы можете добавить метку над инпутом с помощью пропса `label` или слота `label`
 
 <HighlightCard>
   <BFormFile label="I am first!" />
   <BFormFile>
     <template #label>
-      I am second!
+      Я второй!
     </template>
   </BFormFile>
 
@@ -156,7 +156,7 @@ You can add a label above the input by using the `label` prop or the `label` slo
 <BFormFile class="mt-3" label="I am first!" />
 <BFormFile class="mt-3">
   <template #label>
-    I am second!
+    Я второй!
   </template>
 </BFormFile>
 ```
@@ -164,19 +164,19 @@ You can add a label above the input by using the `label` prop or the `label` slo
   </template>
 </HighlightCard>
 
-## Directory Mode
+## Режим выбора директории
 
-By adding the `directory` prop, a user can select directories instead of files
+Добавив пропс `directory`, пользователь может выбирать директории вместо файлов
 
 <BAlert variant="danger" :model-value="true">
-  Directory mode is a non-standard attribute in the HTML spec. All major browsers have chosen too support it, but it may not function correctly for browsers that have chosen not to implement it. Use with caution
+  Режим выбора директории — нестандартный атрибут в спецификации HTML. Все основные браузеры решили поддерживать его, но он может работать некорректно в браузерах, где он не реализован. Используйте с осторожностью
 </BAlert>
 
-### Example to be Written
+### Пример будет добавлен
 
-## Autofocus
+## Автофокус
 
-If you set the `autofocus` prop to true, the input will be focused when the component is inserted
+Если вы установите пропс `autofocus` в true, инпут будет в фокусе при вставке компонента
 
 <HighlightCard>
   <BFormFile class="mt-3" autofocus />
@@ -190,9 +190,9 @@ If you set the `autofocus` prop to true, the input will be focused when the comp
   </template>
 </HighlightCard>
 
-## Contextual State
+## Контекстное состояние
 
-You can use the `state` prop to provide visual feedback on the state of the input
+Вы можете использовать пропс `state` для визуальной индикации состояния инпута
 
 <HighlightCard>
   <BFormFile class="mt-3" :state="false" />
@@ -208,17 +208,17 @@ You can use the `state` prop to provide visual feedback on the state of the inpu
   </template>
 </HighlightCard>
 
-## Modifying the file selection
+## Изменение выбранных файлов
 
-With inputs that are of type `file`, the value is strictly `uni-directional`. Meaning that you cannot change the value of the input via JavaScript. You can change the value of the `v-model`, and this will work for an "outside view", however, the actual `input` element will not have its [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList) changed. This is for security reasons as a malicious script could attempt to read and steal documents
+Для инпутов типа `file` значение строго «однонаправленное». Это значит, что вы не можете изменить значение инпута через JavaScript. Вы можете изменить значение `v-model`, и это будет работать для «внешнего вида», однако реальный элемент `input` не изменит свой [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList). Это сделано по соображениям безопасности, чтобы вредоносный скрипт не мог получить доступ к вашим документам
 
-## Exposed functions
+## Экспортируемые функции
 
-The BFormFile exposes functions to control the component: `focus(), blur(), reset()`. These are accessed through the [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs).
+BFormFile экспортирует функции для управления компонентом: `focus(), blur(), reset()`. Доступ к ним осуществляется через [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs).
 
-1. Focus: focuses the file input
-2. Blur: blurs the file input focus
-3. Reset: Resets the file selection so that no file is selected
+1. focus: фокусирует инпут для выбора файла
+2. blur: снимает фокус с инпута
+3. reset: сбрасывает выбор файлов, чтобы ни один файл не был выбран
 
 <ComponentReference :data="data" />
 

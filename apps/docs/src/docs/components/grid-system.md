@@ -1,133 +1,92 @@
-# Grid System
+# Система сетки
 
 <PageHeader>
 
-Use the powerful mobile-first flexbox grid (via the `<BContainer>`, `<BRow>` and
-`<BCol>` components) to build layouts of all shapes and sizes thanks to a twelve column system,
-five default responsive tiers, CSS Sass variables and mixins, and dozens of predefined classes.
+Используйте мощную мобильную flexbox-сетку (через компоненты `<BContainer>`, `<BRow>` и `<BCol>`) для построения макетов любой формы и размера благодаря двенадцатиколончатой системе, пяти стандартным адаптивным уровням, CSS Sass-переменным и миксинам, а также десяткам предопределённых классов.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) and is fully responsive. Below is an example and an in-depth look at how the grid comes together.
+Система сетки Bootstrap использует серию контейнеров, рядов и колонок для размещения и выравнивания контента. Она построена на [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) и полностью адаптивна. Ниже приведён пример и подробное описание того, как работает сетка.
 
 <<< DEMO ./demo/GridOverview.vue#template{vue-html}
 
-The above example creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with the parent `<BContainer>`.
+В приведённом выше примере создаются три колонки одинаковой ширины на всех устройствах и экранах с помощью наших предопределённых классов сетки. Эти колонки центрируются на странице с помощью родительского `<BContainer>`.
 
 ::: tip
-New to or unfamiliar with flexbox? [Read this CSS Tricks flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background) for background, terminology, guidelines, and code snippets.
+Новичок или не знакомы с flexbox? [Прочитайте это руководство по flexbox на CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background) для ознакомления с терминологией, рекомендациями и примерами кода.
 :::
 
-## How it works
+## Как это работает
 
-Breaking it down, here's how it works:
+Разберём по шагам, как это работает:
 
-- Containers provide a means to center and horizontally pad your site's contents. Use
-  `<BContainer>` for a responsive pixel width, `<BContainer fluid>` for `width: 100%` across all
-  viewport and device sizes or set `fluid` to a [`Breakpoint`](/docs/types#breakpoint) value for a
-  responsive container (e.g. `<BContainer fluid='md'`).
-- Rows are wrappers for columns. Each column has horizontal `padding` (called a gutter) for
-  controlling the space between them. This `padding` is then counteracted on the rows with negative
-  margins. This way, all the content in your columns is visually aligned down the left side.
-- In a grid layout, content must be placed within columns and only columns may be immediate children
-  of rows.
-- Thanks to flexbox, grid columns without a set width will automatically layout with equal widths.
-  For example, four instances of `<BCol sm="auto">` will each automatically be 25% wide for small
-  breakpoints.
-- Column prop `cols` indicates the number of columns you'd like to use out of the possible 12 per
-  row regardless of breakpoint (starting at breakpoint `xs`). So, if you want three equal-width
-  columns at any breakpoint, you can use `<BCol cols="4">`.
-- Column props `sm`, `md`, `lg`, `xl`, `xxl` indicate the number of columns you'd like to use out of the
-  possible 12 per row, at the various breakpoints. So, if you want three equal-width columns at
-  breakpoint `sm`, you can use `<BCol sm="4">`. the special value `auto` can be used to take up the
-  remaining available column space in a row.
-- Column `width`s are set in percentages, so they're always fluid and sized relative to their parent
-  element.
-- Columns have horizontal `padding` to create the gutters between individual columns, however, you
-  can remove the `margin` from `<BRow>` and `padding` from `<BCol>` by setting the `no-gutters`
-  prop on `<BRow>`.
-- To make the grid responsive, there are six grid breakpoints, one for each responsive breakpoint:
-  all breakpoints (extra small), small, medium, large, extra large, and xxl.
-- Grid breakpoints are based on minimum width media queries, meaning **they apply to that one
-  breakpoint and all those above it** (e.g., `<BCol sm="4">` applies to small, medium, large, and
-  extra large devices, but not the first `xs` breakpoint).
-- You can use predefined grid classes or Sass mixins for more semantic markup. See the [Bootstrap 5 docs](https://getbootstrap.com/docs/5.3/layout/grid/#sass-variables) for details
+- Контейнеры позволяют центрировать и горизонтально отступать содержимое сайта. Используйте `<BContainer>` для адаптивной ширины в пикселях, `<BContainer fluid>` для `width: 100%` на всех размерах экрана или задайте `fluid` как [`Breakpoint`](/docs/types#breakpoint) для адаптивного контейнера (например, `<BContainer fluid='md'>`).
+- Ряды служат обёрткой для колонок. Каждая колонка имеет горизонтальный `padding` (называемый «gutter») для управления расстоянием между ними. Этот `padding` компенсируется у рядов отрицательными отступами. Таким образом, всё содержимое ваших колонок визуально выравнивается по левому краю.
+- В сеточном макете контент должен размещаться внутри колонок, и только колонки могут быть непосредственными потомками рядов.
+- Благодаря flexbox, колонки сетки без заданной ширины автоматически распределяются с одинаковой шириной. Например, четыре `<BCol sm="auto">` автоматически займут по 25% ширины для малых экранов.
+- Пропс колонки `cols` указывает количество колонок из возможных 12 в ряду, независимо от брейкпоинта (начиная с `xs`). Если вы хотите три колонки одинаковой ширины на любом брейкпоинте, используйте `<BCol cols="4">`.
+- Пропсы колонок `sm`, `md`, `lg`, `xl`, `xxl` указывают количество колонок из возможных 12 в ряду на соответствующих брейкпоинтах. Например, для трёх колонок одинаковой ширины на брейкпоинте `sm` используйте `<BCol sm="4">`. Специальное значение `auto` позволяет занять оставшееся пространство в ряду.
+- Ширина колонок задаётся в процентах, поэтому они всегда гибкие и зависят от родительского элемента.
+- Колонки имеют горизонтальный `padding` для создания промежутков между ними, однако вы можете убрать `margin` у `<BRow>` и `padding` у `<BCol>`, установив пропс `no-gutters` у `<BRow>`.
+- Для адаптивности сетки предусмотрено шесть брейкпоинтов: все (extra small), small, medium, large, extra large и xxl.
+- Брейкпоинты сетки основаны на media-запросах с минимальной шириной, то есть **они применяются к этому и всем большим брейкпоинтам** (например, `<BCol sm="4">` применяется к small, medium, large и extra large устройствам, но не к самому первому `xs`).
+- Вы можете использовать предопределённые классы сетки или Sass-миксины для более семантической разметки. Подробнее см. в [документации Bootstrap 5](https://getbootstrap.su/docs/5.3/layout/grid/#sass-variables).
 
-Be aware of the limitations and [bugs around flexbox](https://github.com/philipwalton/flexbugs),
-like the
-[inability to use some HTML elements as flex containers](https://github.com/philipwalton/flexbugs#flexbug-9).
+Обратите внимание на ограничения и [ошибки flexbox](https://github.com/philipwalton/flexbugs), например, [невозможность использовать некоторые HTML-элементы как flex-контейнеры](https://github.com/philipwalton/flexbugs#flexbug-9).
 
-## Containers
+## Контейнеры
 
-`<BContainer>` is the most basic layout element in Bootstrap. Choose from a
-responsive, fixed-width container (meaning its `max-width` changes at each breakpoint) by default,
-fluid-width (meaning it's 100% wide all the time) by setting 'fluid' prop, or responsive
-containers where the container is fluid up until a specific breakpoint.
+`<BContainer>` — это самый базовый элемент макета в Bootstrap. По умолчанию это адаптивный контейнер с фиксированной шириной (его `max-width` меняется на каждом брейкпоинте). Можно сделать его на всю ширину (fluid), установив пропс 'fluid', или адаптивным до определённого брейкпоинта.
 
-While containers can be nested, most layouts do not require a nested container.
+Хотя контейнеры можно вкладывать друг в друга, в большинстве макетов это не требуется.
 
-The default breakpoint widths can be configured using Bootstrap V5.x SCSS variables. See the
-[Grid options](#grid-options) section below.
+Стандартные ширины брейкпоинтов можно настроить с помощью SCSS-переменных Bootstrap V5.x. См. раздел [Параметры сетки](#grid-options) ниже.
 
-### Default container
+### Контейнер по умолчанию
 
-The default `<BContainer>` is a responsive, fixed-width container, meaning its `max-width` changes
-at each viewport width breakpoint.
+Стандартный `<BContainer>` — это адаптивный контейнер с фиксированной шириной, то есть его `max-width` меняется на каждом брейкпоинте.
 
 <<< FRAGMENT ./demo/ContainerDefault.vue#template{vue-html}
 
-### Fluid width container
+### Контейнер на всю ширину
 
-Using the `fluid` prop on `<BContainer>` will render a container that is always 100% width,
-regardless of viewport breakpoint.
+Использование пропса `fluid` у `<BContainer>` создаёт контейнер, который всегда занимает 100% ширины, независимо от брейкпоинта.
 
 <<< FRAGMENT ./demo/ContainerFluid.vue#template{vue-html}
 
-Setting the `fluid` prop to true (or an empty string) is equivalent to the Bootstrap
-`.container-fluid` class.
+Установка пропса `fluid` в true (или пустую строку) эквивалентна классу Bootstrap `.container-fluid`.
 
-### Responsive fluid containers
+### Адаптивные fluid-контейнеры
 
-Responsive containers allow you to specify a container that is 100%
-wide (fluid) until particular breakpoint is reached at which point a `max-width` is applied. For
-example, setting prop `fluid` to `'md'` will render a container that is 100% wide to start until the
-`'md'` breakpoint is reached, at which point it will become a standard non-fluid container.
+Адаптивные контейнеры позволяют указать контейнер, который будет 100% ширины (fluid) до достижения определённого брейкпоинта, после чего применяется `max-width`. Например, если задать пропс `fluid` равным `'md'`, контейнер будет 100% ширины до брейкпоинта `'md'`, после чего станет стандартным не-fluid контейнером.
 
 <<< FRAGMENT ./demo/ContainerResponsive.vue#template{vue-html}
 
-Setting the fluid prop to a breakpoint name translates to the Bootstrap class
-`.container-{breakpoint}`.
+Установка пропса fluid в имя брейкпоинта соответствует классу Bootstrap `.container-{breakpoint}`.
 
-Refer to the [Grid options section](#grid-options) table below for the default container width
-values.
+См. таблицу в разделе [Параметры сетки](#grid-options) ниже для значений ширины контейнера по умолчанию.
 
-## Rows
+## Ряды
 
-Rows are wrappers for [columns](#columns). Each column has horizontal padding (called a
-gutter) for controlling the space between them. This padding is then counteracted on the rows with
-negative margins. This way, all the content in your columns is visually aligned down the left side.
+Ряды служат обёрткой для [колонок](#columns). Каждая колонка имеет горизонтальный отступ (gutter) для управления расстоянием между ними. Этот отступ компенсируется у рядов отрицательными margin. Таким образом, всё содержимое ваших колонок визуально выравнивается по левому краю.
 
-You can remove the margin from `<BRow>` and padding from `<BCol>` by setting the `no-gutters` prop
-on `<BRow>`.
+Вы можете убрать margin у `<BRow>` и padding у `<BCol>`, установив пропс `no-gutters` у `<BRow>`.
 
 ::: info
-`<BFormRow>` is deprecated, see our [migration guide](/docs/migration-guide#bform) for details.
+`<BFormRow>` устарел, см. наш [гайд по миграции](/docs/migration-guide#bform) для подробностей.
 :::
 
-## Columns
+## Колонки
 
-`<BCol>` Must be placed inside a `<BRow>` component, or an element (such as a `<div>`) that has
-the class `row` applied to it.
+`<BCol>` должен размещаться внутри компонента `<BRow>` или элемента (например, `<div>`), которому присвоен класс `row`.
 
-## Grid options
+## Параметры сетки
 
-While Bootstrap uses `em` or `rem` units for defining most sizes, `px`s are used for grid
-breakpoints and container widths. This is because the viewport width is in pixels and does not
-change with the [font size](https://drafts.csswg.org/mediaqueries-3/#units).
+В то время как Bootstrap использует единицы `em` или `rem` для большинства размеров, для брейкпоинтов сетки и ширины контейнера используются `px`. Это связано с тем, что ширина вьюпорта измеряется в пикселях и не зависит от [размера шрифта](https://drafts.csswg.org/mediaqueries-3/#units).
 
-See how aspects of the Bootstrap grid system work across multiple devices with a handy table.
+Посмотрите, как различные аспекты сетки Bootstrap работают на разных устройствах, с помощью удобной таблицы.
 
 <div class="table-responsive-sm">
   <table class="table table-bordered table-striped">
@@ -135,35 +94,35 @@ See how aspects of the Bootstrap grid system work across multiple devices with a
       <tr>
         <th></th>
         <th>
-          <strong>Extra small</strong> (xs)<br>
+          <strong>Очень малый</strong> (xs)<br>
           <code>&lt;576px</code>
         </th>
         <th>
-          <strong>Small</strong> (sm)<br>
+          <strong>Малый</strong> (sm)<br>
           <code>≥576px</code>
         </th>
         <th>
-          <strong>Medium</strong> (md)<br>
+          <strong>Средний</strong> (md)<br>
           <code>≥768px</code>
         </th>
         <th>
-          <strong>Large</strong> (lg)<br>
+          <strong>Большой</strong> (lg)<br>
           <code>≥992px</code>
         </th>
         <th>
-          <strong>Extra large</strong> (xl)<br>
+          <strong>Очень большой</strong> (xl)<br>
           <code>≥1200px</code>
         </th>
         <th>
-          <strong>Extra extra large</strong> (xl)<br>
+          <strong>Экстра большой</strong> (xl)<br>
           <code>≥1400px</code>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th class="text-left">Max container width</th>
-        <td>None (auto)</td>
+        <th class="text-left">Макс. ширина контейнера</th>
+        <td>Нет (auto)</td>
         <td>540px</td>
         <td>720px</td>
         <td>960px</td>
@@ -171,7 +130,7 @@ See how aspects of the Bootstrap grid system work across multiple devices with a
         <td>13200px</td>
       </tr>
       <tr>
-        <th class="text-left">Prop</th>
+        <th class="text-left">Пропс</th>
         <td><code>cols="*"</code></td>
         <td><code>sm="*"</code></td>
         <td><code>md="*"</code></td>
@@ -180,19 +139,19 @@ See how aspects of the Bootstrap grid system work across multiple devices with a
         <td><code>xxl="*"</code></td>
       </tr>
       <tr>
-        <th class="text-left"># of columns</th>
+        <th class="text-left">Кол-во колонок</th>
         <td colspan="6">12</td>
       </tr>
       <tr>
-        <th class="text-left">Gutter width</th>
-        <td colspan="6">30px (15px on each side of a column)</td>
+        <th class="text-left">Ширина gutter</th>
+        <td colspan="6">30px (15px с каждой стороны колонки)</td>
       </tr>
       <tr>
-        <th class="text-left">Nestable</th>
-        <td colspan="6">Yes</td>
+        <th class="text-left">Вложенность</th>
+        <td colspan="6">Да</td>
       </tr>
       <tr>
-        <th class="text-left">Offset</th>
+        <th class="text-left">Смещение</th>
         <td><code>offset="*"</code></td>
         <td><code>offset-sm="*"</code></td>
         <td><code>offset-md="*"</code></td>
@@ -201,7 +160,7 @@ See how aspects of the Bootstrap grid system work across multiple devices with a
         <td><code>offset-xxl="*"</code></td>
       </tr>
       <tr>
-        <th class="text-left">Order</th>
+        <th class="text-left">Порядок</th>
         <td><code>order="*"</code></td>
         <td><code>order-sm="*"</code></td>
         <td><code>order-md="*"</code></td>
@@ -213,234 +172,177 @@ See how aspects of the Bootstrap grid system work across multiple devices with a
   </table>
 </div>
 
-**Notes:**
+**Примечания:**
 
-- There is no `xs` prop. The `cols` prop refers to the `xs` (smallest) breakpoint.
-- The above breakpoint values are Bootstrap defaults. They can be customized via
-  [SCSS variables](<[/docs/reference/theming](https://getbootstrap.com/docs/5.3/layout/grid/#customizing-the-grid)>).
+- Нет пропса `xs`. Пропс `cols` относится к самому маленькому брейкпоинту `xs`.
+- Значения брейкпоинтов выше — значения по умолчанию Bootstrap. Их можно изменить через [SCSS-переменные](<[/docs/reference/theming](https://getbootstrap.su/docs/5.3/layout/grid/#customizing-the-grid)>).
 
-### Container sizes
+### Размеры контейнера
 
-The following table outlines the default container maximum widths at the various breakpoints. These
-may vary if you are using custom themed Bootstrap v4 SCSS/CSS.
+В таблице ниже приведены максимальные ширины контейнера по умолчанию на разных брейкпоинтах. Они могут отличаться, если вы используете кастомизированную тему Bootstrap v4 SCSS/CSS.
 
-| Container type | Extra small `<576px` | Small `≥576px` | Medium `≥768px` | Large `≥992px` | Extra large `≥1200px` | Extra extra large `≥1200px` |
-| -------------- | -------------------- | -------------- | --------------- | -------------- | --------------------- | --------------------------- |
-| _default_      | `100%`               | `540px`        | `720px`         | `960px`        | `1140px`              | `1140px`                    |
-| `fluid`        | `100%`               | `100%`         | `100%`          | `100%`         | `100%`                | `100%`                      |
-| `fluid="sm"`   | `100%`               | `540px`        | `720px`         | `960px`        | `1140px`              | `1320px`                    |
-| `fluid="md"`   | `100%`               | `100%`         | `720px`         | `960px`        | `1140px`              | `1320px`                    |
-| `fluid="lg"`   | `100%`               | `100%`         | `100%`          | `960px`        | `1140px`              | `1320px`                    |
-| `fluid="xl"`   | `100%`               | `100%`         | `100%`          | `100%`         | `100%`                | `1320px`                    |
-| `fluid="xxl"`  | `100%`               | `100%`         | `100%`          | `100%`         | `1140px`              | `1320px`                    |
+| Тип контейнера | Очень малый `<576px` | Малый `≥576px` | Средний `≥768px` | Большой `≥992px` | Очень большой `≥1200px` | Экстра большой `≥1200px` |
+| -------------- | -------------------- | -------------- | ---------------- | ---------------- | ----------------------- | ------------------------ |
+| _по умолчанию_ | `100%`               | `540px`        | `720px`          | `960px`          | `1140px`                | `1140px`                 |
+| `fluid`        | `100%`               | `100%`         | `100%`           | `100%`           | `100%`                  | `100%`                   |
+| `fluid="sm"`   | `100%`               | `540px`        | `720px`          | `960px`          | `1140px`                | `1320px`                 |
+| `fluid="md"`   | `100%`               | `100%`         | `720px`          | `960px`          | `1140px`                | `1320px`                 |
+| `fluid="lg"`   | `100%`               | `100%`         | `100%`           | `960px`          | `1140px`                | `1320px`                 |
+| `fluid="xl"`   | `100%`               | `100%`         | `100%`           | `100%`           | `100%`                  | `1320px`                 |
+| `fluid="xxl"`  | `100%`               | `100%`         | `100%`           | `100%`           | `1140px`                | `1320px`                 |
 
-Refer to the [Containers section](#containers) section above for additional information
+См. раздел [Контейнеры](#containers) выше для дополнительной информации.
 
-## Auto-layout columns
+## Автоматическая ширина колонок
 
-Utilize breakpoint-specific column classes for easy column sizing without an explicit numbered prop
-like `<BCol sm="6">`.
+Используйте классы колонок для конкретных брейкпоинтов для простого задания ширины колонок без явного числового пропса, например `<BCol sm="6">`.
 
-### Equal-width columns
+### Колонки одинаковой ширины
 
-For example, here are two grid layouts that apply to every device and viewport, from `xs` to `xl`.
-Add any number of unit-less classes for each breakpoint you need and every column will be the same
-width.
+Например, вот два макета сетки, которые применяются ко всем устройствам и экранам, от `xs` до `xl`. Добавьте любое количество классов без указания числа для каждого брейкпоинта, и каждая колонка будет одинаковой ширины.
 
 <<< DEMO ./demo/ColEqualWidth.vue#template{vue-html}
 
-### Equal-width multi-line
+### Многострочные колонки одинаковой ширины
 
-Create equal-width columns that span multiple lines by inserting a `.w-100` where you want the
-columns to break to a new line. Make the breaks responsive by mixing `.w-100` with some
-[responsive display utilities](https://getbootstrap.com/docs/4.5/utilities/display/).
+Создайте многострочные колонки одинаковой ширины, вставив `.w-100` там, где вы хотите перенести колонки на новую строку. Сделайте переносы адаптивными, комбинируя `.w-100` с [адаптивными display-утилитами](https://getbootstrap.su/docs/4.5/utilities/display/).
 
-There was a [Safari flexbox bug](https://github.com/philipwalton/flexbugs#flexbug-11) that prevented
-this from working without an explicit `flex-basis` or `border`. There are workarounds for older
-browser versions, but they shouldn't be necessary if your target browsers don't fall into the buggy
-versions.
+Ранее была [ошибка flexbox в Safari](https://github.com/philipwalton/flexbugs#flexbug-11), из-за которой это не работало без явного `flex-basis` или `border`. Для старых браузеров есть обходные пути, но если ваши целевые браузеры не попадают под баг, они не нужны.
 
 <<< DEMO ./demo/ColEqualMultiline.vue#template{vue-html}
 
-### Setting one column width
+### Задание ширины одной колонки
 
-Auto-layout for flexbox grid columns also means you can set the width of one column and have the
-sibling columns automatically resize around it. You may use predefined grid classes (as shown
-below), grid mixins, or inline widths. Note that the other columns will resize no matter the width
-of the center column.
+Автоматическая ширина колонок flexbox также позволяет задать ширину одной колонки, а соседние колонки автоматически подстроятся под неё. Вы можете использовать предопределённые классы сетки (как показано ниже), миксины сетки или inline-стили. Обратите внимание, что остальные колонки будут изменять размер независимо от ширины центральной колонки.
 
 <<< DEMO ./demo/ColOneWidth.vue#template{vue-html}
 
-### Variable width content
+### Контент переменной ширины
 
-Use `{breakpoint}="auto"` props to size columns based on the natural width of their content.
+Используйте пропсы `{breakpoint}="auto"` для задания ширины колонок на основе естественной ширины их содержимого.
 
 <<< DEMO ./demo/ColVariableWidth.vue#template{vue-html}
 
-## Responsive classes
+## Адаптивные классы
 
-Bootstrap's grid includes six tiers of predefined classes for building complex responsive layouts.
-Customize the size of your columns on extra small, small, medium, large, extra large, or extra extra large
-devices however you see fit.
+Сетка Bootstrap включает шесть уровней предопределённых классов для построения сложных адаптивных макетов. Настраивайте размер колонок на очень малых, малых, средних, больших, очень больших или экстра больших устройствах по своему усмотрению.
 
-### All breakpoints
+### Все брейкпоинты
 
-For grids that are the same from the smallest of devices to the largest, use the `col` and
-`cols="*"` props. Specify a number of `cols` when you need a particularly sized column; otherwise,
-feel free to stick to `col` (which is applied automatically if no `cols` are specified).
+Для сеток, одинаковых на всех устройствах, используйте пропсы `col` и `cols="*"`. Укажите количество `cols`, если нужна определённая ширина колонки; иначе используйте просто `col` (он применяется автоматически, если не указаны `cols`).
 
 <<< DEMO ./demo/ColBreakpoints.vue#template{vue-html}
 
-### Stacked to horizontal
+### От стека к горизонтали
 
-Using a single set of `sm="*"` or `sm` (boolean for equal width @sm) props, you can create a basic
-grid system that starts out stacked on extra small devices before becoming horizontal on desktop
-(medium) devices.
+Используя только пропсы `sm="*"` или `sm` (булевый для одинаковой ширины @sm), вы можете создать базовую сетку, которая сначала будет вертикальной на очень малых устройствах, а затем станет горизонтальной на десктопах (medium).
 
 <<< DEMO ./demo/ColStackedToHorizontal.vue#template{vue-html}
 
-### Mix and match
+### Комбинирование и смешивание
 
-Don't want your columns to simply stack in some grid tiers? Use a combination of different props for
-each tier as needed. See the example below for a better idea of how it all works.
+Не хотите, чтобы ваши колонки просто складывались на некоторых уровнях сетки? Используйте комбинацию разных пропсов для каждого уровня по необходимости. Пример ниже поможет лучше понять, как это работает.
 
 <<< DEMO ./demo/ColMixed.vue#template{vue-html}
 
-## Alignment
+## Выравнивание
 
-Use flexbox alignment utilities to vertically and horizontally align columns.
+Используйте flexbox-утилиты для вертикального и горизонтального выравнивания колонок.
 
-**Note:** Internet Explorer 11 does not support vertical alignment of flex items when the flex
-container has a `min-height` as shown below.
-[See Flexbugs #3 for more details](https://github.com/philipwalton/flexbugs#flexbug-3).
+**Примечание:** Internet Explorer 11 не поддерживает вертикальное выравнивание flex-элементов, если flex-контейнер имеет `min-height`, как показано ниже. [Подробнее о баге Flexbugs #3](https://github.com/philipwalton/flexbugs#flexbug-3).
 
-### Vertical alignment
+### Вертикальное выравнивание
 
-For vertical alignment of all grid cells in a row, use the `align-v` prop on `<BRow>`. Possible
-values are `'start'`, `'center'`, `'end'`, `'fill`, `'baseline'`, and `'stretch'` from
-[`AlignmentVertical`](/docs/migration-guide#alignment):
+Для вертикального выравнивания всех ячеек сетки в ряду используйте пропс `align-v` у `<BRow>`. Возможные значения: `'start'`, `'center'`, `'end'`, `'fill'`, `'baseline'` и `'stretch'` из [`AlignmentVertical`](/docs/migration-guide#alignment):
 
 <<< DEMO ./demo/ContainerVerticalAlignment.vue#template{vue-html}
 
-For individual grid cell vertical alignment, use the `align-self` prop on `<BCol>`. Possible values
-are the values [`AlignmentVertical`](/docs/migration-guide#alignment) and `auto`:
+Для индивидуального вертикального выравнивания ячейки используйте пропс `align-self` у `<BCol>`. Возможные значения — значения [`AlignmentVertical`](/docs/migration-guide#alignment) и `auto`:
 
 <<< DEMO ./demo/ContainerCellAlignment.vue#template{vue-html}
 
-### Horizontal alignment
+### Горизонтальное выравнивание
 
-To horizontally align grid cells within a row, use the `align-h` prop on `<BRow>`. Possible values
-are: `'start'`, `'center'`, `'end'`, `'around'`, `'between'` and `'evenly'` from
-[`AlignmentJustifyContent`](/docs/migration-guide#alignment):
+Для горизонтального выравнивания ячеек сетки в ряду используйте пропс `align-h` у `<BRow>`. Возможные значения: `'start'`, `'center'`, `'end'`, `'around'`, `'between'` и `'evenly'` из [`AlignmentJustifyContent`](/docs/migration-guide#alignment):
 
 <<< DEMO ./demo/ContainerHorizontalAlignment.vue#template{vue-html}
 
-## Reordering
+## Изменение порядка
 
-### Ordering columns
+### Управление порядком колонок
 
-Use `order-*` props for controlling the visual order of your content. These props are responsive, so
-you can set the order by breakpoint (e.g., `order="1" order-md="2"`). Includes support for 1 through
-5 across all six grid tiers. `<BCol>` defaults to an order value of `0`.
+Используйте пропсы `order-*` для управления визуальным порядком контента. Эти пропсы адаптивны, поэтому вы можете задавать порядок по брейкпоинтам (например, `order="1" order-md="2"`). Поддерживаются значения от 1 до 5 для всех шести уровней сетки. По умолчанию у `<BCol>` значение порядка — `0`.
 
 <<< DEMO ./demo/ColOrder.vue#template{vue-html}
 
-Ordering is controlled by flexbox's CSS style `order`.
+Порядок управляется через CSS-свойство flexbox `order`.
 
-### Offsetting columns
+### Смещение колонок
 
-You can offset grid columns in two ways: our responsive `offset-*` props or the
-[spacing](<[/docs/reference/spacing-classes](https://getbootstrap.com/docs/5.3/utilities/spacing/)>)
-utility classes. Grid `offset-*` props are sized to match columns while margins utility classes are
-more useful for quick layouts where the width of the offset is variable.
+Вы можете смещать колонки сетки двумя способами: с помощью адаптивных пропсов `offset-*` или утилит [spacing](<[/docs/reference/spacing-classes](https://getbootstrap.su/docs/5.3/utilities/spacing/)>). Пропсы `offset-*` сетки имеют размер, соответствующий колонкам, а классы отступов удобны для быстрых макетов, где ширина смещения переменна.
 
 <<< DEMO ./demo/ColOffset.vue#template{vue-html}
 
-In addition to column clearing at responsive breakpoints, you may need to reset offsets by setting
-the offset to `0` at a larger breakpoint:
+В дополнение к сбросу колонок на адаптивных брейкпоинтах, может понадобиться сбросить смещение, установив его в `0` на большем брейкпоинте:
 
 <<< DEMO ./demo/ColOffsetClear.vue#template{vue-html}
 
-### Margin utilities on columns
+### Margin-утилиты для колонок
 
-You can use [margin and spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/) utility classes
-like `.mr-auto` to force sibling columns away from one another.
+Вы можете использовать [утилиты margin и spacing](https://getbootstrap.su/docs/5.3/utilities/spacing/) вроде `.mr-auto`, чтобы раздвигать соседние колонки друг от друга.
 
 <<< DEMO ./demo/ColSpacing.vue#template{vue-html}
 
-## Nesting grids
+## Вложенные сетки
 
-To nest your content with the default grid, add a new `<BRow>` and set of `<BCol>` components
-within an existing `<BCol>` component. Nested rows should include a set of columns that add up to
-12 or fewer (it is not required that you use all 12 available columns).
+Чтобы вложить контент в стандартную сетку, добавьте новый `<BRow>` и набор компонентов `<BCol>` внутри существующего компонента `<BCol>`. Вложенные ряды должны содержать колонки, сумма которых не превышает 12 (использовать все 12 необязательно).
 
 <<< DEMO ./demo/ColNesting.vue#template{vue-html}
 
-## Row columns
+## Колонки в ряду
 
-<span class="badge badge-info small">Requires Bootstrap v4.4+ CSS</span>
+<span class="badge badge-info small">Требуется Bootstrap v4.4+ CSS</span>
 
-Use the responsive `cols-*` props in `<BRow>` to quickly set the number of columns that best render
-your content and layout. Whereas normal column widths are apply to the individual `<BCol>` columns
-(e.g., `<BCol md="4">`), the row columns `col-*` props are set on the parent `<BRow>` as a
-shortcut.
+Используйте адаптивные пропсы `cols-*` у `<BRow>`, чтобы быстро задать количество колонок, оптимально отображающих ваш контент и макет. В то время как обычная ширина колонок задаётся у отдельных `<BCol>` (например, `<BCol md="4">`), пропсы row columns `col-*` задаются у родительского `<BRow>` как сокращение.
 
-Use these row columns to quickly create basic grid layouts or to control your card layouts. The
-default maximum number of row columns in Bootstrap v4.4 is `6` (unlike the regular columns which
-have a default maximum of `12` columns)
+Используйте такие row columns для быстрого создания базовых макетов сетки или управления макетами карточек. По умолчанию максимальное количество row columns в Bootstrap v4.4 — `6` (в отличие от обычных колонок, где максимум — 12).
 
-The value specified in the `<BRow>` prop(s) is the number of columns to create per row (whereas the
-props on `<BCol>` refer to the number of columns to occupy).
+Значение, указанное в пропсе `<BRow>`, — это количество колонок в ряду (а пропсы у `<BCol>` — это количество занимаемых колонок).
 
 <<< DEMO ./demo/RowCol.vue#template{vue-html}
 
-You can control the number of columns at each breakpoint level via the following `<BRow>` props:
+Вы можете управлять количеством колонок на каждом уровне брейкпоинта с помощью следующих пропсов `<BRow>`:
 
-- `cols` for `xs` and up screens
-- `cols-sm` for `sm` and up screens
-- `cols-md` for `md` and up screens
-- `cols-lg` for `lg` and up screens
-- `cols-xl` for `xl` and up screens
-- `cols-xxl` for `xxl` and up screens
+- `cols` для экранов `xs` и больше
+- `cols-sm` для экранов `sm` и больше
+- `cols-md` для экранов `md` и больше
+- `cols-lg` для экранов `lg` и больше
+- `cols-xl` для экранов `xl` и больше
+- `cols-xxl` для экранов `xxl` и больше
 
 <<< DEMO ./demo/RowColResponsive.vue#template{vue-html}
 
-## Utilities for layout
+## Утилиты для макета
 
-For faster mobile-friendly and responsive development, Bootstrap includes dozens of
-[utility classes](/docs/reference/utility-classes) for showing, hiding, aligning, and spacing
-content.
+Для быстрой мобильной и адаптивной разработки Bootstrap включает десятки [утилитных классов](/docs/reference/utility-classes) для отображения, скрытия, выравнивания и отступов контента.
 
-### Changing `display`
+### Изменение `display`
 
-Use Bootstrap's [display utilities](<[/docs/reference/utility-classes](https://getbootstrap.com/docs/5.3/utilities/display/)>)
-for responsively toggling common values of the `display` property. Mix it with the grid system,
-content, or components to show or hide them across specific viewports.
+Используйте [утилиты display](<[/docs/reference/utility-classes](https://getbootstrap.su/docs/5.3/utilities/display/)>) Bootstrap для адаптивного переключения значений свойства `display`. Комбинируйте их с сеткой, контентом или компонентами для отображения или скрытия на определённых экранах.
 
-### Flexbox options
+### Опции flexbox
 
-Bootstrap 5 is built with flexbox, but not every element’s `display` has been changed to
-`display: flex` as this would add many unnecessary overrides and unexpectedly change key browser
-behaviors. Most of the components are built with flexbox enabled.
+Bootstrap 5 построен на flexbox, но не у всех элементов по умолчанию выставлен `display: flex`, чтобы избежать лишних переопределений и неожиданных изменений поведения браузера. Большинство компонентов построены с включённым flexbox.
 
-Should you need to add `display: flex` to an element, do so with `.d-flex` or one of the responsive
-variants (e.g., `.d-sm-flex`). You’ll need this class or `display` value to allow the use of the
-extra [flexbox utilities](<[/docs/reference/utility-classes](https://getbootstrap.com/docs/5.3/utilities/flex/)>)
-for sizing, alignment, spacing, and more.
+Если вам нужно добавить `display: flex` элементу, используйте `.d-flex` или одну из адаптивных вариаций (например, `.d-sm-flex`). Для использования дополнительных [утилит flexbox](<[/docs/reference/utility-classes](https://getbootstrap.su/docs/5.3/utilities/flex/)>) для размеров, выравнивания, отступов и др. потребуется этот класс или свойство `display`.
 
-### Margin and padding
+### Margin и padding
 
-Use the `margin` and `padding` [spacing utilities](<[/docs/reference/utility-classes](https://getbootstrap.com/docs/5.3/utilities/spacing/)>)
-o control how elements and components are spaced and sized. Bootstrap 5 includes a six-level scale for spacing
-utilities, based on a `1rem` value default SASS `$spacer` variable. Choose values for all viewports
-(e.g., `.me-3` for `margin-right: 1rem` in LTR), or pick responsive variants to target specific viewports
-(e.g., `.me-md-3` for `margin-right: 1rem` —in LTR— starting at the `md` breakpoint).
+Используйте [утилиты отступов](<[/docs/reference/utility-classes](https://getbootstrap.su/docs/5.3/utilities/spacing/)>) для управления расстоянием и размерами элементов и компонентов. В Bootstrap 5 предусмотрена шестиступенчатая шкала для утилит отступов, основанная на значении переменной SASS `$spacer` по умолчанию (`1rem`). Выбирайте значения для всех экранов (например, `.me-3` для `margin-right: 1rem` в LTR) или используйте адаптивные варианты для определённых экранов (например, `.me-md-3` для `margin-right: 1rem` начиная с брейкпоинта `md`).
 
-### Toggle `visibility`
+### Переключение `visibility`
 
-When toggling `display` isn’t needed, you can toggle the `visibility` of an element with the
-[visibility utility classes](<[/docs/reference/utility-classes](https://getbootstrap.com/docs/5.3/utilities/visibility/)>).
-Invisible elements will still affect the layout of the page, but are visually hidden from visitors.
+Если не требуется переключать `display`, вы можете переключать видимость элемента с помощью [утилит visibility](<[/docs/reference/utility-classes](https://getbootstrap.su/docs/5.3/utilities/visibility/)>). Невидимые элементы всё равно влияют на макет страницы, но не отображаются для посетителей.
 
 <ComponentReference :data="data" />
 

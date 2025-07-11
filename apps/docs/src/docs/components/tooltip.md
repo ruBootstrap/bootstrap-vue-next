@@ -1,19 +1,19 @@
 # Tooltip
 
-## Tooltip is a wrapper for Popover
+## Tooltip — это обёртка для Popover
 
-Tooltip is a wrapper for Popover, providing a simple way to create tooltips in your application. It uses the same API as Popover, but with some default properties set for tooltips.
+Tooltip — это обёртка для Popover, предоставляющая простой способ создания тултипов в вашем приложении. Он использует ту же API, что и Popover, но с некоторыми настройками по умолчанию для тултипов.
 
-## Usage
+## Использование
 
-To use the tooltip, simply wrap your target element with the `<BTooltip>` component and provide the necessary props.
+Чтобы использовать тултип, просто оберните ваш целевой элемент компонентом `<BTooltip>` и предоставьте необходимые пропсы.
 
 <HighlightCard>
   <BTooltip>
     <template #target>
-      <BButton>Hover me</BButton>
+      <BButton>Наведи на меня</BButton>
     </template>
-    Hello World!
+    Привет, мир!
   </BTooltip>
 
 <template #html>
@@ -22,9 +22,9 @@ To use the tooltip, simply wrap your target element with the `<BTooltip>` compon
 <template>
   <BTooltip>
     <template #target>
-      <BButton>Hover me</BButton>
+      <BButton>Наведи на меня</BButton>
     </template>
-    Hello World!
+    Привет, мир!
   </BTooltip>
 </template>
 ```
@@ -32,15 +32,15 @@ To use the tooltip, simply wrap your target element with the `<BTooltip>` compon
   </template>
 </HighlightCard>
 
-## Differences with Popover
+## Различия с Popover
 
-The delay is zero, hideMargin is 0, and it is noninteractive by default. You can override these properties if needed.
-`BTooltip` has an interactive prop, which allows you to set the tooltip to be interactive. This means that the tooltip will remain open when the mouse is over it or focus is in it, allowing users to interact with its content.
+Задержка равна нулю, hideMargin равно 0, и оно по умолчанию неинтерактивно. Вы можете переопределить эти свойства, если это необходимо.
+`BTooltip` имеет пропс `interactive`, который позволяет установить тултип как интерактивный. Это означает, что тултип останется открытым, когда мышь находится над ним или фокус находится в нём, позволяя пользователям взаимодействовать с его содержимым.
 
 <HighlightCard>
 <BTooltip interactive>
   <template #target>
-    <BButton>Hover me</BButton>
+    <BButton>Наведи на меня</BButton>
   </template>
   <span>{{ count }}</span>
   <BButton @click="count++">+</BButton>
@@ -52,7 +52,7 @@ The delay is zero, hideMargin is 0, and it is noninteractive by default. You can
 <template>
   <BTooltip interactive>
     <template #target>
-      <BButton>Hover me</BButton>
+      <BButton>Наведи на меня</BButton>
     </template>
     <span>{{ count }}</span>
     <BButton @click="count++">+</BButton>
@@ -68,11 +68,11 @@ const count = ref(0)
 
 </HighlightCard>
 
-## Additional Notes
+## Дополнительные замечания
 
-Make sure to check the Popover documentation for more details on customization options.
+Убедитесь, что проверяете документацию Popover для получения дополнительных сведений о параметрах настройки.
 
-see [Popover](/docs/components/popover)
+см. [Popover](/docs/components/popover)
 
 <script setup lang="ts">
 import {BButton, BTooltip} from 'bootstrap-vue-next'

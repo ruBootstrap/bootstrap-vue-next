@@ -1,95 +1,85 @@
-# Link
+# Ссылка
 
 <PageHeader>
 
-Use BootstrapVue's custom b-link component for generating a standard `<a>` link or `RouterLink`. `BLink` supports the `disabled` state and `click` event propagation.
+Используйте пользовательский компонент b-link из BootstrapVue для генерации стандартной ссылки `<a>` или `RouterLink`. `BLink` поддерживает состояние `disabled` и распространение события `click`.
 
 </PageHeader>
 
-## Links without Router
+## Ссылки без Router
 
-By defaut links with no options will default to # location.
+По умолчанию ссылки без опций будут вести на # (текущую локацию).
 
 <<< DEMO ./demo/LinkSimple.vue#template{vue-html}
 
-## Links with Router and External Links
+## Ссылки с Router и внешние ссылки
 
-By specifying a value in the `href` prop, a standard link (`<a>`) element will be rendered. To
-generate a `<router-link>` instead, specify the route location via the `to` prop.
+Если указать значение в пропсе `href`, будет отрендерен стандартный элемент ссылки (`<a>`). Чтобы сгенерировать `<router-link>`, укажите маршрут через пропс `to`.
 
-Router links support various additional props. Refer to the
-[Router support](/docs/reference/router-links) reference section for details.
+Router-ссылки поддерживают различные дополнительные пропсы. Подробнее см. в разделе [Поддержка Router](/docs/reference/router-links).
 
-If your app is running under [Nuxt.js](https://nuxtjs.org), the
-[`<nuxt-link>`](https://nuxtjs.org/api/components-nuxt-link) component will be used instead of
-`<router-link>`. The `<nuxt-link>` component supports all the same features as `<router-link>` (as
-it is a wrapper component for `<router-link>`) and more.
+Если ваше приложение работает на [Nuxt.js](https://nuxtjs.org), вместо `<router-link>` будет использоваться компонент [`<nuxt-link>`](https://nuxtjs.org/api/components-nuxt-link). `<nuxt-link>` поддерживает все те же возможности, что и `<router-link>` (так как является его обёрткой), и даже больше.
 
 <<< DEMO ./demo/LinkExternal.vue#template{vue-html}
 
-## Styling Links
+## Стилизация ссылок
 
-External Links can be specified with the `href` prop.
+Внешние ссылки можно задать через пропс `href`.
 
 <<< DEMO ./demo/LinkStyles.vue#template{vue-html}
 
-## Link opacity
+## Прозрачность ссылки
 
-Change the alpha opacity of the link `rgba()` color value. Please be aware that changes to a color’s opacity can lead to links with [insufficient contrast](https://getbootstrap.com/docs/5.3/getting-started/accessibility/#color-contrast).
+Изменяйте альфа-прозрачность цвета ссылки через значение `rgba()`. Обратите внимание, что изменение прозрачности цвета может привести к [недостаточному контрасту](https://getbootstrap.su/docs/5.3/getting-started/accessibility/#color-contrast).
 
 <<< DEMO ./demo/LinkOpacity.vue
 
-You can even change the opacity level on hover.
+Вы также можете изменить уровень прозрачности при наведении.
 
 <<< DEMO ./demo/LinkOpacityHover.vue
 
-## Link underlines
+## Подчёркивание ссылки
 
-### Underline color
+### Цвет подчёркивания
 
-Change the underline’s color independent of the link text color.
+Изменяйте цвет подчёркивания независимо от цвета текста ссылки.
 
 <<< DEMO ./demo/LinkUnderlineColors.vue
 
-### Underline offset
+### Отступ подчёркивания
 
-Change the underline’s distance from your text. Offset is set in `em` units to automatically scale with the element’s current `font-size`.
+Изменяйте расстояние подчёркивания от текста. Отступ задаётся в `em` и автоматически масштабируется вместе с текущим `font-size` элемента.
 
 <<< DEMO ./demo/LinkUnderlineOffsets.vue
 
-### Underline opacity
+### Прозрачность подчёркивания
 
-Change the underline’s opacity.
+Изменяйте прозрачность подчёркивания.
 
 <<< DEMO ./demo/LinkUnderlineOpacity.vue
 
-### Hover variants
+### Варианты при наведении
 
-Just like the setting `opacity` has a matching `opacity-hover` prop, `underline-offset` and `underline-opacity` have matching
-`underline-offset-hover` and `underline-opacity-hover` props. Mix and match to create unique link styles.
+Аналогично тому, как для `opacity` есть соответствующий пропс `opacity-hover`, для `underline-offset` и `underline-opacity` есть пропсы `underline-offset-hover` и `underline-opacity-hover`. Комбинируйте их для создания уникальных стилей ссылок.
 
 <<< DEMO ./demo/LinkHoverVariants.vue#template{vue-html}
 
-## Colored Links
+## Цветные ссылки
 
-You can use the `variant` prop to colorize links. Some of the link styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast.
+Вы можете использовать пропс `variant` для окрашивания ссылок. Некоторые стили ссылок используют довольно светлый цвет текста, поэтому их следует применять только на тёмном фоне для достаточного контраста.
 
 <<< DEMO ./demo/LinkColors.vue
 
-## Link disabled state
+## Отключённое состояние ссылки
 
-Disable link functionality by setting the `disabled` prop to true.
+Отключите функциональность ссылки, установив пропс `disabled` в true.
 
 <<< DEMO ./demo/LinkDisabled.vue#template{vue-html}
 
-Disabling a link will set the Bootstrap v5 `.disabled` class on the link as well as handles stopping
-event propagation, preventing the default action from occurring, and removing the link from the
-document tab sequence (`tabindex="-1"`).
+Отключение ссылки добавит класс Bootstrap v5 `.disabled` к ссылке, а также остановит распространение событий, предотвратит действие по умолчанию и уберёт ссылку из последовательности табуляции (`tabindex="-1"`).
 
 ::: info NOTE
-Bootstrap v5 CSS currently does not style disabled links differently than non-disabled
-links. You can use the following custom CSS to style disabled links (by preventing hover style
-changes).
+CSS Bootstrap v5 в данный момент не стилизует отключённые ссылки иначе, чем обычные. Вы можете использовать следующий пользовательский CSS для стилизации отключённых ссылок (например, чтобы предотвратить изменение стиля при наведении).
 :::
 
 <<< FRAGMENT ./demo/LinkDisabled.css

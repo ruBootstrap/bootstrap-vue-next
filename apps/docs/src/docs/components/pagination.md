@@ -1,164 +1,154 @@
-# Pagination
+# Пагинация
 
 <PageHeader>
 
-Quick first, previous, next, last, and page buttons for pagination control of another component
-(such as `BTable` or lists).
+Быстрые кнопки для первой, предыдущей, следующей, последней страницы и кнопки для перехода к странице для управления пагинацией другого компонента
+(например, `BTable` или списки).
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-`<BPagination>` is a custom input component that provides a current page number input control. The
-value should be bound via `v-model` in your app. Page numbers are indexed from 1. The number of
-pages is computed from the provided prop values for `total-rows` and `per-page`.
+`<BPagination>` — это пользовательский компонент ввода, который предоставляет поле ввода для текущей страницы. Значение должно быть связано через `v-model` в вашем приложении. Номера страниц индексируются с 1. Количество страниц вычисляется из предоставленных пропсов `total-rows` и `per-page`.
 
-**Example Usage with `<BTable>`:**
+**Пример использования с `<BTable>`:**
 
 <<< DEMO ./demo/PaginationOverview.vue
 
-## Customizing appearance
+## Настройка внешнего вида
 
-`BPagination` supports several props/slots that allow you to customize the appearance. All
-`*-text` props are text-only and strip out HTML, but you can use their equally named slot
-counterparts for that.
+`BPagination` поддерживает несколько пропсов/слотов, которые позволяют настроить внешний вид. Все
+`*-text` пропсы являются текстовыми и удаляют HTML, но вы можете использовать их слотовые
+контрапарты для этого.
 
-### Limiting the number of displayed buttons
+### Ограничение количества отображаемых кнопок
 
-To restrict the number of page buttons (including the ellipsis, but excluding the first, prev, next,
-and last buttons) shown, use the `limit` prop to specify the desired number of page buttons
-(including the ellipsis, if shown). The default `limit` is `5`. The minimum supported value is `3`.
-When `limit` is set to `3`, no ellipsis indicators will be shown for practical purposes.
+Чтобы ограничить количество кнопок страницы (включая многоточие, но исключая первую, предыдущую, следующую и последнюю кнопки), используйте пропс `limit`, чтобы указать желаемое количество кнопок страницы (включая многоточие, если оно показано). По умолчанию `limit` равен `5`. Минимально поддерживаемое значение равно `3`. Когда `limit` установлен в `3`, многоточие не будет показываться на практических целях.
 
-The `first` and `last` buttons can be optionally hidden by setting the `hide-goto-end-buttons` prop.
+Кнопки `first` и `last` могут быть опционально скрыты с помощью пропса `hide-goto-end-buttons`.
 
-The showing of the `ellipsis` can be optionally disabled by setting the `hide-ellipsis` prop.
+Показ многоточия можно опционально отключить с помощью пропса `hide-ellipsis`.
 
-#### Small screen support
+#### Поддержка маленьких экранов
 
-On smaller screens (i.e. mobile), some of the `BPagination` buttons will be hidden to minimize
-the potential of the pagination interface wrapping onto multiple lines:
+На маленьких экранах (например, мобильных) некоторые кнопки `BPagination` будут скрыты, чтобы минимизировать
+потенциальное размещение интерфейса пагинации на несколько строк:
 
-- The ellipsis indicators will be hidden on screens `xs` and smaller
-- Page number buttons will be limited to a maximum of 3 visible on `xs` screens and smaller
+- Многоточие будет скрыто на экранах `xs` и меньше
+- Кнопки номеров страниц будут ограничены максимумом 3 видимых на экранах `xs` и меньше
 
-This ensures that no more than 3 page number buttons are visible, along with the goto _first_,
-_prev_, _next_, and _last_ buttons.
+Это гарантирует, что не более 3 кнопок номеров страниц видны, вместе с кнопками перехода к _первой_,
+_предыдущей_, _следующей_ и _последней_ кнопкам.
 
-### Button content
+### Содержимое кнопок
 
-For a full list of all available slots see the [Slots](#comp-reference-bpagination-slots) section below.
+Для полной списка всех доступных слотов см. раздел [Слоты](#comp-reference-bpagination-slots) ниже.
 
 <<< DEMO ./demo/PaginationButtonContent.vue
 
-The slot `page` is always scoped, while the slots `first-text`, `prev-text`, `next-text` and
-`last-text` are optionally scoped. The `ellipsis-text` slot is not scoped.
+Слот `page` всегда является скоупом, в то время как слоты `first-text`, `prev-text`, `next-text` и
+`last-text` являются опциональными скоупами. Слот `ellipsis-text` не является скоупом.
 
-**Scoped variables properties available to the `page` slot:**
+**Скоуповые свойства, доступные для слота `page`:**
 
-| Property   | Type    | Description                                          |
-| ---------- | ------- | ---------------------------------------------------- |
-| `page`     | Number  | Page number (from `1` to `numberOfPages`)            |
-| `index`    | Number  | Page number (indexed from `0` to `numberOfPages -1`) |
-| `active`   | Boolean | If the page is the active page                       |
-| `disabled` | Boolean | If the page button is disabled                       |
-| `content`  | String  | Page number as a string                              |
+| Свойство   | Тип     | Описание                                                    |
+| ---------- | ------- | ----------------------------------------------------------- |
+| `page`     | Number  | Номер страницы (от `1` до `numberOfPages`)                  |
+| `index`    | Number  | Номер страницы (индексируется от `0` до `numberOfPages -1`) |
+| `active`   | Boolean | Если страница является активной страницей                   |
+| `disabled` | Boolean | Если кнопка страницы отключена                              |
+| `content`  | String  | Номер страницы в виде строки                                |
 
-**Scoped variables properties available to the `first-text`, `prev-text`, `next-text` and
-`last-text` slots:**
+**Скоуповые свойства, доступные для слотов `first-text`, `prev-text`, `next-text` и
+`last-text`:**
 
-| Property   | Type    | Description                                          |
-| ---------- | ------- | ---------------------------------------------------- |
-| `page`     | Number  | Page number (from `1` to `numberOfPages`)            |
-| `index`    | Number  | Page number (indexed from `0` to `numberOfPages -1`) |
-| `disabled` | Boolean | If the page button is disabled                       |
+| Свойство   | Тип     | Описание                                                    |
+| ---------- | ------- | ----------------------------------------------------------- |
+| `page`     | Number  | Номер страницы (от `1` до `numberOfPages`)                  |
+| `index`    | Number  | Номер страницы (индексируется от `0` до `numberOfPages -1`) |
+| `disabled` | Boolean | Если кнопка страницы отключена                              |
 
-### Goto first/last button type
+### Тип кнопки перехода к первой/последней странице
 
-If you prefer to have buttons with the first and last page number to go to the corresponding page,
-use the `first-number` and `last-number` props.
+Если вы предпочитаете иметь кнопки с номером первой и последней страницы для перехода к соответствующей странице,
+используйте пропсы `first-number` и `last-number`.
 
 <<< DEMO ./demo/PaginationFirstLast.vue
 
-### Button size
+### Размер кнопки
 
-Optionally change from the default button size by setting the `size` prop to either `'sm'` for
-smaller buttons or `'lg'` for larger buttons.
+Опционально измените размер кнопки по умолчанию, установив пропс `size` в `'sm'` для
+меньших кнопок или `'lg'` для больших кнопок.
 
 <<< DEMO ./demo/PaginationButtonSize.vue
 
-### Pill style
+### Стиль таблетки
 
-Easily switch to pill style buttons by setting the `pills` prop.
+Легко переключитесь на стиль таблетки, установив пропс `pills`.
 
 <<< DEMO ./demo/PaginationPillStyle.vue
 
-**Note:** Pill styling requires bootstrap-vue-next's custom CSS/SCSS.
+**Примечание:** Стилизация таблетки требует пользовательских CSS/SCSS bootstrap-vue-next.
 
-### Alignment
+### Выравнивание
 
-By default, the pagination component is left aligned. Change the alignment to `center`, `end`
-or `fill` by setting the prop `align` to the appropriate value.
+По умолчанию компонент пагинации выровнен влево. Измените выравнивание на `center`, `end`
+или `fill`, установив пропс `align` в соответствующее значение.
 
 <<< DEMO ./demo/PaginationAlignment.vue
 
-## Preventing a page from being selected
+## Предотвращение выбора страницы
 
-You can listen for the `page-click` event, which provides an option to prevent the page from being
-selected. The event is emitted with two arguments:
+Вы можете слушать событие `page-click`, которое предоставляет возможность предотвратить выбор страницы. Событие выпускается с двумя аргументами:
 
-- `BvEvent`: The `BvEvent` object. Call `BvEvent.preventDefault()` to cancel page selection
-- `page`: Page number to select (starting with `1`)
+- `BvEvent`: Объект `BvEvent`. Вызовите `BvEvent.preventDefault()` для отмены выбора страницы
+- `page`: Номер страницы для выбора (начиная с `1`)
 
-For accessibility reasons, when using the `page-click` event to prevent a page from being selected,
-you should provide some means of notification to the user as to why the page is not able to be
-selected. It is recommended to use the `disabled` attribute on the `BPagination` component
-instead of using the `page-click` event (as `disabled` is more intuitive for screen reader users).
+Для обеспечения доступности при использовании события `page-click` для предотвращения выбора страницы,
+рекомендуется предоставить какое-либо средство уведомления пользователю о том, почему страница не может быть выбрана. Рекомендуется использовать атрибут `disabled` на компоненте `BPagination` вместо использования события `page-click` (так как `disabled` более интуитивно для пользователей с экранами чтения).
 
-## Accessibility
+## Доступность
 
-The `BPagination` component provides many features to support assistive technology users, such as
-`aria-` attributes and keyboard navigation.
+Компонент `BPagination` предоставляет множество функций для поддержки пользователей с ограниченными возможностями, таких как
+`aria-` атрибуты и навигация по клавиатуре.
 
 ### `aria-controls`
 
-When pagination is controlling another component on the page (such as `BTable`), set the
-`aria-controls` prop to the `id` of the element it is controlling. This will help non-sighted users
-know what component is being updated/controlled.
+Когда пагинация управляет другим компонентом на странице (например, `BTable`), установите
+`aria-controls` пропс в `id` элемента, который она контролирует. Это поможет пользователям без зрения
+знать, какой компонент обновляется/контролируется.
 
-### ARIA labels
+### ARIA метки
 
-`BPagination` provides various `label-*` props which are used to set the `aria-label`
-attributes on the various elements within the component as well as the common `aria-label` prop
-on the outer container, which will help users of assistive technology.
+`BPagination` предоставляет различные `label-*` пропсы, которые используются для установки `aria-label`
+атрибутов на различные элементы внутри компонента, а также общий `aria-label` пропс
+на внешнем контейнере, который поможет пользователям вспомогательных технологий.
 
-| Prop               | `aria-label` content default                            |
-| ------------------ | ------------------------------------------------------- |
-| `label-first-page` | "Goto first page"                                       |
-| `label-prev-page`  | "Goto previous page"                                    |
-| `label-next-page`  | "Goto next page"                                        |
-| `label-last-page`  | "Goto last page"                                        |
-| `label-page`       | "Goto page", appended with the page number              |
-| `aria-label`       | "Pagination", applied to the outer pagination container |
+| Пропс              | Содержимое по умолчанию `aria-label`                       |
+| ------------------ | ---------------------------------------------------------- |
+| `label-first-page` | "Перейти к первой странице"                                |
+| `label-prev-page`  | "Перейти к предыдущей странице"                            |
+| `label-next-page`  | "Перейти к следующей странице"                             |
+| `label-last-page`  | "Перейти к последней странице"                             |
+| `label-page`       | "Перейти к странице", к которой добавляется номер страницы |
+| `aria-label`       | "Пагинация", применяется к внешнему контейнеру пагинации   |
 
-The `label-page` will optionally accept a function to generate the aria-label. The function is
-passed a single argument which is the page number (indexed from 1 to number of pages).
+Пропс `label-page` будет опционально принимать функцию для генерации `aria-label`. Функция передается один аргумент, который является номером страницы (индексируется от 1 до количества страниц).
 
-You can remove any label by setting the prop to an empty string (`''`), although this is not
-recommended unless the content of the button textually conveys its purpose.
+Вы можете удалить любую метку, установив пропс в пустую строку (`''`), хотя это не рекомендуется, если содержимое текстового кнопки достаточно для передачи его назначения.
 
-### Keyboard navigation support
+### Поддержка навигации по клавиатуре
 
-`<BPagination>` supports keyboard navigation out of the box, and follows the
+`<BPagination>` поддерживает навигацию по клавиатуре из коробки и следует
 [WAI-ARIA roving tabindex](https://www.w3.org/TR/wai-aria-practices-1.2/#kbd_roving_tabindex)
-pattern.
+паттерну.
 
-- Tabbing into the pagination component will autofocus the current active page button
-- <kbd>Left</kbd> (or <kbd>Up</kbd>) and <kbd>Right</kbd> (or <kbd>Down</kbd>) arrow keys will focus
-  the previous and next buttons, respectively, in the page list
-- <kbd>Enter</kbd> or <kbd>Space</kbd> keys will select (click) the currently focused page button
-- Pressing <kbd>Tab</kbd> will move to the next control or link on the page, while pressing
-  <kbd>Shift</kbd>+<kbd>Tab</kbd> will move to the previous control or link on the page.
+- Табуляция в компонент пагинации приведет к фокусу на активной кнопке страницы
+- <kbd>Left</kbd> (или <kbd>Up</kbd>) и <kbd>Right</kbd> (или <kbd>Down</kbd>) клавиши со стрелками будут фокусироваться
+  на предыдущих и следующих кнопках в списке страниц
+- <kbd>Enter</kbd> или <kbd>Space</kbd> клавиши выбирают (кликают) текущую фокусируемую кнопку страницы
+- Нажатие <kbd>Tab</kbd> переместится к следующему элементу управления или ссылке на странице, в то время как нажатие
+  <kbd>Shift</kbd>+<kbd>Tab</kbd> переместится к предыдущему элементу управления или ссылке на странице.
 
 <ComponentReference :data="data" />
 

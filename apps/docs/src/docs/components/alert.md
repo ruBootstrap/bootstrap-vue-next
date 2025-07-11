@@ -1,81 +1,80 @@
-# Alert
+# Оповещение
 
 <PageHeader>
 
-Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
+Предоставляйте контекстные сообщения обратной связи для типичных действий пользователя с помощью доступных и гибких оповещений.
 
 </PageHeader>
 
-## Overview
+## Обзор
 
-Alerts are available for any length of text, as well as an optional dismiss button (and optional auto-dismissing).
+Оповещения могут содержать текст любой длины, а также опциональную кнопку закрытия (и опциональное автоматическое скрытие).
 
 <<< DEMO ./demo/AlertOverview.vue
 
-### `v-model` Support
+### Поддержка `v-model`
 
-You can use the `v-model` directive to create two-way data bindings as in `v-model="showDismissibleAlert"`. This is useful when you use dismissible because when the user closes the alert, your variable will be updated. The v-model prop accepts boolean `true` or `false` to show and hide the alert respectively. It can also be set to a positive integer (representing seconds) to create a self-dismissing alert. See the [Auto Dismissing Alerts](#auto-dismissing-alerts) section below for details. `:model-value="true"` can be used to unconditionally show the alert, as the `show` prop did in `bootstrap-vue`. See the
-[migration guide](/docs/migration-guide#balert) for details.
+Вы можете использовать директиву `v-model` для создания двусторонней привязки данных, например, `v-model="showDismissibleAlert"`. Это удобно при использовании оповещений с возможностью закрытия: когда пользователь закрывает оповещение, ваша переменная автоматически обновляется. Пропс `v-model` принимает булевы значения `true` или `false` для отображения или скрытия оповещения соответственно. Также можно указать положительное целое число (в секундах), чтобы создать автоматически скрывающееся оповещение. Подробнее смотрите раздел [Автоматически скрывающиеся оповещения](#auto-dismissing-alerts) ниже. Для безусловного отображения оповещения можно использовать `:model-value="true"`, как это делал пропс `show` в `bootstrap-vue`. Подробнее см. в [руководстве по миграции](/docs/migration-guide#balert).
 
-## Contextual Variants
+## Контекстные варианты
 
-For proper styling of `BAlert`, use one of the four required contextual variants by setting the `variant` prop to one of the following: `info`, `success`, `warning`, or `danger`. The default is `info`.
+Для правильного оформления `BAlert` используйте один из четырёх обязательных контекстных вариантов, задав пропс `variant` со значением: `info`, `success`, `warning` или `danger`. По умолчанию используется `info`.
 
 <<< DEMO ./demo/AlertVariants.vue#template{vue-html}
 
-### Conveying Meaning to Assistive Technologies
+### Передача смысла вспомогательным технологиям
 
-Using color variants to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text) or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+Использование цветовых вариантов для передачи смысла обеспечивает только визуальное различие, которое не будет доступно пользователям вспомогательных технологий, например, экранных читалок. Убедитесь, что информация, обозначенная цветом, очевидна из самого содержимого (например, видимый текст) или дополнительно предоставлена с помощью других средств, например, скрытого текста с классом `.visually-hidden`.
 
-## Additional Content Inside Alerts
+## Дополнительный контент внутри оповещений
 
-`BAlerts` can also contain additional HTML elements like headings and paragraphs, which will be styled with the appropriate color matching the variant.
+`BAlert` также может содержать дополнительные HTML-элементы, такие как заголовки и абзацы, которые будут стилизованы в соответствии с выбранным вариантом.
 
 <<< DEMO ./demo/AlertContent.vue#template{vue-html}
 
-### Color of Links Within Alerts
+### Цвет ссылок внутри оповещений
 
-Use the `.alert-link` utility CSS class to quickly provide matching colored links within any alert. Use on `<a>` or `BLink`.
+Используйте CSS-класс `.alert-link`, чтобы быстро стилизовать ссылки внутри любого оповещения в соответствующий цвет. Применяйте его к тегу `<a>` или компоненту `BLink`.
 
 <<< DEMO ./demo/AlertLinkColors.vue#template{vue-html}
 
-## Dismissible Alerts
+## Оповещения с возможностью закрытия
 
-Using the `dismissible` prop it is possible to dismiss any `BAlert` inline. The alert must be v-modeled to a reactive value. This will add a close `X` button. Use the `dismiss-label` prop to change the hidden aria-label text associated with the dismiss button.
+С помощью пропса `dismissible` можно сделать любое оповещение `BAlert` закрываемым. Оповещение должно быть связано с реактивным значением через v-model. Это добавит кнопку закрытия с крестиком (`X`). Для изменения скрытого текста aria-label, связанного с кнопкой закрытия, используйте пропс `dismiss-label`.
 
 <<< DEMO ./demo/AlertDismissible.vue
 
-### Auto-dismissing Alerts
+### Автоматически скрывающиеся оповещения
 
-To create a `BAlert` that dismisses automatically after a specified duration, set the `v-model` to the number of **milliseconds** you want the `BAlert` to remain visible. By default, the timer updates using `requestAnimationFrame`, which triggers an update approximately every second. Timed Alerts automatically pause when hovered over with a mouse, but you can disable this behavior using the `noHoverPause` prop. Ensure that the `v-model` value is an integer representing milliseconds. Any change to the `v-model` will reset the timer.
+Чтобы создать оповещение `BAlert`, которое автоматически скрывается через заданное время, установите для `v-model` количество **миллисекунд**, в течение которых оповещение будет отображаться. По умолчанию таймер обновляется с помощью `requestAnimationFrame`, что вызывает обновление примерно каждую секунду. Таймер автоматически приостанавливается при наведении курсора мыши, но это поведение можно отключить с помощью пропса `noHoverPause`. Убедитесь, что значение `v-model` — это целое число, представляющее миллисекунды. Любое изменение значения `v-model` сбрасывает таймер.
 
-The **interval** prop determines how frequently the timer updates. While the default is `requestAnimationFrame`, you can set a custom interval. Negative values for either `v-model` or `interval` will stop the timer. If the `v-model` value does not divide evenly by the interval, the timer will continue to the nearest interval. For example, a `v-model` of 5400 ms with an interval of 1000 ms will run for 6000 ms. To avoid this, choose an interval that divides evenly into the `v-model`, such as 540 ms or 1080 ms.
+Пропс **interval** определяет, как часто обновляется таймер. По умолчанию используется `requestAnimationFrame`, но вы можете задать свой интервал. Отрицательные значения для `v-model` или `interval` остановят таймер. Если значение `v-model` не делится нацело на интервал, таймер продолжит работу до ближайшего интервала. Например, при `v-model` 5400 мс и интервале 1000 мс таймер будет работать 6000 мс. Чтобы этого избежать, выберите интервал, который делится нацело на `v-model`, например 540 мс или 1080 мс.
 
 <<< DEMO ./demo/AlertAutoDismissible.vue
 
-## Fading alerts
+## Плавное появление оповещений
 
-Use the `fade` prop to enable animation. By default alerts are not animated.
+Используйте пропс `fade`, чтобы включить анимацию появления и скрытия оповещений. По умолчанию оповещения отображаются без анимации.
 
-Note that `bootstrap-vue-next` uses Vue's transitions for this animation rather than bootstrap's `.fade` class.
+Обратите внимание, что в `bootstrap-vue-next` для этой анимации используются переходы Vue, а не класс bootstrap `.fade`.
 
 <<< DEMO ./demo/AlertFade.vue
 
-## Exposed functions
+## Доступные функции
 
-The BAlert exposes four functions to manipulate the state of an active timer: `pause(), resume(), restart() & stop()`. These are accessed through the [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs).
+Компонент BAlert предоставляет четыре функции для управления состоянием активного таймера: `pause()`, `resume()`, `restart()` и `stop()`. Доступ к ним осуществляется через [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs).
 
-1. Pause: pauses the active timer at the time that it is currently at
-2. Resume: resumes the active timer at the place saved by `pause()`
-3. Restart: restarts the timer back to its v-model saved spot. Ex: v-model="5400" and restarted at 3200ms will restart back to 5400ms
-4. Stop: stops the timer. Unlike pause, it sets the value to 0ms and cannot be `resumed`, only `restarted`
+1. Pause: приостанавливает активный таймер на текущем значении времени
+2. Resume: возобновляет таймер с того места, где он был остановлен с помощью `pause()`
+3. Restart: перезапускает таймер с исходного значения, заданного через v-model. Например, если v-model="5400" и таймер был перезапущен на 3200 мс, он снова начнёт с 5400 мс
+4. Stop: останавливает таймер. В отличие от pause, устанавливает значение в 0 мс и не может быть возобновлён, только перезапущен
 
 <<< DEMO ./demo/AlertFunctions.vue
 
-## Timer Props
+## Свойства таймера
 
-- `Immediate`: Setting this property to `false` will cause a timer to not start immediately upon render. A timer that is not started is not rendered. It must manually be started with `resume()` or `restart()`. Default is `true`.
-- `showOnPause`: Setting this property to `false` will override the behavior of showing the Alert when the timer is paused. Default is `true`.
+- `immediate`: Если установить это свойство в `false`, таймер не будет запускаться сразу после рендера. Таймер, который не запущен, не отображается. Его необходимо запустить вручную с помощью методов `resume()` или `restart()`. По умолчанию — `true`.
+- `showOnPause`: Если установить это свойство в `false`, оповещение не будет отображаться при приостановке таймера. По умолчанию — `true`.
 
 <ComponentReference :data="data" />
 
