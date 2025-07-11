@@ -91,5 +91,10 @@ const items = computed(() =>
     .sort((a, b) => a.prop.localeCompare(b.prop))
 )
 
-const fields = ['prop', 'oldProp', 'description', 'components']
+const fields = [
+  {key: 'prop', label: 'Свойство'},
+  {key: 'oldProp', label: 'Старое имя'},
+  {key: 'description', label: 'Описание'},
+  {key: 'components', label: 'Компоненты'},
+]
 </script>

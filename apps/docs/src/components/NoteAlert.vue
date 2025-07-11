@@ -1,6 +1,6 @@
 <template>
   <BAlert variant="info" :model-value="true">
-    {{ withNoteTextPrepend === true ? 'Note: ' : '' }}<slot />
+    {{ withNoteTextPrepend === true ? 'Примечание: ' : '' }}<slot />
   </BAlert>
 </template>
 

@@ -18,7 +18,7 @@
         {{ member.name }}
         <small v-if="!!member.totalAmountDonated">
           {{
-            new Intl.NumberFormat('en-US', {
+            new Intl.NumberFormat('ru-RU', {
               style: 'currency',
               currency: member.currency ?? 'USD',
               maximumFractionDigits: 0,

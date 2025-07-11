@@ -79,23 +79,23 @@ const headerInsideClasses = ['px-2', 'ms-2', 'text-decoration-none'] as const
 const headerLinks = [
   {
     route: withBase('/docs'),
-    label: 'Getting Started',
+    label: 'Начало работы',
   },
   {
     route: withBase('/docs/icons'),
-    label: 'Icons',
+    label: 'Иконки',
   },
   {
     route: withBase('/docs/types'),
-    label: 'Types',
+    label: 'Типы',
   },
   {
     route: withBase('/docs/reference'),
-    label: 'Reference',
+    label: 'Справочник',
   },
   {
     route: withBase('/docs/migration-guide'),
-    label: 'Migrate',
+    label: 'Миграция',
   },
 ]
 
@@ -191,34 +191,34 @@ const directivesComputedList = computed(() =>
 
 const groupComputedList = computed(() => [
   {
-    label: 'Components',
+    label: 'Компоненты',
     uri: '/docs/components',
     icon: () => IntersectIcon,
     children: componentsComputedList.value,
   },
   {
-    label: 'Composables',
+    label: 'Композиции',
     uri: '/docs/composables',
     icon: () => PieChartIcon,
     children: composablesComputedList.value,
   },
   {
-    label: 'Directives',
+    label: 'Директивы',
     uri: '/docs/directives',
     icon: () => CodeSlashIcon,
     children: directivesComputedList.value,
   },
   {
-    label: 'Configurations',
+    label: 'Конфигурации',
     uri: '/docs/configurations',
     icon: () => GearIcon,
     children: [
       {
-        name: 'Global Options',
+        name: 'Глобальные опции',
         route: withBase('/docs/configurations/global-options'),
       },
       {
-        name: 'Customizing Styles',
+        name: 'Настройка стилей',
         route: withBase('/docs/configurations/customizing-styles'),
       },
     ],

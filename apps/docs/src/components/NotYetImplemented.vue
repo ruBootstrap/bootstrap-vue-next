@@ -1,7 +1,7 @@
 <template>
   <a
     href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#developing"
-    ><span style="color: red">Not yet implemented</span><span v-if="$slots.default">: </span><slot
+    ><span style="color: red">Ещё не реализовано</span><span v-if="$slots.default">: </span><slot
   /></a>
 </template>
 

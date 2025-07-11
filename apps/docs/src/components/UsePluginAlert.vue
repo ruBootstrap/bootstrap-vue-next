@@ -1,7 +1,7 @@
 <template>
   <NoteAlert>
-    You must have initialized the createBootstrap plugin for this to work properly. Read
-    <BLink :to="withBase('/docs#install')">here</BLink>
+    Для корректной работы необходимо инициализировать плагин createBootstrap. Подробнее читайте
+    <BLink :to="withBase('/docs#install')">здесь</BLink>
   </NoteAlert>
 </template>
 

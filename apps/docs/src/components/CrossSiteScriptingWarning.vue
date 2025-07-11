@@ -1,24 +1,24 @@
 <template>
   <BAlert :model-value="true" variant="danger">
-    <strong>Be cautious</strong> of placing user supplied content in the <code>html</code> field, as
-    it may make you vulnerable to
+    <strong>Будьте осторожны</strong> при размещении пользовательского контента в поле
+    <code>html</code>, так как это может сделать вас уязвимыми к
     <BLink
       target="_blank"
       rel="noopener"
       variant="info"
       href="https://en.wikipedia.org/wiki/Cross-site_scripting"
     >
-      <abbr title="Cross Site Scripting Attacks">XSS attacks</abbr> </BLink
-    >, if you do not first
+      <abbr title="Cross Site Scripting Attacks">XSS-атакам</abbr> </BLink
+    >, если вы предварительно не
     <BLink
       variant="info"
       href="https://en.wikipedia.org/wiki/HTML_sanitization"
       target="_blank"
       rel="noopener"
     >
-      sanitize</BLink
+      санитизируете</BLink
     >
-    the user supplied string.
+    пользовательскую строку.
   </BAlert>
 </template>
 

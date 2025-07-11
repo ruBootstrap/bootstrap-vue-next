@@ -1,7 +1,6 @@
 <template>
   <NoteAlert>
-    The <code>bootstrapPlugin</code> is required by all components if one chooses to use this
-    installation method
+    <code>bootstrapPlugin</code> требуется для всех компонентов, если выбран этот способ установки
   </NoteAlert>
 </template>
 

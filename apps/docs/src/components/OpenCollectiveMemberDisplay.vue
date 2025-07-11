@@ -2,7 +2,7 @@
   <BContainer>
     <BRow>
       <BCol>
-        <h2 class="text-center">Administrators</h2>
+        <h2 class="text-center">Администраторы</h2>
       </BCol>
     </BRow>
     <BRow>
@@ -12,7 +12,7 @@
     </BRow>
     <BRow>
       <BCol>
-        <h2 class="text-center">Contributors</h2>
+        <h2 class="text-center">Контрибьюторы</h2>
       </BCol>
     </BRow>
     <BRow>
@@ -22,7 +22,7 @@
     </BRow>
     <BRow>
       <BCol>
-        <h2 class="text-center">Financial Backers</h2>
+        <h2 class="text-center">Финансовые спонсоры</h2>
       </BCol>
     </BRow>
     <BRow>
@@ -38,19 +38,18 @@
         <h2>
           <BPopover>
             <template #target>
-              <div class="text-center">Inactive Financial Backers</div>
+              <div class="text-center">Неактивные финансовые спонсоры</div>
             </template>
             <div class="mb-2">
-              An inactive financial backer is someone who has not made a financial contribution in
-              the last year.
+              Неактивный финансовый спонсор — это тот, кто не делал финансовых взносов за последний
+              год.
             </div>
             <div class="mb-2">
-              We thank them for their past contributions and hope they will consider contributing
-              again in the future.
+              Мы благодарим их за прошлые взносы и надеемся, что они снова поддержат проект в
+              будущем.
             </div>
             <div>
-              Those that have not contributed in the last two years are removed from the financial
-              backers list.
+              Те, кто не делал взносов более двух лет, удаляются из списка финансовых спонсоров.
             </div>
           </BPopover>
         </h2>

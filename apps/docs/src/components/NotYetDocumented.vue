@@ -1,25 +1,25 @@
 <template>
   <p>
     <span v-if="!helpOnly">
-      This {{ type }} is either not documented or has not been through full parity review. Please
-      use with caution and refer to the code to find differences in behavior. We are working to
-      bring the migration guide and documenation up-to-date with the code.
+      Этот {{ type }} либо не задокументирован, либо не прошёл полный паритетный обзор. Пожалуйста,
+      используйте с осторожностью и обращайтесь к коду для поиска различий в поведении. Мы работаем
+      над тем, чтобы руководство по миграции и документация были актуальны относительно кода.
     </span>
-    If you would like to help, please refer to the
+    Если вы хотите помочь, пожалуйста, ознакомьтесь с разделами
     <a
       href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#improving-the-documentation"
     >
-      improving the documentation</a
+      улучшение документации</a
     >
-    and
+    и
     <a
       href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#help-verify-bootstrapvue-and-bootstrap-v5-parity"
-      >help verify parity</a
+      >помощь в проверке паритета</a
     >
-    sections of our
+    в нашем
     <a
       href="https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#developing"
-      >contribution guide.<slot
+      >руководстве по вкладу.<slot
     /></a>
   </p>
 </template>

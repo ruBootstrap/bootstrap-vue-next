@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div v-if="computedKind !== StyleKind.None">
-    <a href="../configurations/customizing-styles#adding-styles">Adding styles</a>:
+    <a href="../configurations/customizing-styles#adding-styles">Добавление стилей</a>:
     <code v-html="computedValue" />
   </div>
 </template>

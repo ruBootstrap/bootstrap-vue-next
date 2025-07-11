@@ -2,7 +2,7 @@
   <BContainer fluid class="p-0 component-reference">
     <BRow>
       <BCol>
-        <h2 id="component-reference">Component Reference</h2>
+        <h2 id="component-reference">Справочник компонентов</h2>
       </BCol>
     </BRow>
     <BRow>
@@ -47,7 +47,7 @@
                         variant="info"
                         :to="buildCompReferenceLink(`${component.component}-Properties`)"
                       >
-                        Properties
+                        Свойства
                       </BLink>
                     </h5>
                   </BCol>
@@ -84,11 +84,11 @@
                         :style="{cursor: 'help'}"
                         class="text-decoration-underline text-info cursor-help"
                       >
-                        Extensions:
+                        Расширения:
                       </span>
                       <b-tooltip
                         target="extension-info"
-                        title="Extensions are selected properties from another component, integrated here. It may not include all original properties"
+                        title="Расширения — это выбранные свойства из другого компонента, интегрированные здесь. Это может быть не полный список оригинальных свойств"
                       />
                       <BAccordion free>
                         <BAccordionItem
