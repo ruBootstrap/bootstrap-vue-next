@@ -6,8 +6,8 @@ import Components from 'unplugin-vue-components/vite'
 import {BootstrapVueNextResolver} from 'bootstrap-vue-next'
 
 const title = 'BootstrapVueNext'
-const description = 'Quickly and Easily Integrate Bootstrap V5 Components With Vue 3'
-const baseUrl = '/bootstrap-vue-next/'
+const description = 'Быстро и легко интегрируйте компоненты Bootstrap v5 с Vue 3'
+const baseUrl = '/'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -39,13 +39,13 @@ export default defineConfig({
   },
   locales: {
     root: {
-      label: 'English',
-      lang: 'en',
+      label: 'Russian',
+      lang: 'ru',
     },
   },
   appearance: false,
   sitemap: {
-    hostname: `https://bootstrap-vue-next.github.io${baseUrl}`,
+    hostname: `https://next.bootstrap-vue.ru${baseUrl}`,
   },
   themeConfig: {
     search: {

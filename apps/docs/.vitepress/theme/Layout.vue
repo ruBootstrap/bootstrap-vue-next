@@ -66,7 +66,7 @@
                 <component
                   :is="currentIcon"
                   height="1.1em"
-                  :aria-label="`Toggle theme (${colorMode})`"
+                  :aria-label="`Переключить тему (${colorMode})`"
                   class="d-inline-block"
                 />
               </template>
@@ -87,7 +87,7 @@
   <ClientOnly>
     <div v-if="!isLargeScreen" class="py-4 px-3 text-end">
       <BNavbarToggle v-b-toggle.otp-menu class="otp-menu-toggle">
-        On this page
+        На этой странице
         <ChevronRight aria-hidden />
       </BNavbarToggle>
     </div>
@@ -99,7 +99,7 @@
           id="sidebar-menu"
           v-model="sidebar"
           responsive="lg"
-          title="Browse docs"
+          title="Просмотр документации"
           header-class="d-flex offcanvas-hidden-width"
           class="h-100 border-0"
         >
@@ -113,12 +113,12 @@
           <BContainer class="text-center my-auto p-5">
             <BRow>
               <BCol>
-                <h1>Oh No!</h1>
+                <h1>О нет!</h1>
               </BCol>
             </BRow>
             <BRow>
               <BCol>
-                <h2>File Not Found</h2>
+                <h2>Файл не найден</h2>
               </BCol>
             </BRow>
           </BContainer>
@@ -133,7 +133,7 @@
                 v-model="onThisPage"
                 responsive="lg"
                 placement="end"
-                title="On this page"
+                title="На этой странице"
                 class="h-100 border-0"
                 header-class="pb-0 d-flex offcanvas-hidden-width"
                 body-class="py-2"
@@ -228,40 +228,40 @@ const onThisPage = ref(false)
 const headerLinks = [
   {
     route: withBase('/docs'),
-    label: 'Getting Started',
+    label: 'Начало работы',
   },
   {
     route: withBase('/docs/icons'),
-    label: 'Icons',
+    label: 'Иконки',
   },
   {
     route: withBase('/docs/types'),
-    label: 'Types',
+    label: 'Типы',
   },
   {
     route: withBase('/docs/reference'),
-    label: 'Reference',
+    label: 'Справочник',
   },
   {
     route: withBase('/docs/migration-guide'),
-    label: 'Migrate',
+    label: 'Миграция',
   },
 ]
 
 const headerExternalLinks = [
   {
     url: globalData.githubUrl,
-    label: 'Open Our Github',
+    label: 'Открыть наш Github',
     icon: () => GithubIcon,
   },
   {
     url: globalData.opencollectiveUrl,
-    label: 'Open Our Opencollective',
+    label: 'Открыть наш Opencollective',
     icon: () => OpencollectiveIcon,
   },
   {
     url: globalData.discordUrl,
-    label: 'Open Our Discord Server',
+    label: 'Открыть наш Discord сервер',
     icon: () => DiscordIcon,
   },
 ]

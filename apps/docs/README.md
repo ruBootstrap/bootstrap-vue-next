@@ -1,18 +1,18 @@
-# Docs
+# Документация
 
-The documentation requires a specific style guide for consistency purposes. You can review the styles required here
+Документация требует соблюдения определенного руководства по стилю для обеспечения единообразия. Вы можете ознакомиться с требуемыми стилями здесь
 
-1. It is recommended to have <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint> rules should be followed strictly -- besides HTML in markdown. Which you can disable in `.vscode/settings.json`
-2. Lines should never contain ending periods
-3. All components should have a description directly after the first top-level h1. You should always use `>` for these top level descriptions
-4. Code _examples_ -- ie those that use code highlighting, should never contain a wrapper div, card, or other element. The _only_ exception is #5
-5. Code examples should always contain a `template` if they require a `script` tag.
-6. `script` tags should always be `<script setup lang="ts">` in that exact format
-7. Rendered Vue code must be directly _before_ the code example from above. This code example must always be wrapped in a `BCard`
-8. Use PascalCase for components. In Vue code or example code
-9. Headers should be APA Title Case <https://capitalizemytitle.com/style/APA/>
-10. Props should always be kebab case, ex modelValue => model-value
-11. Unordered lists should always use `-`, not any alternative (ie never `*`, `+`)
-12. There should not be excess lines in markdown files. Either in `script` tags, or between elements in examples. This may affect readability, but assuming you have followed the Vue eslint rulings (read below), then it should be fine
+1. Рекомендуется иметь <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint> правила должны строго соблюдаться -- кроме HTML в markdown. Что вы можете отключить в `.vscode/settings.json`
+2. Строки никогда не должны содержать завершающие точки
+3. Все компоненты должны иметь описание непосредственно после первого заголовка верхнего уровня h1. Вы должны всегда использовать `>` для этих описаний верхнего уровня
+4. Код _примеры_ -- то есть те, которые используют подсветку кода, никогда не должны содержать обертку div, card или другой элемент. Единственное исключение - пункт #5
+5. Примеры кода должны всегда содержать `template`, если они требуют тег `script`
+6. Теги `script` должны всегда быть `<script setup lang="ts">` в точном таком формате
+7. Отрендеренный Vue код должен быть непосредственно _перед_ примером кода выше. Этот пример кода должен всегда быть обернут в `BCard`
+8. Используйте PascalCase для компонентов. В Vue коде или примере кода
+9. Заголовки должны быть в стиле APA Title Case <https://capitalizemytitle.com/style/APA/>
+10. Пропсы должны всегда быть в kebab case, например modelValue => model-value
+11. Неупорядоченные списки должны всегда использовать `-`, а не альтернативы (то есть никогда `*`, `+`)
+12. В markdown файлах не должно быть избыточных строк. Ни в тегах `script`, ни между элементами в примерах. Это может повлиять на читаемость, но предполагая, что вы следовали правилам Vue eslint (читайте ниже), то должно быть хорошо
 
-It is recommended to put Vue code that is md into a real Vue file first, let it auto lint so we keep regular styling of Vue examples
+Рекомендуется сначала поместить Vue код, который находится в md, в настоящий Vue файл, позволить ему автоматически линтиться, чтобы мы сохраняли регулярное стилирование Vue примеров

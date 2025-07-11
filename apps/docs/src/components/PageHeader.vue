@@ -5,7 +5,7 @@
     ></BRow>
     <BRow v-if="withPageHeader">
       <BCol>
-        <ViewSourceButton :href> Edit this page on GitHub </ViewSourceButton>
+        <ViewSourceButton :href="href"> Редактировать эту страницу на GitHub </ViewSourceButton>
       </BCol>
     </BRow>
   </BContainer>

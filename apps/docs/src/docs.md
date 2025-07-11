@@ -1,33 +1,33 @@
-# Introduction
+# Введение
 
 <div class="lead">
 
-Get started with BootstrapVueNext and Bootstrap `v5`, the world’s most popular framework for building responsive, mobile-first sites.
+Начните работу с BootstrapVueNext и Bootstrap `v5`, самой популярной в мире платформой для создания адаптивных сайтов с приоритетом на мобильные устройства.
 
 </div>
 
-## Why BootstrapVueNext?
+## Почему BootstrapVueNext?
 
-BootstrapVueNext is an attempt to have the [BootstrapVue](https://bootstrap-vue.github.io/bootstrap-vue/) components in Vue3, Bootstrap 5, and typescript. Another goal is to have the components written in a simple and readable way for a better developer experience.
+BootstrapVueNext - это попытка перенести компоненты [BootstrapVue](https://bootstrap-vue.github.io/bootstrap-vue/) в Vue3, Bootstrap 5 и TypeScript. Другая цель - написать компоненты простым и читаемым способом для лучшего опыта разработчика.
 
-## Migrating from BootstrapVue
+## Миграция с BootstrapVue
 
-If you are migrating from BootstrapVue, please refer to our [migration guide](/docs/migration-guide)
+Если вы мигрируете с BootstrapVue, обратитесь к нашему [руководству по миграции](/docs/migration-guide)
 
-## Contribute and Support 🙌
+## Вклад и поддержка 🙌
 
-This project is in the **late stages of alpha version**. While most features are functioning as expected, you may still encounter some issues. Your contributions at this stage can be particularly impactful in shaping the final product. If you're interested in contributing, here's how you can help:
+Этот проект находится на **поздних стадиях альфа-версии**. Хотя большинство функций работают как ожидается, вы все еще можете столкнуться с некоторыми проблемами. Ваш вклад на этом этапе может быть особенно значимым в формировании финального продукта. Если вы заинтересованы в участии, вот как вы можете помочь:
 
-- submit an [issue](https://github.com/bootstrap-vue-next/bootstrap-vue-next/issues)
-- or better, a [pull request](https://github.com/bootstrap-vue-next/bootstrap-vue-next/pulls)
+- отправить [issue](https://github.com/bootstrap-vue-next/bootstrap-vue-next/issues)
+- или лучше, [pull request](https://github.com/bootstrap-vue-next/bootstrap-vue-next/pulls)
 
-Read our [Contribution Guide](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md) on how to start helping.
+Прочитайте наш [Руководство по участию](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md) о том, как начать помогать.
 
-## Install
+## Установка
 
-### Installation - Vue.js
+### Установка - Vue.js
 
-- First install the package
+- Сначала установите пакет
 
 <ClientOnly>
 <BTabs v-model="codePreference">
@@ -85,22 +85,22 @@ npm i bootstrap bootstrap-vue-next
 import {createApp} from 'vue'
 import {createBootstrap} from 'bootstrap-vue-next'
 
-// Add the necessary CSS
+// Добавьте необходимый CSS
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 
 const app = createApp(App)
-app.use(createBootstrap()) // Important
+app.use(createBootstrap()) // Важно
 app.mount('#app')
 ```
 
 </HighlightCard>
 
-Now, you can begin importing and using components
+Теперь вы можете начать импортировать и использовать компоненты
 
-#### Automatic Registering of Components
+#### Автоматическая регистрация компонентов
 
-To have components automatically registered **and** tree-shaken, we recommend [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components). Read their docs for additional details. This is in addition to the above installation steps. We supply a resolver
+Для автоматической регистрации компонентов **и** tree-shaking, мы рекомендуем [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components). Прочитайте их документацию для дополнительных деталей. Это в дополнение к вышеуказанным шагам установки. Мы предоставляем резолвер
 
 <ClientOnly>
 <BTabs v-model="codePreference">
@@ -151,7 +151,7 @@ npm i unplugin-vue-components -D
 </BTabs>
 </ClientOnly>
 
-The following is an example of a basic `vite.config.js/ts`. All you need to do is add **Components** to the Vite **plugins** option, with the additional imports:
+Следующий пример показывает базовую `vite.config.js/ts`. Все, что вам нужно сделать, это добавить **Components** в опцию **plugins** Vite с дополнительными импортами:
 
 <HighlightCard>
 
@@ -175,12 +175,12 @@ export default defineConfig({
 </HighlightCard>
 
 <NoteAlert>
-The resolver import is from `bootstrap-vue-next`, not `unplugin-vue-components`
+Импорт резолвера из `bootstrap-vue-next`, а не из `unplugin-vue-components`
 </NoteAlert>
 
-##### Aliasing
+##### Алиасинг
 
-With the `BootstrapVueNextResolver` we also have an option for aliasing components like so:
+С `BootstrapVueNextResolver` у нас также есть опция для создания алиасов компонентов, например:
 
 ```ts
 import {Components} from 'unplugin-vue-components'
@@ -197,9 +197,9 @@ Components({
 })
 ```
 
-### Installation - Nuxt.js 3
+### Установка - Nuxt.js 3
 
-In your Nuxt3 application, install the necessary packages for `bootstrap-vue-next`.
+В вашем приложении Nuxt3 установите необходимые пакеты для `bootstrap-vue-next`.
 
 <ClientOnly>
 <BTabs v-model="codePreference">
@@ -250,7 +250,7 @@ npm i bootstrap bootstrap-vue-next @bootstrap-vue-next/nuxt -D
 </BTabs>
 </ClientOnly>
 
-Open your `nuxt.config.js/ts` file and configure your application to use `bootstrap-vue-next`. The components will be imported automatically as needed.
+Откройте файл `nuxt.config.js/ts` и настройте ваше приложение для использования `bootstrap-vue-next`. Компоненты будут импортироваться автоматически по мере необходимости.
 
 <HighlightCard>
 
@@ -264,15 +264,15 @@ export default defineNuxtConfig({
 
 </HighlightCard>
 
-Enjoy it in your app without manual imports, and automatic tree-shaking.
+Наслаждайтесь в вашем приложении без ручных импортов и с автоматическим tree-shaking.
 
 <HighlightCard>
 
 ```vue
 <template>
   <div>
-    <BButton variant="primary" @click="show = !show">Click me</BButton>
-    <BModal v-model="show">Test</BModal>
+    <BButton variant="primary" @click="show = !show">Нажми меня</BButton>
+    <BModal v-model="show">Тест</BModal>
   </div>
 </template>
 
@@ -283,7 +283,7 @@ const show = ref(false)
 
 </HighlightCard>
 
-You can customize the options with the bootstrapVueNext key in your nuxt.config.
+Вы можете настроить опции с помощью ключа bootstrapVueNext в вашем nuxt.config.
 
 <HighlightCard>
 
@@ -292,25 +292,25 @@ You can customize the options with the bootstrapVueNext key in your nuxt.config.
 export default defineNuxtConfig({
   modules: ['@bootstrap-vue-next/nuxt'],
   bootstrapVueNext: {
-    composables: true, // Will include all composables
-    // composables: {useBreadcrumb: true, useColorMode: true, all: false}, // Will include only useBreadcrumb & useColorMode
-    // composables: {useBreadcrumb: false, useColorMode: false, all: true} // Will include everything except useBreadcrumb & useColorMode
-    directives: {all: true}, // Will include all directives
-    css: true, // Will include the module's CSS. If set to false, you can add the CSS manually in the 'css' property below
+    composables: true, // Включит все композаблы
+    // composables: {useBreadcrumb: true, useColorMode: true, all: false}, // Включит только useBreadcrumb & useColorMode
+    // composables: {useBreadcrumb: false, useColorMode: false, all: true} // Включит все, кроме useBreadcrumb & useColorMode
+    directives: {all: true}, // Включит все директивы
+    css: true, // Включит CSS модуля. Если установлено false, вы можете добавить CSS вручную в свойстве 'css' ниже
   },
   css: [
-    // 'bootstrap/dist/css/bootstrap.min.css' // Not necessary if `css: true`
+    // 'bootstrap/dist/css/bootstrap.min.css' // Не обязательно, если `css: true`
   ],
 })
 ```
 
 </HighlightCard>
 
-This is mainly for the purpose of naming conflicts with other imports. It should not effect tree-shaking
+Это в основном для целей разрешения конфликтов имен с другими импортами. Это не должно влиять на tree-shaking
 
-### Installation - TypeScript
+### Установка - TypeScript
 
-This package uses optional peer dependencies to generate type definitions for enhanced functionality. These dependencies are not installed by default to avoid unnecessary bloat in projects that don’t require these features. However, if you want full type support, you need to manually install the required packages.
+Этот пакет использует опциональные peer dependencies для генерации определений типов для расширенной функциональности. Эти зависимости не устанавливаются по умолчанию, чтобы избежать ненужного раздувания в проектах, которые не требуют этих функций. Однако, если вы хотите полную поддержку типов, вам нужно вручную установить требуемые пакеты.
 
 <ClientOnly>
 <BTabs v-model="codePreference">
@@ -361,9 +361,9 @@ npm i -D @floating-ui/vue @vueuse/core vue-router
 </BTabs>
 </ClientOnly>
 
-### Installation - CDN
+### Установка - CDN
 
-BootstrapVueNext is available through `jsdelivr`. You can add the package by using the following
+BootstrapVueNext доступен через `jsdelivr`. Вы можете добавить пакет, используя следующее
 
 <HighlightCard>
 
@@ -377,13 +377,13 @@ BootstrapVueNext is available through `jsdelivr`. You can add the package by usi
 
 </HighlightCard>
 
-- **NOTE** Do not forget to set the version!
+- **ПРИМЕЧАНИЕ** Не забудьте установить версию!
 
 <NoteAlert>
-Links should be loaded after Bootstrap and Vue
+Ссылки должны загружаться после Bootstrap и Vue
 </NoteAlert>
 
-Alternatively the ESM package is available as well
+Альтернативно, ESM пакет также доступен
 
 <HighlightCard>
 
@@ -397,26 +397,26 @@ Alternatively the ESM package is available as well
 
 ## Tree-shaking
 
-If you are concerned about the size of your application, you should utilize
+Если вас беспокоит размер вашего приложения, вы должны использовать
 [tree-shaking](https://vuejs.org/guide/best-practices/performance#bundle-size-and-tree-shaking).
-Below are some pointers on optimizing tree-shaking in the context of BootstrapVueNext.
+Ниже приведены некоторые указания по оптимизации tree-shaking в контексте BootstrapVueNext.
 
 ### Tree-shake CSS
 
-If you are using one of the preferred installation methods, JS will be tree-shaken by default. The one thing we are not able to do automatically is optimize CSS. Methods like PurgeCSS are not ideal because of a limitation with the dynamic nature of class renderings and Vue (Problematic code like: `[btn-${props.variant}]: props.variant !== undefined`). With that being said, BootstrapVueNext does not handle CSS imports from Bootstrap, we only add some additional CSS ourselves. So, using a method such as [Lean Sass Imports](https://getbootstrap.com/docs/5.3/customize/optimize/#lean-sass-imports) from the Bootstrap documentation is likely the best way to achieve the tiniest possible application size. Though it is not automatic, it should prove the safest bet for minifying your application.
+Если вы используете один из предпочтительных методов установки, JS будет tree-shaken по умолчанию. Единственное, что мы не можем сделать автоматически, это оптимизировать CSS. Методы типа PurgeCSS не идеальны из-за ограничения с динамической природой рендеринга классов и Vue (Проблемный код типа: `[btn-${props.variant}]: props.variant !== undefined`). С учетом сказанного, BootstrapVueNext не обрабатывает CSS импорты из Bootstrap, мы только добавляем некоторый дополнительный CSS сами. Поэтому использование метода типа [Lean Sass Imports](https://getbootstrap.com/docs/5.3/customize/optimize/#lean-sass-imports) из документации Bootstrap, вероятно, лучший способ достичь минимально возможного размера приложения. Хотя это не автоматически, это должно оказаться самым безопасным вариантом для минимизации вашего приложения.
 
-### Tree-shake JS plugins
+### Tree-shake JS плагины
 
-`createBootstrap` is a simple utility that provides everything that is required for the library to work. However, some plugins may not be needed.
-One could individually import each needed plugin, they are all appended with `Plugin` (`toastPlugin`, `breadcrumbPlugin`, etc). So, one could pick and choose what is needed
-Practically the `createBootstrap` plugin is ~20kb gzipped with `toast` and `modalController` accounting for the majority. Use this if you really want the tiniest possible size.
+`createBootstrap` - это простая утилита, которая предоставляет все, что необходимо для работы библиотеки. Однако некоторые плагины могут не понадобиться.
+Можно индивидуально импортировать каждый нужный плагин, они все имеют суффикс `Plugin` (`toastPlugin`, `breadcrumbPlugin`, и т.д.). Таким образом, можно выбирать то, что нужно
+Практически плагин `createBootstrap` составляет ~20kb сжатый с `toast` и `modalController`, составляющими большинство. Используйте это, если вы действительно хотите минимально возможный размер.
 
 <BootstrapPluginWarning />
 
-### Exposed methods and tree-shaking
+### Экспортированные методы и tree-shaking
 
-In order to correctly type exposed methods, you need to explicitly import them from BootstrapVueNext. When doeing this,
-import the component (not just the type) and use the full path to improve tree-shaking.
+Для правильной типизации экспортированных методов вам нужно явно импортировать их из BootstrapVueNext. При этом
+импортируйте компонент (не только тип) и используйте полный путь для улучшения tree-shaking.
 
 <HighlightCard>
 
@@ -428,11 +428,11 @@ import {BTab} from 'bootstrap-vue-next/components/BTabs'
 
 </HighlightCard>
 
-## Comparison with BootstrapVue
+## Сравнение с BootstrapVue
 
-BootstrapVue is the parent project for which this is based on. We consider BootstrapVue as the best implementation of Bootstrap `v4`. We strive for a full compatibility list for BootstrapVue. However, due to the nature of the rewrite, some features may be missing or changed. If anyone has spotted a missing compatibility feature, we request that you submit a GitHub issue or contribute to the [parity report](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#help-verify-bootstrapvue-and-bootstrap-v5-parity).
+BootstrapVue - это родительский проект, на котором основан этот проект. Мы считаем BootstrapVue лучшей реализацией Bootstrap `v4`. Мы стремимся к полному списку совместимости с BootstrapVue. Однако из-за природы переписывания некоторые функции могут отсутствовать или измениться. Если кто-то заметил отсутствующую функцию совместимости, мы просим вас отправить GitHub issue или внести вклад в [отчет о совместимости](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#help-verify-bootstrapvue-and-bootstrap-v5-parity).
 
-If you are migrating from BootstrapVue, please refer to our [migration guide](/docs/migration-guide)
+Если вы мигрируете с BootstrapVue, обратитесь к нашему [руководству по миграции](/docs/migration-guide)
 
 <script lang="ts">
 import {useLocalStorage} from '@vueuse/core'

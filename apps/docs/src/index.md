@@ -1,8 +1,8 @@
-# Introduction
+# Введение
 
 <div class="lead mb-5">
 
-With BootstrapVueNext you can build fast, responsive, and ARIA accessible projects on the web using Vue.js and Bootstrap v5.
+С BootstrapVueNext вы можете создавать быстрые, адаптивные и доступные для ARIA проекты в интернете, используя Vue.js и Bootstrap v5.
 
 </div>
 
@@ -12,7 +12,7 @@ With BootstrapVueNext you can build fast, responsive, and ARIA accessible projec
       <BCard class="p-3">
         <BootstrapIcon aria-hidden class="icon-lg" />
         <BCardText class="mt-4">
-          Bootstrap v5 is the world's most popular framework for building responsive, mobile-first sites.
+          Bootstrap v5 - это самая популярная в мире платформа для создания адаптивных сайтов с приоритетом на мобильные устройства.
         </BCardText>
       </BCard>
     </BLink>
@@ -22,34 +22,34 @@ With BootstrapVueNext you can build fast, responsive, and ARIA accessible projec
       <BCard class="p-3">
         <VueIcon aria-hidden class="icon-lg" />
         <BCardText class="mt-4">
-          Vue.js (pronounced /vjuː/, like view) is a progressive framework for building user interfaces.
+          Vue.js (произносится как /vjuː/, как view) - это прогрессивная платформа для создания пользовательских интерфейсов.
         </BCardText>
       </BCard>
     </BLink>
   </BCol>
 </BRow>
 
-<p class="mb-2 d-flex small">Current Version:</p>
+<p class="mb-2 d-flex small">Текущая версия:</p>
 <a href="https://www.npmjs.com/package/bootstrap-vue-next" target="_blank" rel="noopener">
-  <img src="https://flat.badgen.net/npm/v/bootstrap-vue-next" alt="Current version">
+  <img src="https://flat.badgen.net/npm/v/bootstrap-vue-next" alt="Текущая версия">
 </a>
 
-## Overview
+## Обзор
 
-With more than 35 components, several directives and composables (and growing), BootstrapVueNext provides one of the most comprehensive implementations of the Bootstrap v5 component and grid system available for Vue.js v3 / Nuxt.js 3, complete with extensive and automated WAI-ARIA accessibility markup.
+Более чем с 35 компонентами, несколькими директивами и композаблами (и растущим количеством), BootstrapVueNext предоставляет одну из самых полных реализаций системы компонентов и сетки Bootstrap v5, доступных для Vue.js v3 / Nuxt.js 3, с обширной и автоматизированной разметкой доступности WAI-ARIA.
 
 <div class="d-flex gap-2 mt-4">
-  <BButton :to="withBase('/docs')" variant="primary">Get Started</BButton>
+  <BButton :to="withBase('/docs')" variant="primary">Начать</BButton>
   <BButton :href="globalData.githubUrl" target="_blank" rel="noopener" variant="outline-secondary">GitHub</BButton>
 </div>
 
-## Integrate with Nuxt.js
+## Интеграция с Nuxt.js
 
-Easily integrate BootstrapVueNext into your Nuxt.js projects using our included Nuxt.js module. You can optionally specify only the components, directives and/or plugins you require.
+Легко интегрируйте BootstrapVueNext в ваши проекты Nuxt.js, используя наш встроенный модуль Nuxt.js. Вы можете опционально указать только те компоненты, директивы и/или плагины, которые вам требуются.
 
-<BButton variant="secondary" :to="withBase('/docs#installation-nuxt-js-3')" class="my-3">BootstrapVueNext Nuxt.js module</BButton>
+<BButton variant="secondary" :to="withBase('/docs#installation-nuxt-js-3')" class="my-3">Модуль BootstrapVueNext для Nuxt.js</BButton>
 
-## Our OpenCollective
+## Наш OpenCollective
 
 <OpenCollectiveMemberDisplay />
 

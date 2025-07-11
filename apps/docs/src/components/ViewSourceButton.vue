@@ -1,5 +1,7 @@
 <template>
-  <BButton variant="outline-info" target="_blank" :href> <slot> View Source </slot> </BButton>
+  <BButton variant="outline-info" target="_blank" :href="href">
+    <slot> Посмотреть исходный код </slot>
+  </BButton>
 </template>
 
 <script setup lang="ts">
