@@ -1,12 +1,12 @@
-# Types
+# Типы
 
 <div class="lead mb-5">
 
-`BootstrapVueNext` is a complete rewrite that strives for full TypeScript compatibility. This is a list of types we use in this library and that you can use too.
+`BootstrapVueNext` — это полная переработка с акцентом на полную совместимость с TypeScript. Ниже приведён список типов, которые используются в этой библиотеке и которые вы также можете использовать.
 
 </div>
 
-## Alignment
+## Выравнивание (Alignment)
 
 <BCard class="bg-body-tertiary">
 
@@ -47,7 +47,7 @@ type AttrsValue = Record<string, any>
 
 ## BodyProp
 
-This type is only used for the Toast component.
+Этот тип используется только для компонента Toast.
 
 <BCard class="bg-body-tertiary">
 
@@ -68,7 +68,7 @@ type BodyProp =
 
 ## BreadcrumbItem
 
-This type is only used for the Breadcrumb component.
+Этот тип используется только для компонента Breadcrumb.
 
 <BCard class="bg-body-tertiary">
 
@@ -341,7 +341,7 @@ type PopoverPlacement = Placement | 'auto' | 'auto-start' | 'auto-end'
 
 </BCard>
 
-Where `Placement` is defined in [@floating-ui/vue](https://floating-ui.com/) as
+Где `Placement` определён в [@floating-ui/vue](https://floating-ui.com/) как
 
 <BCard class="bg-body-tertiary">
 
@@ -612,17 +612,17 @@ type VerticalAlign = 'baseline' | 'top' | 'middle' | 'bottom' | 'text-top' | 'te
 
 </BCard>
 
-## Extending types
+## Расширение типов
 
-You can extend some types to use your own values (e.g. colors, sizes). This requires the use of interface augmentation. You can augment next interfaces:
+Вы можете расширять некоторые типы, чтобы использовать свои значения (например, цвета, размеры). Для этого требуется использовать расширение интерфейсов (interface augmentation). Можно расширять следующие интерфейсы:
 
 - BaseColorVariant
-- BaseButtonVariant (extends BaseColorVariant)
-- BaseTextColorVariant (extends BaseColorVariant)
+- BaseButtonVariant (наследует BaseColorVariant)
+- BaseTextColorVariant (наследует BaseColorVariant)
 - BaseSize
 
-Suppose we want to add a purple style and extra-large (xl) sizes.
-We need to create a declaration file in the root of vue project.
+Допустим, вы хотите добавить стиль purple и размер extra-large (xl).
+Создайте файл деклараций в корне проекта Vue.
 
 <BCard class="bg-body-tertiary">
 
@@ -633,14 +633,14 @@ import 'bootstrap-vue-next'
 
 declare module 'bootstrap-vue-next/dist/src/types' {
   export interface BaseColorVariant {
-    purple: unknown // we use unknown type because it does not matter here
+    purple: unknown // используем unknown, так как здесь это не важно
   }
   export interface BaseButtonVariant {
-    // there is no need to add "purple" (it inherits from BaseColorVariant)
-    'outline-purple': unknown // outline purple button
+    // нет необходимости добавлять "purple" (наследуется из BaseColorVariant)
+    'outline-purple': unknown // кнопка outline purple
   }
   export interface BaseTextColorVariant {
-    // there is no need to add "purple" (it inherits from BaseColorVariant)
+    // нет необходимости добавлять "purple" (наследуется из BaseColorVariant)
   }
   export interface BaseSize {
     xl: unknown // extra large
@@ -650,12 +650,12 @@ declare module 'bootstrap-vue-next/dist/src/types' {
 
 </BCard>
 
-New values can be used now and the type check will be successful:
+Теперь можно использовать новые значения, и проверка типов будет успешной:
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<BButton variant="purple" size="xl">Extra large purple button</BButton>
+<BButton variant="purple" size="xl">Очень большая фиолетовая кнопка</BButton>
 <BButton variant="outline-purple">Outline purple button</BButton>
 ```
 
