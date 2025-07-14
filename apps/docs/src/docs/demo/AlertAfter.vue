@@ -3,7 +3,7 @@
   <BAlert
     :model-value="true"
     variant="primary"
-    >A simple primary alert—check it out!</BAlert
+    >Простое основное уведомление — посмотрите!</BAlert
   >
   <!-- #endregion template -->
 </template>

@@ -1,37 +1,37 @@
 <template>
   <!-- #region template -->
   <BRow
-    ><BCol>Set 'variant': <BBadge variant="success"> testing </BBadge></BCol></BRow
+    ><BCol>Установлен 'variant': <BBadge variant="success"> тест </BBadge></BCol></BRow
   >
   <BRow
-    ><BCol>Set 'bg-variant': <BBadge bg-variant="info"> testing </BBadge></BCol></BRow
+    ><BCol>Установлен 'bg-variant': <BBadge bg-variant="info"> тест </BBadge></BCol></BRow
   >
   <BRow
     ><BCol
-      >Set 'text-variant' (background is 'secondary' since 'variant' defaults to 'secondary'):
-      <BBadge text-variant="info"> testing </BBadge></BCol
+      >Установлен 'text-variant' (фон — 'secondary', так как 'variant' по умолчанию 'secondary'):
+      <BBadge text-variant="info"> тест </BBadge></BCol
     ></BRow
   >
   <BRow
     ><BCol
-      >Set 'text-variant' and 'bg-variant':
+      >Установлены 'text-variant' и 'bg-variant':
       <BBadge
         text-variant="primary"
         bg-variant="danger"
       >
-        testing
+        тест
       </BBadge></BCol
     ></BRow
   >
   <BRow
     ><BCol
-      >Set all three - 'variant' is overridden by 'bg-variant' and 'text-variant':
+      >Установлены все три — 'variant' перекрывается 'bg-variant' и 'text-variant':
       <BBadge
         text-variant="primary"
         bg-variant="danger"
         variant="success"
       >
-        testing
+        тест
       </BBadge></BCol
     ></BRow
   >

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <BButton @click="confirmBox">Show Confirm</BButton>
-    <div>Result: {{ confirmResult ?? 'null' }}</div>
+    <BButton @click="confirmBox">Показать подтверждение</BButton>
+    <div>Результат: {{ confirmResult ?? 'null' }}</div>
   </div>
 </template>
 
@@ -15,10 +15,10 @@ const confirmResult = ref<boolean | null | undefined>(null)
 const confirmBox = async () => {
   confirmResult.value = await confirm?.({
     props: {
-      body: 'Are you sure you want to do this?',
-      title: 'Confirm',
-      okTitle: 'Yes',
-      cancelTitle: 'No',
+      body: 'Вы уверены, что хотите это сделать?',
+      title: 'Подтверждение',
+      okTitle: 'Да',
+      cancelTitle: 'Нет',
     },
   })
 }

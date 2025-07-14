@@ -1,7 +1,7 @@
 <template>
   <div>
-    <BButton @click="okBox">Show Message</BButton>
-    <div>Result: {{ okResult }}</div>
+    <BButton @click="okBox">Показать сообщение</BButton>
+    <div>Результат: {{ okResult }}</div>
   </div>
 </template>
 
@@ -16,8 +16,8 @@ const okResult = ref<boolean | null | undefined>(undefined)
 const okBox = async () => {
   okResult.value = await show?.({
     props: {
-      body: 'This is an informational message',
-      title: 'Message',
+      body: 'Это информационное сообщение',
+      title: 'Сообщение',
       okOnly: true,
     },
   })

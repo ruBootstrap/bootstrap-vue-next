@@ -4,7 +4,7 @@
     v-model="checked"
     v-model:indeterminate="indeterminate"
   >
-    Click me to see what happens
+    Кликните меня, чтобы увидеть результат
   </BFormCheckbox>
   <!-- #endregion template -->
 </template>
