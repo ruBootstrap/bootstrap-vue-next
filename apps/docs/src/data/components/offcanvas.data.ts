@@ -14,7 +14,7 @@ export default {
             type: 'boolean',
             default: false,
             description:
-              'Animate the backdrop before the offcanvas, and on leave animate the offcanvas before the backdrop',
+              'Анимировать затемнение (backdrop) перед offcanvas, при закрытии — сначала анимировать offcanvas, затем затемнение',
           },
           bodyAttrs: {
             type: 'Readonly<AttrsValue>',
@@ -32,7 +32,7 @@ export default {
             type: "'ok' | 'cancel' | 'close' | string | ComponentPublicInstance | HTMLElement | null",
             default: undefined,
             description:
-              "Specify where to focus once offcanvas opens. Can be built-in button 'close'. Can be ref, HTMLElement, id or selector string. If set to 'false', no focus will be set (if noTrap isn't set the focus trap will focus the modal element or failback element). If set to a string, the element with that id will be focused. If set to a ComponentPublicInstance, the $el property of the instance will be focused.",
+              'Указать, куда установить фокус после открытия offcanvas. Можно указать встроенную кнопку close, либо ref, HTMLElement, id или селектор. Если указано false, фокус не будет установлен (если не задан noTrap, фокус будет на элементе offcanvas или fallback-элементе). Если строка — будет сфокусирован элемент с этим id. Если ComponentPublicInstance — будет сфокусирован $el экземпляра.',
           },
           footerClass: {
             type: 'string',
@@ -81,7 +81,7 @@ export default {
           noTrap: {
             type: 'boolean',
             default: false,
-            description: 'Disables the focus trap feature',
+            description: 'Отключает фокус-трап',
           },
           placement: {
             type: 'Placement',
@@ -138,7 +138,7 @@ export default {
               description: 'Whether or not the offcanvas is above the breakpoint and is open by it',
             },
           ],
-          description: "Emitted when the offcanvas' breakpoint state changes",
+          description: 'Вызывается при изменении состояния брейкпоинта offcanvas',
         },
         {
           args: [

@@ -13,22 +13,22 @@ export default {
             type: 'boolean',
             default: false,
             description:
-              'Remove the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container',
+              'Удаляет стандартный цвет фона, некоторые границы и скругления, чтобы аккордеон отображался вровень с краями родительского контейнера',
           },
           free: {
             type: 'boolean',
             default: false,
-            description: 'Accordion items will stay open when another item is opened',
+            description: 'Пункты аккордеона остаются открытыми при открытии других пунктов',
           },
           index: {
             type: 'number | number[]',
             default: undefined,
-            description: 'Index of the accordion item that is open',
+            description: 'Индекс открытого пункта аккордеона',
           },
           modelValue: {
             type: 'string | string[]',
             default: undefined,
-            description: 'Id of the accordion item that is open',
+            description: 'Id открытого пункта аккордеона',
           },
           // transProps: {
           //   type: 'TransitionProps',
@@ -50,7 +50,7 @@ export default {
             buildCommonProps({
               id: {
                 description:
-                  'The Id to be injected to accordion items and used in BCollapse for state managment',
+                  'Id, который будет передан элементам аккордеона и использоваться в BCollapse для управления состоянием',
               },
             }),
             ['id']
@@ -60,22 +60,22 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Update the currently opened accordion item',
+          description: 'Обновляет текущий открытый пункт аккордеона',
           args: [
             {
               arg: 'value',
-              description: 'Id of the accordion item that is open',
+              description: 'Id открытого пункта аккордеона',
               type: 'string | string[]',
             },
           ],
         },
         {
           event: 'update:index',
-          description: 'Update the index of the accordion item that is open',
+          description: 'Обновляет индекс открытого пункта аккордеона',
           args: [
             {
               arg: 'value',
-              description: 'Index of the accordion item that is open',
+              description: 'Индекс открытого пункта аккордеона',
               type: 'number | number[]',
             },
           ],
@@ -84,7 +84,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the Accordion',
+          description: 'Контент для размещения внутри Accordion',
         },
       ],
     },
@@ -96,60 +96,60 @@ export default {
           bodyAttrs: {
             type: 'Readonly<AttrsValue>',
             default: undefined,
-            description: 'Attributes to be applied to the body of the accordion item',
+            description: 'Атрибуты, применяемые к body элемента аккордеона',
           },
           bodyClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class to be applied to the body of the accordion item',
+            description: 'CSS-класс, применяемый к body элемента аккордеона',
           },
           buttonAttrs: {
             type: 'Readonly<AttrsValue>',
             default: undefined,
-            description: 'Attributes to be applied to the button in header',
+            description: 'Атрибуты, применяемые к кнопке в заголовке',
           },
           buttonClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class to be applied to the button in header',
+            description: 'CSS-класс, применяемый к кнопке в заголовке',
           },
           collapseClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class to be applied to the collapse',
+            description: 'CSS-класс, применяемый к collapse-элементу',
           },
           headerAttrs: {
             type: 'Readonly<AttrsValue>',
             default: undefined,
-            description: 'Attributes to be applied to the header element',
+            description: 'Атрибуты, применяемые к элементу заголовка',
           },
           headerClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class to be applied to the header element',
+            description: 'CSS-класс, применяемый к элементу заголовка',
           },
           headerTag: {
             type: 'string',
             default: 'h2',
-            description: 'Tag to be used for the header element',
+            description: 'Тег, используемый для элемента заголовка',
           },
           horizontal: {
             type: 'boolean',
             default: undefined,
             description:
-              'Transition the `width` instead of `height` and set a `width` on the immediate child element',
+              'Анимирует изменение `width` вместо `height` и задаёт ширину для непосредственного дочернего элемента',
           },
           isNav: {
             type: 'boolean',
             default: undefined,
             description:
-              'When set, signifies that the accordion is part of a navbar, enabling certain features for navbar support',
+              'Если установлено, означает, что аккордеон является частью navbar и включает поддержку соответствующих функций',
           },
           title: {
             type: 'string',
             default: undefined,
             description:
-              'Text to place in the header of the AccordionItem (title slot takes precedence)',
+              'Текст для размещения в заголовке AccordionItem (приоритет имеет слот title)',
           },
           // transProps: {
           //   type: 'TransitionProps',
@@ -171,7 +171,7 @@ export default {
             buildCommonProps({
               id: {
                 description:
-                  'The Id to be injected to accordion items and used to in BCollapse for state managment',
+                  'Id, который будет передан элементам аккордеона и использоваться в BCollapse для управления состоянием',
               },
             }),
             ['id', 'tag', 'wrapperAttrs']
@@ -181,52 +181,50 @@ export default {
       emits: [
         {
           event: 'hidden',
-          description: 'Emitted when AccordionItem has finished closing',
+          description: 'Вызывается после завершения анимации закрытия AccordionItem',
         },
         {
           event: 'hide',
-          description: 'Emitted when AccordionItem has started to close',
+          description: 'Вызывается при начале анимации закрытия AccordionItem',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'Native triggerable event',
+              description: 'Событие, инициирующее закрытие',
             },
           ],
         },
         {
           event: 'hide-prevented',
-          description:
-            'Emitted when the AccordionItem tried to close, but was prevented from doing so.',
+          description: 'Вызывается, если попытка закрыть AccordionItem была предотвращена',
         },
         {
           event: 'show',
-          description: 'Emitted when AccordionItem has started to show',
+          description: 'Вызывается при начале анимации открытия AccordionItem',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'Native triggerable event',
+              description: 'Событие, инициирующее открытие',
             },
           ],
         },
         {
           event: 'shown',
-          description: 'Emitted when AccordionItem has finished showing',
+          description: 'Вызывается после завершения анимации открытия AccordionItem',
         },
         {
           event: 'show-prevented',
-          description:
-            'Emitted when the AccordionItem tried to open, but was prevented from doing so.',
+          description: 'Вызывается, если попытка открыть AccordionItem была предотвращена',
         },
         {
           event: 'update:model-value',
-          description: 'Emitted when the visibility of the AccordionItem is changed',
+          description: 'Вызывается при изменении видимости AccordionItem',
           args: [
             {
               arg: 'value',
               type: 'boolean',
-              description: 'Current visibility state of the AccordionItem',
+              description: 'Текущее состояние видимости AccordionItem',
             },
           ],
         },
@@ -234,11 +232,11 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the AccordionItem',
+          description: 'Контент для размещения внутри AccordionItem',
         },
         {
           name: 'title',
-          description: 'Content to place in the header of the AccordionItem',
+          description: 'Контент для размещения в заголовке AccordionItem',
         },
       ],
     },

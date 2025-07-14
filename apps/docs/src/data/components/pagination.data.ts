@@ -6,17 +6,17 @@ const sharedScope = [
   {
     prop: 'disabled',
     type: 'Boolean',
-    description: 'Will be `true` if this button is disabled (non-clickable)',
+    description: 'Будет `true`, если эта кнопка отключена (некликабельна)',
   },
   {
     prop: 'index',
     type: 'Number',
-    description: 'Page number (indexed from `0` to `numberOfPages - 1`)',
+    description: 'Номер страницы (индексация с `0` до `numberOfPages - 1`)',
   },
   {
     prop: 'page',
     type: 'Number',
-    description: 'Page number (from `1` to `numberOfPages`)',
+    description: 'Номер страницы (от `1` до `numberOfPages`)',
   },
 ]
 
@@ -30,128 +30,127 @@ export default {
           align: {
             type: 'AlignmentJustifyContent | fill',
             description:
-              "Alignment of the page buttons: 'start' (or 'left'), 'center', 'end' (or 'right'), or 'fill'",
+              "Выравнивание кнопок страниц: 'start' (или 'left'), 'center', 'end' (или 'right') или 'fill'",
           },
           ellipsisClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "Class(es) to apply to the 'ellipsis' placeholders",
+            description: 'Класс(ы) для заполнителей многоточия',
           },
           ellipsisText: {
             type: 'string',
             default: '\u2026',
-            description: 'Content to place in the ellipsis placeholder',
+            description: 'Содержимое для заполнителя многоточия',
           },
           firstClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class(es) to apply to the go to first page button',
+            description: 'Класс(ы) для кнопки перехода на первую страницу',
           },
           firstNumber: {
             type: 'boolean',
             default: false,
-            description: 'Display first page number instead of go to first page button',
+            description:
+              'Показывать номер первой страницы вместо кнопки перехода на первую страницу',
           },
           firstText: {
             type: 'string',
             default: '\u00AB',
-            description: 'Content to place in the go to first page button',
+            description: 'Содержимое для кнопки перехода на первую страницу',
           },
           labelFirstPage: {
             type: 'string',
             default: 'Go to first page',
-            description:
-              "Value to place in the 'aria-label' attribute of the go to first page button",
+            description: "Значение для атрибута 'aria-label' кнопки перехода на первую страницу",
           },
           labelLastPage: {
             type: 'string',
             default: 'Go to last page',
-            description:
-              "Value to place in the 'aria-label' attribute of the go to last page button",
+            description: "Значение для атрибута 'aria-label' кнопки перехода на последнюю страницу",
           },
           labelNextPage: {
             type: 'string',
             default: 'Go to next page',
-            description:
-              "Value to place in the 'aria-label' attribute of the go to next page button",
+            description: "Значение для атрибута 'aria-label' кнопки перехода на следующую страницу",
           },
           labelPage: {
             type: 'string',
             default: 'Go to page',
             description:
-              "Value to place in the 'aria-label' attribute of the go to page button. Page number will be appended automatically",
+              "Значение для атрибута 'aria-label' кнопки перехода на страницу. Номер страницы будет добавлен автоматически",
           },
           labelPrevPage: {
             type: 'string',
             default: 'Go to previous page',
             description:
-              "Value to place in the 'aria-label' attribute of the go to previous page button",
+              "Значение для атрибута 'aria-label' кнопки перехода на предыдущую страницу",
           },
           lastClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class(es) to apply to the go to last page button',
+            description: 'Класс(ы) для кнопки перехода на последнюю страницу',
           },
           lastNumber: {
             type: 'boolean',
             default: false,
-            description: 'Display last page number instead of go to Last button',
+            description:
+              'Показывать номер последней страницы вместо кнопки перехода на последнюю страницу',
           },
           lastText: {
             type: 'string',
             default: '\u00BB',
-            description: 'Content to place in the go to last page button',
+            description: 'Содержимое для кнопки перехода на последнюю страницу',
           },
           limit: {
             type: 'Numberish',
             default: 5,
             description:
-              'Maximum number of buttons to show (including ellipsis if shown, but excluding the bookend buttons)',
+              'Максимальное количество отображаемых кнопок (включая многоточие, если оно показано, но не включая крайние кнопки)',
           },
           modelValue: {
             type: 'Numberish',
             default: 1,
-            description: 'Current page number, starting from 1',
+            description: 'Текущий номер страницы, начиная с 1',
           },
           nextClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class(es) to apply to the go to next page button',
+            description: 'Класс(ы) для кнопки перехода на следующую страницу',
           },
           nextText: {
             type: 'string',
             default: '\u203A',
-            description: 'Content to place in the go to next page button',
+            description: 'Содержимое для кнопки перехода на следующую страницу',
           },
           pageClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class(es) to apply to the go to page # buttons',
+            description: 'Класс(ы) для кнопок перехода на страницу #',
           },
           perPage: {
             type: 'Numberish',
             default: 20,
-            description: 'Number of rows per page',
+            description: 'Количество строк на странице',
           },
           pills: {
             type: 'boolean',
             default: false,
-            description: 'Applies pill styling to the pagination buttons',
+            description: 'Применяет стиль pill к кнопкам пагинации',
           },
           prevClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "Class(es) to apply to the 'Go to previous page' button",
+            description: "Класс(ы) для кнопки 'Переход к предыдущей странице'",
           },
           prevText: {
             type: 'string',
             default: '\u2039',
-            description: 'Content to place in the go to previous page button',
+            description: 'Содержимое для кнопки перехода на предыдущую страницу',
           },
           totalRows: {
             type: 'Numberish',
             default: 0,
-            description: 'Total number of rows in the dataset',
+            description: 'Общее количество строк в наборе данных',
           },
           ...pick(
             buildCommonProps({
@@ -169,29 +168,29 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Emitted when page changes via user interaction',
+          description: 'Вызывается при изменении страницы пользователем',
           args: [
             {
               type: 'number',
               arg: 'page',
-              description: 'Selected page number (starting with `1`)',
+              description: 'Выбранный номер страницы (начиная с `1`)',
             },
           ],
         },
         {
           event: 'page-click',
-          description: 'Emitted when a page button was clicked. Cancelable',
+          description: 'Вызывается при клике по кнопке страницы. Можно отменить',
           args: [
             {
               arg: 'BvEvent',
               type: 'BvEvent',
               description:
-                'The `BvEvent` object. Call `BvEvent.preventDefault()` to cancel page selection',
+                'Объект `BvEvent`. Вызовите `BvEvent.preventDefault()`, чтобы отменить выбор страницы',
             },
             {
               type: 'number',
               arg: 'page',
-              description: 'Page number to select (starting with `1`)',
+              description: 'Номер страницы для выбора (начиная с `1`)',
             },
           ],
         },
@@ -200,43 +199,43 @@ export default {
         {
           name: 'ellipsis-text',
           scope: [],
-          description: "The '...' indicator content. Overrides the `ellipsis-text` prop",
+          description: "Содержимое индикатора '...'. Переопределяет prop `ellipsis-text`",
         },
         {
           name: 'first-text',
-          description: 'The go to first page button content',
+          description: 'Содержимое кнопки перехода на первую страницу',
           scope: sharedScope,
         },
         {
           name: 'last-text',
-          description: 'The go to last page button content',
+          description: 'Содержимое кнопки перехода на последнюю страницу',
           scope: sharedScope,
         },
         {
           name: 'next-text',
-          description: 'The go to next page button content',
+          description: 'Содержимое кнопки перехода на следующую страницу',
           scope: sharedScope,
         },
         {
           name: 'page',
-          description: 'Page number button content',
+          description: 'Содержимое кнопки номера страницы',
           scope: [
             ...sharedScope,
             {
               prop: 'active',
               type: 'Boolean',
-              description: 'If the page is the active page',
+              description: 'Является ли страница активной',
             },
             {
               prop: 'content',
               type: 'String',
-              description: 'Default button content',
+              description: 'Содержимое кнопки по умолчанию',
             },
           ],
         },
         {
           name: 'prev-text',
-          description: 'The go to previous page button content',
+          description: 'Содержимое кнопки перехода на предыдущую страницу',
           scope: sharedScope,
         },
       ],

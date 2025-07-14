@@ -13,17 +13,18 @@ export default {
           label: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the visually-hidden label',
+            description: 'Текст для скрытой подписи (label), видимой только для скринридеров',
           },
           small: {
             type: 'boolean',
             default: false,
-            description: 'When set, rendered a smaller spinner suitable for placing in buttons',
+            description:
+              'Если установлено, отображается уменьшенный спиннер, подходящий для кнопок',
           },
           type: {
             type: 'SpinnerType',
             default: 'border',
-            description: "Type of spinner to show. Current supported types are 'border' and 'grow'",
+            description: "Тип отображаемого спиннера. Поддерживаются типы: 'border' и 'grow'",
           },
           ...pick(
             buildCommonProps({
@@ -38,7 +39,7 @@ export default {
       slots: [
         {
           name: 'label',
-          description: 'Content to place in the visually-hidden label',
+          description: 'Содержимое для скрытой подписи (label)',
         },
       ],
     },

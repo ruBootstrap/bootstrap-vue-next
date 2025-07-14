@@ -14,17 +14,17 @@ export default {
             type: 'boolean | Breakpoint',
             default: false,
             description:
-              'When set to true, makes the row 100% wide all the time, or set to one of the Bootstrap breakpoint names for 100% width up to the breakpoint',
+              'Если true — строка всегда будет 100% ширины, либо укажите имя брейкпоинта Bootstrap для 100% ширины до этого брейкпоинта',
           },
           gutterX: {
             type: 'GutterNumbers',
             default: undefined,
-            description: 'Horizontal gutter',
+            description: 'Горизонтальный отступ (gutter)',
           },
           gutterY: {
             type: 'GutterNumbers',
             default: undefined,
-            description: 'Vertical gutter',
+            description: 'Вертикальный отступ (gutter)',
           },
           ...pick(buildCommonProps({}), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BContainer'], PropertyReference>,
@@ -32,7 +32,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the container',
+          description: 'Содержимое для размещения в контейнере',
         },
       ],
     },
@@ -45,65 +45,64 @@ export default {
             type: 'AlignmentContent',
             default: undefined,
             description:
-              "Align columns items together on the cross axis: 'start', 'center', 'end', 'around', 'between', 'fill' or 'stretch'. Has no effect on single rows of items",
+              "Выравнивание элементов колонок по поперечной оси: 'start', 'center', 'end', 'around', 'between', 'fill' или 'stretch'. Не влияет на одиночные строки элементов",
           },
           alignH: {
             type: 'AlignmentJustifyContent',
             default: undefined,
             description:
-              "Horizontal alignment/spacing of all columns: 'start', 'center', 'end', 'around', 'between', or 'evenly'",
+              "Горизонтальное выравнивание/распределение всех колонок: 'start', 'center', 'end', 'around', 'between' или 'evenly'",
           },
           alignV: {
             type: 'AlignmentVertical',
             default: undefined,
             description:
-              "Vertical alignment of all columns in a row: 'start', 'center', 'end', 'baseline', 'fill', or 'stretch'",
+              "Вертикальное выравнивание всех колонок в строке: 'start', 'center', 'end', 'baseline', 'fill' или 'stretch'",
           },
           cols: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'xs' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'xs'",
           },
           colsLg: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'ls' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'ls'",
           },
           colsMd: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'md' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'md'",
           },
           colsSm: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'sm' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'sm'",
           },
           colsXl: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'xl' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'xl'",
           },
           colsXxl: {
             type: 'ColsNumbers',
             default: undefined,
-            description: "The number row columns to create at the 'xxl' breakpoint.",
+            description: "Количество колонок в строке на брейкпоинте 'xxl'",
           },
           gutterX: {
             type: 'GutterNumbers',
             default: undefined,
-            description: 'Horizontal gutter',
+            description: 'Горизонтальный отступ (gutter)',
           },
           gutterY: {
             type: 'GutterNumbers',
             default: undefined,
-            description: 'Vertical gutter',
+            description: 'Вертикальный отступ (gutter)',
           },
           noGutters: {
             type: 'boolean',
             default: false,
-            description:
-              'When set, removes the margin from the row and removes the padding from the child columns',
+            description: 'Если установлено, убирает отступы у строки и padding у дочерних колонок',
           },
           ...pick(buildCommonProps({}), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BRow'], PropertyReference>,
@@ -111,7 +110,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the row',
+          description: 'Содержимое для размещения в строке',
         },
       ],
     },
@@ -125,115 +124,103 @@ export default {
             type: "AlignmentVertical | 'auto'",
             default: undefined,
             description:
-              "Vertical alignment of the grid cell with respect to the row: 'start', 'center', 'fill', 'end', 'baseline', or 'stretch'",
+              "Вертикальное выравнивание ячейки сетки относительно строки: 'start', 'center', 'fill', 'end', 'baseline' или 'stretch'",
           },
           col: {
             type: 'boolean',
             default: false,
-            description:
-              'When true makes an equal width column grid cell spans for xs and up breakpoints',
+            description: 'Если true, делает колонку одинаковой ширины для xs и выше',
           },
           cols: {
             type: "ColsNumbers | 'auto'",
             default: undefined,
-            description: 'Number of columns the grid cell spans for xs and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для xs и выше',
           },
           lg: {
             type: "boolean | ColsNumbers | 'auto'",
             default: false,
-            description: 'Number of columns the grid cell spans for lg and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для lg и выше',
           },
           md: {
             type: "boolean | ColsNumbers | 'auto'",
             default: false,
-            description: 'Number of columns the grid cell spans for md and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для md и выше',
           },
           sm: {
             type: "boolean | ColsNumbers | 'auto'",
             default: false,
-            description: 'Number of columns the grid cell spans for sm and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для sm и выше',
           },
           xl: {
             type: "boolean | ColsNumbers | 'auto'",
             default: false,
-            description: 'Number of columns the grid cell spans for xl and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для xl и выше',
           },
           xxl: {
             type: "boolean | ColsNumbers | 'auto'",
             default: false,
-            description: 'Number of columns the grid cell spans for xxl and up breakpoints',
+            description: 'Количество колонок, занимаемых ячейкой сетки для xxl и выше',
           },
           offset: {
             type: 'ColsOffsetNumbers',
             default: undefined,
-            description:
-              'Number of columns the grid cell is offset for xs and up breakpoints (0-12)',
+            description: 'Количество колонок, на которое ячейка сетки смещена для xs и выше (0-12)',
           },
           offsetLg: {
             type: 'ColsOffsetNumbers',
             default: undefined,
-            description:
-              'Number of columns the grid cell is offset for lg and up breakpoints (0-12)',
+            description: 'Количество колонок, на которое ячейка сетки смещена для lg и выше (0-12)',
           },
           offsetMd: {
             type: 'ColsOffsetNumbers',
             default: undefined,
-            description:
-              'Number of columns the grid cell is offset for md and up breakpoints (0-12)',
+            description: 'Количество колонок, на которое ячейка сетки смещена для md и выше (0-12)',
           },
           offsetSm: {
             type: 'ColsOffsetNumbers',
             default: undefined,
-            description:
-              'Number of columns the grid cell is offset for sm and up breakpoints (0-12)',
+            description: 'Количество колонок, на которое ячейка сетки смещена для sm и выше (0-12)',
           },
           offsetXl: {
             type: 'ColsOffsetNumbers',
             default: undefined,
-            description:
-              'Number of columns the grid cell is offset for xl and up breakpoints (0-12)',
+            description: 'Количество колонок, на которое ячейка сетки смещена для xl и выше (0-12)',
           },
           offsetXxl: {
             type: 'ColsOffsetNumbers',
             default: undefined,
             description:
-              'Number of columns the grid cell is offset for xxl and up breakpoints (0-12)',
+              'Количество колонок, на которое ячейка сетки смещена для xxl и выше (0-12)',
           },
           order: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for xs and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на xs и выше (1-5, 'first' или 'last')",
           },
           orderLg: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for lg and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на lg и выше (1-5, 'first' или 'last')",
           },
           orderMd: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for md and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на md и выше (1-5, 'first' или 'last')",
           },
           orderSm: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for sm and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на sm и выше (1-5, 'first' или 'last')",
           },
           orderXl: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for xl and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на xl и выше (1-5, 'first' или 'last')",
           },
           orderXxl: {
             type: 'ColsOrderNumbers',
             default: undefined,
-            description:
-              "Flex order of the grid cell for xxl and up breakpoints (1-5, 'first', or 'last')",
+            description: "Порядок flex для ячейки сетки на xxl и выше (1-5, 'first' или 'last')",
           },
           ...pick(buildCommonProps({}), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BCol'], PropertyReference>,
@@ -242,7 +229,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the col',
+          description: 'Содержимое для размещения в колонке',
         },
       ],
     },

@@ -16,12 +16,12 @@ export default {
       emits: [
         {
           event: 'submit',
-          description: 'Emitted when the form is submitted',
+          description: 'Вызывается при отправке формы',
           args: [
             {
               arg: 'submit',
               type: 'Event',
-              description: 'Native submit event',
+              description: 'Нативное событие submit',
             },
           ],
         },
@@ -29,7 +29,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Contet to place in the form',
+          description: 'Содержимое, размещаемое внутри формы',
         },
       ],
     },
@@ -55,31 +55,30 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the from datalist',
+          description: 'Содержимое, размещаемое внутри datalist',
         },
         {
           name: 'first',
-          description: "Slot to place options above options provided via the 'options' prop",
+          description: "Слот для размещения опций выше тех, что переданы через prop 'options'",
         },
         {
           name: 'option',
-          description:
-            'Use this slot to have finer control over the content render inside each data item',
+          description: 'Используйте этот слот для полного контроля над содержимым каждой опции',
           scope: [
             {
               prop: 'value',
               type: 'any (T)',
-              description: 'The value of the option',
+              description: 'Значение опции',
             },
             {
               prop: 'text',
               type: 'string',
-              description: 'The text of the option',
+              description: 'Текст опции',
             },
             {
               prop: 'disabled',
               type: 'boolean',
-              description: 'Is the option disabled',
+              description: 'Отключена ли опция',
             },
           ],
         },
@@ -95,12 +94,12 @@ export default {
           label: {
             type: 'string',
             default: undefined,
-            description: 'The text of the floating label',
+            description: 'Текст плавающей метки',
           },
           labelFor: {
             type: 'string',
             default: undefined,
-            description: 'The id of the input control that the floating label is for',
+            description: 'ID элемента управления, к которому относится плавающая метка',
           },
         } satisfies Record<keyof BvnComponentProps['BFormFloatingLabel'], PropertyReference>,
       },
@@ -108,11 +107,11 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'The input control that contains the floating label',
+          description: 'Элемент управления, содержащий плавающую метку',
         },
         {
           name: 'label',
-          description: 'The content to display in the floating label',
+          description: 'Содержимое для отображения в плавающей метке',
         },
       ],
     },
@@ -125,12 +124,12 @@ export default {
           forceShow: {
             type: 'boolean',
             default: false,
-            description: "Shows the feedback text, regardless of the value of the 'state' prop",
+            description: 'Показывает текст обратной связи независимо от значения prop state',
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'The feedback text to display',
+            description: 'Текст обратной связи для отображения',
           },
           ...pick(buildCommonProps(), ['ariaLive', 'id', 'role', 'state', 'tag', 'tooltip']),
         } satisfies Record<keyof BvnComponentProps['BFormInvalidFeedback'], PropertyReference>,
@@ -139,7 +138,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the form invalid feedback',
+          description: 'Содержимое для обратной связи об ошибке валидации',
         },
       ],
     },
@@ -156,7 +155,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the form row',
+          description: 'Содержимое, размещаемое внутри строки формы',
         },
       ],
     },
@@ -169,12 +168,12 @@ export default {
             type: 'boolean',
             default: false,
             description:
-              'When set, renders the help text as an inline element, rather than a block element',
+              'Если установлено, текст справки отображается как inline-элемент, а не как блочный',
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'The text to display',
+            description: 'Текст для отображения',
           },
           ...pick(buildCommonProps(), ['id', 'tag', 'textVariant']),
         } satisfies Record<keyof BvnComponentProps['BFormText'], PropertyReference>,
@@ -183,7 +182,7 @@ export default {
       slots: [
         {
           description: '',
-          name: 'Content to place in the form text',
+          name: 'Содержимое для справочного текста формы',
         },
       ],
     },
@@ -196,12 +195,12 @@ export default {
           forceShow: {
             type: 'boolean',
             default: false,
-            description: "Shows the feedback text, regardless of the value of the 'state' prop",
+            description: 'Показывает текст обратной связи независимо от значения prop state',
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'The feedback text to display',
+            description: 'Текст обратной связи для отображения',
           },
           ...pick(buildCommonProps(), ['ariaLive', 'id', 'role', 'state', 'tag', 'tooltip']),
         } satisfies Record<keyof BvnComponentProps['BFormValidFeedback'], PropertyReference>,
@@ -210,7 +209,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the form invalid feedback',
+          description: 'Содержимое для обратной связи об успешной валидации',
         },
       ],
     },

@@ -14,29 +14,28 @@ export default {
             type: 'string',
             default: undefined,
             description:
-              "Use a specific ID for this tab's tab control button. If not provided, one will automatically be generated",
+              'Использовать указанный ID для управляющей кнопки этой вкладки. Если не задан, будет сгенерирован автоматически',
           },
           noBody: {
             type: 'boolean',
             default: false,
             description:
-              "When the parent b-tabs has the 'card' prop set, do not render a card-body wrapper",
+              "Если у родительского b-tabs установлен prop 'card', не рендерить обёртку card-body",
           },
           titleItemClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the tab's control button 'li' element",
+            description: 'CSS-класс(ы) для элемента li управляющей кнопки вкладки',
           },
           titleLinkAttrs: {
             type: 'AttrsValue',
             default: undefined,
-            description: "Attributes to apply to the tab's control button inner link element",
+            description: 'Атрибуты для внутреннего элемента ссылки управляющей кнопки вкладки',
           },
           titleLinkClass: {
             type: 'ClassValue',
             default: undefined,
-            description:
-              "CSS class (or classes) to apply to the tab's control button inner link element",
+            description: 'CSS-класс(ы) для внутреннего элемента ссылки управляющей кнопки вкладки',
           },
           ...pick(showHideProps, ['lazy', 'unmountLazy']),
           ...pick(buildCommonProps(), ['active', 'disabled', 'id', 'tag', 'title']),
@@ -46,11 +45,11 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Slot for custom tab content',
+          description: 'Слот для пользовательского содержимого вкладки',
         },
         {
           name: 'title',
-          description: 'Slot for custom tab title',
+          description: 'Слот для пользовательского заголовка вкладки',
         },
       ],
     },
@@ -63,127 +62,126 @@ export default {
             type: 'number',
             default: -1,
             description:
-              'The index (zero-based) of the currently active tab. Id (modelValue) takes priority over index.',
+              'Индекс (с нуля) текущей активной вкладки. Id (modelValue) имеет приоритет над index.',
           },
           activeNavItemClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the active nav item tab control',
+            description: 'CSS-класс(ы) для активной управляющей вкладки',
           },
           activeTabClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the currently active tab',
+            description: 'CSS-класс(ы) для текущей активной вкладки',
           },
           align: {
             type: 'AlignmentJustifyContent',
             default: undefined,
             description:
-              "Align the nav items in the nav: 'start' , 'end' , 'center' , 'between' , 'around' or 'evenly'",
+              "Выравнивание управляющих элементов: 'start', 'end', 'center', 'between', 'around' или 'evenly'",
           },
           card: {
             type: 'boolean',
             default: false,
-            description:
-              "When set to true, renders the tabs the the appropriate styles to be placed into a 'b-card'",
+            description: "Если true, вкладки будут стилизованы для размещения внутри 'b-card'",
           },
           contentClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the tab-content wrapper',
+            description: 'CSS-класс(ы) для обёртки tab-content',
           },
           end: {
             type: 'boolean',
             default: false,
             description:
-              'Place the tab controls at the bottom (horizontal tabs), or right (vertical tabs)',
+              'Размещает управляющие элементы вкладок снизу (горизонтальные) или справа (вертикальные)',
           },
           fill: {
             type: 'boolean',
             default: false,
             description:
-              'Proportionately fills all horizontal space with nav items. All horizontal space is occupied, but not every nav item has the same width',
+              'Пропорционально заполняет всё горизонтальное пространство управляющими элементами. Всё пространство занято, но ширина элементов может отличаться',
           },
           inactiveNavItemClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to inactive nav item tab controls',
+            description: 'CSS-класс(ы) для неактивных управляющих вкладок',
           },
           inactiveTabClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to inactive tabs',
+            description: 'CSS-класс(ы) для неактивных вкладок',
           },
           justified: {
             type: 'boolean',
             default: false,
             description:
-              "Fills all horizontal space with nav items, but unlike 'fill', every nav item will be the same width",
+              "Заполняет всё горизонтальное пространство управляющими элементами, но в отличие от 'fill', все элементы будут одинаковой ширины",
           },
           lazy: {
             type: 'boolean',
             default: false,
-            description: 'Lazily render the tab contents when shown',
+            description: 'Лениво рендерить содержимое вкладки при показе',
           },
           modelValue: {
             type: 'string',
             default: undefined,
-            description: 'The id of the currently active tab',
+            description: 'ID текущей активной вкладки',
           },
           navClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the tablist (nav) wrapper',
+            description: 'CSS-класс(ы) для обёртки tablist (nav)',
           },
           navItemClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the tab item element',
+            description: 'CSS-класс(ы) для элемента вкладки',
           },
           navWrapperClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the tab controls wrapper element',
+            description: 'CSS-класс(ы) для обёртки управляющих элементов вкладок',
           },
           noFade: {
             type: 'boolean',
             default: false,
-            description: 'When set, disables the fade animation',
+            description: 'Отключает анимацию затухания',
           },
           noKeyNav: {
             type: 'boolean',
             default: false,
-            description: 'Disable keyboard navigation of the tab controls',
+            description: 'Отключить навигацию по вкладкам с клавиатуры',
           },
           noNavStyle: {
             type: 'boolean',
             default: false,
-            description: 'Do not render the tab controls with tab styling',
+            description: 'Не применять стили вкладок к управляющим элементам',
           },
           pills: {
             type: 'boolean',
             default: false,
-            description: 'Renders the nav items with the appearance of pill buttons',
+            description: 'Стилизует управляющие элементы как pill-кнопки',
           },
           small: {
             type: 'boolean',
             default: false,
-            description: 'Makes the nav smaller',
+            description: 'Делает управляющие элементы меньше',
           },
           underline: {
             type: 'boolean',
             default: false,
-            description: 'Renders the active name item with an underline',
+            description: 'Подчеркивает активный управляющий элемент',
           },
           tabClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the tab element',
+            description: 'CSS-класс(ы) для элемента вкладки',
           },
           vertical: {
             type: 'boolean',
             default: false,
-            description: 'Renders the tab controls vertically',
+            description: 'Располагает управляющие элементы вертикально',
           },
           ...pick(buildCommonProps(), ['id', 'tag']),
         } satisfies Record<keyof BvnComponentProps['BTabs'], PropertyReference>,
@@ -195,10 +193,10 @@ export default {
             {
               arg: 'value',
               type: 'string',
-              description: 'The id of the currently active tab',
+              description: 'ID текущей активной вкладки',
             },
           ],
-          description: 'The active tab has changed. The id of the currently active tab',
+          description: 'Активная вкладка изменилась. ID текущей активной вкладки',
         },
         {
           event: 'update:index',
@@ -206,41 +204,41 @@ export default {
             {
               arg: 'value',
               type: 'number',
-              description: 'The index (zero-based) of the currently active tab',
+              description: 'Индекс (с нуля) текущей активной вкладки',
             },
           ],
-          description:
-            'The active tab has changed. The index (zero-based) of the currently active tab',
+          description: 'Активная вкладка изменилась. Индекс (с нуля) текущей активной вкладки',
         },
         {
-          description: 'Emitted just before a tab is shown/activated. Cancelable',
+          description:
+            'Вызывается непосредственно перед показом/активацией вкладки. Можно отменить',
           event: 'activate-tab',
           args: [
             {
               arg: 'newTabId',
               type: 'string',
-              description: 'Tab being activated (id)',
+              description: 'ID вкладки, которую активируют',
             },
             {
               arg: 'prevTabId',
               type: 'string',
-              description: 'Current active tab (id)',
+              description: 'ID текущей активной вкладки',
             },
             {
               arg: 'newTabIndex',
               type: 'number',
-              description: 'Tab being activated (0-based index)',
+              description: 'Индекс (с нуля) вкладки, которую активируют',
             },
             {
               arg: 'prevTabIndex',
               type: 'number',
               description:
-                'Tab that is currently active (0-based index). Will be -1 if no current active tab',
+                'Индекс (с нуля) текущей активной вкладки. Будет -1, если активной вкладки нет',
             },
             {
               arg: 'event',
               type: 'BvEvent',
-              description: 'BvEvent object. Call bvEvent.preventDefault() to cancel',
+              description: 'Объект BvEvent. Вызовите bvEvent.preventDefault() для отмены',
             },
           ],
         },
@@ -248,21 +246,21 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (tabs) to place in the tabs element',
+          description: 'Содержимое (вкладки), размещаемое внутри элемента tabs',
         },
         {
           name: 'empty',
-          description: 'Renders this slot if no tabs are present',
+          description: 'Этот слот отображается, если вкладки отсутствуют',
         },
         {
           name: 'tabs-end',
           description:
-            'Additional tab buttons without tab content placed after content tab buttons',
+            'Дополнительные кнопки вкладок без содержимого, размещаемые после основных вкладок',
         },
         {
           name: 'tabs-start',
           description:
-            'Additional tab buttons without tab content placed before content tab buttons',
+            'Дополнительные кнопки вкладок без содержимого, размещаемые перед основными вкладками',
         },
       ],
     },

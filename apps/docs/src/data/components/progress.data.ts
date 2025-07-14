@@ -12,43 +12,43 @@ export default {
           animated: {
             type: 'boolean',
             default: undefined,
-            description: "Enable the animated background. Also automatically sets 'striped'",
+            description: "Включить анимированный фон. Также автоматически устанавливает 'striped'",
           },
           height: {
             type: 'string',
             default: undefined,
             description:
-              'Override the default height by specifying a CSS height value (including units)',
+              'Переопределяет высоту по умолчанию, укажите CSS-значение высоты (включая единицы измерения)',
           },
           max: {
             type: 'Numberish',
             default: 100,
-            description: 'Set the maximum value',
+            description: 'Устанавливает максимальное значение',
           },
           precision: {
             type: 'Numberish',
             default: undefined,
-            description: 'The number of digits after the decimal to round the value to',
+            description: 'Количество знаков после запятой для округления значения',
           },
           showProgress: {
             type: 'boolean',
             default: undefined,
-            description: 'Displays the current progress value as a percentage',
+            description: 'Отображать текущее значение прогресса в процентах',
           },
           showValue: {
             type: 'boolean',
             default: undefined,
-            description: 'Displays the current progress value',
+            description: 'Отображать текущее значение прогресса',
           },
           striped: {
             type: 'boolean',
             default: undefined,
-            description: 'Enable the striped background',
+            description: 'Включить полосатый фон',
           },
           value: {
             type: 'Numberish',
             default: undefined,
-            description: 'The current value of the progress bar',
+            description: 'Текущее значение прогресс-бара',
           },
           ...pick(buildCommonProps(), ['bgVariant', 'textVariant', 'variant']),
         } satisfies Record<keyof BvnComponentProps['BProgress'], PropertyReference>,
@@ -57,7 +57,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (progress bars) to place in the progress element',
+          description: 'Содержимое (прогресс-бары), размещаемое внутри элемента прогресса',
         },
       ],
     },
@@ -69,42 +69,42 @@ export default {
           animated: {
             type: 'boolean',
             default: false,
-            description: "Enable the animated background. Also automatically sets 'striped'",
+            description: "Включить анимированный фон. Также автоматически устанавливает 'striped'",
           },
           label: {
             type: 'string',
             default: undefined,
-            description: 'Text string to explicitly set the label as',
+            description: 'Текстовая строка для явного задания подписи',
           },
           max: {
             type: 'Numberish',
             default: undefined,
-            description: 'Set the maximum value',
+            description: 'Устанавливает максимальное значение',
           },
           precision: {
             type: 'Numberish',
             default: 0,
-            description: 'The number of digits after the decimal to round the value to',
+            description: 'Количество знаков после запятой для округления значения',
           },
           showProgress: {
             type: 'boolean',
             default: false,
-            description: 'Displays the current progress value as a percentage',
+            description: 'Отображать текущее значение прогресса в процентах',
           },
           showValue: {
             type: 'boolean',
             default: false,
-            description: 'Displays the current progress value',
+            description: 'Отображать текущее значение прогресса',
           },
           striped: {
             type: 'boolean',
             default: false,
-            description: 'Enable the striped background',
+            description: 'Включить полосатый фон',
           },
           value: {
             type: 'Numberish',
             default: 0,
-            description: 'The current value of the progress bar',
+            description: 'Текущее значение прогресс-бара',
           },
           ...pick(buildCommonProps(), ['bgVariant', 'textVariant', 'variant']),
         } satisfies Record<keyof BvnComponentProps['BProgressBar'], PropertyReference>,
@@ -114,7 +114,7 @@ export default {
         {
           name: 'default',
           description:
-            'Content to place in the progress bar. Overrides the `label`, `show-progress` and `show-value` props',
+            'Содержимое, размещаемое внутри прогресс-бара. Переопределяет props `label`, `show-progress` и `show-value`',
         },
       ],
     },

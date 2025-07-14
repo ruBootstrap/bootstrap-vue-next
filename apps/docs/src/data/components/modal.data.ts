@@ -7,31 +7,31 @@ const sharedSlots: SlotScopeReference[] = [
     prop: 'cancel',
     type: 'Function',
     description:
-      "Closes the modal and fires the 'cancel' and 'hide' events, with `bvModalEvent.trigger = 'cancel'`",
+      "Закрывает модальное окно и вызывает события 'cancel' и 'hide', с bvModalEvent.trigger = 'cancel'",
   },
   {
     prop: 'close',
     type: 'Function',
     description:
-      "Closes the modal and fires the close and hide events, with `bvModalEvent.trigger = 'headerclose'`",
+      "Закрывает модальное окно и вызывает события close и hide, с bvModalEvent.trigger = 'headerclose'",
   },
   {
     prop: 'hide',
     type: 'Function',
     description:
-      "Accepts one argument 'trigger'. Closes the modal and fires the 'hide' event, with the `bvModalEvent.trigger = trigger` (`trigger` is optional)",
+      "Принимает аргумент 'trigger'. Закрывает модальное окно и вызывает событие 'hide', с bvModalEvent.trigger = trigger (trigger необязателен)",
   },
   {
     prop: 'ok',
     type: 'Function',
     description:
-      "Closes the modal and fires the 'ok' and 'hide' events, with `bvModalEvent.trigger = 'ok'`",
+      "Закрывает модальное окно и вызывает события 'ok' и 'hide', с bvModalEvent.trigger = 'ok'",
   },
   {
     prop: 'visible',
     type: 'boolean',
     description:
-      "The visibility state of the modal. 'true' if the modal is visible and 'false' if not visible",
+      'Состояние видимости модального окна. true — если модальное окно видно, false — если скрыто',
   },
 ]
 
@@ -46,13 +46,13 @@ export default {
             type: "'ok' | 'cancel' | 'close' | string | ComponentPublicInstance | HTMLElement | null",
             default: undefined,
             description:
-              "Specify where to focus once modal opens. Can be built-in button: 'ok', 'cancel', or 'close'. Can be ref, HTMLElement, id or selector string. If set to 'false', no focus will be set (if noTrap isn't set the focus trap will focus the modal element or failback element). If set to a string, the element with that id will be focused. If set to a ComponentPublicInstance, the $el property of the instance will be focused.",
+              "Указать, куда установить фокус после открытия модального окна. Можно указать встроенные кнопки: 'ok', 'cancel' или 'close', либо ref, HTMLElement, id или селектор. Если указано 'false', фокус не будет установлен (если не задан noTrap, фокус будет на модальном элементе или fallback-элементе). Если строка — будет сфокусирован элемент с этим id. Если ComponentPublicInstance — будет сфокусирован $el экземпляра.",
           },
           backdropFirst: {
             type: 'boolean',
             default: false,
             description:
-              'Animate the backdrop before the modal, and on leave animate the modal before the backdrop',
+              'Анимировать затемнение (backdrop) перед модальным окном, при закрытии — сначала анимировать модальное окно, затем затемнение',
           },
           body: {
             type: 'string',
@@ -65,34 +65,33 @@ export default {
           bodyBgVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the body background',
+            description: 'Применяет одну из цветовых тем Bootstrap к фону body',
           },
           bodyClass: {
             type: 'ClassValue',
             default: null,
-            description: "CSS class (or classes) to apply to the '.modal-body' wrapper element",
+            description: 'CSS-класс(ы) для .modal-body',
           },
           bodyScrolling: {
             type: 'boolean',
             default: false,
-            description: 'Enables/disables scrolling the body while modal is open',
+            description: 'Включает/отключает прокрутку body при открытом модальном окне',
           },
           bodyTextVariant: {
             type: 'TextColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the body text',
+            description: 'Применяет одну из цветовых тем Bootstrap к тексту body',
           },
           bodyVariant: {
             type: 'ColorVariant | null',
             default: null,
             description:
-              'Applies one of the Bootstrap theme color variants to the body (this takes priority over bodyBgVariant and bodyTextVariant)',
+              'Применяет одну из цветовых тем Bootstrap к body (приоритетнее bodyBgVariant и bodyTextVariant)',
           },
           busy: {
             type: 'boolean',
             default: false,
-            description:
-              'Places the built in default footer OK and Cancel buttons in the disabled state',
+            description: 'Переводит встроенные кнопки OK и Cancel в футере в состояние disabled',
           },
           buttonSize: {
             type: 'Size',
@@ -101,134 +100,131 @@ export default {
           cancelClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-cancel' button",
+            description: 'CSS-класс(ы) для кнопки .modal-cancel',
           },
           cancelDisabled: {
             type: 'boolean',
             default: false,
-            description: 'Places the built in default footer Cancel button in the disabled state',
+            description: 'Переводит встроенную кнопку Cancel в футере в состояние disabled',
           },
           cancelTitle: {
             type: 'string',
             default: 'Cancel',
-            description: 'Text string to place in the default footer Cancel button',
+            description: 'Текст для кнопки Cancel в футере',
           },
           cancelVariant: {
             type: 'ButtonVariant | null',
             default: 'secondary',
-            description: 'Variant to use for the default footer Cancel button',
+            description: 'Вариант оформления для кнопки Cancel в футере',
           },
           centered: {
             type: 'boolean',
             default: false,
-            description: 'Vertically centers the modal in the viewport',
+            description: 'Вертикально центрирует модальное окно во viewport',
           },
           contentClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-content' wrapper element",
+            description: 'CSS-класс(ы) для .modal-content',
           },
           dialogClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-dialog' wrapper element",
+            description: 'CSS-класс(ы) для .modal-dialog',
           },
           footerBgVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description:
-              'Applies one of the Bootstrap theme color variants to the footer background',
+            description: 'Применяет одну из цветовых тем Bootstrap к фону футера',
           },
           footerBorderVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the footer border',
+            description: 'Применяет одну из цветовых тем Bootstrap к границе футера',
           },
           footerClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-footer' wrapper element",
+            description: 'CSS-класс(ы) для .modal-footer',
           },
           footerTextVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the footer text',
+            description: 'Применяет одну из цветовых тем Bootstrap к тексту футера',
           },
           footerVariant: {
             type: 'ColorVariant | null',
             default: null,
             description:
-              'Applies one of the Bootstrap theme color variants to the footer (this takes priority over footerBgVariant and footerTextVariant)',
+              'Применяет одну из цветовых тем Bootstrap к футеру (приоритетнее footerBgVariant и footerTextVariant)',
           },
           fullscreen: {
             type: 'boolean | Breakpoint',
             default: false,
             description:
-              "A boolean value will enable/disable full screen mode. A Breakpoint value will set the breakpoint to enable full screen mode below the value of the breakpoint. Breakpoint values are: 'sm', 'md', 'lg', 'xl', 'xxl'",
+              "Булево значение включает/отключает полноэкранный режим. Breakpoint задаёт брейкпоинт, ниже которого включается полноэкранный режим: 'sm', 'md', 'lg', 'xl', 'xxl'",
           },
           headerBgVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description:
-              'Applies one of the Bootstrap theme color variants to the header background',
+            description: 'Применяет одну из цветовых тем Bootstrap к фону заголовка',
           },
           headerBorderVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the header border',
+            description: 'Применяет одну из цветовых тем Bootstrap к границе заголовка',
           },
           headerClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-header' wrapper element",
+            description: 'CSS-класс(ы) для .modal-header',
           },
           headerCloseClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the header close button',
+            description: 'CSS-класс(ы) для кнопки закрытия в заголовке',
           },
           headerCloseLabel: {
             type: 'string',
             default: 'Close',
-            description: 'Accessibility label for the header close button',
+            description: 'Метка доступности для кнопки закрытия в заголовке',
           },
           headerCloseVariant: {
             type: 'ButtonVariant | null',
             default: 'secondary',
             description:
-              'Applies a variant to the header close button when the header close button uses the header-close slot',
+              'Применяет вариант оформления к кнопке закрытия в заголовке при использовании слота header-close',
           },
           headerTextVariant: {
             type: 'TextColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the header text',
+            description: 'Применяет одну из цветовых тем Bootstrap к тексту заголовка',
           },
           headerVariant: {
             type: 'ColorVariant | null',
             default: null,
             description:
-              'Applies one of the Bootstrap theme color variants to the header (this takes priority over headerBgVariant and headerTextVariant)',
+              'Применяет одну из цветовых тем Bootstrap к заголовку (приоритетнее headerBgVariant и headerTextVariant)',
           },
           noFooter: {
             type: 'boolean',
             default: false,
-            description: 'Disables rendering of the modal footer',
+            description: 'Отключает рендеринг футера модального окна',
           },
           modalClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal' wrapper element",
+            description: 'CSS-класс(ы) для .modal',
           },
           noCloseOnBackdrop: {
             type: 'boolean',
             default: false,
-            description:
-              'Disables closing the modal when clicking on the modal backdrop (outside the modal window)',
+            description: 'Отключает закрытие модального окна при клике по затемнению (backdrop)',
           },
           noCloseOnEsc: {
             type: 'boolean',
             default: false,
-            description: 'Disables the ability to close the modal by pressing the ESC key',
+            description: 'Отключает возможность закрытия модального окна по клавише ESC',
           },
           noStacking: {
             type: 'boolean',
@@ -237,72 +233,73 @@ export default {
           noTrap: {
             type: 'boolean',
             default: false,
-            description: 'Disables the focus trap feature',
+            description: 'Отключает фокус-трап',
           },
           okClass: {
             type: 'ClassValue',
             default: undefined,
-            description: "CSS class (or classes) to apply to the '.modal-ok' button",
+            description: 'CSS-класс(ы) для кнопки .modal-ok',
           },
           okDisabled: {
             type: 'boolean',
             default: false,
-            description: 'Places the built in default footer OK button in the disabled state',
+            description: 'Переводит встроенную кнопку OK в футере в состояние disabled',
           },
           okOnly: {
             type: 'boolean',
             default: false,
-            description: 'Disables rendering of the default footer Cancel button',
+            description: 'Отключает рендеринг кнопки Cancel в футере',
           },
           okTitle: {
             type: 'string',
             default: 'OK',
-            description: 'Text string to place in the default footer OK button',
+            description: 'Текст для кнопки OK в футере',
           },
           okVariant: {
             type: 'ButtonVariant | null',
             default: 'primary',
-            description: 'Button color theme variant to apply to the default footer OK button',
+            description: 'Вариант оформления кнопки OK в футере',
           },
           scrollable: {
             type: 'boolean',
             default: false,
-            description: 'Enables scrolling of the modal body',
+            description: 'Включает прокрутку содержимого модального окна',
           },
           size: {
             type: "Size | 'xl'",
             default: 'md',
-            description: "Set the size of the modal's width. 'sm', 'md' (default), 'lg', or 'xl'",
+            description:
+              "Устанавливает ширину модального окна: 'sm', 'md' (по умолчанию), 'lg' или 'xl'",
           },
           teleportDisabled: {
             type: 'boolean',
             default: false,
-            description: 'Renders the modal in the exact place it was defined',
+            description: 'Рендерит модальное окно в том месте, где оно определено',
           },
           teleportTo: {
             type: 'string | RendererElement | null | undefined',
             default: 'body',
-            description: 'Overrides the default teleport location',
+            description: 'Переопределяет стандартное место для teleport',
           },
           title: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the title',
+            description: 'Текст для заголовка модального окна',
           },
           titleClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to apply to the title',
+            description: 'CSS-класс(ы) для заголовка',
           },
           titleVisuallyHidden: {
             type: 'boolean',
             default: false,
-            description: "Wraps the title in an '.visually-hidden' wrapper",
+            description: 'Оборачивает заголовок в .visually-hidden',
           },
           titleTag: {
             type: 'string',
             default: 'h5',
-            description: 'Specify the HTML tag to render instead of the default tag for the title',
+            description: 'HTML-тег для заголовка вместо значения по умолчанию',
           },
           ...showHideProps,
           ...pick(buildCommonProps(), ['id', 'noBackdrop', 'noHeader', 'noHeaderClose']),
@@ -314,11 +311,11 @@ export default {
           args: [
             {
               arg: 'value',
-              description: "The new value of the modal's visible state",
+              description: 'Вызывается при изменении видимости модального окна',
               type: 'boolean',
             },
           ],
-          description: 'Emitted when modal visibility changes',
+          description: 'Вызывается при изменении видимости модального окна',
         },
         {
           event: 'show',
@@ -329,7 +326,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Always emits just before modal is shown. Cancelable',
+          description: 'Всегда вызывается перед показом модального окна. Можно отменить',
         },
         {
           event: 'shown',
@@ -340,7 +337,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Always emits just after modal is shown. Cancelable',
+          description: 'Всегда вызывается сразу после показа модального окна. Можно отменить',
         },
         {
           event: 'hide',
@@ -352,7 +349,7 @@ export default {
             },
           ],
           description:
-            "Always emits just before modal has hidden. Cancelable (as long as modal wasn't forcibly hidden)",
+            'Всегда вызывается перед скрытием модального окна. Можно отменить (если окно не было принудительно скрыто)',
         },
         {
           event: 'hidden',
@@ -363,19 +360,19 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Always emits after modal is hidden',
+          description: 'Всегда вызывается после скрытия модального окна',
         },
         {
           event: 'hide-prevented',
           args: [],
           description:
-            'Emitted when the modal tried to close, but was prevented from closing.  This occurs when preventDefault() is called on the event, the user clicks escape and no-close-onbackdrop is set to true, or the user clicks on the backdrop and no-close-onbackdrop is set to true.',
+            'Вызывается, когда попытка закрыть модальное окно была предотвращена. Это происходит, если вызвать preventDefault() на событии, пользователь нажал Escape и no-close-onbackdrop=true, либо кликнул по затемнению и no-close-onbackdrop=true.',
         },
         {
           event: 'show-prevented',
           args: [],
           description:
-            'Emitted when the modal tried to open, but was prevented from opening. This occurs when preventDefault() is called on the event',
+            'Вызывается, когда попытка открыть модальное окно была предотвращена. Это происходит, если вызвать preventDefault() на событии',
         },
         {
           event: 'ok',
@@ -386,7 +383,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Emitted when the default footer ok button is clicked. Cancelable',
+          description: 'Вызывается при клике по кнопке OK в футере. Можно отменить',
         },
         {
           event: 'cancel',
@@ -397,7 +394,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Emitted when the default footer cancel button is clicked. Cancelable',
+          description: 'Вызывается при клике по кнопке Cancel в футере. Можно отменить',
         },
         {
           event: 'close',
@@ -408,7 +405,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Emitted when the default header close button is clicked. Cancelable',
+          description: 'Вызывается при клике по кнопке закрытия в заголовке. Можно отменить',
         },
         {
           event: 'backdrop',
@@ -419,7 +416,7 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Emitted when the backdrop is clicked. Cancelable',
+          description: 'Вызывается при клике по затемнению (backdrop). Можно отменить',
         },
         {
           event: 'esc',
@@ -430,52 +427,52 @@ export default {
               type: 'BvTriggerableEvent',
             },
           ],
-          description: 'Emitted when the esc keyboard button is clicked. Cancelable',
+          description: 'Вызывается при нажатии клавиши ESC. Можно отменить',
         },
       ],
       slots: [
         {
           name: 'backdrop',
-          description: 'Modal Backdrop content',
+          description: 'Содержимое затемнения (backdrop) модального окна',
           scope: [],
         },
         {
           name: 'cancel',
-          description: 'Modal CANCEL button content. Optionally scoped',
+          description: 'Содержимое кнопки CANCEL модального окна. Может быть scoped',
           scope: sharedSlots,
         },
         {
           name: 'default',
-          description: 'Content of modal body. Optionally scoped',
+          description: 'Содержимое тела модального окна. Может быть scoped',
           scope: sharedSlots,
         },
         {
           name: 'footer',
           description:
-            'Modal footer content. Also removes default OK and Cancel buttons. Optionally scoped',
+            'Содержимое футера модального окна. Также убирает стандартные кнопки OK и Cancel. Может быть scoped',
           scope: sharedSlots,
         },
         {
           name: 'header',
           description:
-            'Entire modal header container contents. Also removes the top right X close button. Optionally scoped',
+            'Содержимое всего контейнера заголовка модального окна. Также убирает кнопку закрытия (X) справа вверху. Может быть scoped',
           scope: sharedSlots,
         },
         {
           name: 'header-close',
           description:
-            "Content of Modal header close button. If 'header' slot is used, this slot will not be shown",
+            'Содержимое кнопки закрытия в заголовке модального окна. Если используется слот header, этот слот не отображается',
           scope: [],
         },
         {
           name: 'ok',
-          description: 'Modal OK button content. Optionally scoped',
+          description: 'Содержимое кнопки OK модального окна. Может быть scoped',
           scope: sharedSlots,
         },
         {
           name: 'title',
           description:
-            "Modal title. If 'header' slot is used, this slot will not be shown. Optionally scoped",
+            'Заголовок модального окна. Если используется слот header, этот слот не отображается. Может быть scoped',
           scope: sharedSlots,
         },
       ],

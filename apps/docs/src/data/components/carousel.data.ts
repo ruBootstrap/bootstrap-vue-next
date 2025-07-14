@@ -12,106 +12,105 @@ export default {
           background: {
             type: 'string',
             default: undefined,
-            description: "Set the CSS color of the carousel's background",
+            description: 'Установить CSS-цвет фона карусели',
           },
           controls: {
             type: 'boolean',
             default: false,
-            description: 'Enable the previous and next controls',
+            description: 'Включить элементы управления "предыдущий" и "следующий"',
           },
           controlsNextText: {
             type: 'string',
             default: 'Next',
-            description: 'Set the text for the "Next" control',
+            description: 'Текст для кнопки "Следующий"',
           },
           controlsPrevText: {
             type: 'string',
             default: 'Previous',
-            description: 'Set the text for the "Previous" control',
+            description: 'Текст для кнопки "Предыдущий"',
           },
           fade: {
             type: 'boolean',
             default: false,
             description:
-              'When set, changes the slide animation to a crossfade instead of a sliding effect',
+              'Если установлено, анимация смены слайда будет плавным затемнением вместо скольжения',
           },
           imgHeight: {
             type: 'string',
             default: undefined,
-            description: "Set the default image 'height' attribute for all b-tab children",
+            description: "Атрибут 'height' по умолчанию для всех дочерних b-tab",
           },
           imgWidth: {
             type: 'string',
             default: undefined,
-            description: "Set the default image 'width' attribute for all b-tab children",
+            description: "Атрибут 'width' по умолчанию для всех дочерних b-tab",
           },
           indicators: {
             type: 'boolean',
             default: false,
-            description: 'Enable the indicator buttons for jumping to specific slides',
+            description: 'Включить индикаторы для перехода к определённым слайдам',
           },
           indicatorsButtonLabel: {
             type: 'string',
             default: 'Slide',
-            description: 'Set the aria-label for the indicator buttons',
+            description: 'aria-label для кнопок-индикаторов',
           },
           interval: {
             type: 'number',
             default: 5000,
-            description: 'Set the delay time (in milliseconds) between slides',
+            description: 'Задержка (в миллисекундах) между слайдами',
           },
           keyboard: {
             type: 'boolean',
             default: true,
-            description: 'Enable keyboard navigation with the right and left arrow keys',
+            description: 'Включить навигацию с помощью стрелок на клавиатуре',
           },
           labelIndicators: {
             type: 'string',
             default: 'Select a slide to display',
-            description: 'Set the aria-label for the indicators',
+            description: 'aria-label для индикаторов',
           },
           modelValue: {
             type: 'number',
             default: 0,
-            description: 'The index of the currently active slide',
+            description: 'Индекс текущего активного слайда',
           },
           noAnimation: {
             type: 'boolean',
             default: false,
-            description: 'When set, disables the animation',
+            description: 'Если установлено, анимация будет отключена',
           },
           noHoverPause: {
             type: 'boolean',
             default: false,
             description:
-              'When set, disables the pausing of the slide show when the current slide is hovered',
+              'Если установлено, показ слайдов не будет приостанавливаться при наведении',
           },
           noTouch: {
             type: 'boolean',
             default: false,
-            description: 'Disable controlling the slides via touch swipes',
+            description: 'Отключить управление слайдами с помощью свайпов',
           },
           noWrap: {
             type: 'boolean',
             default: false,
-            description: 'Do not restart the slide show when then end is reached',
+            description: 'Не перезапускать показ слайдов при достижении конца',
           },
           ride: {
             type: "boolean | 'carousel'",
             default: false,
             description:
-              'Set to "carousel" to animate slides automatically, true to animate on first interaction, false to disable animation',
+              '"carousel" — автоматическая анимация, true — анимация при первом взаимодействии, false — без анимации',
           },
           rideReverse: {
             type: 'boolean',
             default: false,
-            description: 'When set, the carousel will animate in the reverse direction',
+            description: 'Если установлено, карусель будет анимироваться в обратном направлении',
           },
           touchThreshold: {
             type: 'Numberish',
             default: 50,
-            description:
-              'The minimum distance the touch swipe must move to prevent the slide show from being paused',
+            description: 'Минимальная дистанция свайпа для предотвращения паузы показа слайдов',
           },
           ...pick(buildCommonProps({}), ['id']),
         } satisfies Record<keyof BvnComponentProps['BCarousel'], PropertyReference>,
@@ -119,7 +118,7 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Standard event to update the v-model',
+          description: 'Стандартное событие для обновления v-model',
           args: [
             {
               arg: 'update:model-value',
@@ -130,7 +129,7 @@ export default {
         },
         {
           event: 'slide',
-          description: 'Fires immediately when the carousel starts its slide transition.',
+          description: 'Вызывается сразу при начале анимации перехода слайда.',
           args: [
             {
               arg: 'value',
@@ -141,7 +140,7 @@ export default {
         },
         {
           event: 'slid',
-          description: 'Fired when the carousel has completed its slide transition.',
+          description: 'Вызывается после завершения анимации перехода слайда.',
           args: [
             {
               arg: 'value',
@@ -152,7 +151,7 @@ export default {
         },
         {
           event: 'prev-click',
-          description: '',
+          description: 'Вызывается при клике по кнопке "Предыдущий"',
           args: [
             {
               arg: 'click',
@@ -163,7 +162,7 @@ export default {
         },
         {
           event: 'next-click',
-          description: '',
+          description: 'Вызывается при клике по кнопке "Следующий"',
           args: [
             {
               arg: 'click',
@@ -176,7 +175,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (slides) to place in the carousel',
+          description: 'Содержимое (слайды) для размещения в карусели',
         },
       ],
     },
@@ -190,55 +189,53 @@ export default {
           background: {
             type: 'string',
             default: undefined,
-            description: "CSS color to use as the slide's background color",
+            description: 'CSS-цвет для фона слайда',
           },
           caption: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the caption',
+            description: 'Текст для размещения в подписи',
           },
           captionTag: {
             type: 'string',
             default: 'h3',
-            description:
-              'Specify the HTML tag to render instead of the default tag for the caption wrapper',
+            description: 'HTML-тег для обёртки подписи вместо значения по умолчанию',
           },
           contentTag: {
             type: 'string',
             default: 'div',
-            description:
-              'Specify the HTML tag to render instead of the default tag for the content wrapper',
+            description: 'HTML-тег для обёртки содержимого вместо значения по умолчанию',
           },
           contentVisibleUp: {
             type: 'string',
             default: undefined,
             description:
-              'Specify the breakpoint that the textual content will start to be shown. Leave at default to always show the textual content',
+              'Брейкпоинт, начиная с которого будет отображаться текстовое содержимое. По умолчанию — всегда отображается',
           },
           imgAlt: {
             type: 'string',
             default: undefined,
-            description: "Sets the value of the 'alt' attribute on the image",
+            description: "Значение атрибута 'alt' для изображения",
           },
           imgBlank: {
             type: 'boolean',
             default: false,
-            description: 'If set, will render a blank image instead of the img-src',
+            description: 'Если установлено, будет отображаться пустое изображение вместо img-src',
           },
           imgBlankColor: {
             type: 'string',
             default: 'transparent',
-            description: 'Set the CSS color to use as the fill of the blank image',
+            description: 'CSS-цвет для заливки пустого изображения',
           },
           imgHeight: {
             type: 'Numberish',
             default: undefined,
-            description: "Set the default image 'height' attribute for all b-tab children",
+            description: "Атрибут 'height' по умолчанию для всех дочерних b-tab",
           },
           imgSrc: {
             type: 'string',
             default: undefined,
-            description: 'Sets the URL of the image',
+            description: 'URL изображения',
           },
           imgSrcset: {
             type: 'string | string[]',
@@ -247,23 +244,22 @@ export default {
           imgWidth: {
             type: 'Numberish',
             default: undefined,
-            description: "Set the default image 'width' attribute for all b-tab children",
+            description: "Атрибут 'width' по умолчанию для всех дочерних b-tab",
           },
           interval: {
             type: 'number',
             default: undefined,
-            description: 'Set the delay time (in milliseconds) before the slide is shown',
+            description: 'Задержка (в миллисекундах) перед показом слайда',
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the text of the slide',
+            description: 'Текст для размещения в текстовой области слайда',
           },
           textTag: {
             type: 'string',
             default: 'p',
-            description:
-              'Specify the HTML tag to render instead of the default tag for the text wrapper',
+            description: 'HTML-тег для обёртки текста вместо значения по умолчанию',
           },
           ...pick(buildCommonProps({}), ['id']),
         } satisfies Record<keyof BvnComponentProps['BCarouselSlide'], PropertyReference>,
@@ -271,19 +267,19 @@ export default {
       slots: [
         {
           name: 'caption',
-          description: 'Content to place in caption',
+          description: 'Содержимое для размещения в подписи',
         },
         {
           name: 'default',
-          description: 'Content to place in the carousel slide',
+          description: 'Содержимое для размещения в слайде карусели',
         },
         {
           name: 'img',
-          description: 'Slot for img element or image component',
+          description: 'Слот для элемента <img> или компонента изображения',
         },
         {
           name: 'text',
-          description: 'Content to place in text area of the slide',
+          description: 'Содержимое для размещения в текстовой области слайда',
         },
       ],
     },

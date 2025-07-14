@@ -15,66 +15,65 @@ export default {
             type: 'boolean | string',
             default: false,
             description:
-              'When `true` shows an empty badge on the avatar, alternatively set to a string for content in the badge',
+              'Если `true`, отображает пустой бейдж на аватаре, либо строка — содержимое бейджа',
           },
           badgeBgVariant: {
             type: 'ColorVariant | null',
             default: null,
-            description:
-              'Applies one of the Bootstrap theme color variants to the background of the badge',
+            description: 'Применяет одну из цветовых тем Bootstrap к фону бейджа',
           },
           badgeDotIndicator: {
             type: 'boolean',
             default: false,
             description:
-              'When `true` shows a small dot indicator on the Avatar. All of the badge props are applied to the dot. `badge-dot-indicator` takes precedence over `badge`',
+              'Если `true`, отображает маленький индикатор-точку на аватаре. Все свойства бейджа применяются к точке. `badge-dot-indicator` имеет приоритет над `badge`',
           },
           badgeTextVariant: {
             type: 'TextColorVariant | null',
             default: null,
-            description: 'Applies one of the Bootstrap theme color variants to the text',
+            description: 'Применяет одну из цветовых тем Bootstrap к тексту',
           },
           badgeVariant: {
             type: 'ColorVariant | null',
             default: 'primary',
-            description: 'Applies one of the Bootstrap theme color variants to the badge',
+            description: 'Применяет одну из цветовых тем Bootstrap к бейджу',
           },
           badgePlacement: {
             type: 'CombinedPlacement',
             default: 'bottom-end',
             description:
-              'Placement of the badge relative to the avatar. One of the values of `CombinedPlacement`',
+              'Положение бейджа относительно аватара. Одно из значений CombinedPlacement',
           },
           badgePill: {
             type: 'boolean',
             default: false,
-            description: 'Renders the badge with pill styling',
+            description: 'Отображает бейдж с закруглёнными краями (pill)',
           },
           button: {
             type: 'boolean',
             default: false,
-            description: 'When set to `true`, renders the avatar as a button',
+            description: 'Если установлено в `true`, рендерит аватар как кнопку',
           },
           buttonType: {
             type: 'ButtonType',
             default: 'button',
             description:
-              'Type of button to render (i.e. `button`, `submit`, `reset`). Has no effect if prop button is not set',
+              'Тип кнопки для рендера (например, `button`, `submit`, `reset`). Не влияет, если не установлен prop button',
           },
           size: {
             type: 'Size | string',
             default: undefined,
-            description: 'Size of the avatar. Refer to the documentation for details',
+            description: 'Размер аватара. Подробнее см. в документации',
           },
           square: {
             type: 'boolean',
             default: false,
-            description: 'Disables rounding of the avatar, rending the avatar with square corners',
+            description: 'Отключает скругление аватара, делая его с квадратными углами',
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text to place in the avatar',
+            description: 'Текст для отображения внутри аватара',
           },
           ...pick(
             buildCommonProps({
@@ -84,10 +83,10 @@ export default {
               rounded: {
                 default: 'circle',
                 description:
-                  'Specifies the type of rounding to apply to the component or its children. The `square` prop takes precedence',
+                  'Определяет тип скругления для компонента или его потомков. Проп `square` имеет приоритет',
               },
               src: {
-                description: 'Image URL to use for the avatar',
+                description: 'URL изображения для аватара',
               },
               variant: {
                 default: 'secondary',
@@ -125,7 +124,7 @@ export default {
           args: [
             {
               arg: 'click',
-              description: 'Native click event',
+              description: 'Событие клика мышью',
               type: 'MouseEvent',
             },
           ],
@@ -135,22 +134,23 @@ export default {
           args: [
             {
               arg: 'img-error',
-              description: 'On img-error',
+              description: 'При ошибке загрузки изображения',
               type: 'Event',
             },
           ],
-          description: 'On image error',
+          description: 'При ошибке изображения',
         },
       ],
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the avatars optional badge. Overrides the `badge` prop',
+          description:
+            'Контент для размещения внутри дополнительного бейджа аватара. Переопределяет prop `badge`',
         },
         {
           name: 'badge',
           description:
-            'Content to place in the avatar. Overrides props `text`, `src`, and `icon-name`',
+            'Контент для размещения внутри аватара. Переопределяет props `text`, `src` и `icon-name`',
         },
       ],
     },
@@ -164,25 +164,24 @@ export default {
             type: 'Numberish',
             default: 0.3,
             description:
-              'Content to place in the avatar. Overrides props `text`, `src`, and `icon-name`',
+              'Контент для размещения внутри аватара. Переопределяет props `text`, `src` и `icon-name`',
           },
           size: {
             type: 'Size | string',
             default: undefined,
-            description: 'Size of the child avatars. Refer to the documentation for details',
+            description: 'Размер дочерних аватаров. Подробнее см. в документации',
           },
           square: {
             type: 'boolean',
             default: false,
-            description:
-              'Disables rounding of the child avatars, rending the avatar with square corners',
+            description: 'Отключает скругление дочерних аватаров, делая их с квадратными углами',
           },
           ...pick(
             buildCommonProps({
               rounded: {
                 default: 'circle',
                 description:
-                  'Specifies the type of rounding to apply to the component or its children. The `square` prop takes precedence. Refer to the documentation for details.',
+                  'Определяет тип скругления для компонента или его потомков. Проп `square` имеет приоритет. Подробнее см. в документации.',
               },
               variant: {
                 default: 'secondary',
@@ -205,7 +204,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (avatars) to place in the avatar group',
+          description: 'Контент (аватары) для размещения внутри группы аватаров',
         },
       ],
     },

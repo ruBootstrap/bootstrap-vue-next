@@ -13,49 +13,50 @@ export default {
           align: {
             type: 'AlignmentTextHorizontal',
             default: undefined,
-            description: "Text alignment for the card's content: 'start', 'center' or 'end'",
+            description: 'Выравнивание текста содержимого карточки: "start", "center" или "end"',
           },
           bodyText: {
             type: 'string',
             default: "''",
-            description: 'Text content to place in the card body, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в теле карточки, слот по умолчанию имеет приоритет',
           },
           imgAlt: {
             type: 'string',
             default: undefined,
-            description: 'URL for the optional image',
+            description: 'URL для необязательного изображения',
           },
           imgHeight: {
             type: 'Numberish',
             default: undefined,
-            description: "The value to set on the image's 'height' attribute",
+            description: "Значение для атрибута 'height' изображения",
           },
           imgPlacement: {
             type: 'Placement | "overlay"',
             default: 'top',
             description:
-              "Placement for the optional image ('top', 'bottom', 'start', 'end', or 'overlay')",
+              "Положение необязательного изображения ('top', 'bottom', 'start', 'end' или 'overlay')",
           },
           imgSrc: {
             type: 'string',
             default: undefined,
-            description: 'URL for the optional image',
+            description: 'URL для необязательного изображения',
           },
           imgWidth: {
             type: 'Numberish',
             default: undefined,
-            description: "The value to set on the image's 'width' attribute",
+            description: "Значение для атрибута 'width' изображения",
           },
           noBody: {
             type: 'boolean',
             default: false,
-            description: 'Disable rendering of the default inner card-body element',
+            description: 'Отключить рендеринг внутреннего элемента card-body по умолчанию',
           },
           ...pick(
             buildCommonProps({
               bodyBorderVariant: {
                 description:
-                  'Applies one of the Bootstrap theme color variants to the body border (NYI?)',
+                  'Применяет одну из цветовых тем Bootstrap к границе body (ещё не реализовано)',
               },
             }),
             [
@@ -96,19 +97,19 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card',
+          description: 'Содержимое для размещения в карточке',
         },
         {
           name: 'footer',
-          description: 'For custom rendering of footer content',
+          description: 'Для пользовательского рендеринга содержимого подвала',
         },
         {
           name: 'header',
-          description: 'For custom rendering of header content',
+          description: 'Для пользовательского рендеринга содержимого заголовка',
         },
         {
           name: 'img',
-          description: 'For custom rendering of image content',
+          description: 'Для пользовательского рендеринга содержимого изображения',
         },
       ],
     },
@@ -126,7 +127,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card body, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в теле карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(buildCommonProps(), [
             'bgVariant',
@@ -144,15 +146,15 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card body',
+          description: 'Содержимое для размещения в теле карточки',
         },
         {
           name: 'title',
-          description: 'Content to place in the card title',
+          description: 'Содержимое для размещения в заголовке карточки',
         },
         {
           name: 'subtitle',
-          description: 'Content to place in the card subtitle',
+          description: 'Содержимое для размещения в подзаголовке карточки',
         },
       ],
     },
@@ -165,7 +167,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card footer, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в подвале карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(buildCommonProps(), [
             'bgVariant',
@@ -179,7 +182,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card footer',
+          description: 'Содержимое для размещения в подвале карточки',
         },
       ],
     },
@@ -193,12 +196,14 @@ export default {
           columns: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the card group in a masonry-like columnar style',
+            description:
+              'Когда установлено, отображает группу карточек в виде колонок, напоминающих masonry',
           },
           deck: {
             type: 'boolean',
             default: false,
-            description: 'When set renders the card group with gutters between cards',
+            description:
+              'Когда установлено, отображает группу карточек с отступами между карточками',
           },
           ...pick(buildCommonProps(), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BCardGroup'], PropertyReference>,
@@ -206,7 +211,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (cards) to place in the card group',
+          description: 'Содержимое (карточки) для размещения в группе карточек',
         },
       ],
     },
@@ -219,7 +224,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card header, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в заголовке карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(buildCommonProps(), [
             'bgVariant',
@@ -233,7 +239,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card header',
+          description: 'Содержимое для размещения в заголовке карточки',
         },
       ],
     },
@@ -267,7 +273,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card body, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в подзаголовке карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(
             buildCommonProps({
@@ -285,7 +292,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card subtitle',
+          description: 'Содержимое для размещения в подзаголовке карточки',
         },
       ],
     },
@@ -298,7 +305,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card text, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в тексте карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(
             buildCommonProps({
@@ -313,7 +321,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card text',
+          description: 'Содержимое для размещения в тексте карточки',
         },
       ],
     },
@@ -326,7 +334,8 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text content to place in the card title, default slot takes precedence',
+            description:
+              'Текстовое содержимое для размещения в заголовке карточки, слот по умолчанию имеет приоритет',
           },
           ...pick(
             buildCommonProps({
@@ -341,7 +350,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the card title',
+          description: 'Содержимое для размещения в заголовке карточки',
         },
       ],
     },

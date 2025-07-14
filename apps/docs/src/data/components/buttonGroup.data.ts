@@ -13,7 +13,7 @@ export default {
           vertical: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the button group in vertical mode',
+            description: 'Если установлено, отображает группу кнопок вертикально',
           },
           ...pick(buildCommonProps(), ['ariaLabel', 'size', 'tag']),
         } satisfies Record<keyof BvnComponentProps['BButtonGroup'], PropertyReference>,
@@ -21,7 +21,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (buttons) to place in the button group',
+          description: 'Контент (кнопки) для размещения внутри группы кнопок',
         },
       ],
     },

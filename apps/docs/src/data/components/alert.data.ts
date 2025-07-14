@@ -13,7 +13,7 @@ export default {
           alertClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the alert wrapper element',
+            description: 'CSS-класс(ы), добавляемые к обёрточному элементу alert',
           },
           bgVariant: {
             type: 'ColorVariant | null',
@@ -22,82 +22,83 @@ export default {
           body: {
             type: 'string',
             default: undefined,
-            description: 'The text content of the body',
+            description: 'Текстовое содержимое body',
           },
           bodyClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the alert body element',
+            description: 'CSS-класс(ы), добавляемые к элементу body alert',
           },
           closeClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Applies one or more custom classes to the close button',
+            description: 'Применяет один или несколько пользовательских классов к кнопке закрытия',
           },
           closeContent: {
             type: 'string',
             default: undefined,
-            description: 'Sets the text of the close button. The `close` slot takes precedence',
+            description: 'Текст кнопки закрытия. Приоритет имеет слот `close`',
           },
           closeLabel: {
             type: 'string',
             default: 'Close',
-            description: 'Sets the aria-label attribute on the close button',
+            description: 'Устанавливает атрибут aria-label на кнопке закрытия',
           },
           closeVariant: {
             type: 'string | null',
             default: null,
-            description: 'Color variant for the close button',
+            description: 'Цветовая тема для кнопки закрытия',
           },
           dismissible: {
             type: 'boolean',
             default: false,
-            description: 'When set, enables the close button',
+            description: 'Если установлено, отображает кнопку закрытия',
           },
           headerClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the alert header element',
+            description: 'CSS-класс(ы), добавляемые к элементу header alert',
           },
           headerTag: {
             type: 'string',
             default: 'div',
-            description: 'Specify the HTML tag to render instead of the default tag for the footer',
+            description:
+              'HTML-тег, который будет использоваться вместо тега по умолчанию для футера',
           },
           id: {
             type: 'string',
             default: undefined,
             description:
-              'Used to set the `id` attribute on the rendered content, and used as the base to generate any additional element IDs as needed',
+              'Используется для установки атрибута `id` на рендеримом элементе, а также как основа для генерации дополнительных id при необходимости',
           },
           interval: {
             type: 'number | requestAnimationFrame',
             default: 'requestAnimationFrame',
-            description: 'The interval in milliseconds to update the countdown timer',
+            description: 'Интервал в миллисекундах для обновления таймера обратного отсчёта',
           },
           isStatus: {
             type: 'boolean',
             default: false,
             description:
-              "When set to 'true', makes the alert have attributes aria-live=polite and role=status. When 'false' aria-live will be 'assertive' and role will be 'alert'",
+              "Если установлено в 'true', alert получает атрибуты aria-live=polite и role=status. Если 'false', aria-live будет 'assertive', а role — 'alert'",
           },
           modelValue: {
             type: 'boolean | number',
             default: false,
             description:
-              'Controls the visibility of the alert. A `boolean` value directly controls the visibility. A number starts the countdown timer',
+              'Управляет видимостью alert. Значение типа `boolean` напрямую управляет видимостью. Число запускает таймер обратного отсчёта',
           },
           progressProps: {
             type: "Omit<BProgressBarProps, 'label' | 'max' | 'value'>",
             default: undefined,
             description:
-              'The properties to define the progress bar in the alert. No progress will be shown if left undefined',
+              'Свойства для определения прогресс-бара в alert. Если не указано, прогресс-бар не отображается',
           },
           showOnPause: {
             type: 'boolean',
             default: true,
             description:
-              'Setting this property to `false` will override the behavior of showing the Alert when the timer is paused',
+              'Если установить это свойство в `false`, поведение отображения Alert при паузе таймера будет переопределено',
           },
           textVariant: {
             type: 'TextColorVariant | null',
@@ -106,7 +107,7 @@ export default {
           title: {
             type: 'string',
             default: undefined,
-            description: "The alert's title text",
+            description: 'Текст заголовка alert',
           },
           ...omit(showHideProps, ['modelValue']),
           ...pick(buildCommonProps(), ['variant', 'noHoverPause', 'noResumeOnHoverLeave']),
@@ -124,36 +125,36 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the Alert',
+          description: 'Контент для размещения внутри Alert',
         },
         {
           name: 'close',
-          description: 'Content to place in the close button',
+          description: 'Контент для размещения внутри кнопки закрытия',
         },
       ],
       emits: [
         {
           event: 'close',
-          description: 'Emitted when the alert begins its transition to close',
+          description: 'Вызывается при начале анимации закрытия alert',
         },
         {
           event: 'closed',
-          description: 'Emitted after the alert ends its transition to close',
+          description: 'Вызывается после завершения анимации закрытия alert',
         },
         {
           event: 'close-countdown',
-          description: 'Content to place in the alert',
+          description: 'Контент для размещения внутри alert',
           args: [
             {
               arg: 'closeCountdown',
-              description: 'Time remaining on the timer',
+              description: 'Оставшееся время таймера',
               type: 'number',
             },
           ],
         },
         {
           event: 'update:model-value',
-          description: 'Standard event to update the v-model',
+          description: 'Стандартное событие для обновления v-model',
           args: [
             {
               arg: 'update:model-value',

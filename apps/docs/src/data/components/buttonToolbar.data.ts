@@ -14,7 +14,7 @@ export default {
             type: 'boolean',
             default: false,
             description:
-              'Make the toolbar span the maximum available width, by increasing spacing between the button groups, input groups and dropdowns',
+              'Растягивает тулбар на всю доступную ширину, увеличивая расстояние между группами кнопок, input-группами и выпадающими списками',
           },
           ...pick(buildCommonProps(), ['ariaLabel', 'role']),
         } satisfies Record<keyof BvnComponentProps['BButtonToolbar'], PropertyReference>,
@@ -22,7 +22,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the button toolbar',
+          description: 'Контент для размещения внутри тулбара',
         },
       ],
     },

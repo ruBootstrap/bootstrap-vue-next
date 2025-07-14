@@ -128,22 +128,22 @@ export default {
       },
       slots: [
         {
-          description: 'Overrides the img default',
+          description: 'Переопределяет изображение по умолчанию',
           name: 'img',
           scope: [],
         },
         {
-          description: 'Overrides the header default',
+          description: 'Переопределяет заголовок по умолчанию',
           name: 'header',
           scope: [],
         },
         {
-          description: 'Overrides the default placeholders',
+          description: 'Переопределяет плейсхолдеры по умолчанию',
           name: 'default',
           scope: [],
         },
         {
-          description: 'Overrides the footer default',
+          description: 'Переопределяет футер по умолчанию',
           name: 'footer',
           scope: [],
         },
@@ -157,7 +157,7 @@ export default {
       props: {
         '': {
           loading: {
-            description: 'Determines whether the loading slot should be displayed',
+            description: 'Определяет, должен ли отображаться слот загрузки',
             type: 'boolean',
             default: false,
           },
@@ -165,12 +165,12 @@ export default {
       },
       slots: [
         {
-          description: 'Content to show when the `loading` prop is `false`',
+          description: 'Содержимое, отображаемое, когда prop `loading` равен `false`',
           name: 'default',
           scope: [],
         },
         {
-          description: 'Content to show when the `loading` prop is `true`',
+          description: 'Содержимое, отображаемое, когда prop `loading` равен `true`',
           name: 'loading',
           scope: [],
         },
@@ -259,17 +259,17 @@ export default {
       },
       slots: [
         {
-          description: 'Overwrites the thead of the table',
+          description: 'Переопределяет thead таблицы',
           name: 'thead',
           scope: [],
         },
         {
-          description: 'Overwrites the tfoot of the table',
+          description: 'Переопределяет tfoot таблицы',
           name: 'tfoot',
           scope: [],
         },
         {
-          description: 'Overwrites the tbody of the table',
+          description: 'Переопределяет tbody таблицы',
           name: 'default',
           scope: [],
         },

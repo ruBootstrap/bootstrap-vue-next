@@ -13,12 +13,12 @@ export default {
       emits: [
         {
           event: 'load',
-          description: 'Fired when the image has finished loading',
+          description: 'Вызывается после полной загрузки изображения',
           args: [
             {
               arg: 'load',
               type: 'Event',
-              description: 'The native load event',
+              description: 'Стандартное событие load',
             },
           ],
         },

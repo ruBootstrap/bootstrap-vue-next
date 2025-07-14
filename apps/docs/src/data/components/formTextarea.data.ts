@@ -13,35 +13,34 @@ export default {
           modelValue: {
             type: 'Numberish | null',
             default: '""',
-            description: 'The current value of the textarea',
+            description: 'Текущее значение textarea',
           },
           noResize: {
             type: 'boolean',
             default: false,
             description:
-              "When set, disabled the browser's resize handle which prevents the user from changing the height of the textarea. Automatically set when in auto height mode",
+              'Если установлено, отключает ручку изменения размера браузера, предотвращая изменение высоты textarea. Автоматически включается в режиме auto height',
           },
           rows: {
             type: 'Numberish',
             default: 2,
-            description: 'The minimum number of rows to display. Must be a value greater than 1',
+            description: 'Минимальное количество отображаемых строк. Должно быть больше 1',
           },
           wrap: {
             type: 'string',
             default: 'soft',
             description:
-              "The value to place on the textarea's 'wrap' attribute. Controls how line break are returned",
+              "Значение для атрибута 'wrap' у textarea. Определяет, как возвращаются переносы строк",
           },
           maxRows: {
             type: 'Numberish',
             default: 'undefined',
-            description: 'The maximum number of rows to display. Must be a value greater than 1',
+            description: 'Максимальное количество отображаемых строк. Должно быть больше 1',
           },
           noAutoShrink: {
             type: 'boolean',
             default: false,
-            description:
-              'When set, disables the auto-shrink feature when the textarea is in auto-height mode',
+            description: 'Если установлено, отключает авто-уменьшение высоты в режиме auto-height',
           },
           ...pick(buildCommonProps(), [
             'ariaInvalid',
@@ -69,13 +68,13 @@ export default {
         {
           event: 'update:model-value',
           description:
-            'Emitted when the selected value(s) are changed. Looking for the `input` or `change` event - use `update:model-value` instead.',
+            'Вызывается при изменении выбранного значения. Ищете событие `input` или `change` — используйте `update:model-value`',
           args: [
             {
               arg: 'value',
               type: 'string',
               description:
-                'Value of textarea, after any formatting. Not emitted if the value does not change',
+                'Значение textarea после форматирования. Не вызывается, если значение не изменилось',
             },
           ],
         },

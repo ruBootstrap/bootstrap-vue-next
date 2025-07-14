@@ -12,12 +12,12 @@ export default {
           append: {
             type: 'string',
             default: undefined,
-            description: 'Text to append to the input group',
+            description: 'Текст, добавляемый после input-группы',
           },
           prepend: {
             type: 'string',
             default: undefined,
-            description: 'Text to prepend to the input group',
+            description: 'Текст, добавляемый перед input-группой',
           },
           ...pick(buildCommonProps(buildCommonProps()), ['id', 'size', 'tag']),
         } satisfies Record<keyof BvnComponentProps['BInputGroup'], PropertyReference>,
@@ -26,15 +26,15 @@ export default {
       slots: [
         {
           name: 'append',
-          description: 'Content to append to the input group',
+          description: 'Содержимое, добавляемое после input-группы',
         },
         {
           name: 'default',
-          description: 'Content to place in the input group',
+          description: 'Содержимое для размещения в input-группе',
         },
         {
           name: 'prepend',
-          description: 'Content to prepend to the input group',
+          description: 'Содержимое, добавляемое перед input-группой',
         },
       ],
     },
@@ -46,7 +46,7 @@ export default {
           text: {
             type: 'string',
             default: undefined,
-            description: 'Content to place in the input group text',
+            description: 'Содержимое для размещения в тексте input-группы',
           },
           ...pick(buildCommonProps(buildCommonProps()), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BInputGroupText'], PropertyReference>,
@@ -55,7 +55,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the input group text',
+          description: 'Содержимое для размещения в тексте input-группы',
         },
       ],
     },

@@ -13,23 +13,24 @@ export default {
           dotIndicator: {
             type: 'boolean',
             default: false,
-            description: 'Indication position and dot styling applied',
+            description: 'Положение индикатора и применение стиля точки',
           },
           pill: {
             type: 'boolean',
             default: false,
-            description: "When set to 'true', renders the badge in pill style",
+            description:
+              "Если установлено в 'true', отображает бейдж в стиле pill (с закруглёнными краями)",
           },
           tag: {
             type: 'string',
             default: 'span',
-            description: 'Specify the HTML tag to render instead of the default tag',
+            description: 'HTML-тег, который будет использоваться вместо тега по умолчанию',
           },
           placement: {
             type: 'CombinedPlacement',
             default: undefined,
             description:
-              'Placement of the badge relative to the its parent. One of the values of `CombinedPlacement`',
+              'Положение бейджа относительно родителя. Одно из значений CombinedPlacement',
           },
           ...pick(
             buildCommonProps({

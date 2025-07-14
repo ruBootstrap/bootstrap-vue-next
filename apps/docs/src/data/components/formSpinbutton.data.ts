@@ -17,79 +17,78 @@ export default {
           inline: {
             type: 'boolean',
             default: 'false',
-            description: 'When set, renders the component as an inline element',
+            description: 'Когда установлено, компонент отображается как inline-элемент',
           },
           labelDecrement: {
             type: 'string',
             default: 'Decrement',
-            description: 'Text to be used for the `aria-label` attribute on the decrement button',
+            description: 'Текст для aria-label кнопки уменьшения',
           },
           labelIncrement: {
             type: 'string',
             default: 'Increment',
-            description: 'Text to be used for the `aria-label` attribute on the increment button',
+            description: 'Текст для aria-label кнопки увеличения',
           },
           locale: {
             type: 'string',
             default: 'undefined',
             description:
-              'Specify the local to use for formatting the number. Defaults to the browser locale. Only applicable when using the internal formatter',
+              'Локаль для форматирования числа. По умолчанию — локаль браузера. Применяется только при использовании внутреннего форматтера',
           },
           max: {
             type: 'Numberish',
             default: '100',
             description:
-              'The maximum value that can be selected. Must be greater than the `min` prop. Negative numbers are allowed',
+              'Максимальное значение. Должно быть больше значения min. Допускаются отрицательные числа',
           },
           min: {
             type: 'Numberish',
             default: '1',
-            description: 'The minimum value that can be selected. Negative numbers are allowed',
+            description: 'Минимальное значение. Допускаются отрицательные числа',
           },
           placeholder: {
             type: 'string',
             default: 'undefined',
-            description: 'Value to show when the v-model is `null`',
+            description: 'Значение, отображаемое при v-model=null',
           },
           repeatDelay: {
             type: 'Numberish',
             default: '500',
             description:
-              'Delay in milliseconds after before auto repeat increment or decrement happens. Must be a positive integer. Requires the user to click/keydown and hold',
+              'Задержка (мс) перед автоповтором увеличения/уменьшения. Только положительное число. Требует удержания кнопки мыши/клавиши',
           },
           repeatInterval: {
             type: 'Numberish',
             default: '100',
             description:
-              'Interval in milliseconds between increment or decrement repeats. Must be a positive integer',
+              'Интервал (мс) между автоповторами увеличения/уменьшения. Только положительное число',
           },
           repeatStepMultiplier: {
             type: 'Numberish',
             default: '4',
             description:
-              'Number of steps to jump by once the `repeat-threshold` has been reached. Must be a positive integer. This value is also used for the page up and down keys',
+              'Количество шагов для прыжка после достижения repeat-threshold. Только положительное число. Также используется для клавиш PageUp/PageDown',
           },
           repeatThreshold: {
             type: 'Numberish',
             default: '10',
             description:
-              'Number of repeats to occur before increasing the step size by `repeat-step-multiplier`. Must be a positive integer',
+              'Количество повторов до увеличения шага на repeat-step-multiplier. Только положительное число',
           },
           step: {
             type: 'Numberish',
             default: '1',
-            description:
-              'A positive number that specifies the granularity that the value must adhere to',
+            description: 'Положительное число, определяющее шаг изменения значения',
           },
           vertical: {
             type: 'boolean',
             default: 'false',
-            description: 'When set, renders the component with a vertical layout',
+            description: 'Когда установлено, компонент отображается вертикально',
           },
           wrap: {
             type: 'boolean',
             default: 'false',
-            description: 'When set, renders the component with a vertical layout',
+            description: 'Когда установлено, компонент отображается вертикально',
           },
           ...pick(buildCommonProps(), [
             'ariaControls',
@@ -113,10 +112,10 @@ export default {
             {
               arg: 'value',
               type: 'number | null',
-              description: 'Currently value of the spinbutton control.',
+              description: 'Текущее значение spinbutton',
             },
           ],
-          description: 'Emitted when the user releases the mouse button or key',
+          description: 'Вызывается при отпускании кнопки мыши или клавиши',
         },
 
         {
@@ -125,32 +124,32 @@ export default {
             {
               arg: 'value',
               type: 'number | null',
-              description: 'Currently value of the spinbutton control.',
+              description: 'Текущее значение spinbutton',
             },
           ],
-          description: 'Emitted to update the v-model on each value change',
+          description: 'Вызывается при каждом изменении значения для обновления v-model',
         },
       ],
       slots: [
         {
           name: 'decrement',
-          description: 'Custom content to place in the decrement button',
+          description: 'Пользовательское содержимое для кнопки уменьшения',
           scope: [
             {
               prop: 'hasFocus',
               type: 'boolean',
-              description: '`true` when the spinbutton has focus',
+              description: '`true`, если spinbutton в фокусе',
             },
           ],
         },
         {
           name: 'increment',
-          description: 'Custom content to place in the increment button',
+          description: 'Пользовательское содержимое для кнопки увеличения',
           scope: [
             {
               prop: 'hasFocus',
               type: 'boolean',
-              description: '`true` when the spinbutton has focus',
+              description: '`true`, если spinbutton в фокусе',
             },
           ],
         },

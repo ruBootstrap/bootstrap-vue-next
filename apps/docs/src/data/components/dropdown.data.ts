@@ -29,7 +29,7 @@ export default {
           dividerClass: {
             default: undefined,
             type: 'ClassValue',
-            description: 'CSS class (or classes) to add to the divider component',
+            description: 'CSS-класс (или классы) для добавления к компоненту-разделителю',
           },
           ...pick(
             buildCommonProps({
@@ -50,7 +50,7 @@ export default {
           formClass: {
             default: undefined,
             type: 'ClassValue',
-            description: 'CSS class (or classes) to add to the form component',
+            description: 'CSS-класс (или классы) для добавления к компоненту-форме',
           },
           novalidate: {notYetImplemented: true},
           validated: {notYetImplemented: true},
@@ -60,7 +60,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the dropdown form',
+          description: 'Содержимое для размещения в форме выпадающего списка',
         },
       ],
     },
@@ -87,11 +87,11 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (items) to place in the dropdown group',
+          description: 'Содержимое (элементы) для размещения в группе выпадающего списка',
         },
         {
           name: 'header',
-          description: 'Optional header content for the dropdown group',
+          description: 'Необязательное содержимое заголовка для группы выпадающего списка',
         },
       ],
     },
@@ -103,7 +103,8 @@ export default {
         '': {
           text: {
             default: undefined,
-            description: 'Content to place in the dropdown text. Default slot takes precedence',
+            description:
+              'Содержимое для размещения в заголовке выпадающего списка. Слот по умолчанию имеет приоритет',
             type: 'string',
           },
           ...pick(buildCommonProps({}), ['headerClass', 'tag', 'variant', 'wrapperAttrs']),
@@ -112,7 +113,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the dropdown header',
+          description: 'Содержимое для размещения в заголовке выпадающего списка',
         },
       ],
     },
@@ -136,7 +137,7 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when item is clicked',
+          description: 'Вызывается при клике по элементу',
           args: [
             {
               arg: 'value',
@@ -149,7 +150,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the dropdown item',
+          description: 'Содержимое для размещения в элементе выпадающего списка',
         },
       ],
     },
@@ -161,7 +162,7 @@ export default {
           buttonClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Class or classes to apply to the inner button element',
+            description: 'CSS-класс (или классы) для добавления к компоненту-кнопке',
           },
           ...pick(buildCommonProps({}), [
             'active',
@@ -175,7 +176,7 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when item is clicked',
+          description: 'Вызывается при клике по элементу',
           args: [
             {
               arg: 'value',
@@ -188,7 +189,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the dropdown item button',
+          description: 'Содержимое для размещения в кнопке-элементе выпадающего списка',
         },
       ],
     },
@@ -200,13 +201,14 @@ export default {
         '': {
           text: {
             default: undefined,
-            description: 'Content to place in the dropdown text. Default slot takes precedence',
+            description:
+              'Содержимое для размещения в тексте выпадающего списка. Слот по умолчанию имеет приоритет',
             type: 'string',
           },
           textClass: {
             default: undefined,
             type: 'ClassValue',
-            description: 'CSS class (or classes) to add to the text component',
+            description: 'CSS-класс (или классы) для добавления к компоненту-тексту',
           },
           ...pick(
             buildCommonProps({
@@ -221,7 +223,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the dropdown text',
+          description: 'Содержимое для размещения в тексте выпадающего списка',
         },
       ],
     },

@@ -12,148 +12,147 @@ export default {
           contentCols: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the content width 'xs' screens and up",
+            description: "Количество колонок для ширины содержимого на экранах 'xs' и выше",
           },
           contentColsLg: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the content width 'lg' screens and up",
+            description: "Количество колонок для ширины содержимого на экранах 'lg' и выше",
           },
           contentColsMd: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the content width 'md' screens and up",
+            description: "Количество колонок для ширины содержимого на экранах 'md' и выше",
           },
           contentColsSm: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the content width 'sm' screens and up",
+            description: "Количество колонок для ширины содержимого на экранах 'sm' и выше",
           },
           contentColsXl: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the content width 'xl' screens and up",
+            description: "Количество колонок для ширины содержимого на экранах 'xl' и выше",
           },
           description: {
             type: 'string',
             default: 'undefined',
-            description: 'Text to place in the help text area of the form group',
+            description: 'Текст для размещения в области подсказки группы формы',
           },
           feedbackAriaLive: {
             type: 'string',
             default: "'assertive'",
-            description: 'Value to use for the `aria-live` attribute on the feedback text',
+            description: 'Значение для атрибута `aria-live` у текста обратной связи',
           },
           floating: {
             type: 'boolean',
             default: 'undefined',
-            description: 'When set renders the lablel in the floating style',
+            description: 'Если установлено, метка будет отображаться в стиле floating',
           },
           invalidFeedback: {
             type: 'string',
             default: 'undefined',
-            description: 'Text to show when the form group has an invalid state',
+            description: 'Текст для отображения при невалидном состоянии группы формы',
           },
           label: {
             type: 'string',
             default: 'undefined',
-            description: 'Text to place in the label/legend of the form group',
+            description: 'Текст для размещения в метке/легенде группы формы',
           },
           labelAlign: {
             type: 'string',
             default: 'undefined',
             description:
-              "Text alignment 'left', 'center', 'right' for the label 'xs' screens and up",
+              "Выравнивание текста 'left', 'center', 'right' для метки на экранах 'xs' и выше",
           },
           labelAlignLg: {
             type: 'string',
             default: 'undefined',
             description:
-              "Text alignment 'left', 'center', 'right' for the label 'lg' screens and up",
+              "Выравнивание текста 'left', 'center', 'right' для метки на экранах 'lg' и выше",
           },
           labelAlignMd: {
             type: 'string',
             default: 'undefined',
             description:
-              "Text alignment 'left', 'center', 'right' for the label 'md' screens and up",
+              "Выравнивание текста 'left', 'center', 'right' для метки на экранах 'md' и выше",
           },
           labelAlignSm: {
             type: 'string',
             default: 'undefined',
             description:
-              "Text alignment 'left', 'center', 'right' for the label 'sm' screens and up",
+              "Выравнивание текста 'left', 'center', 'right' для метки на экранах 'sm' и выше",
           },
           labelAlignXl: {
             type: 'string',
             default: 'undefined',
             description:
-              "Text alignment 'left', 'center', 'right' for the label 'xl' screens and up",
+              "Выравнивание текста 'left', 'center', 'right' для метки на экранах 'xl' и выше",
           },
           labelClass: {
             type: 'string[] | Record<string, unknown> | string',
             default: 'undefined',
-            description: 'CSS class (or classes) to add to the label/legend element',
+            description: 'CSS-класс (или классы) для добавления к элементу метки/легенды',
           },
           labelCols: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the label width 'xs' screens and up",
+            description: "Количество колонок для ширины метки на экранах 'xs' и выше",
           },
           labelColsLg: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the label width 'lg' screens and up",
+            description: "Количество колонок для ширины метки на экранах 'lg' и выше",
           },
           labelColsMd: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the label width 'md' screens and up",
+            description: "Количество колонок для ширины метки на экранах 'md' и выше",
           },
           labelColsSm: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the label width 'sm' screens and up",
+            description: "Количество колонок для ширины метки на экранах 'sm' и выше",
           },
           labelColsXl: {
             type: 'boolean | number | string',
             default: 'undefined',
-            description: "Number of columns for the label width 'xl' screens and up",
+            description: "Количество колонок для ширины метки на экранах 'xl' и выше",
           },
           labelFor: {
             type: 'string',
             default: 'undefined',
             description:
-              'Set to the ID of the singular form control in the form group. Do not set a value if there is more than one form control in the group',
+              'Укажите ID единственного элемента управления в группе. Не задавайте значение, если в группе несколько элементов',
           },
           labelSize: {
             type: 'string',
             default: 'undefined',
             description:
-              "Sets the text size of the label: 'sm', 'md' (default) or 'lg'. Use this prop to have the label size match the form control size",
+              "Устанавливает размер текста метки: 'sm', 'md' (по умолчанию) или 'lg'. Используйте для согласования размера метки и поля формы",
           },
           labelVisuallyHidden: {
             type: 'boolean',
             default: 'false',
             description:
-              'Visually hides the label content, but makes it available to screen reader users',
+              'Визуально скрывает содержимое метки, но делает его доступным для скринридеров',
           },
           validFeedback: {
             type: 'string',
             default: 'undefined',
-            description: 'Text to show when the form group has a valid state',
+            description: 'Текст для отображения при валидном состоянии группы формы',
           },
           validated: {
             type: 'boolean',
             default: 'undefined',
-            description:
-              "When set, adds the Bootstrap validation trigger class 'was-validated' on the component",
+            description: "Если установлено, добавляет класс Bootstrap 'was-validated' на компонент",
           },
           ...pick(
             buildCommonProps(
               buildCommonProps({
                 disabled: {
                   description:
-                    'Disables the fieldset element, which in turn disables the form controls (on browsers that support disabled fieldsets). Has no effect if `label-for` is set',
+                    'Отключает элемент fieldset, что также отключает элементы управления формой (в поддерживаемых браузерах). Не влияет, если задан label-for',
                 },
               })
             ),
@@ -165,50 +164,49 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (form checkboxes) to place in the form checkbox group',
+          description: 'Содержимое для размещения в группе формы',
           scope: [
             {
               prop: 'ariaDescribedby',
               type: 'string',
               description:
-                'The value for the `aria-describedby` attribute for input elements in the form group. Will be auto-assigned when `label-for` prop is given',
+                'Значение для атрибута `aria-describedby` для input в группе. Автоматически назначается при наличии prop `label-for`',
             },
             {
               prop: 'id',
               type: 'string',
-              description: 'The ID of the form group. Will equal `id` prop, when provided',
+              description: 'ID группы формы. Совпадает с prop `id`, если задан',
             },
             {
               prop: 'descriptionId ',
               type: 'string',
-              description:
-                'The ID of the description element. Will be `null` when no description content given',
+              description: 'ID элемента описания. Будет `null`, если описание не задано',
             },
             {
               prop: 'labelId',
               type: 'string',
-              description:
-                'The ID of the label element. Will be `null` when no description content given',
+              description: 'ID элемента метки. Будет `null`, если описание не задано',
             },
           ],
         },
         {
           name: 'description',
-          description: 'Content to place in the description area. Overrides the `description` prop',
+          description:
+            'Содержимое для размещения в области описания. Перекрывает prop `description`',
         },
         {
           name: 'invalid-feedback',
           description:
-            'Content to place in the invalid feedback area. Overrides the `invalid-feedback` prop',
+            'Содержимое для размещения в области невалидной обратной связи. Перекрывает prop `invalid-feedback`',
         },
         {
           name: 'label',
-          description: 'Content to place inside the label element. Overrides the `label` prop',
+          description: 'Содержимое для размещения внутри элемента метки. Перекрывает prop `label`',
         },
         {
           name: 'valid-feedback',
           description:
-            'Content to place in the valid feedback area. Overrides the `valid-feedback` prop',
+            'Содержимое для размещения в области валидной обратной связи. Перекрывает prop `valid-feedback`',
         },
       ],
     },

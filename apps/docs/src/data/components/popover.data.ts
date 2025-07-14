@@ -158,7 +158,7 @@ export default {
         ...showHideEmits,
         {
           event: 'blur',
-          description: 'Emitted when the target element loses focus.',
+          description: 'Вызывается, когда целевой элемент теряет фокус.',
           args: [
             {
               arg: 'value',
@@ -168,7 +168,7 @@ export default {
         },
         {
           event: 'click-outside',
-          description: 'Emitted when the mouse is clicked outside of the popover.',
+          description: 'Вызывается при клике мышью вне popover.',
           args: [
             {
               arg: 'value',
@@ -178,7 +178,7 @@ export default {
         },
         {
           event: 'close-on-hide',
-          description: 'Emitted when the popover is closed due to being clipped.',
+          description: 'Вызывается при закрытии popover из-за обрезки.',
           args: [
             {
               arg: 'value',
@@ -189,7 +189,7 @@ export default {
         {
           event: 'pointerleave',
           description:
-            'Emitted when the pointer leaves the target element. This event is not emitted when the pointer leaves the popover element.',
+            'Вызывается, когда указатель покидает целевой элемент. Не вызывается при уходе указателя с самого popover.',
           args: [
             {
               arg: 'value',
@@ -199,12 +199,12 @@ export default {
         },
         {
           event: 'update:model-value',
-          description: 'Change the visibility of the popover',
+          description: 'Изменяет видимость popover',
           args: [
             {
               arg: 'value',
               type: 'boolean',
-              description: 'New visibility state of the popover',
+              description: 'Новое состояние видимости popover',
             },
           ],
         },
@@ -212,17 +212,17 @@ export default {
       slots: [
         {
           name: 'title',
-          description: 'Slot for title content',
+          description: 'Слот для содержимого заголовка',
           scope: showHideSlotsData,
         },
         {
           name: 'default',
-          description: 'Slot for body content',
+          description: 'Слот для содержимого тела',
           scope: showHideSlotsData,
         },
         {
           name: 'target',
-          description: 'Slot for target/trigger element',
+          description: 'Слот для целевого/триггерного элемента',
           scope: showHideSlotsData,
         },
       ],

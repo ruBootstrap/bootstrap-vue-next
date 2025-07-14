@@ -12,18 +12,18 @@ export default {
           flush: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders a flush list group with no left and right borders',
+            description: 'Если установлено, отображает список без левых и правых границ (flush)',
           },
           horizontal: {
             type: 'boolean | Breakpoint',
             default: false,
             description:
-              'When set, renders the list-group horizontally rather than the default of vertical',
+              'Если установлено, список отображается горизонтально вместо вертикального варианта по умолчанию',
           },
           numbered: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the list-group items with a number on the left side',
+            description: 'Если установлено, элементы списка будут с нумерацией слева',
           },
           ...pick(buildCommonProps({}), ['tag']),
         } satisfies Record<keyof BvnComponentProps['BListGroup'], PropertyReference>,
@@ -31,7 +31,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (items) to place in the list group',
+          description: 'Содержимое (элементы) для размещения в списке',
         },
       ],
     },
@@ -57,7 +57,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the list group item',
+          description: 'Содержимое для размещения в элементе списка',
         },
       ],
     },

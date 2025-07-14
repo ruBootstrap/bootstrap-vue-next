@@ -13,29 +13,29 @@ export default {
             type: 'Numberish',
             default: 'undefined',
             description:
-              "Value to set in the 'max' attribute on the input. Used by number-like inputs",
+              "Значение для атрибута 'max' у input. Используется для числовых и подобных полей",
           },
           min: {
             type: 'Numberish',
             default: 'undefined',
             description:
-              "Value to set in the 'min' attribute on the input. Used by number-like inputs",
+              "Значение для атрибута 'min' у input. Используется для числовых и подобных полей",
           },
           modelValue: {
             type: 'Numberish | null',
             default: "''",
-            description: 'The current value of the input',
+            description: 'Текущее значение поля',
           },
           step: {
             type: 'Numberish',
             default: 'undefined',
             description:
-              "Value to set in the 'step' attribute on the input. Used by number-like inputs",
+              "Значение для атрибута 'step' у input. Используется для числовых и подобных полей",
           },
           type: {
             type: 'InputType',
             default: 'text',
-            description: 'The type of input to render. See the docs for supported types',
+            description: 'Тип поля для рендера. См. документацию для поддерживаемых типов',
           },
           ...pick(buildCommonProps(buildCommonProps()), [
             'ariaInvalid',
@@ -64,13 +64,13 @@ export default {
         {
           event: 'update:model-value',
           description:
-            'Emitted when the selected value(s) are changed. Looking for the `input` or `change` event - use `update:model-value` instead.',
+            'Вызывается при изменении выбранного значения. Ищете событие `input` или `change` — используйте `update:model-value`',
           args: [
             {
               arg: 'value',
               type: 'string',
               description:
-                'Value of input, after any formatting. Not emitted if the value does not change',
+                'Значение поля после форматирования. Не вызывается, если значение не изменилось',
             },
           ],
         },

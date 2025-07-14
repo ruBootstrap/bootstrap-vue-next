@@ -24,7 +24,6 @@ export default {
     ctx.app.provide(appInfoKey, {
       githubMainBranch,
       githubUrl,
-      githubRuUrl,
       githubDocsDirectory,
       githubPackageDirectory,
       githubComponentsDirectory,

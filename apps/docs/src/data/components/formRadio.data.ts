@@ -13,40 +13,39 @@ export default {
           button: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the radio button with the appearance of a button',
+            description: 'Когда установлено, радиокнопка отображается как кнопка',
           },
           buttonGroup: {
             type: 'boolean',
             default: false,
             description:
-              "When set, renders the radio button as part of a button group (it doesn't enclose the radio and label with a div). It is not necessary to set this to true if this is part of a RadioGroup as it is handled internally",
+              'Когда установлено, радиокнопка отображается как часть группы кнопок (не оборачивает radio и метку в div). Не обязательно устанавливать true, если используется внутри RadioGroup — это обрабатывается автоматически',
           },
           buttonVariant: {
             type: 'ButtonVariant | null',
             default: null,
-            description: "Applies one of Bootstrap's theme colors when in `button` mode",
+            description: 'Применяет одну из цветовых тем Bootstrap в режиме `button`',
           },
           inline: {
             type: 'boolean',
             default: false,
             description:
-              'When set, renders the radio button as an inline element rather than as a 100% width block',
+              'Когда установлено, радиокнопка отображается как inline-элемент, а не как блочный на 100% ширины',
           },
           modelValue: {
             type: 'RadioValue | undefined',
             default: undefined,
-            description:
-              'The current value of the radio. Looking for `checked` - use `modelValue` instead.',
+            description: 'Текущее значение radio. Ищете `checked` — используйте `modelValue`',
           },
           reverse: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the radio button on the opposite side',
+            description: 'Когда установлено, радиокнопка отображается с другой стороны',
           },
           value: {
             type: 'RadioValue | undefined',
             default: true,
-            description: 'Value returned when this radio button is selected',
+            description: 'Значение, возвращаемое при выборе этой радиокнопки',
           },
 
           ...pick(buildCommonProps(), [
@@ -67,11 +66,11 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Emitted when the radio button value is changed',
+          description: 'Вызывается при изменении значения радиокнопки',
           args: [
             {
               arg: 'value',
-              description: 'Value of the radio button.',
+              description: 'Значение радиокнопки.',
               type: 'RadioValue',
             },
           ],
@@ -80,7 +79,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the label of the radio button',
+          description: 'Содержимое для размещения в метке радиокнопки',
         },
       ],
     },
@@ -93,34 +92,34 @@ export default {
           buttonVariant: {
             type: 'ButtonVariant | null',
             default: 'secondary',
-            description:
-              'Specifies the Bootstrap contextual color theme variant to apply to the button style radio buttons',
+            description: 'Определяет цветовую тему Bootstrap для радиокнопок-кнопок',
           },
           buttons: {
             type: 'boolean',
             default: false,
-            description: 'When set, renderes the radio buttons in this group with button styling',
+            description: 'Когда установлено, радиокнопки в группе отображаются как кнопки',
           },
           modelValue: {
             type: 'RadioValue | undefined',
             default: undefined,
             description:
-              'The current value of the checked radio in the group. Looking for `checked` - use `modelValue` instead.',
+              'Текущее значение выбранной радиокнопки в группе. Ищете `checked` — используйте `modelValue`',
           },
           reverse: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the radio buttons on the opposite side',
+            description: 'Когда установлено, радиокнопки отображаются с другой стороны',
           },
           stacked: {
             type: 'boolean',
             default: false,
-            description: 'When set, renders the radio button group in stacked mode',
+            description: 'Когда установлено, группа радиокнопок отображается в столбик',
           },
           validated: {
             type: 'boolean',
             default: false,
-            description: 'When set, adds the Bootstrap class `was-validated` to the group wrapper',
+            description:
+              'Когда установлено, добавляет класс Bootstrap `was-validated` к обёртке группы',
           },
           ...pick(buildCommonProps(), [
             'ariaInvalid',
@@ -146,43 +145,43 @@ export default {
           args: [
             {
               arg: 'value',
-              description: 'Currently selected value of the radio group.',
+              description: 'Текущее выбранное значение группы радиокнопок',
               type: 'RadioValue | null',
             },
           ],
           description:
-            'Emitted when the selected value(s) are changed. Looking for the `input` or `change` event - use `update:model-value` instead.',
+            'Вызывается при изменении выбранных значений. Ищете событие `input` или `change` — используйте `update:model-value`',
         },
       ],
       slots: [
         {
           name: 'default',
-          description: 'Content (form radio buttons) to place in the form radio button group',
+          description: 'Содержимое (радиокнопки формы) для размещения в группе радиокнопок',
         },
         {
           name: 'first',
           description:
-            'Slot to place for radio buttons so that they appear before radios generated from options prop',
+            'Слот для радиокнопок, которые должны отображаться перед элементами, сгенерированными через options',
         },
         {
           name: 'option',
           description:
-            'Use this slot to have finer control over the content render inside each radio button',
+            'Используйте этот слот для полного контроля над содержимым каждой радиокнопки',
           scope: [
             {
               prop: 'value',
               type: 'string | number | undefined',
-              description: 'The value of the radio button',
+              description: 'Значение радиокнопки',
             },
             {
               prop: 'disabled',
               type: 'boolean | undefined',
-              description: 'Whether the radio button is disabled',
+              description: 'Отключена ли радиокнопка',
             },
             {
               prop: 'text',
               type: 'string | undefined',
-              description: 'The text to display for the radio button',
+              description: 'Текст для отображения у радиокнопки',
             },
           ],
         },

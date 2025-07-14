@@ -12,60 +12,60 @@ export default {
           accept: {
             type: 'string | string[]',
             default: '',
-            description: "Value to set on the file input's `accept` attribute",
+            description: 'Значение для атрибута `accept` у input[type=file]',
           },
           capture: {
             type: "'boolean' | 'user' | 'environment'",
             default: false,
             description:
-              'When set, will instruction the browser to use the devices camera (if supported)',
+              'Если установлено, браузер будет использовать камеру устройства (если поддерживается)',
           },
           directory: {
             type: 'boolean',
             default: false,
-            description: 'Enable `directory` mode (on browsers that support it)',
+            description: 'Включить режим выбора директории (в поддерживаемых браузерах)',
           },
           label: {
             type: 'string',
             default: '',
-            description: 'Sets the label for the form group which the file input is rendered',
+            description: 'Метка для группы формы, в которой отображается input file',
           },
           labelClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Sets the styling for the label',
+            description: 'Стилизация метки',
           },
           modelValue: {
             type: 'File[] | File | null',
             default: undefined,
             description:
-              'The current value of the file input. Will be a single `File` object or an array of `File` objects (if `multiple` or `directory` is set). Can be set to `null`, or an empty array to reset the file input',
+              'Текущее значение поля. Может быть объектом File или массивом File (если выбран multiple или directory). null или пустой массив сбрасывает поле',
           },
           multiple: {
             type: 'boolean',
             default: false,
             description:
-              'When set, will allow multiple files to be selected. `v-model` will be an array',
+              'Если установлено, позволяет выбрать несколько файлов. v-model будет массивом',
           },
           noButton: {
             type: 'boolean | null',
             default: undefined,
-            description: 'hide the file input button',
+            description: 'Скрыть кнопку выбора файла',
           },
           noDrop: {
             type: 'boolean',
             default: false,
-            description: 'Disable drag and drop mode',
+            description: 'Отключить режим drag and drop',
           },
           noTraverse: {
             type: 'boolean',
             default: false,
-            description: 'Wether to returns files as a flat array when in `directory` mode',
+            description: 'Возвращать файлы как плоский массив в режиме `directory`',
           },
           ...pick(
             buildCommonProps({
               plain: {
-                description: "Don't add any additional styling or classes to the file input",
+                description: 'Не добавлять дополнительное оформление или классы к input file',
               },
             }),
             [
@@ -87,24 +87,23 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Updates the `v-model` value (see docs for more details)',
+          description: 'Обновляет значение v-model (см. документацию)',
           args: [
             {
               arg: 'value',
               type: 'File | File[] | null',
-              description:
-                'Will be a single File object in single mode or an array of File objects in multiple mode',
+              description: 'В одиночном режиме — объект File, в режиме multiple — массив File',
             },
           ],
         },
         {
           event: 'change',
-          description: 'Original change event of the input',
+          description: 'Оригинальное событие change для input',
           args: [
             {
               arg: 'value',
               type: 'Event',
-              description: 'The browsers default change event',
+              description: 'Стандартное событие change браузера',
             },
           ],
         },

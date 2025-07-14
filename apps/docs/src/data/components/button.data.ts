@@ -14,40 +14,42 @@ export default {
           loading: {
             type: 'boolean',
             default: false,
-            description: 'When set to `true`, renders the button in loading state',
+            description: 'Если установлено в `true`, отображает кнопку в состоянии загрузки',
           },
           loadingFill: {
             type: 'boolean',
             default: false,
             description:
-              'When set to `true`, fills the button with the loading spinner and ignores `loading-text`',
+              'Если установлено в `true`, заполняет кнопку спиннером загрузки и игнорирует `loading-text`',
           },
           loadingText: {
             type: 'string',
             default: 'Loading...',
-            description: 'The text to display when the button is in a loading state',
+            description: 'Текст, отображаемый при состоянии загрузки кнопки',
           },
           pill: {
             type: 'boolean',
             default: false,
-            description: "Renders the button with the pill style appearance when set to 'true'",
+            description:
+              "Если установлено в 'true', отображает кнопку в стиле pill (с закруглёнными краями)",
           },
           pressed: {
             type: 'boolean',
             default: undefined,
             description:
-              "When set to 'true', gives the button the appearance of being pressed and adds attribute 'aria-pressed=\"true\"'. When set to `false` adds attribute 'aria-pressed=\"false\"'. Tri-state prop. Syncable with the .sync modifier",
+              "Если установлено в 'true', кнопка выглядит нажатой и получает атрибут 'aria-pressed=\"true\"'. Если 'false' — 'aria-pressed=\"false\"'. Три состояния. Можно синхронизировать с помощью .sync",
           },
           squared: {
             type: 'boolean',
             default: false,
-            description: "Renders the button with non-rounded corners when set to 'true'",
+            description:
+              "Если установлено в 'true', отображает кнопку с прямыми углами (без скругления)",
           },
           type: {
             type: 'ButtonType',
             default: 'button',
             description:
-              "The value to set the button's 'type' attribute to. Can be one of 'button', 'submit', or 'reset'",
+              "Значение для атрибута 'type' кнопки. Может быть 'button', 'submit' или 'reset'",
           },
           ...pick(
             buildCommonProps({
@@ -83,17 +85,17 @@ export default {
               type: 'MouseEvent',
             },
           ],
-          description: 'On click event',
+          description: 'Событие клика',
           event: 'click',
         },
         {
           event: 'update:pressed',
-          description: 'Emitted when the `pressed` prop is changed',
+          description: 'Вызывается при изменении свойства `pressed`',
           args: [
             {
               arg: 'value',
               type: 'boolean',
-              description: 'The new value of the `pressed` prop',
+              description: 'Новое значение свойства `pressed`',
             },
           ],
         },
@@ -101,15 +103,15 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the button',
+          description: 'Контент для размещения внутри кнопки',
         },
         {
           name: 'loading',
-          description: 'The content to replace the default loader',
+          description: 'Контент для замены стандартного лоадера',
         },
         {
           name: 'loading-spinner',
-          description: 'The content to replace the default loading spinner',
+          description: 'Контент для замены стандартного спиннера загрузки',
         },
       ],
     },
@@ -123,7 +125,7 @@ export default {
             type: 'ButtonType',
             default: 'button',
             description:
-              "The value to set the button's 'type' attribute to. Can be one of 'button', 'submit', or 'reset'",
+              "Значение для атрибута 'type' кнопки. Может быть 'button', 'submit' или 'reset'",
           },
           ...pick(
             buildCommonProps({
@@ -138,12 +140,12 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when non-disabled button clicked',
+          description: 'Вызывается при клике по неактивной кнопке',
           args: [
             {
               arg: 'click',
               type: 'MouseEvent',
-              description: 'Native click event object',
+              description: 'Объект события клика мышью',
             },
           ],
         },

@@ -12,13 +12,14 @@ export default {
           items: {
             type: 'BreadcrumbItemRaw[]',
             default: undefined,
-            description: 'Array of `BreadCrumbItem`s or strings to render. See above for details.',
+            description:
+              'Массив элементов `BreadCrumbItem` или строк для отображения. Подробнее см. выше.',
           },
           id: {
             type: 'string',
             default: undefined,
             description:
-              'ID of the breadcrumb component. When combined with the `useBreadcrumb` composable, it will use this id as a breadcrumb trail instead of the global trail.',
+              'ID компонента хлебных крошек. При использовании с composable `useBreadcrumb` будет использовать этот id как отдельную цепочку хлебных крошек вместо глобальной.',
           },
         } satisfies Record<keyof BvnComponentProps['BBreadcrumb'], PropertyReference>,
       },
@@ -26,15 +27,15 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content (breadcrumb items) to place in the breadcrumb',
+          description: 'Контент (элементы хлебных крошек) для размещения внутри breadcrumb',
         },
         {
           name: 'append',
-          description: 'Content to append to the breadcrumb',
+          description: 'Контент для добавления в конец breadcrumb',
         },
         {
           name: 'prepend',
-          description: 'Content to prepend to the breadcrumb',
+          description: 'Контент для добавления в начало breadcrumb',
         },
       ],
     },
@@ -47,12 +48,12 @@ export default {
             type: 'string',
             default: 'location',
             description:
-              "Sets the value of the 'aria-current' attribute (when the item is the active item). Supported string values are 'location', 'page', or 'true'",
+              "Устанавливает значение атрибута 'aria-current' (если элемент активен). Поддерживаемые значения: 'location', 'page' или 'true'",
           },
           text: {
             type: 'string',
             default: undefined,
-            description: 'Text to render in the breadcrumb item',
+            description: 'Текст для отображения в элементе хлебных крошек',
           },
         } satisfies Record<
           Exclude<keyof BvnComponentProps['BBreadcrumbItem'], keyof typeof linkProps>,
@@ -68,12 +69,12 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when the breadcrumb item is clicked',
+          description: 'Вызывается при клике по элементу хлебных крошек',
           args: [
             {
               type: 'MouseEvent',
               arg: 'click',
-              description: 'Native click event object',
+              description: 'Объект события клика мышью',
             },
           ],
         },
@@ -81,7 +82,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the breadcrumb item',
+          description: 'Контент для размещения внутри элемента хлебных крошек',
         },
       ],
     },

@@ -12,12 +12,12 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when link was clicked',
+          description: 'Вызывается при клике по ссылке',
           args: [
             {
               arg: 'value',
               type: 'MouseEvent',
-              description: 'Native click event',
+              description: 'Стандартное событие click',
             },
           ],
         },
@@ -25,7 +25,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the link',
+          description: 'Содержимое для размещения в ссылке',
         },
       ],
     },

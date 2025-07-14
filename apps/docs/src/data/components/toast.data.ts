@@ -17,92 +17,92 @@ export default {
           body: {
             type: 'string',
             default: undefined,
-            description: 'The text content of the body',
+            description: 'Текстовое содержимое тела уведомления',
           },
           bodyClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the toast body element',
+            description: 'CSS-класс(ы) для элемента тела уведомления',
           },
           closeClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'Applies one or more custom classes to the close button',
+            description: 'Применяет один или несколько пользовательских классов к кнопке закрытия',
           },
           closeContent: {
             type: 'string',
             default: undefined,
-            description: 'Sets the text of the close button. The `close` slot takes precedence',
+            description: 'Текст кнопки закрытия. Слот `close` имеет приоритет',
           },
           closeLabel: {
             type: 'string',
             default: 'Close',
-            description: 'Sets the aria-label attribute on the close button',
+            description: 'Атрибут aria-label для кнопки закрытия',
           },
           closeVariant: {
             type: 'string | null',
             default: null,
-            description: 'Color variant for the close button',
+            description: 'Цветовая тема для кнопки закрытия',
           },
           headerClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the toast header element',
+            description: 'CSS-класс(ы) для элемента заголовка уведомления',
           },
           headerTag: {
             type: 'string',
             default: 'div',
-            description: 'Specify the HTML tag to render instead of the default tag for the footer',
+            description: 'HTML-тег для рендера вместо тега по умолчанию для футера',
           },
           id: {
             type: 'string',
             default: undefined,
             description:
-              'Used to set the `id` attribute on the rendered content, and used as the base to generate any additional element IDs as needed',
+              'Используется для установки атрибута `id` на рендеримом элементе и как основа для генерации дополнительных id при необходимости',
           },
           interval: {
             type: 'number | requestAnimationFrame',
             default: 'requestAnimationFrame',
-            description: 'The interval of which the countdown timer will refresh itself',
+            description: 'Интервал обновления таймера обратного отсчёта',
           },
           isStatus: {
             type: 'boolean',
             default: false,
             description:
-              "When set to 'true', makes the toast have attributes aria-live=polite and role=status. When 'false' aria-live will be 'assertive' and role will be 'alert'",
+              "Если 'true', уведомление будет иметь aria-live=polite и role=status. Если 'false' — aria-live будет 'assertive', а role — 'alert'",
           },
           modelValue: {
             type: 'boolean | number',
             default: false,
             description:
-              'Sets if the toast is visible or the number of milliseconds that the toast will be dismissed',
+              'Определяет, видно ли уведомление, либо количество миллисекунд до его скрытия',
           },
           noCloseButton: {
             type: 'boolean',
             default: false,
-            description: 'When set, hides the close button in the toast header',
+            description: 'Если установлено, скрывает кнопку закрытия в заголовке уведомления',
           },
           noProgress: {
             type: 'boolean',
             default: false,
-            description: 'When set, hides the progress bar in the toast',
+            description: 'Если установлено, скрывает прогресс-бар в уведомлении',
           },
           progressProps: {
             type: "Omit<BProgressBarProps, 'label' | 'max' | 'value'>",
             default: undefined,
             description:
-              'The properties to define the progress bar in the toast. No progress will be shown if left undefined',
+              'Свойства для настройки прогресс-бара в уведомлении. Если не указано — прогресс не отображается',
           },
           showOnPause: {
             type: 'boolean',
             default: true,
-            description: "When set, keeps the toast visible when it's paused",
+            description: 'Если установлено, уведомление остаётся видимым при паузе',
           },
           solid: {
             type: 'boolean',
             default: false,
             description:
-              'When set, renders the toast with a solid background rather than translucent',
+              'Если установлено, уведомление отображается с непрозрачным фоном вместо полупрозрачного',
           },
           textVariant: {
             type: 'TextColorVariant | null',
@@ -111,12 +111,12 @@ export default {
           title: {
             type: 'string',
             default: undefined,
-            description: "The toast's title text",
+            description: 'Текст заголовка уведомления',
           },
           toastClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the toast wrapper element',
+            description: 'CSS-класс(ы) для обёртки уведомления',
           },
           ...omit(showHideProps, ['modelValue']),
           ...pick(buildCommonProps(), ['variant', 'noHoverPause', 'noResumeOnHoverLeave']),
@@ -135,12 +135,12 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Emitted when toast visibility changes',
+          description: 'Вызывается при изменении видимости уведомления',
           args: [
             {
               arg: 'value',
               type: 'Boolean',
-              description: 'The resulting value that was changed',
+              description: 'Новое значение видимости',
             },
           ],
         },
@@ -233,12 +233,12 @@ export default {
       props: {
         '': {
           teleportTo: {
-            description: 'Overrides the default teleport location',
+            description: 'Переопределяет стандартное расположение телепорта',
             type: 'string | RendererElement | null | undefined',
             default: 'body',
           },
           teleportDisabled: {
-            description: 'Renders the Toaster in the exact place it was defined',
+            description: 'Рендерит Тостер в том месте, где он был определён',
             type: 'boolean',
             default: false,
           },

@@ -20,49 +20,49 @@ export default {
           align: {
             type: 'AlignmentJustifyContent',
             default: undefined,
-            description: 'Align the nav items in the nav to any value of AlignmentJustifyContent',
+            description: 'Выравнивание элементов навигации по AlignmentJustifyContent',
           },
           cardHeader: {
             type: 'boolean',
             default: false,
-            description: 'Set this prop when the nav is placed inside a card header',
+            description: 'Установите этот prop, если навигация размещена внутри заголовка карточки',
           },
           fill: {
             type: 'boolean',
             default: false,
             description:
-              'Proportionately fills all horizontal space with nav items. All horizontal space is occupied, but not every nav item has the same width',
+              'Пропорционально заполняет всё горизонтальное пространство элементами навигации. Всё пространство занято, но ширина элементов может отличаться',
           },
           justified: {
             type: 'boolean',
             default: false,
             description:
-              "Fills all horizontal space with nav items, but unlike 'fill', every nav item will be the same width",
+              "Заполняет всё горизонтальное пространство элементами навигации, но в отличие от 'fill', все элементы будут одинаковой ширины",
           },
           pills: {
             type: 'boolean',
             default: false,
-            description: 'Renders the nav items with the appearance of pill buttons',
+            description: 'Отображает элементы навигации в виде pill-кнопок',
           },
           small: {
             type: 'boolean',
             default: false,
-            description: 'Makes the nav smaller',
+            description: 'Делает навигацию меньше',
           },
           tabs: {
             type: 'boolean',
             default: false,
-            description: 'Renders the nav items with the appearance of tabs',
+            description: 'Отображает элементы навигации в виде вкладок',
           },
           underline: {
             type: 'boolean',
             default: false,
-            description: 'Adds an underline to the active nav item',
+            description: 'Добавляет подчёркивание активному элементу навигации',
           },
           vertical: {
             type: 'boolean',
             default: false,
-            description: 'Stacks the nav items vertically',
+            description: 'Располагает элементы навигации вертикально',
           },
           ...pick(
             buildCommonProps({
@@ -77,7 +77,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the nav',
+          description: 'Содержимое для размещения в навигации',
         },
       ],
     },
@@ -90,7 +90,7 @@ export default {
           formClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to add to the form element',
+            description: 'CSS-класс(ы) для элемента form',
           },
           ...pick(buildCommonProps(), [
             'floating',
@@ -105,12 +105,12 @@ export default {
       emits: [
         {
           event: 'submit',
-          description: 'Emitted when the form is submitted',
+          description: 'Вызывается при отправке формы',
           args: [
             {
               arg: 'submit',
               type: 'Event',
-              description: 'Native submit event',
+              description: 'Стандартное событие submit',
             },
           ],
         },
@@ -118,7 +118,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the nav form',
+          description: 'Содержимое для размещения в форме навигации',
         },
       ],
     },
@@ -130,12 +130,12 @@ export default {
           linkAttrs: {
             type: 'Readonly<AttrsValue>',
             default: undefined,
-            description: 'Additional attributes to place on the nested link element',
+            description: 'Дополнительные атрибуты для вложенного элемента ссылки',
           },
           linkClass: {
             type: 'ClassValue',
             default: undefined,
-            description: 'CSS class (or classes) to place on the nested link element',
+            description: 'CSS-класс(ы) для вложенного элемента ссылки',
           },
         } satisfies Record<
           Exclude<keyof BvnComponentProps['BNavItem'], keyof typeof linkProps>,
@@ -151,11 +151,11 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when non-disabled nav item clicked',
+          description: 'Вызывается при клике по неотключённому элементу навигации',
           args: [
             {
               arg: 'click',
-              description: 'On click event',
+              description: 'Событие click',
               type: 'MouseEvent',
             },
           ],
@@ -164,11 +164,12 @@ export default {
       slots: [
         {
           name: 'after',
-          description: 'Content to place after the nav item link (useful for nested navs)',
+          description:
+            'Содержимое, отображаемое после ссылки элемента навигации (например, для вложенных навигаций)',
         },
         {
           name: 'default',
-          description: 'Content to place in the nav item',
+          description: 'Содержимое для размещения в элементе навигации',
         },
       ],
     },
@@ -189,7 +190,7 @@ export default {
       props: {
         '': {
           text: {
-            description: 'Plain text to display in the nav',
+            description: 'Обычный текст для отображения в навигации',
             type: 'string',
             default: undefined,
           },
@@ -197,7 +198,7 @@ export default {
       },
       slots: [
         {
-          description: 'Content to display in the nav',
+          description: 'Содержимое для отображения в навигации',
           name: 'default',
         },
       ],

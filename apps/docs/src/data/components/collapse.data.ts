@@ -6,27 +6,28 @@ const sharedSlots: SlotScopeReference[] = [
   {
     prop: 'hide',
     type: '() => void',
-    description: "Hides the collapse and fires the 'hide' event",
+    description: "Скрывает collapse и вызывает событие 'hide'",
   },
   {
     prop: 'id',
     type: 'string',
-    description: 'The id of the collapse element',
+    description: 'ID элемента collapse',
   },
   {
     prop: 'show',
     type: '() => void',
-    description: "Shows the collapse and fires the 'show' event",
+    description: "Показывает collapse и вызывает событие 'show'",
   },
   {
     prop: 'toggle',
     type: '() => void',
-    description: "Toggles the collapse and fires the 'hide' or 'show' event, as appropriate",
+    description:
+      "Переключает collapse и вызывает событие 'hide' или 'show' в зависимости от состояния",
   },
   {
     prop: 'visible',
     type: '() => void',
-    description: 'Visible state of the collapse. `true` if the collapse is visible',
+    description: 'Состояние видимости collapse. true, если collapse видим',
   },
 ]
 
@@ -45,7 +46,7 @@ export default {
             type: 'boolean',
             default: false,
             description:
-              'When set, signifies that the collapse is part of a navbar, enabling certain features for navbar support',
+              'Если установлено, указывает, что collapse является частью navbar, включая специальные возможности для поддержки navbar',
           },
           ...showHideProps,
           ...pick(buildCommonProps(), ['id', 'tag']),
@@ -54,89 +55,89 @@ export default {
       emits: [
         {
           event: 'update:model-value',
-          description: 'Used to update the v-model',
+          description: 'Используется для обновления v-model',
           args: [
             {
               arg: 'value',
               type: 'boolean',
-              description: 'Will be true if the collapse is visible',
+              description: 'Будет true, если collapse видим',
             },
           ],
         },
         {
           event: 'hide',
-          description: 'Emitted when collapse has started to close',
+          description: 'Вызывается при начале закрытия collapse',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'hidden',
-          description: 'Emitted when collapse has finished closing',
+          description: 'Вызывается после завершения закрытия collapse',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'hide-prevented',
-          description: 'Emitted when the Collapse tried to close, but was prevented from doing so.',
+          description: 'Вызывается, когда попытка закрыть collapse была предотвращена.',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'show',
-          description: 'Emitted when collapse has started to open',
+          description: 'Вызывается при начале открытия collapse',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'shown',
-          description: 'Emitted when collapse has finished opening',
+          description: 'Вызывается после завершения открытия collapse',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'show-prevented',
-          description: 'Emitted when the Collapse tried to open, but was prevented from doing so.',
+          description: 'Вызывается, когда попытка открыть collapse была предотвращена.',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
         {
           event: 'toggle',
-          description: 'Emitted when collapse has started to toggle',
+          description: 'Вызывается при начале переключения collapse',
           args: [
             {
               arg: 'value',
               type: 'BvTriggerableEvent',
-              description: 'The event object',
+              description: 'Объект события',
             },
           ],
         },
@@ -144,19 +145,19 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'The content shown and hidden by the collapse',
+          description: 'Содержимое, отображаемое и скрываемое collapse',
           scope: sharedSlots,
         },
         {
           name: 'footer',
           description:
-            'Used to create custom toggles for your collapsible content. Placed directly below the content',
+            'Используется для создания пользовательских переключателей для вашего контента. Размещается сразу под содержимым',
           scope: sharedSlots,
         },
         {
           name: 'header',
           description:
-            'Used to create custom toggles for your collapsible content. Placed directly above the content',
+            'Используется для создания пользовательских переключателей для вашего контента. Размещается сразу над содержимым',
           scope: sharedSlots,
         },
       ],

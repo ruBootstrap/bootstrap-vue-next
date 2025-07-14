@@ -14,31 +14,31 @@ export default {
             type: "boolean | 'fluid' | Breakpoint",
             default: 'fluid',
             description:
-              "Use the container option to change the layout of the navbar. By default, the navbar is a fluid container. Use 'fluid' for a full width navbar, or a responsive breakpoint for a container width navbar.",
+              "Используйте опцию container для изменения макета navbar. По умолчанию navbar — это fluid-контейнер. Используйте 'fluid' для navbar на всю ширину или брейкпоинт для адаптивного контейнера.",
           },
           fixed: {
             type: "'top' | 'bottom'",
             default: undefined,
             description:
-              "Set to 'top' for fixed to the top of the viewport, or 'bottom' for fixed to the bottom of the viewport",
+              "Установите 'top' для закрепления navbar сверху экрана или 'bottom' для закрепления снизу",
           },
           print: {
             type: 'boolean',
             default: false,
             description:
-              'Navbars are hidden by default when printing. When this prop is set it will be printed',
+              'По умолчанию navbar скрыт при печати. Если этот prop установлен, navbar будет отображаться при печати',
           },
           sticky: {
             type: "'top' | 'bottom'",
             default: undefined,
             description:
-              "Set to true to make the navbar stick to the top of the viewport (or parent container that has 'position: relative' set) when scrolled",
+              'Установите true, чтобы закрепить navbar сверху экрана (или родительского контейнера с position: relative) при прокрутке',
           },
           toggleable: {
             type: 'boolean | Breakpoint',
             default: false,
             description:
-              "Set to 'true' for an always collapsed navbar, or to a specific breakpoint at which point the navbar will be expanded: 'sm', 'md', 'lg', 'xl', or 'xxl'",
+              "Установите 'true' для всегда свёрнутого navbar или брейкпоинт, при котором navbar будет развёрнут: 'sm', 'md', 'lg', 'xl' или 'xxl'",
           },
           ...pick(
             buildCommonProps({
@@ -53,7 +53,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the navbar',
+          description: 'Содержимое для размещения в navbar',
         },
       ],
     },
@@ -84,7 +84,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the navbar brand',
+          description: 'Содержимое для размещения в бренде navbar',
         },
       ],
     },
@@ -97,24 +97,24 @@ export default {
             type: 'AlignmentJustifyContent',
             default: undefined,
             description:
-              "Align the nav items in the nav: 'start', 'end', 'center', 'between', 'around', or 'evenly'",
+              "Выравнивание элементов навигации: 'start', 'end', 'center', 'between', 'around' или 'evenly'",
           },
           fill: {
             type: 'boolean',
             default: false,
             description:
-              'Proportionately fills all horizontal space with nav items. All horizontal space is occupied, but not every nav item has the same width',
+              'Пропорционально заполняет всё горизонтальное пространство элементами навигации. Всё пространство занято, но ширина элементов может отличаться',
           },
           justified: {
             type: 'boolean',
             default: false,
             description:
-              "Fills all horizontal space with nav items, but unlike 'fill', every nav item will be the same width",
+              "Заполняет всё горизонтальное пространство элементами навигации, но в отличие от 'fill', все элементы будут одинаковой ширины",
           },
           small: {
             type: 'boolean',
             default: false,
-            description: 'Makes the nav smaller',
+            description: 'Делает навигацию меньше',
           },
           ...pick(
             buildCommonProps({
@@ -129,7 +129,7 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Content to place in the navbar nav',
+          description: 'Содержимое для размещения в navbar nav',
         },
       ],
     },
@@ -141,13 +141,13 @@ export default {
           label: {
             type: 'string',
             default: 'Toggle navigation',
-            description: "String to place in the toggle's 'aria-label' attribute",
+            description: 'Строка для aria-label кнопки переключения',
           },
           target: {
             type: 'string | readonly string[]',
             default: undefined,
             description:
-              'ID (or array of IDs) of the collapse/sidebar components that should be toggled',
+              'ID (или массив ID) компонентов collapse/sidebar, которые должны переключаться',
           },
           ...pick(
             buildCommonProps({
@@ -162,11 +162,11 @@ export default {
       emits: [
         {
           event: 'click',
-          description: 'Emitted when the toggle is clicked',
+          description: 'Вызывается при клике по кнопке переключения',
           args: [
             {
               arg: 'click',
-              description: 'Native mouse event object',
+              description: 'Стандартное событие мыши',
               type: 'MouseEvent',
             },
           ],
@@ -175,12 +175,12 @@ export default {
       slots: [
         {
           name: 'default',
-          description: 'Alternate content to replace the default Bootstrap hamburger',
+          description: 'Альтернативное содержимое для замены стандартного hamburger Bootstrap',
           scope: [
             {
               prop: 'expanded',
               type: 'boolean',
-              description: '`true` if the collapse is expanded, `false` otherwise',
+              description: '`true`, если collapse развёрнут, иначе `false`',
               notYetImplemented: true,
             },
           ],
