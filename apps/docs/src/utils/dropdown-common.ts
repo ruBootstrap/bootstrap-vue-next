@@ -10,137 +10,137 @@ export const dropdownProps = {
     type: "boolean | 'inside' | 'outside'",
     default: true,
     description:
-      'Controls the automatic closing of the dropdown when clicking. See above for details.',
+      'Управляет автоматическим закрытием выпадающего списка при клике. Подробнее см. выше.',
   },
   boundary: {
     type: 'Boundary | RootBoundary',
     default: 'clippingAncestors',
     description:
-      "The boundary constraint of dropdown: any value of floating-us's Boundary or RootBoundary type. See above for details.",
+      'Граница ограничения dropdown: любое значение типа Boundary или RootBoundary из floating-ui. Подробнее см. выше.',
   },
   boundaryPadding: {
     type: 'Padding',
     default: undefined,
-    description: 'The virtual padding around the boundary to check for overflow',
+    description: 'Виртуальный отступ вокруг границы для проверки переполнения',
   },
   floatingMiddleware: {
     type: 'Middleware[]',
     default: undefined,
-    description: 'Directly set the floating-ui middleware behavior. See above for details.',
+    description: 'Прямое управление поведением middleware floating-ui. Подробнее см. выше.',
   },
   icon: {
     type: 'boolean',
     default: false,
-    description: 'When set, styles an icon at the beginning or end of the button text',
+    description: 'Если установлено, добавляет иконку в начале или конце текста кнопки',
   },
   isNav: {
     type: 'boolean',
     default: false,
-    description: 'Indicates the dropdown is a nav dropdown',
+    description: 'Указывает, что dropdown является навигационным',
   },
   menuClass: {
     type: 'ClassValue',
     default: undefined,
-    description: 'CSS class (or classes) to add to the menu container',
+    description: 'CSS-класс(ы), добавляемые к контейнеру меню',
   },
   noCaret: {
     type: 'boolean',
     default: false,
-    description: 'Hide the caret indicator on the toggle button',
+    description: 'Скрыть индикатор-стрелку на кнопке переключения',
   },
   noFlip: {
     type: 'boolean',
     default: false,
-    description: 'Prevent the menu from auto flipping positions',
+    description: 'Запретить автоматическое переворачивание меню',
   },
   noShift: {
     type: 'boolean',
     default: false,
-    description: 'Prevent the menu from automatically shifting positions',
+    description: 'Запретить автоматическое смещение меню',
   },
   noSize: {
     type: 'boolean',
     default: false,
-    description: 'Prevent the menu from automatically resizing',
+    description: 'Запретить автоматическое изменение размера меню',
   },
   offset: {
     type: 'number | string | {mainAxis?: number; crossAxis?: number; alignmentAxis?: number | null',
     default: 0,
-    description: 'Specify the number of pixels to shift the menu by. See above for details.',
+    description: 'Смещение меню на заданное количество пикселей. Подробнее см. выше.',
   },
   noWrapper: {
     type: 'boolean',
     default: false,
-    description: 'Do not render the dropdown wrapper element',
+    description: 'Не рендерить обёрточный элемент для dropdown',
   },
   split: {
     type: 'boolean',
     default: false,
-    description: 'When set, renders a split button dropdown',
+    description: 'Если установлено, рендерит dropdown с разделённой кнопкой',
   },
   splitButtonType: {
     type: 'ButtonType',
     default: 'button',
-    description:
-      "Value to place in the 'type' attribute on the split button: 'button', 'submit', 'reset'",
+    description: "Значение для атрибута 'type' у разделённой кнопки: 'button', 'submit', 'reset'",
   },
   splitClass: {
     type: 'ClassValue',
     default: undefined,
-    description: 'CSS class (or classes) to add to the split button',
+    description: 'CSS-класс(ы), добавляемые к разделённой кнопке',
   },
   splitDisabled: {
     type: 'boolean',
     default: undefined,
-    description: 'When set, the split button is disabled',
+    description: 'Если установлено, разделённая кнопка будет неактивна',
   },
   splitHref: {
     type: 'string',
     default: undefined,
-    description: 'Denotes the target URL of the link for the split button',
+    description: 'URL-адрес для ссылки разделённой кнопки',
   },
   splitTo: {
     type: 'RouteLocationRaw',
     default: undefined,
     description:
-      'Denotes the target route of the split button. When clicked, the value of the to prop will be passed to router.push() internally, so the value can be either a string or a Location descriptor object',
+      'Целевой маршрут для разделённой кнопки. При клике значение будет передано во внутренний router.push(), может быть строкой или объектом Location',
   },
   splitVariant: {
     type: 'ButtonVariant | null',
     default: undefined,
     description:
-      "Applies one of the Bootstrap theme color variants to the split button. Defaults to the 'variant' prop value",
+      "Применяет одну из цветовых тем Bootstrap к разделённой кнопке. По умолчанию берётся значение из пропа 'variant'",
   },
   strategy: {
     type: 'Strategy',
     default: 'absolute',
-    description: 'The strategy used to determine when to hide the dropdown. See above for details.',
+    description:
+      'Стратегия, используемая для определения, когда скрывать dropdown. Подробнее см. выше.',
   },
   text: {
     type: 'string',
     default: undefined,
-    description: 'Text to place in the toggle button, or in the split button is split mode',
+    description: 'Текст для отображения на кнопке переключения или в split-режиме',
   },
   toggleClass: {
     type: 'ClassValue',
     default: undefined,
-    description: 'CSS class (or classes) to add to the toggle button',
+    description: 'CSS-класс(ы), добавляемые к кнопке переключения',
   },
   toggleText: {
     type: 'string',
     default: 'Toggle dropdown',
     description:
-      'ARIA label (visually-hidden) to set on the toggle when in split mode. Overriden by the slot of the same name',
+      'ARIA-метка (визуально скрытая) для кнопки переключения в split-режиме. Может быть переопределена одноимённым слотом',
   },
   teleportDisabled: {
     type: 'boolean',
     default: false,
-    description: 'Renders the dropdown in the exact place it was defined',
+    description: 'Рендерить dropdown в том же месте, где он определён',
   },
   teleportTo: {
     type: 'string | RendererElement | null | undefined',
     default: undefined,
-    description: 'Overrides the default teleport location',
+    description: 'Переопределяет стандартное место телепортации',
   },
   ...showHideProps,
   ...pick(
@@ -159,83 +159,84 @@ export const dropdownProps = {
 export const dropdownEmits: ComponentReference['emits'] = [
   {
     event: 'hide',
-    description: 'Emitted just before dropdown is hidden. Cancelable',
+    description: 'Вызывается непосредственно перед скрытием dropdown. Можно отменить',
     args: [
       {
         arg: 'value',
         type: 'BvTriggerableEvent',
-        description: 'Call value.preventDefault() to cancel hide',
+        description: 'Вызовите value.preventDefault(), чтобы отменить скрытие',
       },
     ],
   },
   {
     event: 'hidden',
-    description: 'Called after dropdown is hidden',
+    description: 'Вызывается после скрытия dropdown',
   },
   {
     event: 'hide-prevented',
-    description: 'Emitted when the dropdown tried to close, but was prevented from doing so.',
+    description: 'Вызывается, если попытка закрыть dropdown была предотвращена.',
   },
   {
     event: 'show',
-    description: 'Emitted just before dropdown is shown. Cancelable',
+    description: 'Вызывается непосредственно перед показом dropdown. Можно отменить',
     args: [
       {
         arg: 'value',
         type: 'BvTriggerableEvent',
-        description: 'Call value.preventDefault() to cancel show',
+        description: 'Вызовите value.preventDefault(), чтобы отменить показ',
       },
     ],
   },
   {
     event: 'shown',
-    description: 'Called after dropdown is shown',
+    description: 'Вызывается после показа dropdown',
   },
   {
     event: 'show-prevented',
-    description: 'Emitted when the dropdown tried to open, but was prevented from doing so.',
+    description: 'Вызывается, если попытка открыть dropdown была предотвращена.',
   },
   {
     event: 'split-click',
-    description: 'Emitted when split button is clicked in split mode',
+    description: 'Вызывается при клике по разделённой кнопке в split-режиме',
     args: [
       {
         arg: 'event',
         type: 'MouseEvent',
-        description: 'Native click event object',
+        description: 'Объект события клика (MouseEvent)',
       },
     ],
   },
   {
     event: 'toggle',
-    description: 'Emitted when toggle button is clicked',
+    description: 'Вызывается при клике по кнопке переключения',
   },
 ]
 
 export const dropdownSlots: ComponentReference['slots'] = [
   {
     name: 'default',
-    description: 'Optionally scoped default slot for dropdown menu content',
+    description: 'Необязательный (scoped) слот по умолчанию для содержимого меню dropdown',
     scope: [
       {
         prop: 'hide',
         type: '() => void',
-        description: 'Can be used to close the dropdown',
+        description: 'Можно использовать для закрытия dropdown',
       },
       {
         prop: 'show',
         type: '() => void',
-        description: 'Can be used to open the dropdown',
+        description: 'Можно использовать для открытия dropdown',
       },
     ],
   },
   {
     name: 'button-content',
-    description: 'Can be used to implement custom text with icons and more styling',
+    description:
+      'Можно использовать для реализации пользовательского текста с иконками и дополнительным стилем',
   },
   {
     name: 'toggle-text',
     description:
-      'ARIA label (visually-hidden) to set on the toggle when in split mode. Overrides the toggle-text prop',
+      'ARIA-метка (визуально скрытая) для кнопки переключения в split-режиме. Переопределяет свойство toggle-text',
   },
 ]

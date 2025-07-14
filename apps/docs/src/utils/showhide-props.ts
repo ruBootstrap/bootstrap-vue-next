@@ -5,47 +5,48 @@ export const showHideProps = {
   initialAnimation: {
     type: 'boolean',
     default: false,
-    description: 'When set, enables the initial animation on mount',
+    description: 'Если установлено, включает начальную анимацию при монтировании',
   },
   lazy: {
     type: 'boolean',
     default: false,
-    description: 'When set, the content will not be mounted until opened',
+    description: 'Если установлено, содержимое будет смонтировано только при открытии',
   },
   modelValue: {
     type: 'boolean',
     default: false,
-    description: 'Controls the visibility of the component',
+    description: 'Управляет видимостью компонента',
   },
   noFade: {
     type: 'boolean',
     default: false,
-    description: 'Alias for `noAnimation`',
+    description: 'Алиас для `noAnimation`',
   },
   noAnimation: {
     type: 'boolean',
     default: false,
-    description: 'When set, disables the animation',
+    description: 'Если установлено, отключает анимацию',
   },
   show: {
     type: 'boolean',
     default: false,
     description:
-      "When set, and prop 'visible' is false on mount, will animate from closed to open on initial mount. Mainly to help with template show. Use model-value for reactive show/hide",
+      "Если установлено и prop 'visible' равен false при монтировании, будет анимировано открытие при первом монтировании. В основном для шаблонов с show. Для реактивного управления используйте model-value",
   },
   transProps: {
     type: 'TransitionProps',
     default: undefined,
-    description: 'Transition properties',
+    description: 'Свойства transition',
   },
   unmountLazy: {
     type: 'boolean',
     default: false,
-    description: 'When set and `lazy` is true, the content will be unmounted when closed',
+    description:
+      'Если установлено и `lazy` равен true, содержимое будет размонтировано при закрытии',
   },
   visible: {
     type: 'boolean',
     default: false,
-    description: "When 'true', open without animation",
+    description: "Если 'true', открывает без анимации",
   },
 } as const satisfies Record<keyof showHide | 'modelValue', PropertyReference>

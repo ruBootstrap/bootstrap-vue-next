@@ -4,12 +4,12 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
   {
     event: 'hide',
     description:
-      "Always emits just before the component has hidden. Cancelable (as long as component wasn't forcibly hidden)",
+      'Всегда вызывается непосредственно перед скрытием компонента. Можно отменить (если компонент не был принудительно скрыт)',
     args: [
       {
         arg: 'value',
         type: 'BvTriggerableEvent',
-        description: 'Call value.preventDefault() to cancel hide',
+        description: 'Вызовите value.preventDefault(), чтобы отменить скрытие',
       },
     ],
   },
@@ -22,7 +22,7 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
       },
     ],
     description:
-      'Emitted when the component tried to close, but was prevented from closing.  This occurs when preventDefault() is called on the event, the user clicks escape and no-close-onbackdrop is set to true, or the user clicks on the backdrop and no-close-onbackdrop is set to true.',
+      'Вызывается, если компонент попытался закрыться, но это было предотвращено. Это происходит, если вызвать preventDefault() на событии, пользователь нажал escape и no-close-onbackdrop установлен в true, или пользователь кликнул по подложке и no-close-onbackdrop установлен в true.',
   },
   {
     event: 'hidden',
@@ -32,7 +32,7 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
         type: 'BvTriggerableEvent',
       },
     ],
-    description: 'Always emits after the component is hidden',
+    description: 'Всегда вызывается после скрытия компонента',
   },
   {
     event: 'show',
@@ -40,10 +40,10 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
       {
         arg: 'value',
         type: 'BvTriggerableEvent',
-        description: 'Call value.preventDefault() to cancel show',
+        description: 'Вызовите value.preventDefault(), чтобы отменить показ',
       },
     ],
-    description: 'Always emits just before the component is shown. Cancelable',
+    description: 'Всегда вызывается непосредственно перед показом компонента. Можно отменить',
   },
   {
     event: 'show-prevented',
@@ -54,7 +54,7 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
       },
     ],
     description:
-      'Emitted when the component tried to open, but was prevented from opening. This occurs when preventDefault() is called on the event',
+      'Вызывается, если компонент попытался открыться, но это было предотвращено. Это происходит, если вызвать preventDefault() на событии',
   },
   {
     event: 'shown',
@@ -64,17 +64,17 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
         type: 'BvTriggerableEvent',
       },
     ],
-    description: 'Always emits just after component is shown.',
+    description: 'Всегда вызывается сразу после показа компонента.',
   },
   {
     event: 'toggle',
     description:
-      "Always emits just before the component is toggled via the exposed 'toggle()' function or useToggle composable . Cancelable (as long as component wasn't forcibly hidden)",
+      "Всегда вызывается непосредственно перед переключением компонента через функцию 'toggle()' или composable useToggle. Можно отменить (если компонент не был принудительно скрыт)",
     args: [
       {
         arg: 'value',
         type: 'BvTriggerableEvent',
-        description: 'Call value.preventDefault() to cancel hide',
+        description: 'Вызовите value.preventDefault(), чтобы отменить скрытие',
       },
     ],
   },
@@ -87,6 +87,6 @@ export const showHideEmits: Exclude<ComponentReference['emits'], undefined> = [
       },
     ],
     description:
-      'Emitted when the component tried to toggle, but was prevented from doing so.  This occurs when preventDefault() is called on the event, the user clicks escape and no-close-onbackdrop is set to true, or the user clicks on the backdrop and no-close-onbackdrop is set to true.',
+      'Вызывается, если компонент попытался переключиться, но это было предотвращено. Это происходит, если вызвать preventDefault() на событии, пользователь нажал escape и no-close-onbackdrop установлен в true, или пользователь кликнул по подложке и no-close-onbackdrop установлен в true.',
   },
 ]

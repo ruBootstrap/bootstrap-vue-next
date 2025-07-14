@@ -9,69 +9,68 @@ export const imageProps = {
   blank: {
     type: 'boolean',
     default: false,
-    description: 'Creates a blank/transparent image via an SVG data URI',
+    description: 'Создаёт пустое/прозрачное изображение через SVG data URI',
   },
   blankColor: {
     type: 'string',
     default: 'transparent',
-    description: 'Sets the color of the blank image to the CSS color value specified',
+    description: 'Устанавливает цвет пустого изображения в указанный CSS-цвет',
   },
   block: {
     type: 'boolean',
     default: false,
     description:
-      'Forces the image to display as a block element rather than the browser default of inline-block element',
+      'Принудительно отображает изображение как блочный элемент вместо стандартного inline-block',
   },
   fluid: {
     type: 'boolean',
     default: false,
     description:
-      "Makes the image responsive. The image will shrink as needed or grow up the the image's native width",
+      'Делает изображение адаптивным. Оно будет сжиматься по мере необходимости или увеличиваться до своей исходной ширины',
   },
   fluidGrow: {
     type: 'boolean',
     default: false,
     description:
-      "Similar to the 'fluid' prop, but allows the image to scale up past its native width",
+      'Похоже на свойство fluid, но позволяет изображению увеличиваться сверх исходной ширины',
   },
   height: {
     type: 'Numberish',
     default: undefined,
-    description: "The value to set on the image's 'height' attribute",
+    description: "Значение для атрибута 'height' изображения",
   },
   lazy: {
     type: 'boolean',
     default: false,
     description:
-      'Enables lazy loading of the image via the `loading` attribute on the underlying image.',
+      'Включает ленивую загрузку изображения через атрибут `loading` на внутреннем теге img.',
   },
   placement: {
     type: "Extract<Placement, 'start' | 'end'> | 'center'",
     default: undefined,
-    description:
-      'Sets the alignment of the image to the start, end, or center, see above for details',
+    description: 'Выравнивание изображения по началу, концу или центру. Подробнее см. выше',
   },
   sizes: {
     type: 'string | string[]',
     default: undefined,
     description:
-      'One or more strings separated by commas (or an array of strings), indicating a set of source sizes. Optionally used in combination with the srcset prop',
+      'Одна или несколько строк, разделённых запятыми (или массив строк), указывающих набор размеров источников. Может использоваться вместе с prop srcset',
   },
   srcset: {
     type: 'string | string[]',
     default: undefined,
     description:
-      'One or more strings separated by commas (or an array of strings), indicating possible image sources for the user agent to use',
+      'Одна или несколько строк, разделённых запятыми (или массив строк), указывающих возможные источники изображений для использования браузером',
   },
   thumbnail: {
     type: 'boolean',
     default: false,
-    description: 'Adds a thumbnail border around the image',
+    description: 'Добавляет рамку-миниатюру вокруг изображения',
   },
   width: {
     type: 'Numberish',
     default: undefined,
-    description: "The value to set on the image's 'width' attribute",
+    description: "Значение для атрибута 'width' изображения",
   },
   ...pick(
     buildCommonProps({

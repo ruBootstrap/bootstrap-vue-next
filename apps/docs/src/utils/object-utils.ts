@@ -1,3 +1,4 @@
+// Выбирает указанные ключи из объекта
 export const pick = <
   A extends Record<PropertyKey, unknown>,
   const B extends ReadonlyArray<PropertyKey>,
@@ -13,6 +14,7 @@ export const pick = <
     {} as Record<PropertyKey, unknown>
   ) as Pick<A, B[number]>
 
+// Исключает указанные ключи из объекта
 export const omit = <
   A extends Record<PropertyKey, unknown>,
   const B extends ReadonlyArray<PropertyKey>,
@@ -24,5 +26,5 @@ export const omit = <
     .filter((key) => !keysToPluck.map((el) => el.toString()).includes(key))
     .reduce((result, key) => ({...result, [key]: objToPluck[key]}), {} as Omit<A, B[number]>)
 
-// Converts PascalCase or camelCase to kebab-case
+// Преобразует PascalCase или camelCase в kebab-case
 export const kebabCase = (str: string) => str.replace(/\B([A-Z])/g, '-$1').toLowerCase()

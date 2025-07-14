@@ -7,137 +7,137 @@ export const linkProps = {
   active: {
     type: 'boolean',
     default: undefined,
-    description: 'When set to `true`, places the component in the active state with active styling',
+    description:
+      'Если установлено в `true`, переводит компонент в активное состояние с активным стилем',
   },
   activeClass: {
     type: 'string',
     default: 'router-link-active',
-    description: 'Configure the active CSS class applied when the link is active.',
+    description: 'Настраивает CSS-класс, применяемый к активной ссылке.',
   },
   disabled: {
     type: 'boolean',
     default: false,
     description:
-      "When set to `true`, disables the link's functionality. See above for details and limitations",
+      'Если установлено в `true`, отключает функциональность ссылки. Подробнее см. выше и ограничения',
   },
   exactActiveClass: {
     type: 'string',
     default: 'router-link-exact-active',
-    description: 'Configure the active CSS class applied when the link is active with exact match.',
+    description: 'Настраивает CSS-класс, применяемый к ссылке при точном совпадении маршрута.',
   },
   href: {
     type: 'string',
     default: undefined,
-    description: 'Denotes the target URL of the link for standard a links',
+    description: 'URL-адрес для обычных ссылок <a>',
   },
   icon: {
     type: 'boolean',
     default: false,
-    description: 'When set to `true`, styles an icon at the beginning or end of the link text',
+    description: 'Если установлено в `true`, добавляет иконку в начале или конце текста ссылки',
   },
   noPrefetch: {
     type: 'boolean',
     default: false,
     description:
-      'To improve the responsiveness of your Nuxt.js applications, when the link will be displayed within the viewport, Nuxt.js will automatically prefetch the code splitted page. Setting `no-prefetch` will disabled this feature for the specific link',
+      'Для повышения отзывчивости Nuxt.js-приложений, когда ссылка появляется во viewport, Nuxt.js автоматически предварительно загружает разделённую по коду страницу. Установка `no-prefetch` отключает эту функцию для конкретной ссылки',
     notYetImplemented: true,
   },
   opacity: {
     type: "10 | 25 | 50 | 75 | 100 | '10' | '25' | '50' | '75' | '100'",
     default: undefined,
-    description: 'Change the alpha opacity of the link `rgba()` color value',
+    description: 'Изменяет альфа-прозрачность цвета ссылки (`rgba()`)',
   },
   opacityHover: {
     type: "10 | 25 | 50 | 75 | 100 | '10' | '25' | '50' | '75' | '100'",
     default: undefined,
-    description: 'Change the alpha opacity of the link `rgba()` color value on hover',
+    description: 'Изменяет альфа-прозрачность цвета ссылки (`rgba()`) при наведении',
   },
   prefetch: {
     type: 'boolean',
     default: undefined,
     description:
-      'To improve the responsiveness of your Nuxt.js applications, when the link will be displayed within the viewport, Nuxt.js will automatically prefetch the code splitted page. Setting `prefetch` to `true` or `false` will overwrite the default value of `router.prefetchLinks`',
+      'Для повышения отзывчивости Nuxt.js-приложений, когда ссылка появляется во viewport, Nuxt.js автоматически предварительно загружает разделённую по коду страницу. Установка `prefetch` в `true` или `false` переопределяет значение по умолчанию из `router.prefetchLinks`',
   },
   prefetchedClass: {
     type: 'string',
     default: undefined,
-    description: 'Not Yet Implmented: A class to apply to links that have been prefetched.',
+    description: 'Ещё не реализовано: класс для ссылок, которые были предварительно загружены.',
   },
   prefetchOn: {
     type: 'Partial<{visibility: boolean, interaction: boolean}>',
     default: undefined,
     description:
-      "Allows custom control of when to prefetch links. Possible options are 'interaction' and 'visibility' (default).",
+      "Позволяет настраивать, когда выполнять prefetch ссылок. Возможные опции: 'interaction' и 'visibility' (по умолчанию)",
   },
   noRel: {},
   rel: {
     type: 'string',
     default: undefined,
-    description: "Sets the 'rel' attribute on the rendered link",
+    description: "Устанавливает атрибут 'rel' на рендеримом элементе ссылки",
   },
   replace: {
     type: 'boolean',
     default: false,
-    description:
-      'Setting replace prop will call router.replace() instead of router.push() when clicked',
+    description: 'Если установлено, при клике будет вызван router.replace() вместо router.push()',
   },
   routerComponentName: {
     type: 'string',
     default: 'router-link',
     description:
-      'BootstrapVue auto detects between `<router-link>` and `<nuxt-link>`. Set this this property to explicity set the name of the router component.',
+      'BootstrapVue автоматически определяет между `<router-link>` и `<nuxt-link>`. Установите это свойство, чтобы явно указать имя компонента роутера.',
   },
   routerTag: {
     type: 'string',
     default: 'a',
-    description: 'Set the tag type for the link',
+    description: 'Устанавливает тип тега для ссылки',
   },
   stretched: {
     type: 'boolean',
     default: false,
     description:
-      "When set to `true`, makes the link's `containing block` clickable via an `::after` pseudo element",
+      'Если установлено в `true`, делает весь `containing block` ссылки кликабельным с помощью псевдоэлемента `::after`',
   },
   target: {
     type: 'LinkTarget',
     default: undefined,
-    description: "Sets the 'target' attribute on the rendered link",
+    description: "Устанавливает атрибут 'target' на рендеримом элементе ссылки",
   },
   to: {
     type: 'RouteLocationRaw',
     default: undefined,
     description:
-      'Denotes the target route of the link. When clicked, the value of the to prop will be passed to `router.push()` internally',
+      'Указывает целевой маршрут для ссылки. При клике значение будет передано во внутренний `router.push()`',
   },
   underlineOffset: {
     type: "1 | 2 | 3 | '1' | '2' | '3'",
     default: undefined,
-    description: 'Change the distance of the underline from the bottom of the link text',
+    description: 'Изменяет расстояние подчеркивания от нижнего края текста ссылки',
   },
   underlineOffsetHover: {
     type: "1 | 2 | 3 | '1' | '2' | '3'",
     default: undefined,
-    description: 'Change the distance of the underline from the bottom of the link text on hover',
+    description: 'Изменяет расстояние подчеркивания от нижнего края текста ссылки при наведении',
   },
   underlineOpacity: {
     type: "0 | 10 | 25 | 50 | 75 | 100 | '0' | '10' | '25' | '50' | '75' | '100'",
     default: undefined,
-    description: "Set's the opacity of the link's underline",
+    description: 'Устанавливает прозрачность подчеркивания ссылки',
   },
   underlineOpacityHover: {
     type: "0 | 10 | 25 | 50 | 75 | 100 | '0' | '10' | '25' | '50' | '75' | '100'",
     default: undefined,
-    description: "Set's the opacity of the link's underline on hover",
+    description: 'Устанавливает прозрачность подчеркивания ссылки при наведении',
   },
   underlineVariant: {
     type: 'ColorVariant | null',
     default: null,
-    description: 'Set the color variant for the link underline independently of the link text',
+    description: 'Устанавливает цветовую тему для подчеркивания ссылки независимо от цвета текста',
   },
   variant: {
     type: 'ColorVariant | null',
     default: null,
-    description: 'Set the color variant for the link',
+    description: 'Устанавливает цветовую тему для ссылки',
   },
   // TODO: remove the hard-coded NYI props below when they are implemented
 } as const satisfies Record<

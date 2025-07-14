@@ -6,452 +6,447 @@ export const commonProps = () =>
       type: 'boolean',
       default: false,
       description:
-        'When set to `true`, places the component in the active state with active styling',
+        'Если установлено в `true`, переводит компонент в активное состояние с активным стилем',
     },
     activeClass: {
       type: 'ClassValue',
       default: 'active',
       description:
-        "Configure the active CSS class applied when the link is active. Typically you will want to set this to class name 'active'",
+        "Настраивает CSS-класс, применяемый к активному элементу. Обычно рекомендуется установить в 'active'",
     },
     alt: {
       type: 'string',
       default: 'undefined',
-      description: 'Value to set for the `alt` attribute',
+      description: 'Значение для атрибута `alt`',
     },
     ariaControls: {
       type: 'AriaInvalid',
       default: undefined,
       description:
-        'If this component controls another component or element, set this to the ID of the controlled component or element',
+        'Если этот компонент управляет другим компонентом или элементом, укажите здесь ID управляемого элемента',
     },
     ariaDescribedby: {
       type: 'string',
       default: undefined,
       description:
-        'The ID of the element that provides a description for this component. Used as the value for the `aria-describedby` attribute',
+        'ID элемента, который содержит описание для этого компонента. Используется как значение атрибута `aria-describedby`',
     },
     ariaInvalid: {
       type: 'AriaInvalid',
       default: undefined,
       description:
-        'Sets the `aria-invalid` attribute value on the wrapper element. When not provided, the `state` prop will control the attribute',
+        'Устанавливает значение атрибута `aria-invalid` на обёрточном элементе. Если не указано, атрибут контролируется через проп `state`',
     },
     autoClose: {
       type: "boolean | 'inside' | 'outside'",
       default: true,
-      description:
-        'Controls the automatic closing of the component when clicking. See above for details.',
+      description: 'Управляет автоматическим закрытием компонента при клике. Подробнее см. выше.',
     },
     autocomplete: {
       type: 'string',
       default: 'false',
-      description: "Sets the 'autocomplete' attribute value on the form control",
+      description: "Устанавливает значение атрибута 'autocomplete' на элементе формы",
     },
     ariaLabel: {
       type: 'string',
       default: undefined,
-      description: 'Sets the value of `aria-label` attribute on the rendered element',
+      description: 'Устанавливает значение атрибута `aria-label` на рендеримом элементе',
     },
     ariaLive: {
       type: 'string',
       default: undefined,
       description:
-        "When the rendered element is an `aria-live` region (for screen reader users), set to either 'polite' or 'assertive'",
+        "Если элемент является областью `aria-live` (для экранных читалок), укажите 'polite' или 'assertive'",
     },
     ariaLabelledby: {
       type: 'string',
       default: undefined,
       description:
-        'The ID of the element that provides a label for this component. Used as the value for the `aria-labelledby` attribute',
+        'ID элемента, который содержит метку для этого компонента. Используется как значение атрибута `aria-labelledby`',
     },
     autofocus: {
       type: 'boolean',
       default: false,
       description:
-        'When set to `true`, attempts to auto-focus the control when it is mounted, or re-activated when in a keep-alive. Does not set the `autofocus` attribute on the control',
+        'Если установлено в `true`, пытается автоматически сфокусировать элемент при монтировании или повторной активации (keep-alive). Не устанавливает атрибут `autofocus` на контроле',
     },
     bgVariant: {
       type: 'ColorVariant | null',
       default: null,
-      description:
-        'Applies one of the Bootstrap theme color variants to background of the component',
+      description: 'Применяет одну из цветовых тем Bootstrap к фону компонента',
     },
     bodyBgVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the body background',
+      description: 'Применяет одну из цветовых тем Bootstrap к фону body',
     },
     bodyBorderVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the body border',
+      description: 'Применяет одну из цветовых тем Bootstrap к границе body',
     },
     bodyClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'CSS class (or classes) to apply to the body',
+      description: 'CSS-класс(ы), применяемые к body',
     },
     bodyTag: {
       type: 'string',
       default: 'div',
-      description: 'Specify the HTML tag to render instead of the default tag for the body',
+      description: 'HTML-тег, который будет использоваться вместо тега по умолчанию для body',
     },
     bodyTextVariant: {
       type: 'TextColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the body text',
+      description: 'Применяет одну из цветовых тем Bootstrap к тексту body',
     },
     bodyVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the body',
+      description: 'Применяет одну из цветовых тем Bootstrap к body',
     },
     borderVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the border',
+      description: 'Применяет одну из цветовых тем Bootstrap к границе',
     },
     debounce: {
       type: 'Numberish',
       default: '0',
       description:
-        "When set to a number of milliseconds greater than zero, will debounce the user input. Has no effect if prop 'lazy' is set",
+        "Если указано число миллисекунд больше нуля, ввод пользователя будет дебаунситься. Не работает, если установлен проп 'lazy'",
     },
     debounceMaxWait: {
       type: 'Numberish',
       default: 'NaN',
-      description: "The maximum time in milliseconds allowed to be delayed before it''s invoked",
+      description: 'Максимальное время в миллисекундах, разрешённое для задержки перед вызовом',
     },
     disabled: {
       type: 'boolean',
       default: false,
       description:
-        "When set to `true`, disables the component's functionality and places it in a disabled state",
+        'Если установлено в `true`, отключает функциональность компонента и переводит его в неактивное состояние',
     },
     disabledField: {
       type: 'string',
       default: 'disabled',
-      description: 'Field name in the `options` array that should be used for the disabled state',
+      description: 'Имя поля в массиве `options`, используемое для состояния disabled',
     },
     floating: {
       type: 'boolean',
       default: false,
       description:
-        'When set, renders a single control form with a floating label. This only works for forms where the immediate children are a label and one of the supported controls. See above for details.',
+        'Если установлено, рендерит форму с плавающей меткой. Работает только для форм, где непосредственными потомками являются label и один из поддерживаемых контролов. Подробнее см. выше.',
     },
-
     footer: {
       type: 'string',
       default: undefined,
-      description: 'Text content to place in the footer',
+      description: 'Текст для отображения в футере',
     },
     footerBgVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the footer background',
+      description: 'Применяет одну из цветовых тем Bootstrap к фону футера',
     },
     footerBorderVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the footer border',
+      description: 'Применяет одну из цветовых тем Bootstrap к границе футера',
     },
     footerClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'CSS class (or classes) to apply to the footer',
+      description: 'CSS-класс(ы), применяемые к футеру',
     },
     footerTag: {
       type: 'string',
       default: 'div',
-      description: 'Specify the HTML tag to render instead of the default tag for the footer',
+      description: 'HTML-тег, который будет использоваться вместо тега по умолчанию для футера',
     },
     footerTextVariant: {
       type: 'TextColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the footer text',
+      description: 'Применяет одну из цветовых тем Bootstrap к тексту футера',
     },
     footerVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the footer',
+      description: 'Применяет одну из цветовых тем Bootstrap к футеру',
     },
     form: {
       type: 'string',
       default: undefined,
       description:
-        'ID of the form that the form control belongs to. Sets the `form` attribute on the control',
+        'ID формы, к которой относится контрол. Устанавливает атрибут `form` на контроле',
     },
     formatter: {
       type: '(val: string, evt: Event) => string',
       default: 'undefined',
-      description: 'Reference to a function for formatting the input',
+      description: 'Ссылка на функцию для форматирования ввода',
     },
     header: {
       type: 'string',
       default: undefined,
-      description: 'Text content to place in the header',
+      description: 'Текст для отображения в заголовке',
     },
     headerBgVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the header background',
+      description: 'Применяет одну из цветовых тем Bootstrap к фону заголовка',
     },
     headerBorderVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the header border',
+      description: 'Применяет одну из цветовых тем Bootstrap к границе заголовка',
     },
     headerClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'CSS class (or classes) to apply to the header',
+      description: 'CSS-класс(ы), применяемые к заголовку',
     },
     headerTag: {
       type: 'string',
       default: 'div',
-      description: 'Specify the HTML tag to render instead of the default tag for the header',
+      description: 'HTML-тег, который будет использоваться вместо тега по умолчанию для заголовка',
     },
     headerTextVariant: {
       type: 'TextColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the header text',
+      description: 'Применяет одну из цветовых тем Bootstrap к тексту заголовка',
     },
     headerVariant: {
       type: 'ColorVariant | null',
       default: undefined,
-      description: 'Applies one of the Bootstrap theme color variants to the header',
+      description: 'Применяет одну из цветовых тем Bootstrap к заголовку',
     },
     id: {
       type: 'string',
       default: undefined,
       description:
-        'Used to set the `id` attribute on the rendered content, and used as the base to generate any additional element IDs as needed',
+        'Используется для установки атрибута `id` на рендеримом элементе, а также как основа для генерации дополнительных id при необходимости',
     },
     lazyFormatter: {
       type: 'boolean',
       default: 'false',
       description:
-        'When set, the input is formatted on blur instead of each keystroke (if there is a formatter specified)',
+        'Если установлено, форматирование ввода происходит при потере фокуса, а не при каждом нажатии клавиши (если задан formatter)',
     },
     linkClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'Class or classes to apply to the inner link element',
+      description: 'Класс(ы), применяемые к внутреннему элементу ссылки',
     },
     list: {
       type: 'string',
       default: 'undefined',
-      description: 'The ID of the associated datalist element or component',
+      description: 'ID связанного элемента datalist или компонента',
     },
     name: {
       type: 'string',
       default: undefined,
-      description: 'Sets the value of the `name` attribute on the form control',
+      description: 'Устанавливает значение атрибута `name` на контроле формы',
     },
     noBackdrop: {
       type: 'boolean',
       default: false,
-      description: 'Disables rendering of the backdrop',
+      description: 'Отключает отображение подложки (backdrop)',
     },
     noEllipsis: {
       type: 'boolean',
       default: false,
-      description: 'Do not show ellipsis buttons',
+      description: 'Не показывать кнопки с многоточием',
     },
     noGotoEndButtons: {
       type: 'boolean',
       default: false,
-      description: 'Hides the go to first and go to last page buttons',
+      description: 'Скрывает кнопки перехода к первой и последней странице',
     },
     noHeader: {
       type: 'boolean',
       default: false,
-      description: 'Disables rendering of the  header',
+      description: 'Отключает отображение заголовка',
     },
     noHeaderClose: {
       type: 'boolean',
       default: false,
-      description: 'Disables rendering of the header close button',
+      description: 'Отключает отображение кнопки закрытия в заголовке',
     },
     noHoverPause: {
       type: 'boolean',
       default: false,
-      description: 'When set to true, disables pausing the timer on hover behavior',
+      description: 'Если true, отключает приостановку таймера при наведении',
     },
     noResumeOnHoverLeave: {
       type: 'boolean',
       default: false,
       description:
-        'When set to true, the timer will not resume when the mouse leaves the element. It will need to be manually resumed',
+        'Если true, таймер не возобновляется при уходе мыши с элемента. Необходимо возобновить вручную',
     },
     novalidate: {
       type: 'boolean',
       default: false,
-      description: 'When set, disables browser native HTML5 validation on controls in the form',
+      description: 'Отключает встроенную HTML5-валидацию браузера для контролов в форме',
     },
     options: {
       type: 'readonly CheckboxOptionRaw[]',
       default: '() => []',
-      description: 'Array of items to render in the component',
+      description: 'Массив элементов для отображения в компоненте',
     },
     plain: {
       type: 'boolean',
       default: false,
-      description: 'Render the form control in plain mode, rather than custom styled mode',
+      description: 'Отображать контрол формы в простом режиме, без пользовательских стилей',
     },
     placeholder: {
       type: 'string',
       default: "''",
-      description: 'Sets the `placeholder` attribute value on the form control',
+      description: 'Устанавливает значение атрибута `placeholder` на контроле формы',
     },
     plaintext: {
       type: 'boolean',
       default: 'false',
       description:
-        'Set the form control as readonly and renders the control to look like plain text (no borders)',
+        'Устанавливает контрол формы только для чтения и отображает его как обычный текст (без границ)',
     },
     required: {
       type: 'boolean',
       default: undefined,
-      description: 'Adds the `required` attribute to the form control',
+      description: 'Добавляет атрибут `required` к контролу формы',
     },
     readonly: {
       type: 'boolean',
       default: 'false',
-      description: 'Sets the `readonly` attribute on the form control',
+      description: 'Устанавливает атрибут `readonly` на контроле формы',
     },
     role: {
       type: 'string',
       default: undefined,
-      description: 'Sets the ARIA attribute `role` to a specific value',
+      description: 'Устанавливает ARIA-атрибут `role` в определённое значение',
     },
     rounded: {
       type: 'boolean | RadiusElement',
       default: 'false',
       description:
-        'Specifies the type of rounding to apply to the component or its children. The `square` prop takes precedence. Refer to the documentation for details',
+        'Определяет тип скругления для компонента или его потомков. Проп `square` имеет приоритет. Подробнее см. в документации',
     },
     roundedBottom: {
       type: 'boolean | RadiusElement',
       default: undefined,
-      description:
-        'Specifies the type of rounding to apply to the `bottom` corners of the component or its children',
+      description: 'Определяет тип скругления для нижних углов компонента или его потомков',
     },
     roundedEnd: {
       type: 'boolean | RadiusElement',
       default: undefined,
-      description:
-        'Specifies the type of rounding to apply to the `end` corners of the component or its children',
+      description: 'Определяет тип скругления для углов с конца компонента или его потомков',
     },
     roundedStart: {
       type: 'boolean | RadiusElement',
       default: undefined,
-      description:
-        'Specifies the type of rounding to apply to the `start` corners of the component or its children',
+      description: 'Определяет тип скругления для углов с начала компонента или его потомков',
     },
     roundedTop: {
       type: 'boolean | RadiusElement',
       default: undefined,
-      description:
-        'Specifies the type of rounding to apply to the `top` corners of the component or its children',
+      description: 'Определяет тип скругления для верхних углов компонента или его потомков',
     },
     size: {
       type: 'Size',
       default: 'md',
-      description: "Set the size of the component's appearance. 'sm', 'md' (default), or 'lg'",
+      description:
+        "Устанавливает размер внешнего вида компонента: 'sm', 'md' (по умолчанию) или 'lg'",
     },
     src: {
       type: 'string',
       default: undefined,
-      description: 'URL to set for the `src` attribute',
+      description: 'URL для атрибута `src`',
     },
     state: {
       type: 'ValidationState',
       default: undefined,
       description:
-        'Controls the validation state appearance of the component. `true` for valid, `false` for invalid, or `null` for no validation state',
+        'Управляет отображением состояния валидации компонента. `true` — валиден, `false` — невалиден, `null` — без состояния',
     },
     subtitle: {
       type: 'string',
       default: undefined,
-      description: 'Text content to place in the subtitle',
+      description: 'Текст для отображения в подзаголовке',
     },
     subtitleTag: {
       type: 'string',
       default: 'h6',
-      description: 'Specify the HTML tag to render instead of the default tag for the subtitle',
+      description:
+        'HTML-тег, который будет использоваться вместо тега по умолчанию для подзаголовка',
     },
     subtitleTextVariant: {
       type: 'TextColorVariant | null',
       default: 'body-secondary',
-      description: 'Applies one of the Bootstrap theme color variants to the subtitle text',
+      description: 'Применяет одну из цветовых тем Bootstrap к тексту подзаголовка',
     },
     tag: {
       type: 'string',
       default: 'div',
-      description: 'Specify the HTML tag to render instead of the default tag',
+      description: 'HTML-тег, который будет использоваться вместо тега по умолчанию',
     },
     textField: {
       type: 'string',
       default: 'text',
-      description: 'Field name in the `options` array that should be used for the text label',
+      description: 'Имя поля в массиве `options`, используемое для текстовой метки',
     },
     textVariant: {
       type: 'TextColorVariant | null',
       default: null,
-      description: 'Applies one of the Bootstrap theme color variants to the text',
+      description: 'Применяет одну из цветовых тем Bootstrap к тексту',
     },
     title: {
       type: 'string',
       default: undefined,
-      description: 'Text content to place in the title',
+      description: 'Текст для отображения в заголовке',
     },
     titleClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'CSS class (or classes) to apply to the title',
+      description: 'CSS-класс(ы), применяемые к заголовку',
     },
     titleTag: {
       type: 'string',
       default: 'h4',
-      description: 'Specify the HTML tag to render instead of the default tag for the title',
+      description: 'HTML-тег, который будет использоваться вместо тега по умолчанию для заголовка',
     },
     tooltip: {
       type: 'boolean',
       default: false,
-      description: 'Renders the feedback text in a rudimentary tooltip style',
+      description: 'Отображает текст обратной связи в виде простого tooltip',
     },
     validated: {
       type: 'boolean',
       default: false,
       description:
-        "When set, adds the Bootstrap class 'was-validated' on the form, triggering the native browser validation states",
+        "Если установлено, добавляет класс Bootstrap 'was-validated' на форму, активируя состояния валидации браузера",
     },
     valueField: {
       type: 'string',
       default: 'value',
-      description: 'Field name in the `options` array that should be used for the value',
+      description: 'Имя поля в массиве `options`, используемое для значения',
     },
     variant: {
       type: 'ColorVariant | null',
       default: null,
       description:
-        'Applies one of the Bootstrap theme color variants to the component. When implemented `bg-variant` and `text-variant` will take precedence',
+        'Применяет одну из цветовых тем Bootstrap к компоненту. Если реализованы `bg-variant` и `text-variant`, они имеют приоритет',
     },
     wrapperAttrs: {
       type: 'Readonly<AttrsValue>',
       default: undefined,
-      description: 'Attributes to be applied to the wrapper element',
+      description: 'Атрибуты, применяемые к обёрточному элементу',
     },
     wrapperClass: {
       type: 'ClassValue',
       default: undefined,
-      description: 'CSS class (or classes) to add to the wrapper element',
+      description: 'CSS-класс(ы), добавляемые к обёрточному элементу',
     },
     placement: {
       type: 'Placement',
       default: 'bottom-start',
-      description: 'Placement of a floating element',
+      description: 'Положение плавающего элемента',
     },
   }) satisfies Record<string, PropertyReference>

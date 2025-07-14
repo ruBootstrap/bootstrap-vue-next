@@ -4,32 +4,32 @@ export const showHideSlotsData: SlotScopeReference[] = [
   {
     prop: 'id',
     type: 'string',
-    description: 'Unique ID for the component',
+    description: 'Уникальный идентификатор компонента',
   },
   {
     prop: 'show',
     type: '() => void',
-    description: 'Function to show the component',
+    description: 'Функция для показа компонента',
   },
   {
     prop: 'hide',
     type: '(trigger?: string, noTriggerEmit?: boolean) => void',
     description:
-      'Function to hide the component. `trigger` is the trigger that caused the hide. `noTriggerEmit` prevents the emit of the trigger event.',
+      'Функция для скрытия компонента. `trigger` — причина скрытия. `noTriggerEmit` предотвращает эмит события триггера.',
   },
   {
     prop: 'toggle',
     type: '() => void',
-    description: 'Function to toggle the component visibility',
+    description: 'Функция для переключения видимости компонента',
   },
   {
     prop: 'active',
     type: 'boolean',
-    description: 'Indicates if the component is active (starting show, before/after animations)',
+    description: 'Показывает, активен ли компонент (начало показа, до/после анимаций)',
   },
   {
     prop: 'visible',
     type: 'boolean',
-    description: 'Indicates if the component is visible (shown)',
+    description: 'Показывает, видим ли компонент (показан)',
   },
 ]
