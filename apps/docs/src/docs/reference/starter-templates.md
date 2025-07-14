@@ -1,8 +1,8 @@
-# Starter Templates
+# Стартовые шаблоны
 
 <div class="lead mb-5">
 
-There are several ways you can create your app, from basic client side HTML all the way up to using a build system and compilers.
+Существует несколько способов создать ваше приложение: от простого клиентского HTML до использования системы сборки и компиляторов.
 
 </div>
 

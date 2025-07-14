@@ -1,8 +1,8 @@
-# Theming Bootstrap
+# Темизация Bootstrap
 
 <div class="lead mb-5">
 
-Theming is accomplished by SASS variables, SASS maps, and custom CSS. There is no dedicated theme stylesheet; instead, you can enable the built-in theme to add gradients, shadows, and more.
+Темизация осуществляется с помощью SASS-переменных, SASS-карт и пользовательского CSS. Отдельного файла стилей темы нет; вместо этого вы можете включить встроенную тему для добавления градиентов, теней и других эффектов.
 
 </div>
 

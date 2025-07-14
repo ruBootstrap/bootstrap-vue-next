@@ -1,6 +1,6 @@
-# Image Support
+# Поддержка изображений
 
-The `src` prop and `blank-src` prop, out of the box, works only with absolute or fully-qualified-domain-name URLs. If you are using project assets as image sources, please refer to [Asset URL handling](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#asset-url-handling) to configure Vite to transform asset urls. If using a different build tool, you will need to find the relevant documentation to transform assets.
+Свойства `src` и `blank-src` по умолчанию работают только с абсолютными или полностью квалифицированными URL-адресами. Если вы используете ресурсы проекта в качестве источников изображений, ознакомьтесь с разделом [Обработка URL-адресов ресурсов](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#asset-url-handling), чтобы настроить Vite для преобразования URL-адресов ресурсов. Если вы используете другой инструмент сборки, обратитесь к соответствующей документации для настройки преобразования ресурсов.
 
 <script setup lang="ts">
 

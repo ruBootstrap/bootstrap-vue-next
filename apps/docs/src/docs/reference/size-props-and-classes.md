@@ -1,8 +1,8 @@
-# Size props and classes
+# Свойства и классы размера
 
 <div class="lead mb-5">
 
-Bootstrap v5 CSS provides several classes that control the sizing of elements, of which some of these have been translated into props on components.
+CSS Bootstrap v5 предоставляет несколько классов для управления размерами элементов, некоторые из которых реализованы как свойства компонентов.
 
 </div>
 

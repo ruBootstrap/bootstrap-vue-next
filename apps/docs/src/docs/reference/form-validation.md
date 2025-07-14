@@ -1,8 +1,8 @@
-# Form validation
+# Валидация форм
 
 <div class="lead mb-5">
 
-BootstrapVueNext does not include form validation by default; we leave that up to the many existing form validation plugins. Included here are some examples of validation plugins and how they may be integrated.
+BootstrapVueNext не включает валидацию форм по умолчанию; мы оставляем это на усмотрение многочисленных существующих плагинов для валидации. Здесь приведены примеры таких плагинов и способы их интеграции.
 
 </div>
 

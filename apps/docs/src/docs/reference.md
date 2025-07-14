@@ -1,8 +1,8 @@
-# Reference - Table of Contents
+# Справочник — Оглавление
 
 <div class="lead mb-5">
 
-BootstrapVueNext and Bootstrap reference, and additional resources documentation.
+Справочник по BootstrapVueNext и Bootstrap, а также дополнительная документация и ресурсы.
 
 </div>
 
@@ -19,63 +19,63 @@ const componentList: {name: string; description: string}[] = [
   {
     name: 'Accessibility',
     description:
-      `A brief overview of BootstrapVueNext's features and limitations for the creation of accessible content`,
+      `Краткий обзор возможностей и ограничений BootstrapVueNext для создания доступного контента`,
   },
   {
     name: 'Color Variants',
     description:
-      'Color variants are available when using the default Bootstrap v5 CSS and their mappings to CSS classes',
+      'Цветовые варианты, доступные при использовании стандартного CSS Bootstrap v5, и их соответствие CSS-классам',
   },
   {
     name: 'Contributing',
     description:
-      'Information on contributing to the BootstrapVueNext project',
+      'Информация о том, как внести вклад в проект BootstrapVueNext',
   },
   {
     name: 'Images',
     description:
-      'Information on including images in your components',
+      'Информация о добавлении изображений в ваши компоненты',
   },
   {
     name: 'Router Links',
-    description: 'Several BootstrapVueNext components support rendering `RouterLink` components compatible with Vue Router and Nuxt.js',
+    description: 'Ряд компонентов BootstrapVueNext поддерживают рендеринг компонентов `RouterLink`, совместимых с Vue Router и Nuxt.js',
   },
   {
     name: 'Settings',
-    description: 'BootstrapVue provides a few options for customizing component default values, and more',
+    description: 'BootstrapVue предоставляет несколько опций для настройки значений компонентов по умолчанию и других параметров',
   },
   {
     name: 'Size props and classes',
-    description: 'Bootstrap v5 CSS provides several classes that control the sizing of elements, of which some of these have been translated into props on components',
+    description: 'CSS Bootstrap v5 предоставляет несколько классов для управления размерами элементов, часть из которых реализована как пропсы компонентов',
   },
   {
     name: 'Spacing classes',
-    description: `Bootstrap v5 CSS includes a wide range of shorthand responsive margin and padding utility classes to modify an element's appearance`,
+    description: `CSS Bootstrap v5 включает широкий набор сокращённых адаптивных классов для управления отступами и внутренними отступами элементов`,
   },
   {
     name: 'Starter Templates',
     description:
-      'There are several ways you can create your app, from basic client side HTML all the way up to using a build system and compilers',
+      'Существует несколько способов создать приложение: от базового HTML до использования сборщиков и компиляторов',
   },
   {
     name: 'Theming Bootstrap',
     description:
-      `Theming is accomplished by SASS variables, SASS maps, and custom CSS. There is no dedicated theme stylesheet; instead, you can enable the built-in theme to add gradients, shadows, and more.`,
+      `Темизация осуществляется с помощью SASS-переменных, SASS-карт и пользовательского CSS. Отдельного файла темы нет; вместо этого можно включить встроенную тему для добавления градиентов, теней и других эффектов.`,
   },
   {
     name: 'Third party libraries',
     description:
-      'There are several 3rd party libraries that you can use to add additional functionality and features to your BootstrapVue project',
+      'Существует несколько сторонних библиотек, которые можно использовать для расширения функциональности и возможностей вашего проекта на BootstrapVue',
   },
   {
     name: 'Utility Classes',
     description:
-      'Bootstrap v5 CSS provides various utility classes to control color, spacing, flex-box, text alignment, floating, position, responsive display/hiding and much more',
+      'CSS Bootstrap v5 предоставляет различные утилитарные классы для управления цветом, отступами, flex-box, выравниванием текста, float, позиционированием, адаптивным отображением/скрытием и многим другим',
   },
   {
     name: 'Form Validation',
     description:
-      'BootstrapVueNext does not include form validation by default; we leave that up to the many existing form validation plugins. Included here are some examples of validation plugins and how they may be integrated',
+      'BootstrapVueNext не включает валидацию форм по умолчанию; мы оставляем это на усмотрение существующих плагинов. Здесь приведены примеры плагинов валидации и способы их интеграции',
   },
 ]
 

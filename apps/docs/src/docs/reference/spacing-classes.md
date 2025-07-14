@@ -1,8 +1,8 @@
-# Spacing classes
+# Классы отступов
 
 <div class="lead mb-5">
 
-Bootstrap v5 CSS includes a wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.
+CSS Bootstrap v5 включает широкий набор сокращённых адаптивных утилитарных классов для управления внешними и внутренними отступами элементов.
 
 </div>
 

@@ -1,8 +1,8 @@
-# Third party libraries
+# Сторонние библиотеки
 
 <div class="lead mb-5">
 
-There are several 3rd party libraries that you can use to add additional functionality and features to your BootstrapVue project.
+Существует несколько сторонних библиотек, которые можно использовать для добавления дополнительной функциональности и возможностей в ваш проект на BootstrapVue.
 
 </div>
 

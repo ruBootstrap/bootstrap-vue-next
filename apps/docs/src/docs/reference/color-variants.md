@@ -1,13 +1,13 @@
-# Color variants and CSS class mapping
+# Цветовые варианты и соответствие CSS-классам
 
 <div class="lead mb-5">
 
-<p>Color variants are available when using the default Bootstrap v5 CSS and their mappings to CSS classes</p>
-<p>Below are the variants available when using the default Bootstrap v5 CSS. When using BootstrapVueNext components, the variants are referred to by their variant name, rather than by the underlying CSS classname.</p>
+<p>Цветовые варианты доступны при использовании стандартного CSS Bootstrap v5 и их соответствие CSS-классам</p>
+<p>Ниже приведены варианты, доступные при использовании стандартного CSS Bootstrap v5. При использовании компонентов BootstrapVueNext варианты указываются по их имени, а не по базовому CSS-классу.</p>
 
 </div>
 
-## Base variants
+## Базовые варианты
 
 <BCard class="bg-body-tertiary">
 
@@ -22,9 +22,9 @@
 
 </BCard>
 
-The base variants will translate to various Bootstrap v5 contextual class names based on the component (and variant purpose) where they are used. See the sections below for details.
+Базовые варианты преобразуются в различные контекстные классы Bootstrap v5 в зависимости от компонента (и назначения варианта), где они используются. Подробнее см. в разделах ниже.
 
-## Background and border variants
+## Варианты фона и границ
 
 <BCard class="bg-body-tertiary">
 
@@ -51,18 +51,18 @@ The base variants will translate to various Bootstrap v5 contextual class names 
 
 </BCard>
 
-All the base variants plus:
+Все базовые варианты плюс:
 
 - `white`
 - `transparent`
 
-These translate to class names `bg-{variant}` for backgrounds and `border-{variant}` for borders.
+Они преобразуются в классы `bg-{variant}` для фона и `border-{variant}` для границ.
 
-These variants are used by components (such as `BCard`, `BModal`, etc.) that provide `bg-variant`, `_-bg-variant`, `border-variant` and `_-border-variant` props.
+Эти варианты используются компонентами (такими как `BCard`, `BModal` и др.), которые предоставляют свойства `bg-variant`, `*-bg-variant`, `border-variant` и `*-border-variant`.
 
-## Text variants
+## Варианты текста
 
-All the base variants plus:
+Все базовые варианты плюс:
 
 - `muted`
 - `white`
@@ -99,95 +99,91 @@ All the base variants plus:
 
 </BCard>
 
-These translate to class names `text-{variant}`
+Они преобразуются в классы `text-{variant}`
 
-These variants are used by components (such as `BCard`, `BModal`, etc.) that provide `text-variant` and `*-text-variant` props.
+Эти варианты используются компонентами (такими как `BCard`, `BModal` и др.), которые предоставляют свойства `text-variant` и `*-text-variant`.
 
-## Variant Interactions
+## Взаимодействие вариантов
 
-The `bg-variant` and `text-variant` props take precedence over the `variant` prop. It is more
-straightforward to set **either** `variant` **or** `bg-variant` and `text-variant`, but not a
-combination of `variant` with the other two. But the more specific props effectively override
-the `text` or `bg` portion of the `variant` prop, so an alternative is to use the `variant`
-prop and then override the `text` or `bg` as needed.
+Свойства `bg-variant` и `text-variant` имеют приоритет над свойством `variant`. Обычно проще использовать **либо** `variant`, **либо** `bg-variant` и `text-variant`, но не их комбинацию. Более специфичные свойства фактически переопределяют часть `text` или `bg` свойства `variant`, поэтому альтернативой является использование свойства `variant` с последующим переопределением `text` или `bg` по необходимости.
 
 <<< DEMO ./demo/VariantInteractions.vue#template{vue-html}
 
-## Component specific variants
+## Варианты для отдельных компонентов
 
-Some Bootstrap v5 components require additional CSS styling, or additional pseudo selector styling (i.e buttons), and hence have their own underlying variant CSS classes.
+Некоторые компоненты Bootstrap v5 требуют дополнительного CSS-оформления или стилизации с помощью псевдоселекторов (например, кнопки), поэтому имеют собственные CSS-классы вариантов.
 
-### Alert variants
+### Варианты для Alert
 
-All the base variants
+Все базовые варианты
 
-These translate to class names `alert-{variant}`.
+Они преобразуются в классы `alert-{variant}`.
 
-See [Variant Interactions](#variant-interactions) for details on interactions between `variant`, `bg-variant`, and `text-variant`.
+Подробнее о взаимодействии между `variant`, `bg-variant` и `text-variant` см. в разделе [Взаимодействие вариантов](#взаимодействие-варинатов).
 
-### Badge variants
+### Варианты для Badge
 
-All the base variants
+Все базовые варианты
 
-These translate to class names `badge-{variant}`.
+Они преобразуются в классы `badge-{variant}`.
 
-See [Variant Interactions](#variant-interactions) for details on interactions between `variant`, `bg-variant`, and `text-variant`.
+Подробнее о взаимодействии между `variant`, `bg-variant` и `text-variant` см. в разделе [Взаимодействие вариантов](#взаимодействие-варинатов).
 
-### Button variants
+### Варианты для Button
 
-All the base variants plus:
+Все базовые варианты плюс:
 
-- `outline-{base variant}` which generates an outline button version of the base variant
-- `link` which renders the button with the look of a link but retains button padding and margins
+- `outline-{base variant}` — создает вариант кнопки с обводкой для базового варианта
+- `link` — отображает кнопку в виде ссылки, но с сохранением отступов и полей кнопки
 
-These translate to class names `btn-{variant}` and `btn-outline-{variant}`.
+Они преобразуются в классы `btn-{variant}` и `btn-outline-{variant}`.
 
-Note the `link` variant does not have an outline version.
+Обратите внимание: вариант `link` не имеет версии с обводкой.
 
-See [Variant Interactions](#variant-interactions) for details on interactions between `variant`, `bg-variant`, and `text-variant`.
+Подробнее о взаимодействии между `variant`, `bg-variant` и `text-variant` см. в разделе [Взаимодействие вариантов](#взаимодействие-варинатов).
 
-### Table variants
+### Варианты для Table
 
-All the base variants plus:
+Все базовые варианты плюс:
 
 - `active`
 
-These variants translate to class names `table-{variant}`.
+Эти варианты преобразуются в классы `table-{variant}`.
 
-When the table has the `dark` prop set, the variants translate to the `bg-{variant}` classes.
+Если у таблицы установлен проп `dark`, варианты преобразуются в классы `bg-{variant}`.
 
-Note that the `active` variant is only applicable to `<tr>` elements within the `<tbody>`, and can not be applied to individual table cells or used as the `table-variant`.
+Обратите внимание: вариант `active` применим только к элементам `<tr>` внутри `<tbody>` и не может быть применён к отдельным ячейкам или использоваться как `table-variant`.
 
-### Popover variants
+### Варианты для Popover
 
-All the base variants
+Все базовые варианты
 
-These translate to BootstrapVueNext custom class names `b-popover-{variant}`.
+Они преобразуются в пользовательские классы BootstrapVueNext `b-popover-{variant}`.
 
-### Tooltip variants
+### Варианты для Tooltip
 
-All the base variants
+Все базовые варианты
 
-These translate to BootstrapVueNext custom class names `b-tooltip-{variant}`.
+Они преобразуются в пользовательские классы BootstrapVueNext `b-tooltip-{variant}`.
 
-### Toast variants
+### Варианты для Toast
 
-All the base variants
+Все базовые варианты
 
-These translate to BootstrapVueNext custom class names `b-toast-{variant}`.
+Они преобразуются в пользовательские классы BootstrapVueNext `b-toast-{variant}`.
 
-## Using variant classes
+## Использование классов вариантов
 
-You may also use the underlying class names directly on elements (and some components) via the standard HTML `class="..."` attribute.
+Вы также можете использовать базовые классы напрямую на элементах (и некоторых компонентах) через стандартный HTML-атрибут `class="..."`.
 
-## Creating custom variants
+## Создание пользовательских вариантов
 
-When creating custom variants, follow the Bootstrap v5 variant CSS class naming scheme and they will become available to the various components that use that scheme (i.e. create a custom CSS class `btn-purple` and `purple` becomes a valid variant to use on `BButton`).
+При создании пользовательских вариантов следуйте схеме именования CSS-классов вариантов Bootstrap v5, и они станут доступны для различных компонентов, использующих эту схему (например, создайте класс `btn-purple`, и `purple` станет допустимым вариантом для `BButton`).
 
-Alternatively, you can create new variant theme colors by supplying custom Bootstrap SCSS theme color maps. The default theme color map is (from `bootstrap/scss/\_variables.scss`):
+В качестве альтернативы вы можете создать новые цветовые темы, предоставив собственные карты цветов темы SCSS Bootstrap. Карта цветов темы по умолчанию (из `bootstrap/scss/_variables.scss`):
 
 <HighlightCard>
-  Base grayscale colors definitions
+  Определения базовых оттенков серого
   <template #html>
 
 ```scss
@@ -208,7 +204,7 @@ $black: #000;
 </HighlightCard>
 
 <HighlightCard>
-  Base colors definitions
+  Определения базовых цветов
   <template #html>
 
 ```scss
@@ -228,7 +224,7 @@ $cyan: #0dcaf0;
 </HighlightCard>
 
 <HighlightCard>
-  Theme color default definitions
+  Определения цветов темы по умолчанию
   <template #html>
 
 ```scss

@@ -1,58 +1,58 @@
-# Router link support
+# Поддержка ссылок роутера
 
 <div class="lead mb-5">
 
-Several BootstrapVue components support rendering `RouterLink` components compatible with Vue Router and Nuxt.js. For more information, see the official [Vue Router docs](https://router.vuejs.org) and official [Nuxt.js docs](https://nuxt.com/docs/api/components/nuxt-link#props).
+Ряд компонентов BootstrapVue поддерживают рендеринг компонентов `RouterLink`, совместимых с Vue Router и Nuxt.js. Для получения дополнительной информации смотрите официальную [документацию Vue Router](https://router.vuejs.org) и официальную [документацию Nuxt.js](https://nuxt.com/docs/api/components/nuxt-link#props).
 
 </div>
 
-## Common router link props
+## Общие свойства ссылок роутера
 
-In the following sections, we are using the `BLink` component to render router links. `BLink` is the building block of most of BootstrapVue's actionable components. You could use any other component that supports link generation such as `BLink`, `BButton`, `BAvatar`, `BBreadcrumbItem`, `BListGroupItem`, `BNavItem`, `BDropdownItem`, and `BPaginationNav`. Note that not all props are available on all components. Refer to the respective component documentation for details.
+В следующих разделах мы используем компонент `BLink` для рендеринга ссылок роутера. `BLink` — строительный блок большинства интерактивных компонентов BootstrapVue. Вы также можете использовать любой другой компонент, поддерживающий генерацию ссылок, такой как `BLink`, `BButton`, `BAvatar`, `BBreadcrumbItem`, `BListGroupItem`, `BNavItem`, `BDropdownItem` и `BPaginationNav`. Обратите внимание, что не все свойства доступны во всех компонентах. Подробности смотрите в документации соответствующего компонента.
 
 ### `to`
 
-- type: `string | Location`
-- required to generate a `RouterLink`
+- тип: `string | Location`
+- обязательно для генерации `RouterLink`
 
-Denotes the target route of the link. When clicked, the value of the `to` prop will be passed to `router.push()` internally, so the value can be either a string or a location descriptor object.
+Указывает целевой маршрут ссылки. При клике значение свойства `to` будет передано во внутренний `router.push()`, поэтому оно может быть как строкой, так и объектом-описателем маршрута.
 
 <HighlightCard>
 
 ```vue
-<!-- Literal string -->
-<BLink to="home">Home</BLink>
+<!-- Буквальная строка -->
+<BLink to="home">Главная</BLink>
 
-<!-- Renders to -->
-<a href="home">Home</a>
+<!-- Рендерится как -->
+<a href="home">Главная</a>
 
-<!-- JavaScript expression using `v-bind` -->
-<BLink v-bind:to="'home'">Home</BLink>
+<!-- JavaScript-выражение с использованием `v-bind` -->
+<BLink v-bind:to="'home'">Главная</BLink>
 
-<!-- Omitting `v-bind` is fine, just as binding any other prop -->
-<BLink :to="'home'">Home</BLink>
+<!-- Можно опустить `v-bind`, как и при привязке любого другого свойства -->
+<BLink :to="'home'">Главная</BLink>
 
-<!-- Same as above -->
-<BLink :to="{path: 'home'}">Home</BLink>
+<!-- То же самое -->
+<BLink :to="{path: 'home'}">Главная</BLink>
 
-<!-- Named route -->
-<BLink :to="{name: 'user', params: {userId: 123}}">User</BLink>
+<!-- Именованный маршрут -->
+<BLink :to="{name: 'user', params: {userId: 123}}">Пользователь</BLink>
 
-<!-- With query, resulting in `/register?plan=private` -->
-<BLink :to="{path: 'register', query: {plan: 'private'}}">Register</BLink>
+<!-- С query, результат — `/register?plan=private` -->
+<BLink :to="{path: 'register', query: {plan: 'private'}}">Регистрация</BLink>
 
-<!-- Render a non-router link by omitting `to` and specifying an `href` -->
-<BLink href="/home">Home</BLink>
+<!-- Рендер обычной ссылки без роутера, если не указать `to`, а задать `href` -->
+<BLink href="/home">Главная</BLink>
 ```
 
 </HighlightCard>
 
 ### `replace`
 
-- type: `boolean`
-- default: `false`
+- тип: `boolean`
+- по умолчанию: `false`
 
-Setting replace prop will call `router.replace()` instead of `router.push()` when clicked, so the navigation will not leave a history record.
+Если указать свойство replace, при клике будет вызван `router.replace()` вместо `router.push()`, и переход не попадёт в историю браузера.
 
 <HighlightCard>
 
@@ -64,17 +64,17 @@ Setting replace prop will call `router.replace()` instead of `router.push()` whe
 
 ### `router-tag`
 
-- type: `string`
-- default: 'a'
+- тип: `string`
+- по умолчанию: 'a'
 
-Sometimes we want `RouterLink` to render as another tag, e.g `<li>`. Then we can use `router-tag` prop to specify which tag to render to, and it will still listen to click events for navigation. `router-tag` translates to the `tag` prop on the final rendered `RouterLink`.
+Иногда требуется, чтобы `RouterLink` рендерился как другой тег, например `<li>`. Для этого используйте свойство `router-tag`, чтобы указать нужный тег, и он всё равно будет реагировать на клики для навигации. `router-tag` преобразуется в свойство `tag` у итогового компонента `RouterLink`.
 
 <HighlightCard>
 
 ```vue
 <BLink to="/foo" router-tag="li">foo</BLink>
 
-<!-- Renders as -->
+<!-- Рендерится как -->
 <li>foo</li>
 ```
 
@@ -82,32 +82,32 @@ Sometimes we want `RouterLink` to render as another tag, e.g `<li>`. Then we can
 
 <BAlert variant="info" :model-value="true" class="my-5">
 
-Note: Changing the tag from anything other than `<a>` is discouraged, as it hinders accessibility of keyboard and/or screen-reader users, and is also not very SEO friendly.
+Примечание: Изменять тег на что-либо, кроме `<a>`, не рекомендуется, так как это ухудшает доступность для пользователей клавиатуры и/или экранных читалок, а также негативно влияет на SEO.
 
 </BAlert>
 
 ### `active-class`
 
-- type: `string`
-- default: `router-link-active` (`nuxt-link-active` when using Nuxt.js)
+- тип: `string`
+- по умолчанию: `router-link-active` (`nuxt-link-active` при использовании Nuxt.js)
 
-Configure the active CSS class applied when the link is active. Note the default value can also be configured globally via the `linkActiveClass` [router constructor option](https://router.vuejs.org/api/#linkactiveclass).
+Настраивает CSS-класс, применяемый к активной ссылке. Значение по умолчанию также можно задать глобально через опцию конструктора роутера `linkActiveClass` ([документация](https://router.vuejs.org/api/#linkactiveclass)).
 
-With components that support router links (have a `to` prop), you will want to set this to the class `active` (or a space separated string that includes 'active') to apply Bootstrap's `active` styling on the component when the current route matches the `to` prop.
+В компонентах, поддерживающих ссылки роутера (имеют свойство `to`), рекомендуется установить это свойство в значение `active` (или строку, содержащую 'active'), чтобы применять стили Bootstrap для активных элементов при совпадении текущего маршрута со значением `to`.
 
 ### `exact`
 
-- type: `boolean`
-- default: `false`
+- тип: `boolean`
+- по умолчанию: `false`
 
-The default active class matching behavior is inclusive match. For example, `<BLink to="/a">` will get this class applied as long as the current path starts with `/a/` or is `/a`.
+По умолчанию активный класс применяется при частичном совпадении маршрута. Например, `<BLink to="/a">` получит этот класс, если текущий путь начинается с `/a/` или равен `/a`.
 
-One consequence of this is that `<BLink to="/">` will be active for every route! To force the link into "exact match mode", use the `exact` prop:
+Следствием этого является то, что `<BLink to="/">` будет активен на всех маршрутах! Чтобы включить режим "точного совпадения", используйте свойство `exact`:
 
 <HighlightCard>
 
 ```vue
-<!-- This link will only be active at `/` -->
+<!-- Эта ссылка будет активна только на `/` -->
 <BLink to="/" exact />
 ```
 
@@ -115,26 +115,26 @@ One consequence of this is that `<BLink to="/">` will be active for every route!
 
 ### `exact-active-class`
 
-- type: `string`
-- default: `router-link-exact-active` (`nuxt-link-exact-active` when using Nuxt.js)
-- availability: Vue Router 2.5.0+
+- тип: `string`
+- по умолчанию: `router-link-exact-active` (`nuxt-link-exact-active` при использовании Nuxt.js)
+- доступно с Vue Router 2.5.0+
 
-Configure the active CSS class applied when the link is active with exact match. Note the default value can also be configured globally via the `linkExactActiveClass` [router constructor option](https://router.vuejs.org/api/#linkexactactiveclass).
+Настраивает CSS-класс, применяемый к ссылке при точном совпадении маршрута. Значение по умолчанию также можно задать глобально через опцию конструктора роутера `linkExactActiveClass` ([документация](https://router.vuejs.org/api/#linkexactactiveclass)).
 
-With components that support router links (have a `to` prop), you will want to set this to the class `active` (or a space separated string that includes `active`) to apply Bootstrap's active styling on the component when the current route matches the `to` prop.
+В компонентах, поддерживающих ссылки роутера (имеют свойство `to`), рекомендуется установить это свойство в значение `active` (или строку, содержащую `active`), чтобы применять стили Bootstrap для активных элементов при совпадении текущего маршрута со значением `to`.
 
 ### `exact-path`
 
-- type: `boolean`
-- default: `false`
-- availability: Vue Router 3.5.0+
+- тип: `boolean`
+- по умолчанию: `false`
+- доступно с Vue Router 3.5.0+
 
-Allows matching only using the `path` section of the url, effectively ignoring the `query` and the `hash` sections.
+Позволяет сравнивать только часть пути URL, игнорируя параметры `query` и `hash`.
 
 <HighlightCard>
 
 ```vue
-<!-- this link will also be active at `/search?page=2` or `/search#filters` -->
+<!-- Эта ссылка также будет активна на `/search?page=2` или `/search#filters` -->
 <RouterLink to="/search" exact-path> </RouterLink>
 ```
 
@@ -142,35 +142,35 @@ Allows matching only using the `path` section of the url, effectively ignoring t
 
 ### `exact-path-active-class`
 
-- type: `string`
-- default: `router-link-exact-path-active`
-- availability: Vue Router 2.5.0+
+- тип: `string`
+- по умолчанию: `router-link-exact-path-active`
+- доступно с Vue Router 2.5.0+
 
-Configure the active CSS class applied when the link is active with exact path match. Note the default value can also be configured globally via the `linkExactActiveClass` [router constructor option](https://router.vuejs.org/api/#linkexactactiveclass).
+Настраивает CSS-класс, применяемый к ссылке при точном совпадении пути. Значение по умолчанию также можно задать глобально через опцию конструктора роутера `linkExactActiveClass` ([документация](https://router.vuejs.org/api/#linkexactactiveclass)).
 
-With components that support router links (have a `to` prop), you will want to set this to the class `active` (or a space separated string that includes `active`) to apply Bootstrap's active styling on the component when the current route matches the `to` prop.
+В компонентах, поддерживающих ссылки роутера (имеют свойство `to`), рекомендуется установить это свойство в значение `active` (или строку, содержащую `active`), чтобы применять стили Bootstrap для активных элементов при совпадении текущего маршрута со значением `to`.
 
-## Nuxt.js specific router link props
+## Специфичные для Nuxt.js свойства ссылок роутера
 
 <NotYetImplemented/>
 
-When BootstrapVue detects that your app is running under [Nuxt.js](https://nuxt.com), it will render a [`NuxtLink`](https://nuxt.com/docs/api/components/nuxt-link#nuxtlink) sub component instead of a `RouterLink`. `NuxtLink` supports all of the above router link props, plus the following additional Nuxt.js specific props.
+Когда BootstrapVue определяет, что ваше приложение работает под управлением [Nuxt.js](https://nuxt.com), он будет рендерить подкомпонент [`NuxtLink`](https://nuxt.com/docs/api/components/nuxt-link#nuxtlink) вместо `RouterLink`. `NuxtLink` поддерживает все вышеописанные свойства, а также следующие специфичные для Nuxt.js:
 
 ### `prefetch`
 
-- type: `boolean`
-- default: `null`
-- availability: Nuxt.js 3+
+- тип: `boolean`
+- по умолчанию: `null`
+- доступно с Nuxt.js 3+
 
-To improve the responsiveness of your Nuxt.js applications, when the link will be displayed within the viewport, Nuxt.js will automatically prefetch the code splitted page. Setting `prefetch` to `true` or `false` will overwrite the default value of `router.prefetchLinks` configured in the `nuxt.config.js` configuration file.
+Для повышения отзывчивости Nuxt.js-приложений, когда ссылка появляется во viewport, Nuxt.js автоматически предварительно загружает разделённую по коду страницу. Установка `prefetch` в `true` или `false` переопределяет значение по умолчанию, заданное в `router.prefetchLinks` в файле конфигурации `nuxt.config.js`.
 
 ### `no-prefetch`
 
-- type: `boolean`
-- default: `true`
-- availability: Nuxt.js 3+
+- тип: `boolean`
+- по умолчанию: `true`
+- доступно с Nuxt.js 3+
 
-To improve the responsiveness of your Nuxt.js applications, when the link will be displayed within the viewport, Nuxt.js will automatically prefetch the code splitted page. Setting `no-prefetch` will disabled this feature for the specific link.
+Для повышения отзывчивости Nuxt.js-приложений, когда ссылка появляется во viewport, Nuxt.js автоматически предварительно загружает разделённую по коду страницу. Установка `no-prefetch` отключает эту функцию для конкретной ссылки.
 
 <HighlightCard>
 

@@ -1,8 +1,8 @@
-# Settings
+# Настройки
 
 <div class="lead mb-5">
 
-BootstrapVue provides a few options for customizing component default values, and more.
+BootstrapVue предоставляет несколько опций для настройки значений по умолчанию компонентов и других параметров.
 
 </div>
 
