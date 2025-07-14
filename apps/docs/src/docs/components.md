@@ -1,8 +1,8 @@
-# Components - Table of Contents
+# Компоненты — Оглавление
 
 <div class="lead mb-5">
 
-BootstrapVueNext components list.
+Список компонентов BootstrapVueNext.
 
 </div>
 
@@ -19,176 +19,176 @@ const componentList: {name: string; description: string}[] = [
   {
     name: 'Accordion',
     description:
-      'Easily toggle content visibility on your pages. Includes support for making accordions',
+      'Легко переключайте видимость содержимого на страницах. Включает поддержку аккордеонов',
   },
   {
     name: 'Alert',
     description:
-      'Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages',
+      'Предоставляйте контекстные сообщения обратной связи для типичных действий пользователя с помощью гибких и настраиваемых уведомлений',
   },
   {
     name: 'Avatar',
     description:
-      'Custom component typically used to display a user profile as a picture, an icon, or short text',
+      'Пользовательский компонент, обычно используемый для отображения профиля пользователя в виде изображения, иконки или короткого текста',
   },
   {
     name: 'Badge',
-    description: 'Small and adaptive tag for adding context to just about any content',
+    description: 'Небольшой и адаптивный ярлык для добавления контекста практически к любому содержимому',
   },
   {
     name: 'Breadcrumb',
-    description: `Indicate the current page's location within a navigational hierarchy.`,
+    description: `Указывает местоположение текущей страницы в иерархии навигации.`,
   },
   {
     name: 'Button',
-    description: 'Custom button component for actions in forms, dialogs, and more',
+    description: 'Пользовательский компонент кнопки для действий в формах, диалогах и других местах',
   },
   {
     name: 'Button Group',
-    description: 'Group a series of buttons on a single line or stack them in a vertical column',
+    description: 'Группируйте серию кнопок в одну строку или располагайте их вертикально',
   },
   {
     name: 'Button Toolbar',
-    description: 'Group a series of button-groups and/or input-groups together on a single line',
+    description: 'Группируйте серии групп кнопок и/или групп ввода на одной строке',
   },
   {
     name: 'Card',
     description:
-      'A flexible and extensible content container. It includes options for headers and footers, a wide variety of content',
+      'Гибкий и расширяемый контейнер для содержимого. Включает опции для заголовков и подвалов, широкий спектр содержимого',
   },
   {
     name: 'Carousel',
     description:
-      'A slideshow component for cycling through elements—images or slides of text—like a carousel',
+      'Компонент слайд-шоу для прокрутки элементов — изображений или слайдов с текстом — как в карусели',
   },
   {
     name: 'Collapse',
     description:
-      'Easily toggle visibility of almost any content on your pages in a vertically collapsing container',
+      'Легко переключайте видимость практически любого содержимого на страницах в вертикально схлопывающемся контейнере',
   },
   {
     name: 'Dropdown',
     description:
-      'Toggleable, contextual overlays for displaying lists of links and actions in a dropdown menu format',
+      'Переключаемые, контекстные оверлеи для отображения списков ссылок и действий в формате выпадающего меню',
   },
   {
     name: 'Form',
     description:
-      'Form component and helper components that optionally support inline form styles and validation states',
+      'Компонент формы и вспомогательные компоненты с поддержкой inline-стилей и состояний валидации',
   },
   {
     name: 'Form Checkbox',
     description:
-      'Custom checkbox input and checkbox group to replace the browser default checkbox input, built on top of semantic and accessible markup. Optionally supports switch styling',
+      'Пользовательский чекбокс и группа чекбоксов для замены стандартного чекбокса браузера, построены на семантической и доступной разметке. Опционально поддерживают стиль переключателя',
   },
   {
     name: 'Form Group',
-    description: 'The easiest way to add some structure to forms',
+    description: 'Самый простой способ добавить структуру в формы',
   },
   {
     name: 'Form Input',
     description:
-      'Create various type inputs such as text, password, number, URL, email, search, range, date, and more',
+      'Создавайте различные типы полей ввода: текст, пароль, число, URL, email, поиск, диапазон, дата и другие',
   },
   {
     name: 'Form Radio',
-    description: `Bootstrap's custom radio input to replace the browser default radio input.`,
+    description: `Пользовательский radio input Bootstrap для замены стандартного radio input браузера.`,
   },
   {
     name: 'Form Select',
-    description: 'Bootstrap custom select using custom styles',
+    description: 'Пользовательский select Bootstrap с кастомными стилями',
   },
   {
     name: 'Form Tags',
     description:
-      'Lightweight custom tagged input form control, with options for customized interface rendering, duplicate tag detection, and optional tag validation',
+      'Лёгкий компонент ввода тегов с возможностью кастомизации интерфейса, обнаружением дубликатов и опциональной валидацией тегов',
   },
   {
     name: 'Form Textarea',
     description:
-      'Create multi-line text inputs with support for auto height sizing, minimum and maximum number of rows, and contextual states',
+      'Создавайте многострочные поля ввода с поддержкой авторазмера, минимального и максимального количества строк и контекстных состояний',
   },
   {
     name: 'Grid System',
-    description: 'Lightweight utility components for making a flexible, responsive user interface',
+    description: 'Лёгкие утилитарные компоненты для создания гибкого, адаптивного интерфейса',
   },
   {
     name: 'Image',
-    description: 'Image component with responsive behavior',
+    description: 'Компонент изображения с адаптивным поведением',
   },
   {
     name: 'Input Group',
     description:
-      'Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs. ',
+      'Легко расширяйте элементы управления формой, добавляя текст, кнопки или группы кнопок с любой стороны текстовых полей.',
   },
   {
     name: 'Link',
-    description: 'A simple wrapper for standard navigation components',
+    description: 'Простой обёртка для стандартных навигационных компонентов',
   },
   {
     name: 'List Group',
     description:
-      'A flexible and powerful component for displaying a series of content. List Group items can be modified to support just about any content within',
+      'Гибкий и мощный компонент для отображения серии содержимого. Элементы List Group можно модифицировать для поддержки практически любого содержимого',
   },
   {
     name: 'Modal',
     description:
-      'Modals are flexible dialog, interruptive, prompts that can support a variety of use cases',
+      'Модальные окна — это гибкие диалоговые, прерывающие элементы, которые могут поддерживать различные сценарии использования',
   },
   {
     name: 'Nav',
-    description: 'The Nav component is a simple wrapper for building navigation components',
+    description: 'Компонент Nav — простая обёртка для построения навигационных компонентов',
   },
   {
     name: 'Navbar',
     description:
-      'The Navbar is typically the central location for branding, navigation, and other elements on the header',
+      'Navbar обычно является центральным местом для брендинга, навигации и других элементов в шапке',
   },
   {
     name: 'Offcanvas',
     description:
-      'Offcanvas components are hidden sidebars for your app, usually opened by some event',
+      'Offcanvas — это скрытые боковые панели для вашего приложения, обычно открывающиеся по какому-либо событию',
   },
   {
     name: 'Overlay',
-    description: 'Visually obscure a particular element or component and its content',
+    description: 'Визуально затемняет определённый элемент или компонент и его содержимое',
   },
   {
     name: 'Pagination',
     description:
-      'Quick first, previous, next, last, and page buttons for pagination control of another component',
+      'Быстрые кнопки первой, предыдущей, следующей, последней страницы и номера страниц для управления пагинацией другого компонента',
   },
   {
     name: 'Placeholder',
     description:
-      'Placeholder components can create a unique appearance to indicate something may still be loading',
+      'Компоненты-заполнители могут создавать уникальный вид, чтобы показать, что что-то ещё загружается',
   },
   {
     name: 'Popover',
-    description: 'Popover provides a tooltip behavior over another component',
+    description: 'Popover предоставляет поведение всплывающей подсказки над другим компонентом',
   },
   {
     name: 'Progress',
     description:
-      'A custom progress component for displaying simple or complex progress bars, featuring support for horizontally stacked bars, animated backgrounds, and text labels',
+      'Пользовательский компонент прогресса для отображения простых или сложных индикаторов, поддержка горизонтальных стэков, анимированных фонов и текстовых меток',
   },
   {
     name: 'Spinner',
-    description: `The spinner component can be used to show the loading state in your projects. They're rendered only with basic HTML and CSS as a lightweight Vue functional component.`,
+    description: `Компонент spinner можно использовать для отображения состояния загрузки в ваших проектах. Рендерится только с помощью базового HTML и CSS как лёгкий функциональный компонент Vue.`,
   },
   {
     name: 'Table',
     description:
-      'For displaying tabular data. Table supports pagination, filtering, sorting, custom rendering, events, and asynchronous data. For a simple display of tabular data without all the fancy features, use TableSimple',
+      'Для отображения табличных данных. Table поддерживает пагинацию, фильтрацию, сортировку, кастомный рендеринг, события и асинхронные данные. Для простого отображения таблицы без дополнительных функций используйте TableSimple',
   },
   {
     name: 'Tabs',
-    description: 'Create a widget of tabbable panes of local content',
+    description: 'Создавайте виджет с вкладками для локального содержимого',
   },
   {
     name: 'Toast',
     description:
-      'Push notifications to your visitors with a toast, a lightweight and easily customizable alert message',
+      'Пуш-уведомления для ваших посетителей с помощью Toast — лёгкого и легко настраиваемого сообщения',
   },
   {
     name: 'Form Spinbutton',
@@ -196,7 +196,7 @@ const componentList: {name: string; description: string}[] = [
   },
     {
       name: 'Tooltip',
-      description: 'Tooltip provides a tooltip behavior over another component',
+      description: 'Tooltip предоставляет поведение всплывающей подсказки над другим компонентом',
     },
 ]
 

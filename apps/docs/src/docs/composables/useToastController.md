@@ -2,7 +2,7 @@
 
 <div class="lead mb-5">
 
-Often times one may want to open a `Toast` in a global context, without the need for declaring a component, perhaps to display an error after a function threw an error. `useToastController` is used to create `Toasts` on demand. You must have initialized the `BToastOrchestrator` component once in your application. The following functionality requires the existance of that component
+Часто возникает необходимость открыть `Toast` в глобальном контексте, без объявления компонента — например, чтобы показать ошибку после выброса исключения. `useToastController` используется для создания `Toast` по требованию. В приложении должен быть инициализирован компонент `BToastOrchestrator` (один раз). Следующая функциональность требует наличия этого компонента.
 
 </div>
 
@@ -10,7 +10,7 @@ Often times one may want to open a `Toast` in a global context, without the need
 
 ## BToastOrchestrator
 
-You must have initialized `BToastOrchestrator` component once and only once (doing multiple may display multiple `Toasts`). This is usually best placed at the App root.
+Вы должны инициализировать компонент `BToastOrchestrator` ровно один раз (несколько инициализаций приведут к отображению нескольких Toast). Обычно его лучше всего размещать в корне приложения.
 
 <HighlightCard>
 
@@ -23,25 +23,25 @@ You must have initialized `BToastOrchestrator` component once and only once (doi
   </template>
 </HighlightCard>
 
-The only props it access are `teleportDisabled` and `teleportTo` to modify the location that it is placed
+Единственные пропсы, к которым он обращается — это `teleportDisabled` и `teleportTo` для изменения места размещения Toast.
 
-In addition, it contains a few exposed methods. These exposed methods on the `template ref` correspond to those in the `useToastController` function, described below
+Кроме того, компонент содержит несколько методов, доступных через `template ref`. Эти методы соответствуют функциям из `useToastController`, описанным ниже:
 
 - remove
 - show
 - toasts
 
-## Showing a Toast
+## Показ Toast
 
-Showing a toast is done through the show method
+Показ Toast осуществляется с помощью метода show
 
 <HighlightCard>
-  <BButton @click="create({ title: 'Hello', body: 'World'  })">Show</BButton>
+  <BButton @click="create({ title: 'Привет', body: 'Мир'  })">Показать</BButton>
   <template #html>
 
 ```vue
 <template>
-  <BButton @click="create({title: 'Hello', body: 'World'})">Show</BButton>
+  <BButton @click="create({title: 'Привет', body: 'Мир'})">Показать</BButton>
 </template>
 
 <script setup lang="ts">
@@ -52,25 +52,25 @@ const {create} = useToastController()
   </template>
 </HighlightCard>
 
-The `show` method returns a `promise` that is resolved then the toast closes. You can give toast a unique id. Since `Toasts` are fluid and can move around a lot, returning the index at a given point in time is not ideal for as its position may be changed in the array. So, for use with the `remove` method, you need to give a unique identifier
+Метод `show` возвращает `promise`, который резолвится при закрытии Toast. Можно задать Toast уникальный id. Поскольку Toast могут перемещаться, возвращать индекс нецелесообразно — для метода `remove` нужен уникальный идентификатор.
 
-### Show Options
+### Опции show
 
-The `show` method accepts an object with the following values `props` and `component`
+Метод `show` принимает объект с полями `props` и `component`.
 
-The props property corresponds to mostly that of the `BToast` components props. The props object, in addition to the props declared on `BToast`, includes `position`. The `position` value effects its position, its type is [Container Position](/docs/types#containerposition)
+Свойство props соответствует в основном пропсам компонента `BToast`. В объекте props, помимо пропсов `BToast`, есть поле `position`, определяющее позицию Toast ([Container Position](/docs/types#containerposition)).
 
-### Reactivity Within Show
+### Реактивность внутри show
 
-`show` props property can accept a `MaybeRefOrGetter`, meaning that you can make properties reactive
+Свойство props метода `show` может принимать `MaybeRefOrGetter`, что позволяет делать свойства реактивными.
 
 <HighlightCard>
-  <BButton @click="showReactiveExample">Show</BButton>
+  <BButton @click="showReactiveExample">Показать</BButton>
   <template #html>
 
 ```vue
 <template>
-  <BButton @click="showMe">Show</BButton>
+  <BButton @click="showMe">Показать</BButton>
 </template>
 
 <script setup lang="ts">
@@ -101,17 +101,17 @@ const showMe = () => {
   </template>
 </HighlightCard>
 
-### Advanced usage
+### Расширенное использование
 
-Using props can work for most situations, but it leaves some finer control to be desired. For instance, you can add HTML to any `slot` value. This can either be an imported SFC or an inline render function. For reactvity, you must use a getter function.
+Использование props подходит для большинства случаев, но иногда требуется больший контроль. Например, вы можете добавить HTML в любой слот. Это может быть импортированный SFC или inline render-функция. Для реактивности используйте функцию-геттер.
 
 <HighlightCard>
-  <BButton @click="showMeAdvancedExample">Show</BButton>
+  <BButton @click="showMeAdvancedExample">Показать</BButton>
   <template #html>
 
 ```vue
 <template>
-  <BButton @click="showMe">Show</BButton>
+  <BButton @click="showMe">Показать</BButton>
 </template>
 
 <script setup lang="ts">
@@ -132,9 +132,9 @@ onMounted(() => {
 const showMe = () => {
   create({
     body: firstRef.value.body,
-    slots: {default: () => h('div', null, {default: () => `custom! ${firstRef.value.body}`})},
+    slots: {default: () => h('div', null, {default: () => `кастом! ${firstRef.value.body}`})},
   })
-  // Demonstration psuedocode, you can also import a component and use it
+  // Пример псевдокода: можно импортировать компонент и использовать его
   // const importedComponent () => {
   //   create({
   //     component: import('./MyToastComponent.vue'),
@@ -147,17 +147,17 @@ const showMe = () => {
   </template>
 </HighlightCard>
 
-## Programmatically Hiding a Toast
+## Программное скрытие Toast
 
-Hiding a `Toast` programmatically is very simple. `create` return an object that has functions to control the toast, including `destroy`
+Скрыть Toast программно очень просто. `create` возвращает объект с функциями управления Toast, включая `destroy`.
 
 <HighlightCard>
   <BButtonGroup>
     <BButton @click="showMe" variant="success">
-      Show the Toast
+      Показать Toast
     </BButton>
     <BButton @click="hideMe" variant="danger">
-      Hide the Toast
+      Скрыть Toast
     </BButton>
   </BButtonGroup>
   <template #html>
@@ -165,8 +165,8 @@ Hiding a `Toast` programmatically is very simple. `create` return an object that
 ```vue
 <template>
   <BButtonGroup>
-    <BButton @click="showMe" variant="success"> Show the Toast </BButton>
-    <BButton @click="hideMe" variant="danger"> Hide the Toast </BButton>
+    <BButton @click="showMe" variant="success"> Показать Toast </BButton>
+    <BButton @click="hideMe" variant="danger"> Скрыть Toast </BButton>
   </BButtonGroup>
 </template>
 
@@ -177,9 +177,9 @@ let toast: undefined | ReturnType<typeof create>
 
 const showMe = () => {
   if (toast !== undefined) return
-  // `create` returns a symbol
+  // `create` возвращает символ
   toast = create({
-    title: 'Showing',
+    title: 'Показ',
     value: true,
     variant: 'success',
     position: 'bottom-center',
@@ -197,14 +197,14 @@ const hideMe = () => {
 
 </HighlightCard>
 
-## Using promises
+## Использование промисов
 
-Hiding a `Toast` with promise
+Скрытие Toast с помощью промиса
 
 <HighlightCard>
   <BButtonGroup>
     <BButton @click="promiseToast" variant="success">
-      Show the Toast
+      Показать Toast
     </BButton>
   </BButtonGroup>
   <template #html>
@@ -212,7 +212,7 @@ Hiding a `Toast` with promise
 ```vue
 <template>
   <BButtonGroup>
-    <BButton @click="promiseToast" variant="success"> Show the Toast </BButton>
+    <BButton @click="promiseToast" variant="success"> Показать Toast </BButton>
   </BButtonGroup>
 </template>
 
@@ -227,17 +227,17 @@ const promiseToast = () => {
       modelValue: true,
       slots: {
         default: ({hide}) => [
-          h('h2', {class: 'text-center mb-3'}, 'Ready?'),
+          h('h2', {class: 'text-center mb-3'}, 'Готовы?'),
           h('div', {class: 'd-flex justify-content-center gap-2'}, [
-            h(BButton, {onClick: () => hide('ok'), size: 'lg'}, () => 'Yes'),
-            h(BButton, {onClick: () => hide('cancel'), size: 'lg'}, () => 'No'),
+            h(BButton, {onClick: () => hide('ok'), size: 'lg'}, () => 'Да'),
+            h(BButton, {onClick: () => hide('cancel'), size: 'lg'}, () => 'Нет'),
           ]),
         ],
       },
     },
     {resolveOnHide: true}
   ).then((r) => {
-    create({title: 'you pressed: ' + (r.ok ? 'yes' : 'no')})
+    create({title: 'вы нажали: ' + (r.ok ? 'да' : 'нет')})
   })
 }
 </script>
@@ -262,7 +262,7 @@ let toast: undefined | ReturnType<typeof create>
 
 const showMe = () => {
   if (toast !== undefined) return
-  toast = create({ title: 'Showing',  variant: 'success', position: 'bottom-center' } )
+  toast = create({ title: 'Показ',  variant: 'success', position: 'bottom-center' } )
 }
 
 const hideMe = () => {
@@ -296,7 +296,7 @@ const showMeAdvancedExample = () => {
   create({
     body: firstRef.value.body,
     position: 'bottom-center',
-    slots: {default: () => h('div', null, {default: () => `custom! ${firstRef.value.body}`})},
+    slots: {default: () => h('div', null, {default: () => `кастом! ${firstRef.value.body}`})},
   })
 }
 
@@ -311,17 +311,17 @@ const promiseToast = () => {
       slots: {
         default: ({hide}) =>
           [ 
-            h('h2', {class: 'text-center mb-3'}, 'Ready?'), 
+            h('h2', {class: 'text-center mb-3'}, 'Готовы?'), 
             h('div', {class: 'd-flex justify-content-center gap-2'}, [
-              h(BButton, {onClick: () => hide('ok'), size: 'lg'}, () => 'Yes'), 
-              h(BButton, {onClick: () => hide('cancel'), size: 'lg'}, () => 'No')
+              h(BButton, {onClick: () => hide('ok'), size: 'lg'}, () => 'Да'), 
+              h(BButton, {onClick: () => hide('cancel'), size: 'lg'}, () => 'Нет')
             ])
           ],
       },
     },
     {resolveOnHide: true}
   ).then((r) => {
-    create({title: 'you pressed: ' + (r.ok ? 'yes' : 'no')})
+    create({title: 'вы нажали: ' + (r.ok ? 'да' : 'нет')})
   })
 }
 </script>

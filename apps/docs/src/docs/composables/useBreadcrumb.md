@@ -2,19 +2,19 @@
 
 <div class="lead mb-5">
 
-`useBreadcrumb` is a helper utility for the `BBreadcrumb` component. It provides a **globally** changable context so you can modify a breadcrumb. It should be noted that the breadcrumb component will automatically use the global context by default. `useBreadcrumb` is shared globally, one modification to the state will be recognized throughout the app. As noted in the BBreadcrumb documentation, the items prop for the component takes precedence over `useBreadcrumb`
+`useBreadcrumb` — это вспомогательный утилитарный композабл для компонента `BBreadcrumb`. Он предоставляет **глобально** изменяемый контекст, чтобы вы могли модифицировать хлебные крошки. Следует отметить, что компонент хлебных крошек по умолчанию автоматически использует этот глобальный контекст. `useBreadcrumb` разделяется глобально: любое изменение состояния будет видно во всём приложении. Как указано в документации к BBreadcrumb, проп items у компонента имеет приоритет над `useBreadcrumb`.
 
 </div>
 
 <UsePluginAlert />
 
-## Demo
+## Демонстрация
 
 <HighlightCard>
   <BBreadcrumb />
   <BFormInput class="my-3" v-model="inputValue" />
-  <BButton @click="addItem" class="me-2">Add</BButton>
-  <BButton variant="danger" @click="breadcrumb.reset">Clear</BButton>
+  <BButton @click="addItem" class="me-2">Добавить</BButton>
+  <BButton variant="danger" @click="breadcrumb.reset">Очистить</BButton>
   <template #html>
 
 ```vue
@@ -23,8 +23,8 @@
 
   <BFormInput v-model="inputValue" />
 
-  <BButton @click="addItem">Add</BButton>
-  <BButton variant="danger" @click="breadcrumb.reset">Clear</BButton>
+  <BButton @click="addItem">Добавить</BButton>
+  <BButton variant="danger" @click="breadcrumb.reset">Очистить</BButton>
 </template>
 
 <script setup lang="ts">
@@ -42,13 +42,13 @@ const addItem = () => {
   </template>
 </HighlightCard>
 
-You can also pass in an id to the component and composable to create a unique breadcrumb trail.
+Вы также можете передать id в компонент и композабл, чтобы создать уникальную цепочку хлебных крошек.
 
 <HighlightCard>
   <BBreadcrumb id="foobar" />
   <BFormInput class="my-3" v-model="foobarInputValue" />
-  <BButton @click="foobarAddItem" class="me-2">Add</BButton>
-  <BButton variant="danger" @click="foobarBreadcrumb.reset">Clear</BButton>
+  <BButton @click="foobarAddItem" class="me-2">Добавить</BButton>
+  <BButton variant="danger" @click="foobarBreadcrumb.reset">Очистить</BButton>
   <template #html>
 
 ```vue
@@ -57,12 +57,12 @@ You can also pass in an id to the component and composable to create a unique br
 
   <BFormInput v-model="inputValue" />
 
-  <BButton @click="addItem">Add</BButton>
-  <BButton variant="danger" @click="breadcrumb.reset">Clear</BButton>
+  <BButton @click="addItem">Добавить</BButton>
+  <BButton variant="danger" @click="breadcrumb.reset">Очистить</BButton>
 </template>
 
 <script setup lang="ts">
-// Input matches the id passed to the component
+// Переданный id должен совпадать с id компонента
 const breadcrumb = useBreadcrumb('foobar')
 
 const inputValue = ref('')

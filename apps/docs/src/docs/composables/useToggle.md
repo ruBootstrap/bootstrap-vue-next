@@ -2,7 +2,7 @@
 
 <div class="lead mb-5">
 
-You can use `useToggle` to get the closest toggleable component in **child component** and show,hide or toggle it. It can also be supplied a target id to show, hide or toggle a specific component
+Вы можете использовать `useToggle`, чтобы получить ближайший компонент с поддержкой toggle в **дочернем компоненте** и показать, скрыть или переключить его. Также можно передать id целевого компонента, чтобы показать, скрыть или переключить конкретный компонент.
 
 </div>
 
@@ -20,7 +20,7 @@ MyComponent.vue
 
 ```vue
 <template>
-  <BButton @click="hide('sometrigger')">Done</BButton>
+  <BButton @click="hide('sometrigger')">Готово</BButton>
 </template>
 
 <script setup lang="ts">
@@ -31,21 +31,20 @@ const {hide} = useToggle()
   </template>
 </HighlightCard>
 
-You can also provide an id to get particular component and show/hide it. Currently, we do not support using CSS selector to
-find modal since the component in lazy mode may not render at page initial. If the modal component does not exist and you attempt to call any of the exposed methods, the methods will safely no-op without throwing errors.
+Вы также можете указать id, чтобы получить конкретный компонент и показать/скрыть его. В настоящее время мы не поддерживаем использование CSS-селекторов для поиска компонента, так как компонент в ленивом режиме может не отрендериться при инициализации страницы. Если компонент не существует и вы попытаетесь вызвать любой из предоставленных методов, эти методы безопасно ничего не сделают и не вызовут ошибок.
 
 <HighlightCard>
-<BButton @click="show()">Click me</BButton>
+<BButton @click="show()">Нажми меня</BButton>
 <BModal v-if="someConditions" v-model="programmaticModal" id="my-modal">
-  <BButton @click="hide()">Hide me</BButton>
+  <BButton @click="hide()">Скрыть</BButton>
 </BModal>
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="show()">Click me</BButton>
+  <BButton @click="show()">Нажми меня</BButton>
   <BModal v-if="someConditions" v-model="programmaticModal" id="my-modal">
-    <BButton @click="hide()">Hide me</BButton>
+    <BButton @click="hide()">Скрыть</BButton>
   </BModal>
 </template>
 
@@ -66,19 +65,19 @@ const {show, hide, component} = useToggle('my-modal')
 
 ## Promise Flow
 
-The `show` and `toggle` methods take a boolean argument to control wether to resolve the promise on show (`false`) or on hide (`true`). On `show` the promise resolves to `true` when shown and to `'show-prevented'` if show is prevented. On `hide` the promise resolves to the trigger that caused the hide event. The promise can be awaited to get the result.
+Методы `show` и `toggle` принимают булевый аргумент, чтобы управлять, когда резолвить промис: при показе (`false`) или при скрытии (`true`). При `show` промис резолвится в `true` при показе и в `'show-prevented'`, если показ был предотвращён. При `hide` промис резолвится в trigger, вызвавший событие скрытия. Промис можно await-ить для получения результата.
 
 <HighlightCard>
-  <BButton @click="testToggle">Click me</BButton>
-  <BModal id="toggleTest"> content </BModal>
-  <span v-if="reason !== ''" class="mx-3">Close reason: {{ reason }}</span>
+  <BButton @click="testToggle">Нажми меня</BButton>
+  <BModal id="toggleTest"> контент </BModal>
+  <span v-if="reason !== ''" class="mx-3">Причина закрытия: {{ reason }}</span>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="testToggle">Click me</BButton>
-  <BModal id="toggleTest"> content </BModal>
+  <BButton @click="testToggle">Нажми меня</BButton>
+  <BModal id="toggleTest"> контент </BModal>
 </template>
 <script setup lang="ts">
 const toggle = useToggle('toggleTest')

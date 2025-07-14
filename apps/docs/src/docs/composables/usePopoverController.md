@@ -2,7 +2,7 @@
 
 <div class="lead mb-5">
 
-`usePopoverController` can create and control popovers and tooltips dynamically.
+`usePopoverController` позволяет динамически создавать и управлять popover и tooltip.
 
 </div>
 
@@ -10,7 +10,7 @@
 
 ## BPopoverOrchestrator
 
-You must initialize the `BPopoverOrchestrator` component once and only once (multiple instances may display duplicate popovers). This is typically best placed at the App root.
+Вы должны инициализировать компонент `BPopoverOrchestrator` ровно один раз (несколько экземпляров приведут к дублированию popover). Обычно его лучше всего размещать в корне приложения.
 
 <HighlightCard>
 <template #html>
@@ -22,60 +22,60 @@ You must initialize the `BPopoverOrchestrator` component once and only once (mul
 </template>
 </HighlightCard>
 
-The only props it access are `teleportDisabled` and `teleportTo` to modify the location that it is placed
+Единственные пропсы, к которым он обращается — это `teleportDisabled` и `teleportTo` для изменения места размещения popover.
 
-Additionally, it exposes several methods on the `template ref` that correspond to those in the `usePopoverController` composable:
+Кроме того, он предоставляет несколько методов через `template ref`, которые соответствуют функциям композабла `usePopoverController`:
 
 - `popover`
 - `tooltip`
 - `popovers`
 
-## Creating Popovers
+## Создание popover
 
-Popovers and tooltips can be created using the `popover` or `tooltip` methods.
+Popover и tooltip можно создавать с помощью методов `popover` или `tooltip`.
 
 <HighlightCard>
-  <BButton ref="popoverButton">Hover me</BButton>
+  <BButton ref="popoverButton">Наведи курсор</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton ref="popoverButton">Hover me</BButton>
+  <BButton ref="popoverButton">Наведи курсор</BButton>
 </template>
 
 <script setup lang="ts">
 const {popover} = usePopoverController()
 const popoverButton = useTemplateRef('popoverButton')
 
-const pop = popover({title: 'Hello World!', body: 'This is a popover.', target: popoverButton})
+const pop = popover({title: 'Привет, мир!', body: 'Это popover.', target: popoverButton})
 </script>
 ```
 
   </template>
 </HighlightCard>
 
-### Reactivity Within `popover` and `tooltip`
+### Реактивность внутри `popover` и `tooltip`
 
-The methods accepts reactive properties using `MaybeRef`, allowing dynamic updates to the popover content.
+Методы принимают реактивные свойства через `MaybeRef`, что позволяет динамически обновлять содержимое popover.
 
 <HighlightCard>
-  <BButton ref="reactiveExample">Hover me</BButton>
+  <BButton ref="reactiveExample">Наведи курсор</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton ref="reactiveExample">Click me</BButton>
+  <BButton ref="reactiveExample">Кликни меня</BButton>
 </template>
 
 <script setup lang="ts">
 const {tooltip} = usePopoverController()
 
-const title = ref('Hello')
+const title = ref('Привет')
 onMounted(() => {
   setInterval(() => {
-    title.value = title.value === 'Hello' ? 'World' : 'Hello'
+    title.value = title.value === 'Привет' ? 'Мир' : 'Привет'
   }, 2500)
 })
 tooltip({
@@ -87,18 +87,18 @@ tooltip({
   </template>
 </HighlightCard>
 
-### Advanced Creation
+### Расширенное создание
 
-For more control, you can use the `component` property to render a custom component or the `slots` property to define slot content dynamically.
+Для большего контроля можно использовать свойство `component` для рендера пользовательского компонента или свойство `slots` для динамического определения содержимого слотов.
 
 <HighlightCard>
-  <BButton ref="advancedExample">Click me</BButton>
+  <BButton ref="advancedExample">Кликни меня</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton ref="advancedExample">Click me</BButton>
+  <BButton ref="advancedExample">Кликни меня</BButton>
 </template>
 
 <script setup lang="ts">
@@ -107,7 +107,7 @@ const {popover} = usePopoverController()
 pop({
   slots: {
     default: (scope) =>
-      h('div', null, {default: () => `Custom content - Visible: ${scope.visible}`}),
+      h('div', null, {default: () => `Кастомный контент — Видимость: ${scope.visible}`}),
   },
 })
 </script>
@@ -116,31 +116,31 @@ pop({
   </template>
 </HighlightCard>
 
-### Return Value
+### Возвращаемое значение
 
-The `popover` and `tooltip` methods return a promise that resolves to a `BvTriggerableEvent` object when the popover is hidden. The promise includes methods to control the popover:
+Методы `popover` и `tooltip` возвращают промис, который резолвится в объект `BvTriggerableEvent` при скрытии popover. Промис содержит методы для управления popover:
 
-- `show: () => void` - Shows the popover.
-- `hide: (trigger?: string) => void` - Hides the popover, optionally passing a trigger.
-- `toggle: () => void` - Toggles the visibility of the popover.
-- `set: (props: Partial<PopoverOrchestratorParam>) => void` - Updates the popover's properties.
-- `destroy: () => Promise<void>` - Destroys the popover and cleans up resources.
+- `show: () => void` — Показать popover.
+- `hide: (trigger?: string) => void` — Скрыть popover, опционально передав trigger.
+- `toggle: () => void` — Переключить видимость popover.
+- `set: (props: Partial<PopoverOrchestratorParam>) => void` — Обновить свойства popover.
+- `destroy: () => Promise<void>` — Уничтожить popover и очистить ресурсы.
 
-### Lifecycle
+### Жизненный цикл
 
-By default, the popover is destroyed when the current scope is exited. You can manually destroy it using the `destroy` method.
+По умолчанию popover уничтожается при выходе из текущей области видимости. Можно вручную уничтожить popover с помощью метода `destroy`.
 
 ```js
-const popover = popover({title: 'Hello World!'})
+const popover = popover({title: 'Привет, мир!'})
 popover.show()
-// do something
+// что-то делаем
 popover.destroy()
 ```
 
-Alternatively, use `await using` in TypeScript to automatically destroy the popover when the scope is exited.
+Либо используйте `await using` в TypeScript для автоматического уничтожения popover при выходе из области видимости.
 
 ```js
-await using popover = popover({title: 'Hello World!'})
+await using popover = popover({title: 'Привет, мир!'})
 ```
 
 <script setup lang="ts">
@@ -153,27 +153,27 @@ import ComposableHeader from './ComposableHeader.vue'
 const { popover, tooltip } = usePopoverController()
 
 
-const title = ref('Hello')
+const title = ref('Привет')
 const popoverButton = ref()
 const reactiveExample = ref()
 const advancedExample = ref()
 
 onMounted(() => {
   setInterval(() => {
-    title.value = title.value === 'Hello' ? 'World' : 'Hello'
+    title.value = title.value === 'Привет' ? 'мир' : 'Привет'
   }, 1000)
 })
 
-const pop = popover({ title: 'Hello World!', body: 'This is a popover.', target: popoverButton })
+const pop = popover({ title: 'Привет мир!', body: 'Это popover.', target: popoverButton })
 const pop2 = tooltip({ title: title, target: reactiveExample })
 const pop3 = popover({
   slots: {
     default: (scope) =>
-      h('div', null, { default: () => `Custom content - Visible: ${scope.visible}` }),
+      h('div', null, { default: () => `Кастомный контент - Видимость: ${scope.visible}` }),
   },
   target: advancedExample,
-  title: 'Advanced Popover',
-  body: 'This is an advanced popover example.',
+  title: 'Продвинутый Popover',
+  body: 'Это пример продвинутого popover.',
 })
 
 </script>

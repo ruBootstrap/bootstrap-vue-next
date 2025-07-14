@@ -1,8 +1,8 @@
-# Composables - Table of Contents
+# Composables — Оглавление
 
 <div class="lead mb-5">
 
-BootstrapVueNext exposes several custom composables that integrate with various components.
+BootstrapVueNext предоставляет несколько пользовательских композаблов, которые интегрируются с различными компонентами.
 
 </div>
 
@@ -18,31 +18,31 @@ const routeLocation = (name: string): string => withBase(`/docs/composables/${na
 const composablesList: {name: string; description: string}[] = [
   {
     name: 'useBreadcrumb',
-    description: 'A global breadcrumb system to pair with the BBreadcrumb component'
+    description: 'Глобальная система хлебных крошек для использования с компонентом BBreadcrumb'
   },
   {
     name: 'useColorMode',
-    description: 'Implement a color scheme to reactively use light/dark or other color modes. Light and dark themes are included by default, but you can create more by reviewing the usage on the Bootstrap v5 documentation (Color Modes)'
+    description: 'Реактивная смена цветовой схемы: светлая/тёмная или другие режимы. Светлая и тёмная темы включены по умолчанию, но вы можете создать свои, ознакомившись с документацией Bootstrap v5 (Color Modes)'
   },
   {
     name: 'useModal',
-    description: 'Conveniently hide or show modals programmatically from anywhere in the app',
+    description: 'Удобное программное скрытие или показ модальных окон из любого места приложения',
   },
   {
     name: 'useModalController',
-    description: 'Create or hide modals from anywhere in the app, or close all modals from one source using this utility',
+    description: 'Создавайте или скрывайте модальные окна из любого места приложения, либо закрывайте все модальные окна с помощью этого утилитарного композабла',
   },
   {
     name: 'useToastController',
-    description: 'Conveniently orchestrate a push notification system by showing or hiding Toasts with our useToastController composable system',
+    description: 'Организуйте систему push-уведомлений, показывая или скрывая Toast-уведомления с помощью нашей системы useToastController',
   },
     {
       name: 'useToggle',
-      description: 'Conveniently show, hide or toggle components programmatically from anywhere in the app',
+      description: 'Удобное программное отображение, скрытие или переключение компонентов из любого места приложения',
     },
   {
     name: 'usePopoverController',
-    description: 'Control popovers and tooltips in your application, enabling the display popover elements with ease',
+    description: 'Управляйте popover и tooltip в вашем приложении, позволяя легко отображать всплывающие элементы',
   }
 ]
 

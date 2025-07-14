@@ -2,17 +2,17 @@
 
 <div class="lead mb-5">
 
-`useColorMode` provides a convenient utility to adjust the global color theme of your application. You can also use it to target specific components by using a [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) or a selector. Bootstrap's default behavior dictates that color modes are applied to all children in the branch. `useColorMode` is simply a wrapper for the [vueuse](https://vueuse.org/core/useColorMode/#usecolormode) utility.
+`useColorMode` предоставляет удобный инструмент для настройки глобальной цветовой темы вашего приложения. Вы также можете использовать его для отдельных компонентов с помощью [template ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) или селектора. По умолчанию в Bootstrap цветовые режимы применяются ко всем дочерним элементам ветки. `useColorMode` — это просто обёртка над утилитой [vueuse](https://vueuse.org/core/useColorMode/#usecolormode).
 
 </div>
 
-## Demo
+## Демонстрация
 
 <HighlightCard>
   <ClientOnly>
     <BCard ref="target">
       <BButton @click="changeColor">
-        Current color: {{ mode }}
+        Текущий режим: {{ mode }}
       </BButton>
     </BCard>
   </ClientOnly>
@@ -21,7 +21,7 @@
 ```vue
 <template>
   <BCard ref="target">
-    <BButton @click="changeColor"> Current color: {{ mode }} </BButton>
+    <BButton @click="changeColor"> Текущий режим: {{ mode }} </BButton>
   </BCard>
 </template>
 

@@ -2,7 +2,7 @@
 
 <div class="lead mb-5">
 
-You can use `useModal` to get the closest modal in **child component** and hide it. It can also be supplied a target id to show or hide a specific modal
+Вы можете использовать `useModal`, чтобы получить ближайшее модальное окно в **дочернем компоненте** и скрыть его. Также можно передать id целевого модального окна, чтобы показать или скрыть конкретное модальное окно.
 
 </div>
 
@@ -15,7 +15,7 @@ You can use `useModal` to get the closest modal in **child component** and hide 
 </BModal>
 
 <template>
-  <BButton @click="hide">Done</BButton>
+  <BButton @click="hide">Готово</BButton>
 </template>
 
 <script setup lang="ts">
@@ -26,21 +26,20 @@ const {hide} = useModal()
   </template>
 </HighlightCard>
 
-You can also provide an id to get particular modal and show/hide it. Currently, we do not support using CSS selector to
-find modal since the `BModal` in lazy mode may not render at page initial. If the modal component does not exist and you attempt to call any of the exposed methods the methods will safely ignore
+Вы также можете указать id, чтобы получить конкретное модальное окно и показать/скрыть его. В настоящее время мы не поддерживаем использование CSS-селекторов для поиска модального окна, так как `BModal` в ленивом режиме может не отрендериться при инициализации страницы. Если компонент модального окна не существует и вы попытаетесь вызвать любой из предоставленных методов, эти методы будут безопасно проигнорированы.
 
 <HighlightCard>
-<BButton @click="show()">Click me</BButton>
+<BButton @click="show()">Нажми меня</BButton>
 <BModal v-if="someConditions" v-model="programmaticModal" id="my-modal">
-  <BButton @click="hide()">Hide me</BButton>
+  <BButton @click="hide()">Скрыть</BButton>
 </BModal>
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="show()">Click me</BButton>
+  <BButton @click="show()">Нажми меня</BButton>
   <BModal v-if="someConditions" v-model="programmaticModal" id="my-modal">
-    <BButton @click="hide()">Hide me</BButton>
+    <BButton @click="hide()">Скрыть</BButton>
   </BModal>
 </template>
 

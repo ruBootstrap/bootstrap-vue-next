@@ -2,7 +2,7 @@
 
 <div class="lead mb-5">
 
-`useModalController` can hide modals everywhere in the app, as well as creating modals on the fly
+`useModalController` позволяет скрывать модальные окна в любом месте приложения, а также создавать модальные окна на лету.
 
 </div>
 
@@ -10,7 +10,7 @@
 
 ## BModalOrchestrator
 
-You must have initialized `BModalOrchestrator` component once and only once (doing multiple may display multiple `Modals`). This is usually best placed at the App root.
+Вы должны инициализировать компонент `BModalOrchestrator` ровно один раз (несколько инициализаций приведут к отображению нескольких модальных окон). Обычно его лучше всего размещать в корне приложения.
 
 <HighlightCard>
 <template #html>
@@ -22,37 +22,37 @@ You must have initialized `BModalOrchestrator` component once and only once (doi
 </template>
 </HighlightCard>
 
-The only props it access are `teleportDisabled` and `teleportTo` to modify the location that it is placed
+Единственные пропсы, к которым он обращается — это `teleportDisabled` и `teleportTo` для изменения места размещения модальных окон.
 
-In addition, it contains a few exposed methods. These exposed methods on the `template ref` correspond to those in the `useToastController` function, described below
+Кроме того, компонент содержит несколько методов, доступных через `template ref`. Эти методы соответствуют функциям из `useToastController`, описанным ниже:
 
 - create
 - hide
 - hideAll
 - modals
 
-## Creating Modals
+## Создание модальных окон
 
-Showing a modal is done through the `create` method
+Показ модального окна осуществляется с помощью метода `create`
 
 <HighlightCard>
-  <BButton @click="showExample">Click me</BButton>
+  <BButton @click="showExample">Нажми меня</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="showExample">Click me</BButton>
+  <BButton @click="showExample">Нажми меня</BButton>
 </template>
 
 <script setup lang="ts">
 const {create} = useModalController()
 
 const showExample = async () => {
-  const value = await create({title: 'Hello World!'})
+  const value = await create({title: 'Привет, мир!'})
 
   create({
-    body: `Promise resolved to object with {ok: ${value.ok}, trigger: ${value.trigger}}`,
+    body: `Промис вернул объект {ok: ${value.ok}, trigger: ${value.trigger}}`,
     variant: 'info',
   })
 }
@@ -62,27 +62,27 @@ const showExample = async () => {
   </template>
 </HighlightCard>
 
-### Reactivity Within `create`
+### Реактивность внутри `create`
 
-`create` props property can accept a `MaybeRef`, meaning that you can make properties reactive
+Свойство props метода `create` может принимать `MaybeRef`, что позволяет делать свойства реактивными.
 
 <HighlightCard>
-  <BButton @click="showReactiveExample">Click me</BButton>
+  <BButton @click="showReactiveExample">Нажми меня</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="showReactiveExample">Click me</BButton>
+  <BButton @click="showReactiveExample">Нажми меня</BButton>
 </template>
 
 <script setup lang="ts">
 const {create} = useModalController()
 
-const title = ref('Hello')
+const title = ref('Привет')
 onMounted(() => {
   setInterval(() => {
-    title.value = title.value === 'Hello' ? 'World' : 'Hello'
+    title.value = title.value === 'Привет' ? 'Мир' : 'Привет'
   }, 2500)
 })
 
@@ -97,20 +97,20 @@ const showReactiveExample = () => {
   </template>
 </HighlightCard>
 
-### Advanced Creation
+### Расширенное создание
 
-Using props can work for most situations, but it leaves some finer control to be desired. For instance, you can not add HTML to any slot value. This is where the `component` property comes into play. Using the `component` property, you can input the component to render. This can either be an imported SFC or an inline render function
+Использование props подходит для большинства случаев, но иногда требуется больший контроль. Например, вы не можете добавить HTML в любое значение слота. Для этого используется свойство `component`. С его помощью можно передать компонент для рендера — импортированный SFC или inline render-функцию.
 
-You can also use component slots to render what you want. This is done through the `slots` property. The `slots` property is an object that contains the slot name as the key and a render function or component as the value. The render function is passed a `scope` object that contains the slots scope.
+Также можно использовать слоты компонента для вывода нужного содержимого. Это делается через свойство `slots`, которое представляет собой объект, где ключ — имя слота, а значение — render-функция или компонент. Render-функция получает объект `scope` с данными слота.
 
 <HighlightCard>
-  <BButton @click="showMeAdvancedExample">Click me</BButton>
+  <BButton @click="showMeAdvancedExample">Нажми меня</BButton>
 
 <template #html>
 
 ```vue
 <template>
-  <BButton @click="showMeAdvancedExample">Click me</BButton>
+  <BButton @click="showMeAdvancedExample">Нажми меня</BButton>
 </template>
 
 <script setup lang="ts">
@@ -128,11 +128,11 @@ const showMeAdvancedExample = () => {
   create({
     slots: {
       default: (scope) =>
-        h('div', null, {default: () => `custom ${firstRef.value.body} - ${scope.visible}`}),
+        h('div', null, {default: () => `кастомный ${firstRef.value.body} - ${scope.visible}`}),
     },
   })
 
-  // Demonstration psuedocode, you can import a component and use it
+  // Пример псевдокода: можно импортировать компонент и использовать его
   // const importedComponent = () => {
   //   create({
   //     component: (await import('./TestModal.vue')).default,
@@ -145,120 +145,120 @@ const showMeAdvancedExample = () => {
   </template>
 </HighlightCard>
 
-### Return Value
+### Возвращаемое значение
 
-The `create` method will return a promise that resolves after the modal has been hidden to a `BvTriggableEvent` object.
-using the option 'resolveOnHide' the second argument of the `create` method will resolve the promise at time of hiding the modal, rather than waiting for the modal to be fully hidden.
+Метод `create` возвращает промис, который резолвится после скрытия модального окна в объект `BvTriggableEvent`.
+С помощью опции 'resolveOnHide' во втором аргументе метода `create` промис будет резолвиться в момент скрытия модального окна, а не после его полного исчезновения.
 
 ```js
-const value = await create({title: 'Hello World!'}, {resolveOnHide: true})
+const value = await create({title: 'Привет, мир!'}, {resolveOnHide: true})
 ```
 
-This object contains the following properties:
+Этот объект содержит следующие свойства:
 
 - `ok: boolean`
 
-  Clicking the `ok` button resolve this to `true`, `cancel` to `false` and any other closable action `null` (clicking the backdrop, or some other custom closing action. More accurately, when the `hide` function does not pass in the trigger parameter of `ok` or `cancel`)
+  Нажатие кнопки `ok` вернёт `true`, `cancel` — `false`, а любое другое действие закрытия — `null` (например, клик по фону или другое пользовательское действие. Точнее, когда функция `hide` не передаёт параметр trigger со значением `ok` или `cancel`).
 
 - `trigger: string | null`
 
-  This is the trigger that closed the modal. This is useful for determining what action closed the modal.
+  Это триггер, который закрыл модальное окно. Полезно для определения, какое действие вызвало закрытие.
 
-The promise also contains functions to control the modal:
+Промис также содержит функции для управления модальным окном:
 
 - `show: () => void`
 
-  This function shows the modal.
+  Показывает модальное окно.
 
 - `hide: (trigger?: string) => void`
 
-  This function hides the modal. If a trigger is passed, it will be passed to the `trigger` property of the resolved promise
+  Скрывает модальное окно. Если передан trigger, он попадёт в свойство `trigger` возвращаемого объекта.
 
 - `toggle: () => void`
 
-  This function toggles the visibility of the modal.
+  Переключает видимость модального окна.
 
 - `set: (props: Partial<ModalOrchestratorParam>) => void`
 
-  This function sets the props of the modal. This is useful for updating the modal after it has been created.
+  Устанавливает новые props для модального окна. Полезно для обновления окна после создания.
 
 - `destroy: () => Promise<void>`
 
-  This function destroys the modal and cleans up any resources associated with it.
+  Уничтожает модальное окно и очищает связанные ресурсы.
 
-### Lifecycle
+### Жизненный цикл
 
-By default the modal is destroyed once it's closed. If you want to keep the modal use the option 'keep' in the second argument of the `create` method.
-Modal is destoyed when the current scope is exited. Or you can destroy it manually by calling the `destroy` method.
+По умолчанию модальное окно уничтожается после закрытия. Если нужно сохранить его, используйте опцию 'keep' во втором аргументе метода `create`.
+Модальное окно уничтожается при выходе из текущей области видимости. Также его можно уничтожить вручную, вызвав метод `destroy`.
 
 ```js
-const modal = create({title: 'Hello World!'}, {keep: true})
+const modal = create({title: 'Привет, мир!'}, {keep: true})
 modal.show()
-// do something
+// что-то делаем
 modal.destroy()
 ```
 
-We also support the typescript feature `await using` to automatically destroy the modal when the scope is exited.
+Также поддерживается typescript-фича `await using` для автоматического уничтожения модального окна при выходе из области видимости.
 
 ```js
-await using modal = create({title: 'Hello World!'})
+await using modal = create({title: 'Привет, мир!'})
 ```
 
-## Globally Hiding Modals
+## Глобальное скрытие модальных окон
 
-In addition to being able to create modals in a global context, you are also able to hide modals from anywhere in the app. This specific feature does not require that `BModalOrchestrator` exists
+Помимо создания модальных окон в глобальном контексте, вы также можете скрывать модальные окна из любого места приложения. Для этой функции не требуется наличие `BModalOrchestrator`.
 
 <HighlightCard>
-  <BButton @click="nestedModal1 = !nestedModal1">Open First Modal</BButton>
-  <BModal v-model="nestedModal1" title="First Modal" ok-only>
-    <p class="my-2">First Modal</p>
+  <BButton @click="nestedModal1 = !nestedModal1">Открыть первое окно</BButton>
+  <BModal v-model="nestedModal1" title="Первое окно" ok-only>
+    <p class="my-2">Первое окно</p>
     <BButtonGroup>
-      <BButton @click="nestedModal2 = !nestedModal2">Open Second Modal</BButton>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="nestedModal2 = !nestedModal2">Открыть второе окно</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
-  <BModal v-model="nestedModal2" title="Second Modal" ok-only>
-    <p class="my-2">Second Modal</p>
+  <BModal v-model="nestedModal2" title="Второе окно" ok-only>
+    <p class="my-2">Второе окно</p>
     <BButtonGroup>
-      <BButton @click="nestedModal3 = !nestedModal3" size="sm">Open Third Modal</BButton>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="nestedModal3 = !nestedModal3" size="sm">Открыть третье окно</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
-  <BModal v-model="nestedModal3" title="Third Modal" ok-only>
-    <p class="my-1">Third Modal</p>
+  <BModal v-model="nestedModal3" title="Третье окно" ok-only>
+    <p class="my-1">Третье окно</p>
     <BButtonGroup>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
   <template #html>
 
 ```vue
 <template>
-  <BButton @click="nestedModal1 = !nestedModal1">Open First Modal</BButton>
-  <BModal v-model="nestedModal1" title="First Modal" ok-only>
-    <p class="my-2">First Modal</p>
+  <BButton @click="nestedModal1 = !nestedModal1">Открыть первое окно</BButton>
+  <BModal v-model="nestedModal1" title="Первое окно" ok-only>
+    <p class="my-2">Первое окно</p>
     <BButtonGroup>
-      <BButton @click="nestedModal2 = !nestedModal2">Open Second Modal</BButton>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="nestedModal2 = !nestedModal2">Открыть второе окно</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
-  <BModal v-model="nestedModal2" title="Second Modal" ok-only>
-    <p class="my-2">Second Modal</p>
+  <BModal v-model="nestedModal2" title="Второе окно" ok-only>
+    <p class="my-2">Второе окно</p>
     <BButtonGroup>
-      <BButton @click="nestedModal3 = !nestedModal3" size="sm">Open Third Modal</BButton>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="nestedModal3 = !nestedModal3" size="sm">Открыть третье окно</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
-  <BModal v-model="nestedModal3" title="Third Modal" ok-only>
-    <p class="my-1">Third Modal</p>
+  <BModal v-model="nestedModal3" title="Третье окно" ok-only>
+    <p class="my-1">Третье окно</p>
     <BButtonGroup>
-      <BButton @click="hide">Hide Last</BButton>
-      <BButton @click="hideAll">Hide All</BButton>
+      <BButton @click="hide">Скрыть последнее</BButton>
+      <BButton @click="hideAll">Скрыть все</BButton>
     </BButtonGroup>
   </BModal>
 </template>
