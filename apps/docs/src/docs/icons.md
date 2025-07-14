@@ -1,24 +1,24 @@
-# Icons
+# Иконки
 
 <BAlert variant="danger" :model-value="true" class="my-5">
 
-The icon components from BootstrapVue are deprecated. While migrating to BootstrapVueNext the icon components will not be supported as there are better, more modern solutions to incorporating icon packages into your application. Continue reading BootstrapVueNext's suggestion on how to incorporate Bootstrap-icons into your application! This documentation only serves as a reference, BootstrapVueNext has no part in the mentioned libraries and some content may be out of date.
+Компоненты иконок из BootstrapVue устарели. При переходе на BootstrapVueNext компоненты иконок не поддерживаются, так как существуют более современные решения для интеграции иконок в ваше приложение. Ознакомьтесь с рекомендациями BootstrapVueNext по использованию Bootstrap-icons! Эта документация служит только справкой, BootstrapVueNext не связан с упомянутыми библиотеками, и часть информации может быть устаревшей.
 
 </BAlert>
 
 ## [Unplugin Icons](https://github.com/antfu/unplugin-icons)
 
-> In this section you will learn how to incorporate [unplugin-icons](https://github.com/antfu/unplugin-icons) into your app. unplugin-icons allows you to use icons from multiple icon sets, such as [Bootstrap Icons](https://icon-sets.iconify.design/bi/), [Material Design Icons](https://icon-sets.iconify.design/mdi/), [Font Awesome 4](https://icon-sets.iconify.design/fa/) and many more all with automatic tree-shaking!.
+> В этом разделе вы узнаете, как подключить [unplugin-icons](https://github.com/antfu/unplugin-icons) в ваше приложение. unplugin-icons позволяет использовать иконки из множества наборов, таких как [Bootstrap Icons](https://icon-sets.iconify.design/bi/), [Material Design Icons](https://icon-sets.iconify.design/mdi/), [Font Awesome 4](https://icon-sets.iconify.design/fa/) и многих других, с автоматическим tree-shaking!
 
-### Installation
+### Установка
 
-To set up unplugin-icons, you can read directly from their documentation [here](https://github.com/antfu/unplugin-icons) or keep reading for a quick start guide.
+Для настройки unplugin-icons вы можете ознакомиться с их [документацией](https://github.com/antfu/unplugin-icons) или воспользоваться краткой инструкцией ниже.
 
-#### Preferred Installation
+#### Предпочтительная установка
 
-The preferred installation makes use of [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) as it follows the same principles as the [preferred installation](../docs#install) for our core package.
+Рекомендуемый способ использует [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components), что соответствует [рекомендованной установке](../docs#install) для нашего основного пакета.
 
-To start, install the necessary packages:
+Для начала установите необходимые пакеты:
 
 <ClientOnly>
 <BTabs v-model="codePreference" class="mb-3">
@@ -97,9 +97,9 @@ export default defineConfig({
 
 </BCard>
 
-With `autoInstall: true` using any icon set in your app will automatically import and include that icon set in your dependencies! No manual imports are required!
+С `autoInstall: true` любая иконка, используемая в вашем приложении, будет автоматически импортироваться и добавляться в зависимости! Ручной импорт не требуется!
 
-If you are using TypeScript you will want to add the `unplugin-icons/types/vue` to the `compilerOptions.types` array. While there, you should also make sure you included the `components.d.ts` in the `include` array:
+Если вы используете TypeScript, добавьте `unplugin-icons/types/vue` в массив `compilerOptions.types`. Также убедитесь, что файл `components.d.ts` включён в массив `include`:
 
 <BCard class="bg-body-tertiary">
 
@@ -115,14 +115,14 @@ If you are using TypeScript you will want to add the `unplugin-icons/types/vue` 
 
 </BCard>
 
-Then to include an icon, follow the format `i-{collection}-{icon-name}` in your template, where the collection is the id on <https://icon-sets.iconify.design/>. For example, to include `0-circle` in your app, simply use the component `IBi0Circle`, no import is needed. As stated, you can use any icon from any icon set.
+Чтобы добавить иконку, используйте формат `i-{collection}-{icon-name}` в шаблоне, где collection — id на <https://icon-sets.iconify.design/>. Например, чтобы добавить `0-circle`, используйте компонент `IBi0Circle`, импорт не требуется. Можно использовать любую иконку из любого набора.
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
 <IBi0Circle />
 <IBiActivity color="red" />
-<!-- You can use any icon set, no need to worry about importing -->
+<!-- Можно использовать любой набор иконок, импорт не требуется -->
 <IMdiAccountBox />
 <!-- fa -->
 <IFaAngellist />
@@ -130,11 +130,11 @@ Then to include an icon, follow the format `i-{collection}-{icon-name}` in your 
 
 </BCard>
 
-View the [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) documentation for their extra feature, such as [Global Custom Icon Transformation](https://github.com/antfu/unplugin-icons#global-custom-icon-transformation) and other information.
+См. документацию [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) для дополнительных возможностей, например, [Глобальная трансформация иконок](https://github.com/antfu/unplugin-icons#global-custom-icon-transformation) и другой информации.
 
-#### Basic Installation
+#### Базовая установка
 
-Of course, there is always the ability to slim down. To slim down the installation, you can manually import only the bootstrap-icons icon set, disable auto importing, and not use unplugin-vue-components read below. Note, the preferred installation automatically treeshakes all components, both installation methods should have the same final dist size.
+Можно сделать установку проще. Для этого вручную импортируйте только набор bootstrap-icons, отключите автоимпорт и не используйте unplugin-vue-components. Обратите внимание, что предпочтительная установка автоматически делает tree-shaking всех компонентов, но оба способа дадут одинаковый размер итогового бандла.
 
 <ClientOnly>
 <BTabs v-model="codePreference" class="mb-3">
@@ -206,7 +206,7 @@ export default defineConfig({
 
 </BCard>
 
-Using this method, you will need to manually import each icon:
+При таком способе установки нужно вручную импортировать каждую иконку:
 
 <BCard class="bg-body-tertiary">
 
@@ -214,7 +214,7 @@ Using this method, you will need to manually import each icon:
 <template>
   <IBi0Circle />
   <IBiActivity color="red" />
-  <!-- Cannot use, is not a dependency -->
+  <!-- Нельзя использовать, не является зависимостью -->
   <!-- <IMdiAccountBox /> -->
   <!-- fa -->
   <!-- <IFaAngellist /> -->
