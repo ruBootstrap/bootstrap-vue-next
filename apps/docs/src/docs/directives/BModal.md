@@ -1,4 +1,4 @@
-<DirectiveHeader path="BModal/index.ts" title="Docs to be made" />
+<DirectiveHeader path="BModal/index.ts" title="Документация в разработке" />
 
 <script setup lang="ts">
 import DirectiveHeader from './DirectiveHeader.vue'

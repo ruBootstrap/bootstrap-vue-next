@@ -3,23 +3,23 @@
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<BCard v-b-tooltip="'My title'" />
-<BCard v-b-tooltip="{title: 'My title'}" />
-<BCard v-b-tooltip.hover.top="'My title'" />
-<BCard v-b-tooltip.focus.right="{title: 'My title'}" />
+<BCard v-b-tooltip="'Мой заголовок'" />
+<BCard v-b-tooltip="{title: 'Мой заголовок'}" />
+<BCard v-b-tooltip.hover.top="'Мой заголовок'" />
+<BCard v-b-tooltip.focus.right="{title: 'Мой заголовок'}" />
 ```
 
 </BCard>
 
-As shown above, the BoostrapVueNext directive named `b-tooltip` should have a value, and optionally one or more modifiers. The general format for directives is is:
+Как показано выше, директива BoostrapVueNext с именем `b-tooltip` должна иметь значение и, при необходимости, один или несколько модификаторов. Общий формат директивы:
 
 ```vue-html
 v-{name}.{modifier1}.{modifier2}.{etc.}={value}.
 ```
 
-## Triggers modifiers
+## Модификаторы триггера
 
-We can define when we want to trigger a tooltip with the following modifiers.
+Можно определить, когда показывать tooltip, с помощью следующих модификаторов:
 
 - click
 - hover
@@ -27,43 +27,42 @@ We can define when we want to trigger a tooltip with the following modifiers.
 - manual
 - click
 
-If we do not specify any modifiers, the tooltip is by default enabled for "hover" and "focus".
+Если не указать модификаторы, tooltip по умолчанию будет активен для "hover" и "focus".
 
-## Placement modifiers
+## Модификаторы позиции
 
-We can specify where to place the tooltip with the following modifiers.
+Можно указать, где размещать tooltip, с помощью следующих модификаторов:
 
 - left
 - right
 - bottom
 - top
 
-If we do not define any modifier, the placement will be "top".
+Если не указать модификатор, позиция будет "top".
 
-## Value
+## Значение
 
-The tooltip text is specified in the value, but remember that what is inside the "" is interpreted in Javascript, not as a string literal. So if you want have your tooltip say "My title", then you must use an extra pair of quotes, e.g. '', inside the "":
+Текст tooltip задаётся в значении, но помните, что то, что внутри "", интерпретируется как JS, а не как строковый литерал. Поэтому если вы хотите, чтобы tooltip показывал "Мой заголовок", используйте дополнительные кавычки внутри "":
 
 ```vue-html
-<BCard v-b-tooltip="'My title'" />
+<BCard v-b-tooltip="'Мой заголовок'" />
 ```
 
-If you want to refer to the reactive variable `userSurname`, you would do this:
+Если вы хотите использовать реактивную переменную `userSurname`, делайте так:
 
 ```vue-html
 <BCard v-b-tooltip="userSurname" />
 ```
 
-In general, the value can be an object, a string, a function, or an element.
+В целом, значение может быть объектом, строкой, функцией или элементом.
 
 <BCard class="bg-body-tertiary">
 
 ```ts
 /**
- * Default title value if title attribute is not present.
+ * Значение по умолчанию, если атрибут title не указан.
  *
- * If a function is given, it will be called with its this reference set
- * to the element that the popover is attached to.
+ * Если передана функция, она будет вызвана с this, указывающим на элемент, к которому прикреплён popover.
  *
  * @default ''
  */
@@ -72,13 +71,13 @@ title: string | Element | JQuery | ((this: HTMLElement) => string | Element | JQ
 
 </BCard>
 
-The object interface is the most flexible, alllowing these options:
+Интерфейс объекта — самый гибкий, позволяет использовать такие опции:
 
 <BCard class="bg-body-tertiary">
 
 ```ts
 interface ValueObject {
-  delay?: number // default: 0
+  delay?: number // по умолчанию: 0
   placement?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
   title?: string
   trigger?:
@@ -95,33 +94,33 @@ interface ValueObject {
 
 </BCard>
 
-## Delay
+## Задержка
 
-The delay to displaying (and hiding) the tooltip, in millisceonds. The default is 0.
+Задержка перед показом (и скрытием) tooltip в миллисекундах. По умолчанию 0.
 
-## Pitfalls
+## Подводные камни
 
-When we are using a directive, we have two ways to define the title to use in the tooltip.
+При использовании директивы есть два способа задать title для tooltip.
 
-### Incorrect use
+### Неправильное использование
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<BCard v-b-tooltip.hover.top title="my title" />
+<BCard v-b-tooltip.hover.top title="мой заголовок" />
 ```
 
 </BCard>
 
-- First example it is using the property from BCard "title", this property is going to render something like:
+- В этом примере используется свойство "title" компонента BCard, что приведёт к следующей разметке:
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
 <div class="card">
   <div/> // header
-    <div title="my title">
-      //something here
+    <div title="мой заголовок">
+      //что-то здесь
     </div>
   </div> // footer
 </div>
@@ -129,29 +128,29 @@ When we are using a directive, we have two ways to define the title to use in th
 
 </BCard>
 
-Where our title is going to be attached to a child element, but the custom directive is attached to our parent div with class "card".
+В этом случае title будет прикреплён к дочернему элементу, а директива — к родительскому div с классом "card".
 
-So, it is not going to work, and we are going to see a warning in the developer's console.
+Поэтому это не сработает, и вы увидите предупреждение в консоли разработчика.
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<BCard v-b-tooltip.hover.top="my title" />
+<BCard v-b-tooltip.hover.top="мой заголовок" />
 ```
 
 </BCard>
 
-Here we are not using a string, because is reading ts or js code. So, we need to set a literal string, a variable, function or so on.
+Здесь не используется строка, потому что читается ts/js-код. Поэтому нужно использовать строковый литерал, переменную, функцию и т.д.
 
-## Correct use
+## Правильное использование
 
-In that cases is working when the title is created in the root component, like this example:
+Всё работает, если title создаётся в корневом компоненте, например:
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<div v-b-tooltip.hover.top title="my title">
- //something
+<div v-b-tooltip.hover.top title="мой заголовок">
+ //что-то
 </div>
 ```
 
@@ -160,24 +159,24 @@ In that cases is working when the title is created in the root component, like t
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<div class="card" title="my title">
-    //something here
+<div class="card" title="мой заголовок">
+    //что-то здесь
 </div>
 ```
 
 </BCard>
 
-In that case, the directive is detecting the title value, and it is going to be used correctly.
+В этом случае директива определяет значение title и корректно его использует.
 
 <BCard class="bg-body-tertiary">
 
 ```vue-html
-<BCard v-b-tooltip.hover.top="'my title'" />
+<BCard v-b-tooltip.hover.top="'мой заголовок'" />
 ```
 
 </BCard>
 
-We should use the value type when the component is not setting to the root component a title. Notice that we should use ts/js code, a variable and so on.
+Используйте тип значения, если компонент не задаёт title корневому элементу. Обратите внимание, что нужно использовать ts/js-код, переменную и т.д.
 
 <script setup lang="ts">
 import {BCard, BCardBody} from 'bootstrap-vue-next'

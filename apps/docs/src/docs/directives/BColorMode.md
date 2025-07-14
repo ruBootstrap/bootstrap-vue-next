@@ -2,16 +2,16 @@
 
 <div class="lead mb-5">
 
-The `BColorMode` directive is similar to [useColorMode](../composables/useColorMode.md) but provides a more low level directive for placement on individual components. It is useful when you want to make an element have one color mode, but do not want the overhead of the composable variant.
+Директива `BColorMode` похожа на [useColorMode](../composables/useColorMode.md), но предоставляет более низкоуровневый способ для применения к отдельным компонентам. Она полезна, когда нужно задать элементу определённый цветовой режим без использования композабла.
 
 </div>
 
-## Demo
+## Демонстрация
 
 <HighlightCard>
   <BCard v-b-color-mode="currentColor">
     <BButton @click="changeColor">
-      Current color: {{ currentColor }}
+      Текущий режим: {{ currentColor }}
     </BButton>
   </BCard>
   <template #html>
@@ -19,14 +19,14 @@ The `BColorMode` directive is similar to [useColorMode](../composables/useColorM
 ```vue
 <template>
   <BCard v-b-color-mode="currentColor">
-    <BButton @click="changeColor"> Current color: {{ currentColor }} </BButton>
+    <BButton @click="changeColor"> Текущий режим: {{ currentColor }} </BButton>
   </BCard>
 </template>
 
 <script setup lang="ts">
 import {vBColorMode} from 'bootstrap-vue-next'
 
-// Unlike the composable variant, this is not strongly typed by default!
+// В отличие от композабла, здесь по умолчанию нет строгой типизации!
 const currentColor = ref<'light' | 'dark'>('dark')
 
 const changeColor = () => {

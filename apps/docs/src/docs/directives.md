@@ -1,12 +1,12 @@
-# Directives
+# Директивы
 
 <div class="lead mb-5">
 
-'Vue3` supports using custom directives, here you can find a list of directives from this package.
+Vue3 поддерживает использование пользовательских директив. Здесь вы найдёте список директив из этого пакета.
 
 </div>
 
-Depending on the installation method, directives may be automatically registered globally. However, if they are not automatically imported, you will want to import them manually. Every directive is exposed using the v- prefix. For example, for directive `BToggle`, it is imported under `vBToggle`. When using the composition api, it will function as expected. However, if you are using the options api you will want to manually remove the v- prefix during registry. For more information, visit the [vue docs](https://vuejs.org/guide/reusability/custom-directives.html#introduction).
+В зависимости от способа установки директивы могут быть автоматически зарегистрированы глобально. Однако если они не импортируются автоматически, их нужно импортировать вручную. Каждая директива экспортируется с префиксом v-. Например, директива `BToggle` импортируется как `vBToggle`. При использовании composition api всё будет работать как ожидается. Если вы используете options api, необходимо вручную убрать префикс v- при регистрации. Подробнее см. в [документации vue](https://vuejs.org/guide/reusability/custom-directives.html#introduction).
 
 <TableOfContentsCard v-for="composable in computedComposablesList" :key="composable.name" class="my-5" :name="composable.name" :description="composable.description" :route="composable.route" />
 
@@ -20,23 +20,23 @@ const routeLocation = (name: string): string => withBase(`/docs/directives/${nam
 const composablesList: {name: string; description: string}[] = [
   {
     name: 'BColorMode',
-    description: 'The BColorMode directive has a similar result to the useColorMode utility, but provides more low level access than the composable',
+    description: 'Директива BColorMode даёт схожий результат с утилитой useColorMode, но предоставляет более низкоуровневый доступ, чем композабл',
   },
   {
     name: 'BModal',
-    description: 'Similar to the BToggle directive, the BModal directive is used to trigger the state of a modal through directive',
+    description: 'Аналогично директиве BToggle, директива BModal используется для управления состоянием модального окна через директиву',
   },
   {
     name: 'BPopover',
-    description: 'Add popovers to any element on your site, using Bootstrap v4 CSS for styling and animations',
+    description: 'Добавляйте popover к любому элементу на сайте, используя стили и анимации Bootstrap v4',
   },
   {
     name: 'BToggle',
-    description: 'A light-weight directive for toggling visibility state for collapses and sidebars by ID. It automatically handles the accessibility attributes on the trigger element',
+    description: 'Лёгкая директива для переключения видимости collapse и боковых панелей по ID. Автоматически управляет атрибутами доступности на элементе-триггере',
   },
   {
     name: 'BTooltip',
-    description: 'Add custom tooltips to any element. Tooltips can be triggered by hovering, focusing, or clicking an element',
+    description: 'Добавляйте пользовательские tooltip к любому элементу. Tooltip могут появляться при наведении, фокусе или клике по элементу',
   }
 ]
 
