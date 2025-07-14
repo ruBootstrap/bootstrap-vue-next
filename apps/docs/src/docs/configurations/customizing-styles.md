@@ -1,44 +1,23 @@
-# Customizing Styles
+# Кастомизация стилей
 
-## Bootstrap Customization
+## Кастомизация Bootstrap
 
-There are many ways to customize the underlying [Bootstrap](https://getbootstrap.com/) styles. See
-[their documentation](https://getbootstrap.com/docs/5.3/customize/sass/#importing)
-for how to import customized styles
+Существует множество способов изменить базовые стили [Bootstrap](https://getbootstrap.com/). См. [их документацию](https://getbootstrap.com/docs/5.3/customize/sass/#importing) по импорту кастомизированных стилей.
 
-## Adding styles
+## Добавление стилей
 
-It's common to want to enhance or modifiy the styles for a specific component. This can be done
-easily if you can determine a `.css` selector to use to specify the additional styles (and if
-you include your stylesheet after the bootstrap and bootstrap-vue-next style sheets, you can
-even override styles).
+Часто возникает желание улучшить или изменить стили для конкретного компонента. Это можно сделать легко, если определить подходящий селектор `.css` для указания дополнительных стилей (и если вы подключите свой файл стилей после bootstrap и bootstrap-vue-next, вы даже сможете переопределять стили).
 
-Unfortunately, there isn't a full-proof pattern for determining the `.css` selector to use for each
-class, so we've included this information in the reference section for each component.
+К сожалению, не существует универсального способа определить нужный селектор `.css` для каждого класса, поэтому мы включили эту информацию в справочный раздел для каждого компонента.
 
-The pattern for these selectors is as follows.
+Паттерн для этих селекторов следующий.
 
-Most components in `boostrap-vue-next` have a class attached to them on which you can add styles.
-This is often the class that triggers the bootstrap behaviors. For instance, the `BTable` component
-has a class called `table` class and `BAccordion` has a class called `accordion` both of which are
-defined by `bootstrap` and added by `bootstrap-vue-next` to trigger the bootstrap styling on the components.
+Большинство компонентов в `bootstrap-vue-next` имеют класс, который можно использовать для добавления стилей. Обычно это класс, который активирует поведение bootstrap. Например, компонент `BTable` имеет класс `table`, а `BAccordion` — класс `accordion`, оба определены в `bootstrap` и добавляются `bootstrap-vue-next` для применения стилей bootstrap к компонентам.
 
-For most of the components where `bootstrap` doesn't define a class to trigger its behaviors, we've
-added a class of our own, which you can use to add styles. For instance, `bootstrap 5`
-[deprecated](https://getbootstrap.com/) the use of `form-group` along with other form-specific classes.
-So there was no easy way to add styling to `BFormGroup` other than wrapping it in your own component,
-which introduces additional overhead. So we've added the `b-form-group` class.
+Для большинства компонентов, где в `bootstrap` не определён класс для активации поведения, мы добавили свой собственный класс, который вы можете использовать для стилизации. Например, в `bootstrap 5` [устарела](https://getbootstrap.com/) поддержка класса `form-group` и других классов для форм. Поэтому не было простого способа добавить стили к `BFormGroup`, кроме как обернуть его в свой компонент, что добавляет лишнюю сложность. Поэтому мы добавили класс `b-form-group`.
 
-See this [stack-blitz example](https://stackblitz.com/edit/github-lgg91u-usex9n?file=src%2FApp.vue).
+См. этот [пример на stack-blitz](https://stackblitz.com/edit/github-lgg91u-usex9n?file=src%2FApp.vue).
 
-Another pattern is for components that are tightly tied to a `tag`, so adding
-styles should be done via the tag name. For instance, the `BForm` always generates its main
-element with the `form` tag.
+Другой паттерн — для компонентов, тесно связанных с определённым тегом, стили можно добавлять по имени тега. Например, `BForm` всегда генерирует основной элемент с тегом `form`.
 
-Finally, there are a number of variations where there isn't a single class or tag. Where these
-cases can be represented by `.css` selectors they are. For instance a popover may be defined
-by one of two classes, so you can use the css selector `.tooltip, .popover` to add styles to both
-(although you may well wan to style the tooltip and popover variations seperately). In cases where
-like the grid system classes, where there may be many different versions of the class defined by
-the breakpoints, we're simply using a placeholder such as `col[-*]` to represent `col`, `col-sm`,
-`col-md`, etc.
+Наконец, есть ряд вариантов, когда нет единого класса или тега. Если такие случаи можно выразить через `.css`-селекторы, они приведены. Например, popover может быть определён одним из двух классов, поэтому можно использовать селектор `.tooltip, .popover` для стилизации обоих (хотя, возможно, вы захотите стилизовать tooltip и popover отдельно). В случаях, как с классами grid-системы, где может быть много разных версий класса для разных брейкпоинтов, мы просто используем шаблон вроде `col[-*]` для обозначения `col`, `col-sm`, `col-md` и т.д.

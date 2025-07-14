@@ -1,8 +1,8 @@
-# Configurations - Table of Contents
+# Конфигурации — Оглавление
 
 <div class="lead mb-5">
 
-BootstrapVueNext provides several configuration options that you can use to customize the behavior of your components.
+BootstrapVueNext предоставляет несколько опций конфигурации, которые позволяют настраивать поведение ваших компонентов.
 
 </div>
 
@@ -17,9 +17,9 @@ const routeLocation = (name: string): string => withBase(`/docs/configurations/$
 
 const configurationsList: {name: string; route: string}[] = [
   {
-    name: 'Global Options',
+    name: 'Глобальные опции',
     route: routeLocation('global-options'),
-    description: 'Set default prop values for all Vue components.',
+    description: 'Установите значения пропсов по умолчанию для всех Vue-компонентов.',
   }
 ]
 

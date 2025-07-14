@@ -1,14 +1,14 @@
-# Global options
+# Глобальные опции
 
-## Overview
+## Обзор
 
-Global configurations allow you to set default prop values for all Vue components in your application. This is achieved using the createBootstrap plugin. Here's an example:
+Глобальные конфигурации позволяют задавать значения пропсов по умолчанию для всех Vue-компонентов в вашем приложении. Это реализуется с помощью плагина createBootstrap. Пример:
 
 ```ts
 createBootstrap({
   components: {
     global: {
-      type: 'grow', // Caution: This impacts BFormInput, which does not support this value!
+      type: 'grow', // Внимание: это влияет на BFormInput, который не поддерживает это значение!
     },
     BAccordion: {
       flush: true,
@@ -23,16 +23,16 @@ createBootstrap({
 })
 ```
 
-In the above example, each key of the components object corresponds to a Vue component name, and the value is an object that defines the default prop values for that component.
+В приведённом выше примере каждый ключ объекта components соответствует имени Vue-компонента, а значение — это объект, определяющий значения пропсов по умолчанию для этого компонента.
 
-The special key `global` can be used to set a default value for a prop across all components. For example, if you set type: 'grow' under global, all components that have a type prop will default to 'grow', regardless of whether the component's prop definition accepts it.
+Специальный ключ `global` можно использовать для задания значения пропса по умолчанию для всех компонентов. Например, если вы укажете type: 'grow' в global, все компоненты с пропсом type по умолчанию будут иметь значение 'grow', даже если определение пропса этого компонента не поддерживает это значение.
 
-Please note that using global is a significant decision that can have wide-ranging effects on your application, so use it judiciously. For example, one use case is the Nuxt plugin, which sets `teleportsTo` to the Nuxt `#teleports` target, providing a designated area for teleporting components.
+Обратите внимание, что использование global — это важное решение, которое может существенно повлиять на всё приложение, поэтому используйте его с осторожностью. Например, один из вариантов использования — Nuxt-плагин, который устанавливает `teleportsTo` в Nuxt-таргет `#teleports`, предоставляя специальную область для телепортации компонентов.
 
-## Limitations with `modelValues`
+## Ограничения с `modelValues`
 
-Please note that global configurations do not apply to `modelValues`. This is due to the fact that we cannot accurately target when a value is "passive" (i.e., when its prop is not bound).
+Обратите внимание, что глобальные конфигурации не применяются к `modelValues`. Это связано с тем, что невозможно точно определить, когда значение является "пассивным" (т.е. когда его проп не привязан).
 
-In Vue, a prop is considered "passive" if it's not bound to a parent component's data property or computed property. Since global configurations work by setting default prop values, they cannot be applied to "passive" props as there's no way to determine when these props are being used.
+В Vue проп считается "пассивным", если он не привязан к свойству данных или вычисляемому свойству родительского компонента. Поскольку глобальные конфигурации работают путём установки значений пропсов по умолчанию, они не могут применяться к "пассивным" пропсам, так как невозможно определить момент их использования.
 
-Therefore, while global configurations can be a powerful tool for managing default prop values across your application, they should be used with caution and understanding of their limitations.
+Таким образом, хотя глобальные конфигурации — мощный инструмент для управления значениями пропсов по умолчанию во всём приложении, использовать их следует с пониманием ограничений.
